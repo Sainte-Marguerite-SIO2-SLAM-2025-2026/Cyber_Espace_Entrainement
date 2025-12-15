@@ -1,0 +1,246 @@
+﻿<Window x:Class="Cyber_Espace_Entrainement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement"
+        xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels"
+        Title="Cyber Espace Entrainement - Plateforme de Cybersécurité" 
+        Height="700" 
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#f5f5f5">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <!-- EN-TÊTE -->
+            <Border Grid.Row="0" Background="#1565C0" Padding="30,40" Margin="0,0,0,10">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Cyber Espace Entrainement" 
+                           FontSize="42" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+                    <TextBlock Text="Plateforme de Cybersécurité en SIO" 
+                           FontSize="18" 
+                           Foreground="#BBDEFB" 
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+
+
+            <!-- MENU PRINCIPAL - 4 "CARTES" pour le moment -->
+            <Grid Grid.Row="1" Margin="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- CARTE 1 : ESPACE ADMIN -->
+                <Border Grid.Row="0" Grid.Column="0" 
+                    Background="White" 
+                    CornerRadius="10"
+                    Margin="10"
+                    BorderBrush="#e0e0e0"
+                    BorderThickness="1"
+                    Cursor="Hand"
+                    MouseEnter="Card_MouseEnter"
+                    MouseLeave="Card_MouseLeave"
+                    MouseLeftButtonDown="AdminCard_Click">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="⚙️" 
+                               FontSize="64" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,20"/>
+                        <TextBlock Text="ESPACE ADMIN" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center"
+                               Foreground="#1565C0"
+                               Margin="0,0,0,10"/>
+                        <TextBlock Text="Gestion des utilisateurs" 
+                               FontSize="14" 
+                               HorizontalAlignment="Center"
+                               Foreground="#757575"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                        <TextBlock Text="Créer, modifier et supprimer des comptes" 
+                               FontSize="12" 
+                               HorizontalAlignment="Center"
+                               Foreground="#9E9E9E"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARTE 2 : ESPACE TESTS -->
+                <Border Grid.Row="0" Grid.Column="1" 
+                    Background="White" 
+                    CornerRadius="10"
+                    Margin="10"
+                    BorderBrush="#e0e0e0"
+                    BorderThickness="1"
+                    Cursor="Hand"
+                    MouseEnter="Card_MouseEnter"
+                    MouseLeave="Card_MouseLeave"
+                    MouseLeftButtonDown="TestsCard_Click">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <TextBlock Text="🧪" 
+                               FontSize="64" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,20"/>
+                        <TextBlock Text="ESPACE TESTS" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center"
+                               Foreground="#43A047"
+                               Margin="0,0,0,10"/>
+                        <TextBlock Text="Exercices et évaluations" 
+                               FontSize="14" 
+                               HorizontalAlignment="Center"
+                               Foreground="#757575"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                        <TextBlock Text="Testez vos connaissances en cybersécurité" 
+                               FontSize="12" 
+                               HorizontalAlignment="Center"
+                               Foreground="#9E9E9E"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARTE 3 : ESPACE PERSONNEL -->
+                <Border Grid.Row="1" Grid.Column="0" 
+                    Background="White" 
+                    CornerRadius="10"
+                    Margin="10"
+                    BorderBrush="#e0e0e0"
+                    BorderThickness="1"
+                    Cursor="Hand"
+                    MouseEnter="Card_MouseEnter"
+                    MouseLeave="Card_MouseLeave"
+                    MouseLeftButtonDown="PersonalCard_Click">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        <TextBlock Text="👤" 
+                               FontSize="64" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,20"/>
+                        <TextBlock Text="ESPACE PERSONNEL" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center"
+                               Foreground="#FB8C00"
+                               Margin="0,0,0,10"/>
+                        <TextBlock Text="Profil et progression" 
+                               FontSize="14" 
+                               HorizontalAlignment="Center"
+                               Foreground="#757575"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                        <TextBlock Text="Consultez vos statistiques et résultats" 
+                               FontSize="12" 
+                               HorizontalAlignment="Center"
+                               Foreground="#9E9E9E"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARTE 4 : ESPACE COURS -->
+                <Border Grid.Row="1" Grid.Column="1" 
+                    Background="White" 
+                    CornerRadius="10"
+                    Margin="10"
+                    BorderBrush="#e0e0e0"
+                    BorderThickness="1"
+                    Cursor="Hand"
+                    MouseEnter="Card_MouseEnter"
+                    MouseLeave="Card_MouseLeave"
+                    MouseLeftButtonDown="CoursCard_Click">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <TextBlock Text="💼" 
+                               FontSize="64" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,20"/>
+                        <TextBlock Text="ESPACE COURS" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center"
+                               Foreground="#8E24AA"
+                               Margin="0,0,0,10"/>
+                        <TextBlock Text="Ressources pédagogiques" 
+                               FontSize="14" 
+                               HorizontalAlignment="Center"
+                               Foreground="#757575"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                        <TextBlock Text="Accédez aux cours et tutoriels" 
+                               FontSize="12" 
+                               HorizontalAlignment="Center"
+                               Foreground="#9E9E9E"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+
+            <!-- PIED DE PAGE -->
+
+            <Border Grid.Row="2" Background="White" Padding="20" BorderBrush="#e0e0e0" BorderThickness="0,1,0,0">
+                <Grid>
+                    <TextBlock Text="© 2025 - Plateforme de Cybersécurité" 
+                           FontSize="12" 
+                           Foreground="#9E9E9E"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Text="Version 1.0" 
+                               FontSize="12" 
+                               Foreground="#9E9E9E"
+                               VerticalAlignment="Center"
+                               Margin="0,0,20,0"/>
+                        <Button Content="❌ Quitter" 
+                            Click="QuitButton_Click"
+                            Background="#f44336"
+                            Foreground="White"
+                            Padding="15,8"
+                            BorderThickness="0"
+                            Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Window>
+
