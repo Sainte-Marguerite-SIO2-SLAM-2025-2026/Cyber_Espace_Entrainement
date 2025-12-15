@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels"
         Title="Cyber Espace Entrainement - Plateforme de Cybersécurité" 
-        Height="700" 
+        Height="800" 
         Width="900"
         WindowStartupLocation="CenterScreen"
         Background="#f5f5f5">

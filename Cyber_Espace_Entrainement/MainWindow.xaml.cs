@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Cyber_Espace_Entrainement
 {
         /// <summary>
-        /// Page d'accueil avec menu de navigation
+        /// Page d'accueil avec menu de navigation c
         /// </summary>
         public partial class MainWindow : Window
         {
