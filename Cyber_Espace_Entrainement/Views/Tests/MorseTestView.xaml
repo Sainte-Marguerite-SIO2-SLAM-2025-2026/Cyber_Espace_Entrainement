@@ -98,6 +98,16 @@
                     CornerRadius="8"
                     Padding="15"
                     Margin="0,0,20,0">
+					<Border.Style>
+						<Style TargetType="Border">
+							<Setter Property="Visibility" Value="Visible"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ModeTest}" Value="True">
+									<Setter Property="Visibility" Value="Collapsed"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</Border.Style>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -271,7 +281,7 @@
                                     </TextBox.InputBindings>
                                 </TextBox>
                                 <Button Content="✓" 
-                                    Command="{Binding ValiderReponseCommand}"
+                                    Command="{Binding ValiderReponseCommand, UpdateSourceTrigger=PropertyChanged}"
                                     Background="#4CAF50"
                                     Foreground="White"
                                     Width="50"

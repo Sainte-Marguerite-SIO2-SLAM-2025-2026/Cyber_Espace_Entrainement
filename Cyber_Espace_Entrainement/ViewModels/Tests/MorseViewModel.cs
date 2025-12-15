@@ -32,7 +32,8 @@ namespace Cyber_Espace_Entrainement.ViewModels.Tests
             private MorseCode? morseActuel;
 
             [ObservableProperty]
-            private string reponseUtilisateur = string.Empty;
+        [NotifyCanExecuteChangedFor(nameof(ValiderReponseCommand))]
+        private string reponseUtilisateur = string.Empty;
 
             [ObservableProperty]
             private string messageResultat = string.Empty;
