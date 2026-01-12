@@ -10,47 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\morsecode.wav" />
-    <None Remove="Resources\morse_0.wav" />
-    <None Remove="Resources\morse_1.wav" />
-    <None Remove="Resources\morse_2.wav" />
-    <None Remove="Resources\morse_3.wav" />
-    <None Remove="Resources\morse_4.wav" />
-    <None Remove="Resources\morse_5.wav" />
-    <None Remove="Resources\morse_6.wav" />
-    <None Remove="Resources\morse_7.wav" />
-    <None Remove="Resources\morse_8.wav" />
-    <None Remove="Resources\morse_9.wav" />
-    <None Remove="Resources\morse_A.wav" />
-    <None Remove="Resources\morse_B.wav" />
-    <None Remove="Resources\morse_BRAVO.wav" />
-    <None Remove="Resources\morse_C.wav" />
-    <None Remove="Resources\morse_D.wav" />
-    <None Remove="Resources\morse_E.wav" />
-    <None Remove="Resources\morse_F.wav" />
-    <None Remove="Resources\morse_G.wav" />
-    <None Remove="Resources\morse_H.wav" />
-    <None Remove="Resources\morse_I.wav" />
-    <None Remove="Resources\morse_J.wav" />
-    <None Remove="Resources\morse_K.wav" />
-    <None Remove="Resources\morse_L.wav" />
-    <None Remove="Resources\morse_M.wav" />
-    <None Remove="Resources\morse_N.wav" />
-    <None Remove="Resources\morse_O.wav" />
-    <None Remove="Resources\morse_P.wav" />
-    <None Remove="Resources\morse_Q.wav" />
-    <None Remove="Resources\morse_R.wav" />
-    <None Remove="Resources\morse_S.wav" />
-    <None Remove="Resources\morse_T.wav" />
-    <None Remove="Resources\morse_U.wav" />
-    <None Remove="Resources\morse_V.wav" />
-    <None Remove="Resources\morse_W.wav" />
-    <None Remove="Resources\morse_X.wav" />
-    <None Remove="Resources\morse_Y.wav" />
-    <None Remove="Resources\morse_Z.wav" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1" />
@@ -81,53 +40,61 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\morsecode.wav" />
-    <Resource Include="Resources\morse_0.wav">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\morse_1.wav" />
-    <Resource Include="Resources\morse_2.wav" />
-    <Resource Include="Resources\morse_3.wav" />
-    <Resource Include="Resources\morse_4.wav" />
-    <Resource Include="Resources\morse_5.wav" />
-    <Resource Include="Resources\morse_6.wav" />
-    <Resource Include="Resources\morse_7.wav" />
-    <Resource Include="Resources\morse_8.wav" />
-    <Resource Include="Resources\morse_9.wav" />
-    <Resource Include="Resources\morse_A.wav" />
-    <Resource Include="Resources\morse_B.wav" />
-    <Resource Include="Resources\morse_BRAVO.wav" />
-    <Resource Include="Resources\morse_C.wav" />
-    <Resource Include="Resources\morse_D.wav" />
-    <Resource Include="Resources\morse_E.wav" />
-    <Resource Include="Resources\morse_F.wav" />
-    <Resource Include="Resources\morse_G.wav" />
-    <Resource Include="Resources\morse_H.wav" />
-    <Resource Include="Resources\morse_I.wav" />
-    <Resource Include="Resources\morse_J.wav" />
-    <Resource Include="Resources\morse_K.wav" />
-    <Resource Include="Resources\morse_L.wav" />
-    <Resource Include="Resources\morse_M.wav" />
-    <Resource Include="Resources\morse_N.wav" />
-    <Resource Include="Resources\morse_O.wav" />
-    <Resource Include="Resources\morse_P.wav" />
-    <Resource Include="Resources\morse_Q.wav" />
-    <Resource Include="Resources\morse_R.wav" />
-    <Resource Include="Resources\morse_S.wav" />
-    <Resource Include="Resources\morse_T.wav" />
-    <Resource Include="Resources\morse_U.wav" />
-    <Resource Include="Resources\morse_V.wav" />
-    <Resource Include="Resources\morse_W.wav" />
-    <Resource Include="Resources\morse_X.wav" />
-    <Resource Include="Resources\morse_Y.wav" />
-    <Resource Include="Resources\morse_Z.wav" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\AnalyseLog\" />
+    <Folder Include="Models\BrokenAccessControl\" />
+    <Folder Include="Models\BruteForce\" />
+    <Folder Include="Models\Captcha\" />
+    <Folder Include="Models\Chiffrement\" />
+    <Folder Include="Models\Clickjacking\" />
+    <Folder Include="Models\ConventionNommage\" />
+    <Folder Include="Models\InjectionPrompt\" />
+    <Folder Include="Models\InjectionSQL\" />
+    <Folder Include="Models\Phishing\" />
+    <Folder Include="Models\Privilege\" />
+    <Folder Include="Models\Ransomware\" />
+    <Folder Include="Models\Steganographie\" />
+    <Folder Include="Models\Token\" />
+    <Folder Include="Models\UserEnumeration\" />
+    <Folder Include="Models\XSS\" />
+    <Folder Include="ViewModels\Activite\AnalyseLog\" />
+    <Folder Include="ViewModels\Activite\BrokenAccessControl\" />
+    <Folder Include="ViewModels\Activite\BruteForce\" />
+    <Folder Include="ViewModels\Activite\Captcha\" />
+    <Folder Include="ViewModels\Activite\Chiffrement\" />
+    <Folder Include="ViewModels\Activite\Clickjacking\" />
+    <Folder Include="ViewModels\Activite\ConventionNommage\" />
+    <Folder Include="ViewModels\Activite\InjectionPrompt\" />
+    <Folder Include="ViewModels\Activite\InjectionSQL\" />
+    <Folder Include="ViewModels\Activite\Phishing\" />
+    <Folder Include="ViewModels\Activite\Privilege\" />
+    <Folder Include="ViewModels\Activite\Ransomware\" />
+    <Folder Include="ViewModels\Activite\Steganographie\" />
+    <Folder Include="ViewModels\Activite\Token\" />
+    <Folder Include="ViewModels\Activite\UserEnumeration\" />
+    <Folder Include="ViewModels\Activite\XSS\" />
+    <Folder Include="Views\Activite\Chiffrement\" />
+    <Folder Include="Views\Activite\Captcha\" />
+    <Folder Include="Views\Activite\InjectionSQL\" />
+    <Folder Include="Views\Activite\Clickjacking\" />
+    <Folder Include="Views\Activite\ConventionNommage\" />
+    <Folder Include="Views\Activite\AnalyseLog\" />
+    <Folder Include="Views\Activite\InjectionPrompt\" />
+    <Folder Include="Views\Activite\BrokenAccessControl\" />
+    <Folder Include="Views\Activite\BruteForce\" />
+    <Folder Include="Views\Activite\Privilege\" />
+    <Folder Include="Views\Activite\UserEnumeration\" />
+    <Folder Include="Views\Activite\Phishing\" />
+    <Folder Include="Views\Activite\Steganographie\" />
+    <Folder Include="Views\Activite\Token\" />
+    <Folder Include="Views\Activite\XSS\" />
+    <Folder Include="Views\Activite\Ransomware\" />
   </ItemGroup>
 
 </Project>
