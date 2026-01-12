@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cyber_Espace_Entrainement.Models
+namespace Cyber_Espace_Entrainement.Models.Morse
 {
         /// <summary>
         /// Modèle représentant un code Morse
