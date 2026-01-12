@@ -11,6 +11,6 @@ namespace Cyber_Espace_Entrainement.ViewModels
       
         public partial class MainViewModel : ObservableObject
         {
-           
+           //aaa
         }
     }
