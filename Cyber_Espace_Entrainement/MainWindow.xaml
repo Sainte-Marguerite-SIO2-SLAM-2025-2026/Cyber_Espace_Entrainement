@@ -44,8 +44,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-                <!-- CARTE 1 : ESPACE ADMIN -->
+            <!-- à compléter  -->
+            <!-- CARTE 1 : ESPACE ADMIN -->
                 <Border Grid.Row="0" Grid.Column="0" 
                     Background="White" 
                     CornerRadius="10"
@@ -53,7 +53,7 @@
                     BorderBrush="#e0e0e0"
                     BorderThickness="1"
                     Cursor="Hand"
-						 Tag="#1565C0"
+                    Tag="#1565C0"
                     MouseEnter="Card_MouseEnter"
                     MouseLeave="Card_MouseLeave"
                     MouseLeftButtonDown="AdminCard_Click">
@@ -96,7 +96,7 @@
                     BorderBrush="#e0e0e0"
                     BorderThickness="1"
                     Cursor="Hand"
-						 Tag="#43A047"
+                    Tag="#43A047"
                     MouseEnter="Card_MouseEnter"
                     MouseLeave="Card_MouseLeave"
                     MouseLeftButtonDown="TestsCard_Click">
@@ -139,7 +139,7 @@
                     BorderBrush="#e0e0e0"
                     BorderThickness="1"
                     Cursor="Hand"
-						  Tag="#FB8C00"
+                    Tag="#FB8C00"
                     MouseEnter="Card_MouseEnter"
                     MouseLeave="Card_MouseLeave"
                     MouseLeftButtonDown="PersonalCard_Click">
@@ -182,7 +182,7 @@
                     BorderBrush="#e0e0e0"
                     BorderThickness="1"
                     Cursor="Hand"
-						  Tag="#8E24AA"
+                    Tag="#8E24AA"
                     MouseEnter="Card_MouseEnter"
                     MouseLeave="Card_MouseLeave"
                     MouseLeftButtonDown="CoursCard_Click">
