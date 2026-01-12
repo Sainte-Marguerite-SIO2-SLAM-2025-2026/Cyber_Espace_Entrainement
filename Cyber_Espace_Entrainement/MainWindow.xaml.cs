@@ -2,22 +2,18 @@
 using Cyber_Espace_Entrainement.Views.Accueil;
 using Cyber_Espace_Entrainement.Views.Tests;
 using Cyber_Espace_Entrainement.Views.Users;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Color = System.Windows.Media.Color;
+using ColorConverter = System.Windows.Media.ColorConverter;
 
 namespace Cyber_Espace_Entrainement
 {
         /// <summary>
-        /// Page d'accueil avec menu de navigation c
+        /// Page d'accueil avec menu de navigation
         /// </summary>
         public partial class MainWindow : Window
         {

@@ -81,12 +81,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resources\morsecode.wav" />
-    <Resource Include="Resources\morse_0.wav" />
+    <Resource Include="Resources\morse_0.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\morse_1.wav" />
     <Resource Include="Resources\morse_2.wav" />
     <Resource Include="Resources\morse_3.wav" />
