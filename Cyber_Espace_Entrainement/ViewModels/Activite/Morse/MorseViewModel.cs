@@ -4,10 +4,10 @@ using System.Text;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Cyber_Espace_Entrainement.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
+using Cyber_Espace_Entrainement.Models.Morse;
 
 
 namespace Cyber_Espace_Entrainement.ViewModels.Tests
@@ -88,7 +88,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Tests
                     {
                         Lettre = code.Key,
                         Code = code.Value,
-                        CheminAudio = $"Resources/_{code.Key}_morse.wav" // À adapter selon les fichiers (à revoir) 
+                        CheminAudio = $"Resources/Morse/_{code.Key}_morse.wav" // À adapter selon les fichiers (à revoir) 
                     });
                 }
             }
