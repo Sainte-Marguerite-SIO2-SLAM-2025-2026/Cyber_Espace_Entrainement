@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Cyber_Espace_Entrainement
 {
         /// <summary>
-        /// Page d'accueil avec menu de navigation
+        /// Page d'accueil avec menu de navigation c
         /// </summary>
         public partial class MainWindow : Window
         {
@@ -119,12 +119,19 @@ namespace Cyber_Espace_Entrainement
                     card.RenderTransform = new ScaleTransform(1.05, 1.05);
                     card.RenderTransformOrigin = new Point(0.5, 0.5);
 
+                //
+                // couleur de la card à modifier
+                //
+                if (card.Tag is string couleur)
+                {
                     // Bordure plus visible
-                    card.BorderBrush = new SolidColorBrush(Color.FromRgb(33, 150, 243));
+                    var color = (Color)ColorConverter.ConvertFromString(couleur);
+                    card.BorderBrush = new SolidColorBrush(color);
                     card.BorderThickness = new Thickness(2);
+                }
 
-                    // Ombre plus marquée
-                    if (card.Effect is DropShadowEffect shadow)
+                // Ombre plus marquée
+                if (card.Effect is DropShadowEffect shadow)
                     {
                         shadow.BlurRadius = 20;
                         shadow.ShadowDepth = 5;
