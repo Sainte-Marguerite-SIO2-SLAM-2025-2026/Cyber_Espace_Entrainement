@@ -1,0 +1,14 @@
+﻿<Page x:Class="Cyber_Espace_Entrainement.Models.AnalyseLog.Test_a_virer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Models.AnalyseLog"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Test_a_virer">
+
+    <Grid>
+        
+    </Grid>
+</Page>
