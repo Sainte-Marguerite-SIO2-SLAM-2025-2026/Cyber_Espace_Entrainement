@@ -4,11 +4,10 @@ using System.Text;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Cyber_Espace_Entrainement.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
-using System.Media;
+using Cyber_Espace_Entrainement.Models.Morse;
 
 
 namespace Cyber_Espace_Entrainement.ViewModels.Tests
@@ -32,8 +31,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Tests
             private MorseCode? morseActuel;
 
             [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(ValiderReponseCommand))]
-        private string reponseUtilisateur = string.Empty;
+            private string reponseUtilisateur = string.Empty;
 
             [ObservableProperty]
             private string messageResultat = string.Empty;
@@ -90,7 +88,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Tests
                     {
                         Lettre = code.Key,
                         Code = code.Value,
-                        CheminAudio = $"Resources/morse_{code.Key}.wav" // À adapter selon les fichiers (à revoir) 
+                        CheminAudio = $"Resources/Morse/_{code.Key}_morse.wav" // À adapter selon les fichiers (à revoir) 
                     });
                 }
             }
@@ -160,15 +158,11 @@ namespace Cyber_Espace_Entrainement.ViewModels.Tests
                     CouleurResultat = "#2196F3";
 
                     // Atester sur machine : 
-                    // _mediaPlayer.Open(new Uri(MorseActuel.CheminAudio, UriKind.Relative));
-                    // _mediaPlayer.Play();
+                     _mediaPlayer.Open(new Uri(MorseActuel.CheminAudio, UriKind.Relative));
+                     _mediaPlayer.Play();
 
-                var playerSons = new SoundPlayer(Application.GetResourceStream(
-                    new Uri(MorseActuel.CheminAudio, UriKind.Relative)).Stream);
-                playerSons.Play();
-
-                // Pour l'instant, afficher le code en console
-                System.Diagnostics.Debug.WriteLine($"Son Morse : {MorseActuel.Code} ({MorseActuel.Lettre})");
+                    // Pour l'instant, afficher le code en console
+                    System.Diagnostics.Debug.WriteLine($"Son Morse : {MorseActuel.Code} ({MorseActuel.Lettre})");
                 }
                 catch (Exception ex)
                 {
