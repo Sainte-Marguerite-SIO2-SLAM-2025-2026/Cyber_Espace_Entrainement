@@ -1,0 +1,31 @@
+﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Inscritpion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views"
+        mc:Ignorable="d"
+        Title="Inscritpion" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblTitre" Content="Inscription" Margin="0,24,0,376" Width="126" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Center"/>
+        <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Center" Height="37" Margin="0,335,0,0" VerticalAlignment="Top" Width="162"/>
+        <Button x:Name="btnInscription" Content="Button" HorizontalAlignment="Left" Margin="641,386,0,0" VerticalAlignment="Top" Width="132" Height="33"/>
+        <TextBlock x:Name="tbxLogin" Height="20" Margin="181,120,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="tbxMotDePasse" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="181,181,0,0" HorizontalAlignment="Left"/>
+        <Label x:Name="lblLogin" Content="Login" Margin="161,86,0,0" VerticalAlignment="Top" Height="34" Width="144" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Left"/>
+        <Label x:Name="lblMotDePasse" Content="Mot De Passe" Margin="161,145,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="tbxNom" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="181,247,0,0" HorizontalAlignment="Left"/>
+        <Label x:Name="lblNom" Content="Nom" Margin="161,211,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="tbxLogin_Copy" HorizontalAlignment="Left" Height="20" Margin="510,120,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16"/>
+        <TextBlock x:Name="tbxMotDePasse_Copy" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="510,181,0,0"/>
+        <Label x:Name="lblLogin_Copy" Content="Prenom" HorizontalAlignment="Left" Margin="492,86,0,0" VerticalAlignment="Top" Height="34" Width="144" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
+        <Label x:Name="lblMotDePasse_Copy" Content="Section" HorizontalAlignment="Left" Margin="492,145,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
+        <TextBlock x:Name="tbxNom_Copy" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="512,247,0,0"/>
+        <Label x:Name="lblNom_Copy" Content="Mail" HorizontalAlignment="Left" Margin="492,211,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
+
+    </Grid>
+</Window>
