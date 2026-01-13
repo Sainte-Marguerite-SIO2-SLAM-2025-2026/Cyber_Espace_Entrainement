@@ -26,7 +26,14 @@
                 Padding="15,8"
                 BorderThickness="0"
                 Cursor="Hand"/> 
-        <Button x:Name="btnInscription" Content="Button" HorizontalAlignment="Left" Margin="645,378,0,0" VerticalAlignment="Top" Width="132" Height="33"/>
+        <Button x:Name="btnInscription" 
+                Content="Button" 
+                HorizontalAlignment="Left" 
+                Margin="645,378,0,0" 
+                VerticalAlignment="Top" 
+                Width="132" 
+                Height="33"
+                Click="Inscription_Click"/>
         <Label x:Name="lblLogin" Content="Login" HorizontalAlignment="Left" Margin="256,93,0,0" VerticalAlignment="Top" Height="34" Width="144" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
         <Label x:Name="lblMotDePasse" Content="Mot De Passe" HorizontalAlignment="Left" Margin="256,171,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
         <TextBox x:Name="tbxMotDePasse" HorizontalAlignment="Center" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Width="264" FontFamily="Verdana" FontSize="16"/>

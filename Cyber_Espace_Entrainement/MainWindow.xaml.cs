@@ -12,21 +12,29 @@ using ColorConverter = System.Windows.Media.ColorConverter;
 
 namespace Cyber_Espace_Entrainement
 {
-        /// <summary>
-        /// Page d'accueil avec menu de navigation
-        /// </summary>
-        public partial class MainWindow : Window
+    /// <summary>
+    /// Page d'accueil avec menu de navigation
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
         {
-            public MainWindow()
-            {
-                InitializeComponent();
-            }
-
-            private void Valider_Click(object sender, RoutedEventArgs e)
-            {
-                var accueilWindow = new Accueil();
-                accueilWindow.ShowDialog();
-            }
-
+            InitializeComponent();
         }
+
+        private void Valider_Click(object sender, RoutedEventArgs e)
+        {
+            var accueilWindow = new Accueil();
+            this.Hide();
+            accueilWindow.ShowDialog();
+        }
+
+        private void Inscription_Click(object sender, RoutedEventArgs e)
+        {
+            var inscriptionlWindow = new Inscritpion();
+            this.Hide();
+            inscriptionlWindow.ShowDialog();
+        }
+
     }
+}

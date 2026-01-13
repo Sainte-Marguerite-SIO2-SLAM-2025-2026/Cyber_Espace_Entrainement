@@ -21,5 +21,32 @@ namespace Cyber_Espace_Entrainement.Views
         {
             InitializeComponent();
         }
+
+        private void Connexion_Click(object sender, RoutedEventArgs e)
+        {
+            var ConnexionWindow = new MainWindow();
+            this.Hide();
+            ConnexionWindow.ShowDialog();
+        }
+
+        //
+        // BOUTON QUITTER
+        //
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "Voulez-vous vraiment quitter l'application ?",
+                "Confirmation",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+        }
     }
 }
+

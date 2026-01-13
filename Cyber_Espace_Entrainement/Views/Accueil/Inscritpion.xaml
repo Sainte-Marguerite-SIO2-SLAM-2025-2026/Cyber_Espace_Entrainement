@@ -5,42 +5,229 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views"
         mc:Ignorable="d"
-        Title="Inscritpion" Height="450" Width="800">
+        Title="Inscritpion" 
+        Height="450" 
+        Width="800"
+         WindowStartupLocation="CenterScreen"
+         Background="#f5f5f5">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
-        <!-- EN TETE -->
-        <Border Grid.Row="0" Background="#1565C0" Padding="30,40" Margin="0,0,0,10">
-            <Label x:Name="lblTitre" Content="Inscription" Margin="0,24,0,376" Width="126" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Center"/>
+        <!--#region EN TETE -->
+        
+        <Border Grid.Row="0" Background="#1565C0" Padding="0" Margin="0,0,0,10">
+            <Label x:Name="lblTitre" 
+                   Content="Inscription" 
+                   Margin="0,0,0,0" 
+                   Width="126" 
+                   Foreground="White"
+                   HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center" 
+                   FontFamily="Verdana" FontSize="20" 
+                   HorizontalAlignment="Center"/>
         </Border>
-        <!-- CHAMP A REMPLIR-->
+        <!--#endregion-->
+        
+        <!--#region CONTENUE -->
+        
         <Grid Grid.Row="1" Margin="0,0,0,0">
-            <Label x:Name="lblLogin" Content="Login" Margin="161,30,0,0" VerticalAlignment="Top" Height="34" Width="144" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Left"/>
-            <Label x:Name="lblMotDePasse" Content="Mot De Passe" Margin="161,89,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Left"/>
-            <Label x:Name="lblNom" Content="Nom" Margin="161,155,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Left"/>
-            <Label x:Name="lblLogin_Copy" Content="Prenom" HorizontalAlignment="Left" Margin="492,30,0,0" VerticalAlignment="Top" Height="34" Width="144" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
-            <Label x:Name="lblMotDePasse_Copy" Content="Section" HorizontalAlignment="Left" Margin="492,89,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
-            <Label x:Name="lblNom_Copy" Content="Mail" HorizontalAlignment="Left" Margin="492,155,0,0" VerticalAlignment="Top" Height="34" Width="162" VerticalContentAlignment="Center" FontFamily="Verdana" FontSize="20"/>
-            <TextBox x:Name="tbxLogin" Height="20" Margin="181,64,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" HorizontalAlignment="Left"/>
-            <TextBox x:Name="tbxSection" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="510,125,0,0"/>
-            <TextBox x:Name="tbxPrenom" HorizontalAlignment="Left" Height="20" Margin="510,64,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16"/>
-            <TextBox x:Name="tbxMotDePasse" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="181,125,0,0" HorizontalAlignment="Left"/>
-            <TextBox x:Name="tbxNom" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="181,192,0,0" HorizontalAlignment="Left"/>
-            <TextBox x:Name="tbxMail" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="264" FontFamily="Verdana" FontSize="16" Margin="512,192,0,0"/>
-            <Label x:Name="lblTitre_Copy" Content="Vous avez déjà un compte ?" Margin="595,343,0,57" Width="181" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" HorizontalAlignment="Left"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--#region CHAMP A REMPLIR -->
+            
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    
+                    <!--#region Login -->
+                    <Label x:Name="lblLogin" 
+                           Content="Login" 
+                           Margin="0,10,0,0" 
+                           VerticalAlignment="Top" 
+                           Height="34" 
+                           Width="264" 
+                           VerticalContentAlignment="Center" 
+                           FontFamily="Verdana" 
+                           FontSize="20" 
+                           HorizontalAlignment="center"/>
+                    <TextBox x:Name="tbxLogin" 
+                           Height="20" 
+                           Margin="20,44,0,0" 
+                           TextWrapping="Wrap" 
+                           Text="TextBlock" 
+                           VerticalAlignment="Top" 
+                           Width="264" 
+                           FontFamily="Verdana" 
+                           FontSize="16" 
+                           HorizontalAlignment="center"/>
+                    <!--#endregion-->
+                    
+                    <!--#region Mot De Passe -->
+                    <Label x:Name="lblMotDePasse" 
+                           Content="Mot De Passe" 
+                           Margin="0,69,0,0" 
+                           VerticalAlignment="Top" 
+                           Height="34" 
+                           Width="264" 
+                           VerticalContentAlignment="Center" 
+                           FontFamily="Verdana" FontSize="20" 
+                           HorizontalAlignment="center"/>
+                    <TextBox x:Name="tbxMotDePasse" 
+                           Height="20" 
+                           TextWrapping="Wrap" 
+                           Text="TextBlock" 
+                           VerticalAlignment="Top" 
+                           Width="264" 
+                           FontFamily="Verdana" 
+                           FontSize="16" 
+                           Margin="20,105,0,0"
+                           HorizontalAlignment="center"/>
+                    <!--#endregion-->
+                    
+                    <!--#region Nom -->
+                    <Label x:Name="lblNom" 
+                           Content="Nom" 
+                           Margin="0,135,0,0" 
+                           VerticalAlignment="Top" 
+                           Height="34"
+                           Width="264" 
+                           VerticalContentAlignment="Center" 
+                           FontFamily="Verdana" 
+                           FontSize="20" 
+                           HorizontalAlignment="center"/>
+                    <TextBox x:Name="tbxNom" 
+                           Height="20" 
+                           TextWrapping="Wrap" 
+                           Text="TextBlock" 
+                           VerticalAlignment="Top" 
+                           Width="264" 
+                           FontFamily="Verdana" 
+                           FontSize="16" 
+                           Margin="20,172,0,0"
+                           HorizontalAlignment="center"/>
+                    <!--#endregion-->
+                    
+                </Grid>
+
+                <Grid Grid.Column="2">
+
+                    <!--#region Prenom -->
+                    <Label x:Name="lblPrenom" 
+                           Content="Prenom" 
+                           HorizontalAlignment="Center" 
+                           Margin="0,10,0,0" 
+                           VerticalAlignment="Top" 
+                           Height="34" 
+                           Width="264" 
+                           VerticalContentAlignment="Center" 
+                           FontFamily="Verdana" 
+                           FontSize="20"/>
+                    <TextBox x:Name="tbxPrenom" 
+                           HorizontalAlignment="Center"
+                           Height="20"
+                           Margin="20,44,0,0"
+                           TextWrapping="Wrap" 
+                           Text="TextBlock" 
+                           VerticalAlignment="Top" 
+                           Width="264" 
+                           FontFamily="Verdana" 
+                           FontSize="16"/>
+                    <!--#endregion-->
+
+                    <!--#region Section -->
+                    <Label x:Name="lblSection" 
+                           Content="Section" 
+                           HorizontalAlignment="Center"
+                           Margin="0,69,0,0" 
+                           VerticalAlignment="Top" 
+                           Height="34" 
+                           Width="264" 
+                           VerticalContentAlignment="Center" 
+                           FontFamily="Verdana" 
+                           FontSize="20"/>
+                    <TextBox x:Name="tbxSection" 
+                           HorizontalAlignment="Center" 
+                           Height="20" 
+                           TextWrapping="Wrap" 
+                           Text="TextBlock" 
+                           VerticalAlignment="Top" 
+                           Width="264" 
+                           FontFamily="Verdana" 
+                           FontSize="16" 
+                           Margin="20,105,0,0" TextChanged="tbxSection_TextChanged"/>
+                    <!--#endregion-->
+
+                    <!--#region Mail -->
+                    <Label x:Name="lblMail" 
+                           Content="Mail" 
+                           HorizontalAlignment="Center" 
+                           Margin="0,135,0,0" 
+                           VerticalAlignment="Top" 
+                           Height="34" 
+                           Width="264" 
+                           VerticalContentAlignment="Center" 
+                           FontFamily="Verdana" 
+                           FontSize="20"/>
+                    <TextBox x:Name="tbxMail" 
+                           HorizontalAlignment="Center"
+                           Height="20" 
+                           TextWrapping="Wrap" 
+                           Text="TextBlock" 
+                           VerticalAlignment="Top" 
+                           Width="264" 
+                           FontFamily="Verdana" 
+                           FontSize="16" 
+                           Margin="20,172,0,0"/>
+                    <!--#endregion-->
+
+                </Grid>
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region ZONE BTN -->
+            <Grid Grid.Row="1">
+                <Button x:Name="btnValider" 
+                       Content="Valider" 
+                       HorizontalAlignment="Center" 
+                       Height="37" Margin="0,10,0,0" 
+                       VerticalAlignment="Top"
+                       Width="162"/>
+                <Label x:Name="lblConnexion"
+                       Content="Vous avez déjà un compte ?" 
+                       Margin="0,0,10,33" 
+                       Width="181" 
+                       HorizontalContentAlignment="Center" 
+                       VerticalContentAlignment="Center" 
+                       FontFamily="Verdana" 
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"/>
+                <Button x:Name="btnConnexion" 
+                       Content="Connectez-Vous" 
+                       HorizontalAlignment="Right" 
+                       Margin="0,0,10,0" 
+                       VerticalAlignment="Bottom" 
+                       Width="132" 
+                       Height="33" 
+                       FontSize="13"
+                       Click="Connexion_Click"/>
+            </Grid>
+            <!--#endregion-->
+            
         </Grid>
-
-        <!-- ZONE BTN -->
-
-        <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Center" Height="37" Margin="0,335,0,0" VerticalAlignment="Top" Width="162"/>
-        <Button x:Name="btnConnexion" Content="Connectez-Vous" HorizontalAlignment="Left" Margin="629,385,0,0" VerticalAlignment="Top" Width="132" Height="33" FontSize="13"/>
-
-        <!-- PIEDS DE PAGE -->
+        <!--#endregion-->
+        
+        <!--#region PIEDS DE PAGE -->
 
         <Border Grid.Row="2" Background="White" Padding="20" BorderBrush="#e0e0e0" BorderThickness="0,1,0,0">
             <Grid>
@@ -66,5 +253,7 @@
                 </StackPanel>
             </Grid>
         </Border>
+        <!--#endregion-->
+        
     </Grid>
 </Window>
