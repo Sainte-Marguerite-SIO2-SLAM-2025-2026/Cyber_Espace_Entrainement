@@ -31,7 +31,7 @@ namespace Cyber_Espace_Entrainement
 
         private void Inscription_Click(object sender, RoutedEventArgs e)
         {
-            var inscriptionlWindow = new Inscritpion();
+            var inscriptionlWindow = new Inscription();
             this.Hide();
             inscriptionlWindow.ShowDialog();
         }
