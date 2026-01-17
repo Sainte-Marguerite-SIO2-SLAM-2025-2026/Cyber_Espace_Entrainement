@@ -7,8 +7,8 @@
         xmlns:viewmodels="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Accueil"        
         mc:Ignorable="d"
         Title="Inscription" 
-        Height="550" 
-        Width="900"
+        Height="580" 
+        Width="950"
         WindowStartupLocation="CenterScreen"
         Background="#f5f5f5"
         ResizeMode="NoResize">
@@ -17,8 +17,11 @@
         <viewmodels:InscriptionViewModel/>
     </Window.DataContext>
 
+    <!--#region Styles-->
     <Window.Resources>
-        <!-- Style pour les Labels -->
+        <!--#region Style pour les Labels -->
+        
+        <!-- Style pour les Labels contenue -->
         <Style x:Key="ModernLabel" TargetType="Label">
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontSize" Value="14"/>
@@ -26,6 +29,9 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
+        
+        
+        <!--#endregion-->
 
         <!-- Style pour les TextBox -->
         <Style x:Key="ModernTextBox" TargetType="TextBox">
@@ -132,7 +138,9 @@
             </Setter>
         </Style>
 
-        <!-- Style pour les Buttons -->
+        <!--#region Style pour les Bouttons -->
+
+        <!-- Style pour les Bouttons classiques -->
         <Style x:Key="ModernButton" TargetType="Button">
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontSize" Value="14"/>
@@ -171,6 +179,7 @@
         <Style x:Key="QuitButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
             <Setter Property="Background" Value="#f44336"/>
         </Style>
+        <!--#endregion-->
 
         <!-- Style pour les messages d'erreur -->
         <Style x:Key="ErrorText" TargetType="TextBlock">
@@ -180,6 +189,7 @@
             <Setter Property="Margin" Value="0,3,0,0"/>
         </Style>
     </Window.Resources>
+    <!--#endregion-->
 
     <Grid>
         <Grid.RowDefinitions>
@@ -203,146 +213,144 @@
         </Border>
 
         <!-- CONTENU -->
-        <ScrollViewer Grid.Row="1" 
-                      VerticalScrollBarVisibility="Auto"
-                      Padding="40,0">
-            <Grid MaxWidth="800">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+        <Grid MaxWidth="900" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-                <!-- FORMULAIRE -->
-                <Grid Grid.Row="0" Margin="0,0,0,30">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+            <!-- FORMULAIRE -->
+            <Grid Grid.Row="0" Margin="0,0,0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <!-- COLONNE GAUCHE -->
-                    <StackPanel Grid.Column="0">
-                        <!-- Login -->
-                        <Label Content="Login *"
+                <!-- COLONNE GAUCHE -->
+                <StackPanel Grid.Column="0">
+                    <!-- Login -->
+                    <Label Content="Login *"
                                Style="{StaticResource ModernLabel}"/>
-                        <TextBox x:Name="tbxLogin"
+                    <TextBox x:Name="tbxLogin"
                                  Style="{StaticResource ModernTextBox}"
                                  Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="0,0,0,5"/>
-                        <TextBlock Text="{Binding LoginError}"
+                    <TextBlock Text="{Binding LoginError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding LoginError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
 
-                        <!-- Mot de passe -->
-                        <Label Content="Mot de passe *"
+                    <!-- Mot de passe -->
+                    <Label Content="Mot de passe *"
                                Style="{StaticResource ModernLabel}"
                                Margin="0,10,0,5"/>
-                        <PasswordBox x:Name="pbxMotDePasse"
+                    <PasswordBox x:Name="pbxMotDePasse"
                                      Height="38"
                                      FontFamily="Verdana"
                                      FontSize="14"
                                      Padding="10,8"
                                      Margin="0,0,0,5"
                                      PasswordChanged="PasswordBox_PasswordChanged"/>
-                        <TextBlock Text="{Binding MotDePasseError}"
+                    <TextBlock Text="{Binding MotDePasseError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding MotDePasseError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
 
-                        <!-- Nom -->
-                        <Label Content="Nom *"
+                    <!-- Nom -->
+                    <Label Content="Nom *"
                                Style="{StaticResource ModernLabel}"
                                Margin="0,10,0,5"/>
-                        <TextBox x:Name="tbxNom"
+                    <TextBox x:Name="tbxNom"
                                  Style="{StaticResource ModernTextBox}"
                                  Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="0,0,0,5"/>
-                        <TextBlock Text="{Binding NomError}"
+                    <TextBlock Text="{Binding NomError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding NomError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
-                    </StackPanel>
+                </StackPanel>
 
-                    <!-- COLONNE DROITE -->
-                    <StackPanel Grid.Column="2">
-                        <!-- Prénom -->
-                        <Label Content="Prénom *"
+                <!-- COLONNE DROITE -->
+                <StackPanel Grid.Column="2">
+                    <!-- Prénom -->
+                    <Label Content="Prénom *"
                                Style="{StaticResource ModernLabel}"/>
-                        <TextBox x:Name="tbxPrenom"
+                    <TextBox x:Name="tbxPrenom"
                                  Style="{StaticResource ModernTextBox}"
                                  Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="0,0,0,5"/>
-                        <TextBlock Text="{Binding PrenomError}"
+                    <TextBlock Text="{Binding PrenomError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding PrenomError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
 
-                        <!-- Section -->
-                        <Label Content="Section *"
+                    <!-- Section -->
+                    <Label Content="Section *"
                                Style="{StaticResource ModernLabel}"
                                Margin="0,10,0,5"/>
-                        <ComboBox x:Name="cbxSection"
+                    <ComboBox x:Name="cbxSection"
                                   Style="{StaticResource ModernComboBox}"
                                   ItemsSource="{Binding Sections}"
                                   SelectedItem="{Binding SectionSelectionnee, UpdateSourceTrigger=PropertyChanged}"
                                   Margin="0,0,0,5"/>
-                        <TextBlock Text="{Binding SectionError}"
+                    <TextBlock Text="{Binding SectionError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding SectionError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
 
-                        <!-- Mail -->
-                        <Label Content="Email *"
+                    <!-- Mail -->
+                    <Label Content="Email *"
                                Style="{StaticResource ModernLabel}"
                                Margin="0,10,0,5"/>
-                        <TextBox x:Name="tbxMail"
+                    <TextBox x:Name="tbxMail"
                                  Style="{StaticResource ModernTextBox}"
                                  Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="0,0,0,5"/>
-                        <TextBlock Text="{Binding MailError}"
+                    <TextBlock Text="{Binding MailError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding MailError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
-                    </StackPanel>
-                </Grid>
+                </StackPanel>
+            </Grid>
 
-                <!-- ZONE BOUTONS -->
-                <Grid Grid.Row="1" Margin="0,20,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <Button x:Name="btnValider"
-                            Grid.Row="0"
+            <!-- ZONE BOUTONS -->
+            <Grid Grid.Row="1" Margin="0,20,0,0">
+                <Button x:Name="btnValider"
                             Content="Valider l'inscription"
                             Style="{StaticResource ModernButton}"
                             Command="{Binding ValiderCommand}"
                             Width="200"
                             Height="45"
                             HorizontalAlignment="Center"
-                            Margin="0,0,0,20"/>
+                            VerticalAlignment="Top"
+                            Margin="0,0,0,10"/>
 
-                    <StackPanel Grid.Row="1" 
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                        <TextBlock Text="Vous avez déjà un compte ?"
+                <TextBlock Text="* Champ obligatoire"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Foreground="#9E9E9E"/>
+
+                <!--#region Connectez-Vous -->
+                <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="right"
+                                VerticalAlignment="Bottom"
+                                Margin="0,30,0,10">
+                    <TextBlock Text="Vous avez déjà un compte ?"
                                    FontFamily="Verdana"
                                    FontSize="13"
                                    Foreground="#757575"
-                                   VerticalAlignment="Center"
-                                   Margin="0,0,10,0"/>
-                        <Button x:Name="btnConnexion"
+                                   VerticalAlignment="Center"/>
+                    <Button x:Name="btnConnexion"
                                 Content="Connectez-vous"
                                 Style="{StaticResource SecondaryButton}"
-                                Height="35"
-                                Click="Connexion_Click"/>
-                    </StackPanel>
-                </Grid>
+                                Height="40"
+                                Click="Connexion_Click"
+                                Margin="0,5,0,0"/>
+                </StackPanel>
+                <!--#endregion-->
             </Grid>
-        </ScrollViewer>
+        </Grid>
 
         <!-- PIED DE PAGE -->
         <Border Grid.Row="2" 
