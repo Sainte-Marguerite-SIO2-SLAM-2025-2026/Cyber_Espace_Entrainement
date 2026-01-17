@@ -156,6 +156,20 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
+
+            PasswordBox pb = (PasswordBox)sender;
+
+            // On va chercher le TextBlock "placeholder" dans le template
+            var placeholder = (TextBlock)pb.Template.FindName("placeholder", pb);
+
+            if (placeholder != null)
+            {
+                // Si le mot de passe est vide, on affiche le placeholder, sinon on le cache
+                placeholder.Visibility = string.IsNullOrEmpty(pb.Password)
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+            }
+
             if (_viewModel != null)
             {
                 _viewModel.MotDePasse = pbxMotDePasse.Password;

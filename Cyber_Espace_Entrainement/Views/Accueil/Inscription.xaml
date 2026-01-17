@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Accueil"        
         mc:Ignorable="d"
         Title="Inscription" 
-        Height="580" 
+        SizeToContent="Height" 
         Width="950"
         WindowStartupLocation="CenterScreen"
         Background="#f5f5f5"
@@ -19,8 +19,7 @@
 
     <!--#region Styles-->
     <Window.Resources>
-        <!--#region Style pour les Labels -->
-        
+
         <!-- Style pour les Labels contenue -->
         <Style x:Key="ModernLabel" TargetType="Label">
             <Setter Property="FontFamily" Value="Verdana"/>
@@ -29,9 +28,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
-        
-        
-        <!--#endregion-->
 
         <!-- Style pour les TextBox -->
         <Style x:Key="ModernTextBox" TargetType="TextBox">
@@ -46,15 +42,71 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6">
-                            <ScrollViewer x:Name="PART_ContentHost" 
-                                        Focusable="false"
-                                        HorizontalScrollBarVisibility="Hidden"
-                                        VerticalScrollBarVisibility="Hidden"
-                                        Margin="2"/>
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6">
+                            <Grid>
+                                <TextBlock x:Name="placeholder"
+                                   Text="{TemplateBinding Tag}"
+                                   Margin="12,0,0,0"
+                                   Foreground="#BDBDBD"
+                                   IsHitTestVisible="False"
+                                   VerticalAlignment="Center"
+                                   Visibility="Collapsed"/>
+
+                                <ScrollViewer x:Name="PART_ContentHost" 
+                                      Focusable="false"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      Margin="2"
+                                      VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="placeholder" Property="Foreground" Value="#E0E0E0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--Style pour la PasswordBox-->
+        <Style x:Key="ModernPasswordBox" TargetType="PasswordBox">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#BDBDBD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6">
+                            <Grid>
+                                <TextBlock x:Name="placeholder"
+                                   Text="{TemplateBinding Tag}"
+                                   Margin="12,0,0,0"
+                                   Foreground="#BDBDBD"
+                                   IsHitTestVisible="False"
+                                   VerticalAlignment="Center"
+                                   Visibility="Visible"/>
+
+                                <ScrollViewer x:Name="PART_ContentHost" 
+                                      Focusable="false"
+                                      Margin="2"
+                                      VerticalAlignment="Center"/>
+                            </Grid>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -65,74 +117,96 @@
         <Style x:Key="ModernComboBox" TargetType="ComboBox">
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="10,8"/>
             <Setter Property="Height" Value="38"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#BDBDBD"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
-                        <Grid>
+                        <Grid x:Name="MainGrid">
                             <ToggleButton x:Name="toggleButton"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  Focusable="false"
+                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                  Grid.ColumnSpan="2">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="templateRoot"
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
-                                        Grid.Column="2"
-                                        Focusable="false"
-                                        IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                        ClickMode="Press">
-                                <ToggleButton.Template>
-                                    <ControlTemplate TargetType="ToggleButton">
-                                        <Border x:Name="border"
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                CornerRadius="6">
+                                        CornerRadius="6">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="30"/>
                                                 </Grid.ColumnDefinitions>
-                                                <ContentPresenter Grid.Column="0"
-                                                                Content="{TemplateBinding Content}"
-                                                                Margin="10,0,0,0"
-                                                                VerticalAlignment="Center"/>
-                                                <Path Grid.Column="1"
-                                                      x:Name="arrow"
-                                                      Data="M 0 0 L 4 4 L 8 0 Z"
-                                                      Fill="#757575"
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"/>
+                                                <Path x:Name="arrow"
+                                              Grid.Column="1"
+                                              Data="M 0 0 L 4 4 L 8 0 Z"
+                                              Fill="#757575"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="true">
+                                                <Setter TargetName="templateRoot" Property="BorderBrush" Value="#1565C0"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </ToggleButton.Template>
                             </ToggleButton>
+
                             <ContentPresenter x:Name="contentPresenter"
-                                            Content="{TemplateBinding SelectionBoxItem}"
-                                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                            HorizontalAlignment="Left"
-                                            IsHitTestVisible="false"
-                                            Margin="10,0,30,0"
-                                            VerticalAlignment="Center"/>
+                                      Content="{TemplateBinding SelectionBoxItem}"
+                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                      HorizontalAlignment="Left"
+                                      IsHitTestVisible="false"
+                                      Margin="12,0,30,0"
+                                      VerticalAlignment="Center"/>
+
+                            <TextBlock x:Name="placeholder"
+                               Text="{TemplateBinding Tag}"
+                               Margin="12,0,30,0"
+                               Foreground="#BDBDBD"
+                               IsHitTestVisible="False"
+                               VerticalAlignment="Center"
+                               Visibility="Collapsed"/>
+
                             <Popup x:Name="PART_Popup"
-                                   AllowsTransparency="true"
-                                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Placement="Bottom"
-                                   PopupAnimation="Slide">
-                                <Border Background="White"
-                                        BorderBrush="#BDBDBD"
-                                        BorderThickness="1"
-                                        CornerRadius="6"
-                                        MaxHeight="200">
-                                    <ScrollViewer>
-                                        <StackPanel IsItemsHost="true"/>
+                           AllowsTransparency="true"
+                           IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                           Placement="Bottom"
+                           PopupAnimation="Slide"
+                           MinWidth="{Binding ActualWidth, ElementName=MainGrid}">
+                                <Border x:Name="dropDownBorder"
+                                Background="White"
+                                BorderBrush="#BDBDBD"
+                                BorderThickness="1"
+                                CornerRadius="0,0,6,6"
+                                Margin="0,1,0,0"
+                                MaxHeight="200">
+                                    <ScrollViewer x:Name="DropDownScrollViewer">
+                                        <StackPanel IsItemsHost="true" KeyboardNavigation.DirectionalNavigation="Contained"/>
                                     </ScrollViewer>
                                 </Border>
                             </Popup>
                         </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="SelectedIndex" Value="-1">
+                                <Setter TargetName="placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="PART_Popup" Property="Height" Value="0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -198,7 +272,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- EN-TÊTE -->
+        <!--#region EN-TÊTE -->
         <Border Grid.Row="0" 
                 Background="#1565C0" 
                 Padding="20" 
@@ -211,15 +285,16 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
         </Border>
+        <!--#endregion-->
 
-        <!-- CONTENU -->
+        <!--#region CONTENU -->
         <Grid MaxWidth="900" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- FORMULAIRE -->
+            <!--#region FORMULAIRE -->
             <Grid Grid.Row="0" Margin="0,0,0,30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -227,94 +302,109 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- COLONNE GAUCHE -->
+                <!--#region COLONNE GAUCHE -->
                 <StackPanel Grid.Column="0">
-                    <!-- Login -->
+                    <!--#region Login -->
                     <Label Content="Login *"
-                               Style="{StaticResource ModernLabel}"/>
+                                   Style="{StaticResource ModernLabel}"/>
                     <TextBox x:Name="tbxLogin"
-                                 Style="{StaticResource ModernTextBox}"
-                                 Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0,0,0,5"/>
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="Entrez votre identifiant..."
+                                   Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>     
                     <TextBlock Text="{Binding LoginError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding LoginError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
+                    <!--#endregion-->
 
-                    <!-- Mot de passe -->
+                    <!--#region Mot de passe -->
                     <Label Content="Mot de passe *"
-                               Style="{StaticResource ModernLabel}"
-                               Margin="0,10,0,5"/>
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
                     <PasswordBox x:Name="pbxMotDePasse"
-                                     Height="38"
-                                     FontFamily="Verdana"
-                                     FontSize="14"
-                                     Padding="10,8"
-                                     Margin="0,0,0,5"
-                                     PasswordChanged="PasswordBox_PasswordChanged"/>
+                                   Style="{StaticResource ModernPasswordBox}"
+                                   Tag="Mot de passe 6 carractère"
+                                   PasswordChanged="PasswordBox_PasswordChanged"
+                                   Margin="0,0,0,5"/>     
                     <TextBlock Text="{Binding MotDePasseError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding MotDePasseError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
+                    <!--#endregion-->
 
-                    <!-- Nom -->
-                    <Label Content="Nom *"
-                               Style="{StaticResource ModernLabel}"
-                               Margin="0,10,0,5"/>
-                    <TextBox x:Name="tbxNom"
-                                 Style="{StaticResource ModernTextBox}"
-                                 Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0,0,0,5"/>
-                    <TextBlock Text="{Binding NomError}"
-                                   Style="{StaticResource ErrorText}"
-                                   Visibility="{Binding NomError, Converter={StaticResource StringToVisibilityConverter}}"
-                                   Margin="0,0,0,15"/>
-                </StackPanel>
-
-                <!-- COLONNE DROITE -->
-                <StackPanel Grid.Column="2">
-                    <!-- Prénom -->
-                    <Label Content="Prénom *"
-                               Style="{StaticResource ModernLabel}"/>
-                    <TextBox x:Name="tbxPrenom"
-                                 Style="{StaticResource ModernTextBox}"
-                                 Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0,0,0,5"/>
-                    <TextBlock Text="{Binding PrenomError}"
-                                   Style="{StaticResource ErrorText}"
-                                   Visibility="{Binding PrenomError, Converter={StaticResource StringToVisibilityConverter}}"
-                                   Margin="0,0,0,15"/>
-
-                    <!-- Section -->
-                    <Label Content="Section *"
-                               Style="{StaticResource ModernLabel}"
-                               Margin="0,10,0,5"/>
-                    <ComboBox x:Name="cbxSection"
-                                  Style="{StaticResource ModernComboBox}"
-                                  ItemsSource="{Binding Sections}"
-                                  SelectedItem="{Binding SectionSelectionnee, UpdateSourceTrigger=PropertyChanged}"
-                                  Margin="0,0,0,5"/>
-                    <TextBlock Text="{Binding SectionError}"
-                                   Style="{StaticResource ErrorText}"
-                                   Visibility="{Binding SectionError, Converter={StaticResource StringToVisibilityConverter}}"
-                                   Margin="0,0,0,15"/>
-
-                    <!-- Mail -->
+                    <!--#region Mail -->  
                     <Label Content="Email *"
-                               Style="{StaticResource ModernLabel}"
-                               Margin="0,10,0,5"/>
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
                     <TextBox x:Name="tbxMail"
-                                 Style="{StaticResource ModernTextBox}"
-                                 Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0,0,0,5"/>
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="exemple@nomdedomaine.com"
+                                   Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>
                     <TextBlock Text="{Binding MailError}"
                                    Style="{StaticResource ErrorText}"
                                    Visibility="{Binding MailError, Converter={StaticResource StringToVisibilityConverter}}"
                                    Margin="0,0,0,15"/>
-                </StackPanel>
-            </Grid>
 
-            <!-- ZONE BOUTONS -->
+                    <!--#endregion-->
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region COLONNE DROITE -->
+                <StackPanel Grid.Column="2">
+                    <!--#region Prénom -->
+                    <Label Content="Prénom *"
+                                   Style="{StaticResource ModernLabel}"/>
+                    <TextBox x:Name="tbxPrenom"
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="Entrez votre prénom..."
+                                   Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding PrenomError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding PrenomError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>
+                    <!--#endregion-->
+
+                    <!--#region Nom -->   
+                    <Label Content="Nom *"
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
+                    <TextBox x:Name="tbxNom"
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="Entrez votre nom..."
+                                   Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding NomError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding NomError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>      
+                    <!--#endregion-->
+
+                    <!--#region Section -->
+                    <Label Content="Section *"
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
+                    <ComboBox x:Name="cbxSection"
+                                   Style="{StaticResource ModernComboBox}"
+                                   Tag="Sélectionnez votre section et spécialité..."
+                                   ItemsSource="{Binding Sections}"
+                                   SelectedItem="{Binding SectionSelectionnee, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5" 
+                                   Cursor="Hand"/>
+                    <TextBlock Text="{Binding SectionError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding SectionError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>
+                    <!--#endregion-->
+                   
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region ZONE BOUTONS -->
             <Grid Grid.Row="1" Margin="0,20,0,0">
                 <Button x:Name="btnValider"
                             Content="Valider l'inscription"
@@ -330,7 +420,7 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Bottom"
                            Foreground="#9E9E9E"/>
-
+                
                 <!--#region Connectez-Vous -->
                 <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="right"
@@ -350,9 +440,11 @@
                 </StackPanel>
                 <!--#endregion-->
             </Grid>
+            <!--#endregion-->
         </Grid>
+        <!--#endregion-->
 
-        <!-- PIED DE PAGE -->
+        <!--#region PIED DE PAGE -->
         <Border Grid.Row="2" 
                 Background="White" 
                 BorderBrush="#e0e0e0" 
@@ -382,5 +474,7 @@
                 </StackPanel>
             </Grid>
         </Border>
+        <!--#endregion-->
+        
     </Grid>
 </Window>
