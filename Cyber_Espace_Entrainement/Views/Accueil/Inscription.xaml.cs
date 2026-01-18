@@ -30,6 +30,9 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             InitializeComponent();
             _viewModel = this.DataContext as InscriptionViewModel;
+            
+            // Autorise l'info-bulle même quand le bouton est IsEnabled = false
+            ToolTipService.SetShowOnDisabled(btnValider, true);
             InitializeEventHandlers();
         }
 
@@ -77,11 +80,16 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
 
             // Bouton Connexion
             btnConnexion.MouseEnter += BtnConnexion_MouseEnter;
-            btnConnexion.MouseLeave += BtnConnexion_MouseLeave;
+            btnConnexion.MouseLeave += BtnConnexion_MouseLeave; 
+            btnValider.IsEnabledChanged += BtnValider_IsEnabledChanged;
+
+            // Initialiser le premier message
+            UpdateValiderToolTip();
 
             // Bouton Quitter
             btnQuitter.MouseEnter += BtnQuitter_MouseEnter;
             btnQuitter.MouseLeave += BtnQuitter_MouseLeave;
+
         }
 
         #region TextBox Events
@@ -246,6 +254,28 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             btnQuitter.Background = _defaultQuitBackground;
         }
 
+        private void BtnValider_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateValiderToolTip();
+        }
+
+        private void UpdateValiderToolTip()
+        {
+            if (btnValider.IsEnabled)
+            {
+                btnValider.ToolTip = "Tout est correct. Cliquez pour valider l'inscription.";
+            }
+            else
+            {
+                btnValider.ToolTip = "Veuillez remplir correctement tous les champs :\n" +
+                                     "- Login (3 car. min)\n" +
+                                     "- Mot de passe (6 car. min)\n" +
+                                     "- Nom et Prénom\n" +
+                                     "- Section sélectionnée\n" +
+                                     "- Email valide";
+            }
+        }
+
         #endregion
 
         #region Navigation
@@ -253,9 +283,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         private void Connexion_Click(object sender, RoutedEventArgs e)
         {
             var connexionWindow = new MainWindow();
-            this.Hide();
             connexionWindow.ShowDialog();
-            this.Close();
+            this.Hide();
         }
 
         #endregion
