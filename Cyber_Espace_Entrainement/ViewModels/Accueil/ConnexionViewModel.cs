@@ -2,6 +2,8 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using Cyber_Espace_Entrainement.Views.Accueil;
+
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 {
@@ -63,8 +65,20 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             // Simulation de connexion
             if (Login == "admin" && MotDePasse == "1234")
             {
-                MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
-                // Ici, vous pourriez ouvrir la fenêtre suivante
+                if (parameter is Window window)
+                {
+                    var accueil = new AccueilWindow();
+                    MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Cacher la fenêtre de connexion puis afficher la fenêtre d'accueil
+                    window.Hide();
+                    accueil.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de l'ouverture de la fenêtre suivante.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
             }
             else
             {

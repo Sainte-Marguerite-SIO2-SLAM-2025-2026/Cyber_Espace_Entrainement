@@ -86,7 +86,7 @@ namespace Cyber_Espace_Entrainement
 
         private void BtnInscription_Click(object sender, RoutedEventArgs e)
         {
-            var inscriptionWin = new Inscription(); // Assurez-vous que le nom correspond à votre vue
+            var inscriptionWin = new Inscription();
             inscriptionWin.Show();
             this.Close();
         }
