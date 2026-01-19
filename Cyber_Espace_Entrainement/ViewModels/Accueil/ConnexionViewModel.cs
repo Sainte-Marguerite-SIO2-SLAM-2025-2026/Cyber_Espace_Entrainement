@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using Cyber_Espace_Entrainement.Views.Accueil;
+using Cyber_Espace_Entrainement.Services;
 
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
@@ -12,6 +13,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         #region Properties
 
         private string _login;
+        private readonly UserService _userService;
         public string Login
         {
             get => _login;
@@ -46,6 +48,9 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
         public ConnexionViewModel()
         {
+            // Initialiser le service avant toute utilisation
+            _userService = new UserService();
+
             ConnexionCommand = new RelayCommand(ExecuteConnexion, CanExecuteConnexion);
             QuitterCommand = new RelayCommand(ExecuteQuitter);
         }
@@ -62,8 +67,10 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
         private void ExecuteConnexion(object parameter)
         {
-            // Simulation de connexion
-            if (Login == "a" && MotDePasse == "a")
+            // Utiliser le résultat réel de l'authentification
+            var (success, user, message) = _userService.Authentifier(Login, MotDePasse);
+
+            if (success)
             {
                 if (parameter is Window window)
                 {
@@ -72,17 +79,17 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
                     // Cacher la fenêtre de connexion puis afficher la fenêtre d'accueil
                     window.Hide();
-                    accueil.Show();
+                    accueil.ShowDialog();
                 }
                 else
                 {
                     MessageBox.Show("Erreur lors de l'ouverture de la fenêtre suivante.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
             }
             else
             {
-                MessageBox.Show("Identifiants incorrects.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Afficher le message renvoyé par le service (ou un message générique)
+                MessageBox.Show(string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
