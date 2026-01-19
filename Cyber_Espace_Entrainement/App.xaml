@@ -77,6 +77,7 @@
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/ModernTheme.xaml"/>
+                <ResourceDictionary Source="/Themes/Colors.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
