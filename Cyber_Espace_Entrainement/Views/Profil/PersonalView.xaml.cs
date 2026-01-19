@@ -13,13 +13,21 @@ using System.Windows.Shapes;
 namespace Cyber_Espace_Entrainement.Views.Profil
 {
     /// <summary>
-    /// Logique d'interaction pour Profil.xaml
+    /// Logique d'interaction pour PersonalView.xaml
     /// </summary>
-    public partial class Profil : Window
+    public partial class PersonalView : Window
     {
-        public Profil()
+        public PersonalView()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Permet de retourner à la page d'accueil
+        /// </summary>
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
