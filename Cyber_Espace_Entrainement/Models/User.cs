@@ -7,59 +7,80 @@ using System.Text;
 namespace Cyber_Espace_Entrainement.Models
 {
     /// <summary>
-    /// Modèle User correspondant à la table users de la BDD
+    /// Modèle User correspondant à la table Utilisateur de la BDD
+    /// MODIFICATION : Table renommée de 'users' à 'Utilisateur'
     /// </summary>
-    [Table("users")]
+    [Table("Utilisateur")] // MODIFIÉ : Nom de table changé
     public class User
     {
-            [Key]
-            [Column("user_id")]
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public int UserId { get; set; }
+        [Key]
+        [Column("ID")] // MODIFIÉ : Colonne renommée de 'user_id' à 'ID'
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
 
-            [Required]
-            [MaxLength(30)]
-            [Column("login")]
-            public string Login { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(50)] // MODIFIÉ : Taille augmentée de 30 à 50
+        [Column("Login")] // MODIFIÉ : Première lettre en majuscule
+        public string Login { get; set; } = string.Empty;
 
-            [Required]
-            [MaxLength(255)]
-            [Column("motPasse")]
-            public string MotPasse { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(100)] // MODIFIÉ : Taille réduite de 255 à 100
+        [Column("Password")] // MODIFIÉ : Colonne renommée de 'motPasse' à 'Password'
+        public string MotPasse { get; set; } = string.Empty;
 
-            [Required]
-            [MaxLength(100)]
-            [Column("email")]
-            public string Email { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(255)] // Taille inchangée
+        [Column("Email")] // MODIFIÉ : Première lettre en majuscule
+        public string Email { get; set; } = string.Empty;
 
-            [Required]
-            [Column("role")]
-            public UserRole Role { get; set; } = UserRole.Prof;
+        // AJOUTÉ : Nouveau champ Nom
+        [MaxLength(50)]
+        [Column("Nom")]
+        public string? Nom { get; set; }
 
-            [Column("dateCreation")]
-            public DateTime DateCreation { get; set; } = DateTime.Now;
+        // AJOUTÉ : Nouveau champ Prenom
+        [MaxLength(50)]
+        [Column("Prenom")]
+        public string? Prenom { get; set; }
 
-            [Column("derniereConnexion")]
-            public DateTime? DerniereConnexion { get; set; }
+        // AJOUTÉ : Nouveau champ Section
+        [MaxLength(5)]
+        [Column("Section")]
+        public string? Section { get; set; }
 
-            // Propriété calculée pour l'affichage
-            [NotMapped]
-            public string RoleDisplay => Role switch
-            {
-                UserRole.Etudiant => "Etudiant",
-                UserRole.Prof => "Professeur",
-                UserRole.Admin => "Administrateur",
-                _ => "Inconnu"
-            };
-        }
+        [Required]
+        [Column("Role")] // MODIFIÉ : Première lettre en majuscule
+        public UserRole Role { get; set; } = UserRole.Prof;
 
-        /// <summary>
-        /// Énumération des rôles (correspondant à ENUM dans MySQL)
-        /// </summary>
-        public enum UserRole
+        // AJOUTÉ : Nouveau champ ScoreTotal
+        [Column("ScoreTotal")]
+        public int? ScoreTotal { get; set; }
+
+        [Column("DateCreation")] // MODIFIÉ : Première lettre en majuscule
+        public DateTime DateCreation { get; set; } = DateTime.Now;
+
+        [Column("DerniereConnexion")] // MODIFIÉ : Première lettre en majuscule
+        public DateTime? DerniereConnexion { get; set; }
+
+        // Propriété calculée pour l'affichage - INCHANGÉE
+        [NotMapped]
+        public string RoleDisplay => Role switch
         {
-            Etudiant = 0,
-            Prof = 1,
-            Admin = 2
-        }
+            UserRole.Etudiant => "Etudiant",
+            UserRole.Prof => "Professeur",
+            UserRole.Admin => "Administrateur",
+            _ => "Inconnu"
+        };
     }
+
+    /// <summary>
+    /// Énumération des rôles (correspondant aux valeurs VARCHAR dans SQLite)
+    /// MODIFICATION : Les valeurs correspondent maintenant aux valeurs texte de la BDD
+    /// </summary>
+    public enum UserRole
+    {
+        Etudiant = 0,
+        Prof = 1,
+        Admin = 2
+    }
+}
