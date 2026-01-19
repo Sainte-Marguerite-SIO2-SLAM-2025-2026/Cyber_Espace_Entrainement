@@ -22,7 +22,7 @@ namespace Cyber_Espace_Entrainement.Views.Activite.Captcha
         private readonly SolidColorBrush _hoverTextBoxBorderBrush;
         private readonly SolidColorBrush _focusTextBoxBorderBrush;
 
-        private readonly SolidColorBrush _defaultButtonBackground;
+        private readonly SolidColorBrush  _defaultButtonBackground;
         private readonly SolidColorBrush _hoverButtonBackground;
 
         private readonly SolidColorBrush _defaultSecondaryBackground;
