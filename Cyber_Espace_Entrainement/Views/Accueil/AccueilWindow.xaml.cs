@@ -1,4 +1,5 @@
-﻿using Cyber_Espace_Entrainement.Views.Tests;
+﻿using Cyber_Espace_Entrainement.Views.Activite;
+using Cyber_Espace_Entrainement.Views.Tests;
 using Cyber_Espace_Entrainement.Views.Users;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,9 @@ private void AdminCard_Click(object sender, MouseButtonEventArgs e)
             //);
             var morseWindow = new MorseTestView();
             morseWindow.ShowDialog();
+
+            //var captchaWindow = new Activite.Captcha.CaptchaFacileView();
+            //captchaWindow.ShowDialog();
         }
 
         /// <summary>
