@@ -1,6 +1,7 @@
 ﻿using Cyber_Espace_Entrainement.Models;
 // Data/AppDbContext.cs
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 
 namespace Cyber_Espace_Entrainement.Data
@@ -14,13 +15,20 @@ namespace Cyber_Espace_Entrainement.Data
     {
         // DbSet représente la table Utilisateur
         // MODIFIÉ : Table renommée de 'users' à 'Utilisateur'
-        public DbSet<User> Users { get; set; }
+        public DbSet<Utilisateurs> Users { get; set; }
 
         // Configuration de la connexion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // MODIFIÉ : Nom de la base de données changé de 'cyberentrainement.db' à 'bdd_cyberespace.db'
-            optionsBuilder.UseSqlite("Data Source=bdd_cyberespace.db");
+            // Permet d'aller chercher la BDD dans le répertoire du projet
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            DirectoryInfo? projectDir = Directory.GetParent(baseDir)?.Parent?.Parent?.Parent?.Parent;
+
+            string dbPath = projectDir != null
+                ? Path.Combine(projectDir.FullName, "bdd_cyberespace.db")
+                : "bdd_cyberespace.db"; // Fallback
+
+            optionsBuilder.UseSqlite($"Data Source={dbPath}");
 
             // OPTION 2 : MySQL (je l'ai préparé, au cas où !)
             // optionsBuilder.UseMySql(
@@ -35,7 +43,7 @@ namespace Cyber_Espace_Entrainement.Data
             base.OnModelCreating(modelBuilder);
 
             // Configuration de l'entité User
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Utilisateurs>(entity =>
             {
                 // Index unique sur login - INCHANGÉ
                 entity.HasIndex(u => u.Login).IsUnique();
@@ -63,9 +71,9 @@ namespace Cyber_Espace_Entrainement.Data
             // COMMENTÉ : Données de test désactivées pour ne pas modifier la base existante
             // Si vous souhaitez ajouter des utilisateurs de test, décommentez cette section
 
-            modelBuilder.Entity<User>().HasData(
-                new User
-                {
+            modelBuilder.Entity<Utilisateurs>().HasData(
+                new Utilisateurs
+               {
                     UserId = 1,
                     Login = "adminProf",
                     MotPasse = HashPassword("admin123"),
@@ -73,7 +81,7 @@ namespace Cyber_Espace_Entrainement.Data
                     Role = UserRole.Admin,
                     DateCreation = DateTime.Now
                 },
-                new User
+                new Utilisateurs
                 {
                     UserId = 2,
                     Login = "Achille.Talon",
@@ -82,7 +90,7 @@ namespace Cyber_Espace_Entrainement.Data
                     Role = UserRole.Prof,
                     DateCreation = DateTime.Now
                 },
-                new User
+                new Utilisateurs
                 {
                     UserId = 3,
                     Login = "gaston",

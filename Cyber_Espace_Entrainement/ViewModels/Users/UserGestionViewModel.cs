@@ -74,10 +74,10 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
         // 
 
         [ObservableProperty]
-        private ObservableCollection<User> users = new();
+        private ObservableCollection<Utilisateurs> users = new();
 
         [ObservableProperty]
-        private User? selectedUser;
+        private Utilisateurs? selectedUser;
 
         [ObservableProperty]
         private string searchText = string.Empty;
@@ -110,7 +110,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
         [RelayCommand(CanExecute = nameof(CanSaveUser))]
         private void SaveUser()
         {
-            var user = new User
+            var user = new Utilisateurs
             {
                 UserId = UserId,
                 Login = Login.Trim(),
@@ -181,7 +181,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
         /// MODIFIÉ : Chargement des nouveaux champs Nom, Prenom, Section et ScoreTotal
         /// </summary>
         [RelayCommand]
-        private void EditUser(User? user)
+        private void EditUser(Utilisateurs? user)
         {
             System.Diagnostics.Debug.WriteLine($"EditUser appelé avec user: {user?.Login ?? "NULL"}");
 
@@ -210,7 +210,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
         /// Supprimer un utilisateur - INCHANGÉE
         /// </summary>
         [RelayCommand]
-        private void DeleteUser(User? user)
+        private void DeleteUser(Utilisateurs? user)
         {
             if (user == null) return;
 
