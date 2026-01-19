@@ -20,51 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Models\BrokenAccessControl\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\BruteForce\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Captcha\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Chiffrement\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Clickjacking\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\ConventionNommage\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\InjectionPrompt\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\InjectionSQL\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Phishing\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Privilege\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Ransomware\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Steganographie\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Token\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\UserEnumeration\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\XSS\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -74,102 +29,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Update="ViewModels\Activite\AnalyseLog\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\BrokenAccessControl\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\BruteForce\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Captcha\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Chiffrement\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Clickjacking\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\ConventionNommage\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\InjectionPrompt\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\InjectionSQL\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Phishing\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Privilege\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Ransomware\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Steganographie\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Token\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\UserEnumeration\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\XSS\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\AnalyseLog\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\BrokenAccessControl\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\BruteForce\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Captcha\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Chiffrement\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Clickjacking\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\ConventionNommage\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\InjectionPrompt\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\InjectionSQL\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Phishing\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Privilege\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Ransomware\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Steganographie\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Token\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\UserEnumeration\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\XSS\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
@@ -185,6 +44,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\BrokenAccessControl\" />
   </ItemGroup>
 
 </Project>
