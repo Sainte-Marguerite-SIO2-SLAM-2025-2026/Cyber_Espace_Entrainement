@@ -95,7 +95,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
                 {
                     Lettre = code.Key,
                     Code = code.Value,
-                    CheminAudio = $"Resources/morse/morse_{code.Key}.wav" // À adapter selon les fichiers (à revoir) 
+                    CheminAudio = $"Resources/Morse/morse_{code.Key}.wav" // À adapter selon les fichiers (à revoir) 
                 });
             }
         }

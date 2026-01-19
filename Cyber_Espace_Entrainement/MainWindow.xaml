@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewmodels="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Accueil"
         Title="Connexion" 
-        Width="950"
+        Width="650"
         SizeToContent="Height"
         WindowStartupLocation="CenterScreen"
         Background="#f5f5f5"

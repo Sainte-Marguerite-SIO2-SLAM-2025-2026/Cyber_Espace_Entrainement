@@ -12,7 +12,21 @@ namespace Cyber_Espace_Entrainement
         #region Properties
 
         private ConnexionViewModel _viewModel;
-        private Brush _defaultButtonBackground;
+        
+        // Récupération des couleurs depuis les ressources
+        private readonly SolidColorBrush _defaultTextBoxBorderBrush;
+        private readonly SolidColorBrush _hoverTextBoxBorderBrush;
+        private readonly SolidColorBrush _focusTextBoxBorderBrush;
+
+        private readonly SolidColorBrush _defaultButtonBackground;
+        private readonly SolidColorBrush _hoverButtonBackground;
+
+        private readonly SolidColorBrush _defaultSecondaryBackground;
+        private readonly SolidColorBrush _hoverSecondaryBackground;
+
+        private readonly SolidColorBrush _defaultQuitBackground;
+        private readonly SolidColorBrush _hoverQuitBackground;
+
 
         #endregion
 
@@ -24,10 +38,22 @@ namespace Cyber_Espace_Entrainement
             _viewModel = new ConnexionViewModel();
             this.DataContext = _viewModel;
 
-            // Sauvegarde de la couleur initiale du bouton (Bleu)
-            _defaultButtonBackground = new SolidColorBrush(Color.FromRgb(21, 101, 192));
+            // Chargement des couleurs depuis les ressources de l'application
+            _defaultTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderDefaultBrush");
+            _hoverTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderHoverBrush");
+            _focusTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderFocusBrush");
+
+            _defaultButtonBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueBrush");
+            _hoverButtonBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueDarkBrush");
+
+            _defaultSecondaryBackground = (SolidColorBrush)Application.Current.FindResource("TransparentBrush");
+            _hoverSecondaryBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueLightBrush");
+
+            _defaultQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedBrush");
+            _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush"); 
 
             InitializeSettings();
+            InitializeEventHandlers();
         }
 
         #endregion
@@ -43,29 +69,161 @@ namespace Cyber_Espace_Entrainement
             UpdateValiderToolTip();
         }
 
+        private void InitializeEventHandlers()
+        {
+            // TextBox - Login
+            tbxLogin.MouseEnter += TextBox_MouseEnter;
+            tbxLogin.MouseLeave += TextBox_MouseLeave;
+            tbxLogin.GotFocus += TextBox_GotFocus;
+            tbxLogin.LostFocus += TextBox_LostFocus;
+
+            // PasswordBox - Mot de passe
+            pbxMotDePasse.MouseEnter += PasswordBox_MouseEnter;
+            pbxMotDePasse.MouseLeave += PasswordBox_MouseLeave;
+            pbxMotDePasse.GotFocus += PasswordBox_GotFocus;
+            pbxMotDePasse.LostFocus += PasswordBox_LostFocus;
+
+            // Bouton Valider
+            btnConnecter.MouseEnter += btnConnecter_MouseEnter;
+            btnConnecter.MouseLeave += btnConnecter_MouseLeave;
+            btnConnecter.IsEnabledChanged += btnConnecter_IsEnabledChanged;
+
+            // Initialiser le premier message
+            UpdateValiderToolTip();
+
+            // Bouton Quitter
+            btnQuitter.MouseEnter += BtnQuitter_MouseEnter;
+            btnQuitter.MouseLeave += BtnQuitter_MouseLeave;
+        }
+
         #endregion
 
         #region Event Handlers
+
+        #region TextBox Events
+
+        private void TextBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is TextBox textBox && !textBox.IsFocused)
+            {
+                textBox.BorderBrush = _hoverTextBoxBorderBrush;
+            }
+        }
+
+        private void TextBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is TextBox textBox && !textBox.IsFocused)
+            {
+                textBox.BorderBrush = _defaultTextBoxBorderBrush;
+            }
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderBrush = _focusTextBoxBorderBrush;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderBrush = _defaultTextBoxBorderBrush;
+            }
+        }
+
+        #endregion
+
+        #region PasswordBox Events
+
+        private void PasswordBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox && !passwordBox.IsFocused)
+            {
+                passwordBox.BorderBrush = _hoverTextBoxBorderBrush;
+            }
+        }
+
+        private void PasswordBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox && !passwordBox.IsFocused)
+            {
+                passwordBox.BorderBrush = _defaultTextBoxBorderBrush;
+            }
+        }
+
+        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                passwordBox.BorderBrush = _focusTextBoxBorderBrush;
+            }
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                passwordBox.BorderBrush = _defaultTextBoxBorderBrush;
+            }
+        }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             PasswordBox pb = (PasswordBox)sender;
 
-            // 1. Gestion du Placeholder
+            // On va chercher le TextBlock "placeholder" dans le template
             var placeholder = (TextBlock)pb.Template.FindName("placeholder", pb);
+
             if (placeholder != null)
             {
+                // Si le mot de passe est vide, on affiche le placeholder, sinon on le cache
                 placeholder.Visibility = string.IsNullOrEmpty(pb.Password)
-                    ? Visibility.Visible : Visibility.Collapsed;
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
             }
 
-            // 2. Mise à jour du ViewModel
             if (_viewModel != null)
             {
-                _viewModel.MotDePasse = pb.Password;
-                CommandManager.InvalidateRequerySuggested();
+                _viewModel.MotDePasse = pbxMotDePasse.Password;
             }
         }
+
+        #endregion
+
+        #region Button Events
+
+        private void btnConnecter_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnConnecter.Background = _hoverButtonBackground;
+        }
+
+        private void btnConnecter_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnConnecter.Background = _defaultButtonBackground;
+        }
+
+
+        private void BtnQuitter_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnQuitter.Background = _hoverQuitBackground;
+        }
+
+        private void BtnQuitter_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnQuitter.Background = _defaultQuitBackground;
+        }
+
+        private void btnConnecter_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateValiderToolTip();
+        }
+
+        #endregion
+
+       
 
         private void BtnConnecter_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
