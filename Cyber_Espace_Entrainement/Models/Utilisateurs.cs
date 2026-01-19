@@ -11,7 +11,7 @@ namespace Cyber_Espace_Entrainement.Models
     /// MODIFICATION : Table renommée de 'users' à 'Utilisateur'
     /// </summary>
     [Table("Utilisateur")] // MODIFIÉ : Nom de table changé
-    public class User
+    public class Utilisateurs
     {
         [Key]
         [Column("ID")] // MODIFIÉ : Colonne renommée de 'user_id' à 'ID'

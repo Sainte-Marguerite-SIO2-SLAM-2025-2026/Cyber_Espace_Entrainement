@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--#region DEFINITION DES COULEURS-->
+
+    <!--#region Couleurs principales -->
+    <Color x:Key="PrimaryBlue">#1565C0</Color>
+    <Color x:Key="PrimaryBlueDark">#0D47A1</Color>
+    <Color x:Key="PrimaryBlueLight">#E3F2FD</Color>
+    <!--#endregion -->
+
+    <!--#region Couleurs de bordure -->
+    <Color x:Key="BorderDefault">#BDBDBD</Color>
+    <Color x:Key="BorderHover">#1565C0</Color>
+    <Color x:Key="BorderFocus">#1565C0</Color>
+    <!--#endregion -->
+
+    <!--#region Couleurs de texte -->
+    <Color x:Key="TextPrimary">#424242</Color>
+    <Color x:Key="TextSecondary">#757575</Color>
+    <Color x:Key="TextPlaceholder">#BDBDBD</Color>
+    <!--#endregion -->
+
+    <!--#region Couleurs de fond -->
+    <Color x:Key="BackgroundWhite">#FFFFFF</Color>
+    <Color x:Key="BackgroundLight">#E0E0E0</Color>
+    <Color x:Key="BackgroundDisabled">#BDBDBD</Color>
+    <!--#endregion -->
+
+    <!--#region Couleurs pour les boutons quitter/erreur -->
+    <Color x:Key="ErrorRed">#f44336</Color>
+    <Color x:Key="ErrorRedDark">#d32f2f</Color>
+    <!--#endregion -->
+
+    <!--#endregion -->
+
+    <!--#region BRUSHES (pour utilisation directe en XAML) -->
+    <SolidColorBrush x:Key="PrimaryBlueBrush" Color="{StaticResource PrimaryBlue}"/>
+    <SolidColorBrush x:Key="PrimaryBlueDarkBrush" Color="{StaticResource PrimaryBlueDark}"/>
+    <SolidColorBrush x:Key="PrimaryBlueLightBrush" Color="{StaticResource PrimaryBlueLight}"/>
+
+    <SolidColorBrush x:Key="BorderDefaultBrush" Color="{StaticResource BorderDefault}"/>
+    <SolidColorBrush x:Key="BorderHoverBrush" Color="{StaticResource BorderHover}"/>
+    <SolidColorBrush x:Key="BorderFocusBrush" Color="{StaticResource BorderFocus}"/>
+
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondary}"/>
+    <SolidColorBrush x:Key="TextPlaceholderBrush" Color="{StaticResource TextPlaceholder}"/>
+
+    <SolidColorBrush x:Key="BackgroundWhiteBrush" Color="{StaticResource BackgroundWhite}"/>
+    <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}"/>
+    <SolidColorBrush x:Key="BackgroundDisabledBrush" Color="{StaticResource BackgroundDisabled}"/>
+
+    <SolidColorBrush x:Key="ErrorRedBrush" Color="{StaticResource ErrorRed}"/>
+    <SolidColorBrush x:Key="ErrorRedDarkBrush" Color="{StaticResource ErrorRedDark}"/>
+
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
+    <!--#endregion -->
+
+</ResourceDictionary>
