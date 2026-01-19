@@ -75,6 +75,10 @@
                 <Setter Property="BorderBrush" Value="#ddd"/>
             </Style>
 
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/ModernTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
