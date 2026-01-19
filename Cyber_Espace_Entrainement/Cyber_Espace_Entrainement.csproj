@@ -1,100 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-	  <RootNamespace>Cyber_Espace_Entrainement</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>Cyber_Espace_Entrainement</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\AnalyseLog\" />
-    <Folder Include="Models\BrokenAccessControl\" />
-    <Folder Include="Models\BruteForce\" />
-    <Folder Include="Models\Captcha\" />
-    <Folder Include="Models\Chiffrement\" />
-    <Folder Include="Models\Clickjacking\" />
-    <Folder Include="Models\ConventionNommage\" />
-    <Folder Include="Models\InjectionPrompt\" />
-    <Folder Include="Models\InjectionSQL\" />
-    <Folder Include="Models\Phishing\" />
-    <Folder Include="Models\Privilege\" />
-    <Folder Include="Models\Ransomware\" />
-    <Folder Include="Models\Steganographie\" />
-    <Folder Include="Models\Token\" />
-    <Folder Include="Models\UserEnumeration\" />
-    <Folder Include="Models\XSS\" />
-    <Folder Include="ViewModels\Activite\AnalyseLog\" />
-    <Folder Include="ViewModels\Activite\BrokenAccessControl\" />
-    <Folder Include="ViewModels\Activite\BruteForce\" />
-    <Folder Include="ViewModels\Activite\Captcha\" />
-    <Folder Include="ViewModels\Activite\Chiffrement\" />
-    <Folder Include="ViewModels\Activite\Clickjacking\" />
-    <Folder Include="ViewModels\Activite\ConventionNommage\" />
-    <Folder Include="ViewModels\Activite\InjectionPrompt\" />
-    <Folder Include="ViewModels\Activite\InjectionSQL\" />
-    <Folder Include="ViewModels\Activite\Phishing\" />
-    <Folder Include="ViewModels\Activite\Privilege\" />
-    <Folder Include="ViewModels\Activite\Ransomware\" />
-    <Folder Include="ViewModels\Activite\Steganographie\" />
-    <Folder Include="ViewModels\Activite\Token\" />
-    <Folder Include="ViewModels\Activite\UserEnumeration\" />
-    <Folder Include="ViewModels\Activite\XSS\" />
-    <Folder Include="Views\Activite\AnalyseLog\" />
-    <Folder Include="Views\Activite\BrokenAccessControl\" />
-    <Folder Include="Views\Activite\BruteForce\" />
-    <Folder Include="Views\Activite\Captcha\" />
-    <Folder Include="Views\Activite\Chiffrement\" />
-    <Folder Include="Views\Activite\Clickjacking\" />
-    <Folder Include="Views\Activite\ConventionNommage\" />
-    <Folder Include="Views\Activite\InjectionPrompt\" />
-    <Folder Include="Views\Activite\InjectionSQL\" />
-    <Folder Include="Views\Activite\Phishing\" />
-    <Folder Include="Views\Activite\Privilege\" />
-    <Folder Include="Views\Activite\Ransomware\" />
-    <Folder Include="Views\Activite\Steganographie\" />
-    <Folder Include="Views\Activite\Token\" />
-    <Folder Include="Views\Activite\UserEnumeration\" />
-    <Folder Include="Views\Activite\XSS\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Models\BrokenAccessControl" />
+	</ItemGroup>
 
 </Project>

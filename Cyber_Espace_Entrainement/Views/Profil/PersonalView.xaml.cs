@@ -20,6 +20,7 @@ namespace Cyber_Espace_Entrainement.Views.Profil
         public PersonalView()
         {
             InitializeComponent();
+            PasswordBox.Password = "monmotdepasse";
         }
 
         /// <summary>
