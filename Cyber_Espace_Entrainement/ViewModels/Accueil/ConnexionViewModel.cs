@@ -63,7 +63,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         private void ExecuteConnexion(object parameter)
         {
             // Simulation de connexion
-            if (Login == "admin" && MotDePasse == "1234")
+            if (Login == "a" && MotDePasse == "a")
             {
                 if (parameter is Window window)
                 {
