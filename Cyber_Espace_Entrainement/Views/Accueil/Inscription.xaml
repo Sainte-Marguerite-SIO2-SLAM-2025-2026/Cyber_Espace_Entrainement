@@ -1,0 +1,233 @@
+﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Accueil.Inscription"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Accueil"
+        xmlns:viewmodels="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Accueil"        
+        mc:Ignorable="d"
+        Title="Inscription" 
+        SizeToContent="Height" 
+        Width="950"
+        WindowStartupLocation="CenterScreen"
+        Background="#f5f5f5"
+        ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <viewmodels:InscriptionViewModel/>
+    </Window.DataContext>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--#region EN-TÊTE -->
+        <Border Grid.Row="0" 
+                Background="#1565C0" 
+                Padding="20" 
+                Margin="0,0,0,20">
+            <TextBlock Text="Inscription"
+                       FontFamily="Verdana"
+                       FontSize="24"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Border>
+        <!--#endregion-->
+
+        <!--#region CONTENU -->
+        <Grid MaxWidth="900" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--#region FORMULAIRE -->
+            <Grid Grid.Row="0" Margin="0,0,0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--#region COLONNE GAUCHE -->
+                <StackPanel Grid.Column="0">
+                    <!--#region Login -->
+                    <Label Content="Login *"
+                                   Style="{StaticResource ModernLabel}"/>
+                    <TextBox x:Name="tbxLogin"
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="Entrez votre identifiant..."
+                                   Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>     
+                    <TextBlock Text="{Binding LoginError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding LoginError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>
+                    <!--#endregion-->
+
+                    <!--#region Mot de passe -->
+                    <Label Content="Mot de passe *"
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
+                    <PasswordBox x:Name="pbxMotDePasse"
+                                   Style="{StaticResource ModernPasswordBox}"
+                                   Tag="Mot de passe 6 carractère"
+                                   PasswordChanged="PasswordBox_PasswordChanged"
+                                   Margin="0,0,0,5"/>     
+                    <TextBlock Text="{Binding MotDePasseError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding MotDePasseError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>
+                    <!--#endregion-->
+
+                    <!--#region Mail -->  
+                    <Label Content="Email *"
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
+                    <TextBox x:Name="tbxMail"
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="exemple@nomdedomaine.com"
+                                   Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding MailError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding MailError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>
+
+                    <!--#endregion-->
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region COLONNE DROITE -->
+                <StackPanel Grid.Column="2">
+                    <!--#region Prénom -->
+                    <Label Content="Prénom *"
+                                   Style="{StaticResource ModernLabel}"/>
+                    <TextBox x:Name="tbxPrenom"
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="Entrez votre prénom..."
+                                   Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding PrenomError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding PrenomError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>
+                    <!--#endregion-->
+
+                    <!--#region Nom -->   
+                    <Label Content="Nom *"
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
+                    <TextBox x:Name="tbxNom"
+                                   Style="{StaticResource ModernTextBox}"
+                                   Tag="Entrez votre nom..."
+                                   Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding NomError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding NomError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>      
+                    <!--#endregion-->
+
+                    <!--#region Section -->
+                    <Label Content="Section *"
+                                   Style="{StaticResource ModernLabel}"
+                                   Margin="0,10,0,5"/>
+                    <ComboBox x:Name="cbxSection"
+                                   Style="{StaticResource ModernComboBox}"
+                                   Tag="Sélectionnez votre section et spécialité..."
+                                   ItemsSource="{Binding Sections}"
+                                   SelectedItem="{Binding SectionSelectionnee, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="0,0,0,5" 
+                                   Cursor="Hand"/>
+                    <TextBlock Text="{Binding SectionError}"
+                                   Style="{StaticResource ErrorText}"
+                                   Visibility="{Binding SectionError, Converter={StaticResource StringToVisibilityConverter}}"
+                                   Margin="0,0,0,15"/>
+                    <!--#endregion-->
+                   
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region ZONE BOUTONS -->
+            <Grid Grid.Row="1" Margin="0,20,0,0">
+                <Button x:Name="btnValider"
+                            Content="Valider l'inscription"
+                            Style="{StaticResource ModernButton}"
+                            Command="{Binding ValiderCommand}"
+                            Width="200"
+                            Height="45"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Margin="0,0,0,10"/>
+
+                <TextBlock Text="* Champ obligatoire"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Foreground="#9E9E9E"/>
+                
+                <!--#region Connectez-Vous -->
+                <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="right"
+                                VerticalAlignment="Bottom"
+                                Margin="0,30,0,10">
+                    <TextBlock Text="Vous avez déjà un compte ?"
+                                   FontFamily="Verdana"
+                                   FontSize="13"
+                                   Foreground="#757575"
+                                   VerticalAlignment="Center"/>
+                    <Button x:Name="btnConnexion"
+                                Content="Connectez-vous"
+                                Style="{StaticResource SecondaryButton}"
+                                Height="40"
+                                Click="Connexion_Click"
+                                Margin="0,5,0,0"/>
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region PIED DE PAGE -->
+        <Border Grid.Row="2" 
+                Background="White" 
+                BorderBrush="#e0e0e0" 
+                BorderThickness="0,1,0,0"
+                Padding="20">
+            <Grid>
+                <TextBlock Text="© 2025 - Plateforme de Cybersécurité"
+                           FontFamily="Verdana"
+                           FontSize="12"
+                           Foreground="#9E9E9E"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <TextBlock Text="Version 1.0"
+                               FontFamily="Verdana"
+                               FontSize="12"
+                               Foreground="#9E9E9E"
+                               VerticalAlignment="Center"
+                               Margin="0,0,20,0"/>
+                    <Button x:Name="btnQuitter"
+                            Content="❌ Quitter"
+                            Style="{StaticResource QuitButton}"
+                            Command="{Binding QuitterCommand}"
+                            Height="35"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <!--#endregion-->
+        
+    </Grid>
+</Window>

@@ -19,9 +19,9 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
     /// <summary>
     /// Logique d'interaction pour Accueil.xaml
     /// </summary>
-    public partial class Accueil : Window
+    public partial class AccueilWindow : Window
     {
-        public Accueil()
+        public AccueilWindow()
         {
             InitializeComponent();
         }
