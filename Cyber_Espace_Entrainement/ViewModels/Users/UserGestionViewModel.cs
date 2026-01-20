@@ -105,7 +105,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
 
         /// <summary>
         /// Ajouter ou modifier un utilisateur
-        /// MODIFIÉ : Ajout des nouveaux champs Nom, Prenom, Section et ScoreTotal
+        /// Depuis un compte admin
         /// </summary>
         [RelayCommand(CanExecute = nameof(CanSaveUser))]
         private void SaveUser()

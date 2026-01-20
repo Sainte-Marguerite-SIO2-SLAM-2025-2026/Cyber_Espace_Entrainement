@@ -296,8 +296,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         private void Connexion_Click(object sender, RoutedEventArgs e)
         {
             var connexionWindow = new MainWindow();
-            connexionWindow.ShowDialog();
             this.Hide();
+            connexionWindow.ShowDialog();
         }
 
         #endregion
