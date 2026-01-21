@@ -27,7 +27,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// <summary>
         /// Récupérer tous les utilisateurs - INCHANGÉE
         /// </summary>
-        public List<User> GetAllUsers()
+        public List<Utilisateurs> GetAllUsers()
         {
             return _context.Users.OrderBy(u => u.Login).ToList();
         }
@@ -35,7 +35,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// <summary>
         /// Récupérer un utilisateur par ID - INCHANGÉE
         /// </summary>
-        public User? GetUserById(int userId)
+        public Utilisateurs? GetUserById(int userId)
         {
             return _context.Users.Find(userId);
         }
@@ -43,7 +43,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// <summary>
         /// Récupérer un utilisateur par login - INCHANGÉE
         /// </summary>
-        public User? GetUserByLogin(string login)
+        public Utilisateurs? GetUserByLogin(string login)
         {
             return _context.Users.FirstOrDefault(u => u.Login == login);
         }
@@ -53,7 +53,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// Les nouveaux champs (Nom, Prenom, Section, ScoreTotal) sont gérés automatiquement
         /// car ils sont passés dans l'objet User
         /// </summary>
-        public (bool Success, string Message) AddUser(User user)
+        public (bool Success, string Message) AddUser(Utilisateurs user)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// Modifier un utilisateur existant
         /// MODIFIÉ : Ajout de la mise à jour des nouveaux champs
         /// </summary>
-        public (bool Success, string Message) UpdateUser(User user)
+        public (bool Success, string Message) UpdateUser(Utilisateurs user)
         {
             try
             {
@@ -176,7 +176,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// <summary>
         /// Authentifier un utilisateur - INCHANGÉE
         /// </summary>
-        public (bool Success, User? User, string Message) Authentifier(string login, string password)
+        public (bool Success, Utilisateurs? User, string Message) Authentifier(string login, string password)
         {
             var user = _context.Users.FirstOrDefault(u => u.Login == login);
 
@@ -201,7 +201,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// Rechercher des utilisateurs
         /// MODIFIÉ : Ajout de la recherche dans les champs Nom et Prenom
         /// </summary>
-        public List<User> SearchUsers(string searchTerm)
+        public List<Utilisateurs> SearchUsers(string searchTerm)
         {
             searchTerm = searchTerm.ToLower();
             return _context.Users
@@ -217,7 +217,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// <summary>
         /// Filtrer par rôle - INCHANGÉE
         /// </summary>
-        public List<User> GetUsersByRole(UserRole role)
+        public List<Utilisateurs> GetUsersByRole(UserRole role)
         {
             return _context.Users
                 .Where(u => u.Role == role)
@@ -229,7 +229,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// <summary>
         /// Filtrer les utilisateurs par section
         /// </summary>
-        public List<User> GetUsersBySection(string section)
+        public List<Utilisateurs> GetUsersBySection(string section)
         {
             return _context.Users
                 .Where(u => u.Section == section)
@@ -241,7 +241,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// <summary>
         /// Obtenir les meilleurs utilisateurs par score (classement)
         /// </summary>
-        public List<User> GetTopUsersByScore(int count = 10)
+        public List<Utilisateurs> GetTopUsersByScore(int count = 10)
         {
             return _context.Users
                 .Where(u => u.ScoreTotal.HasValue)

@@ -12,25 +12,39 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
     {
         private InscriptionViewModel _viewModel;
 
-        // Couleurs pour les effets de survol
-        private readonly SolidColorBrush _defaultBorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BDBDBD"));
-        private readonly SolidColorBrush _hoverBorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1565C0"));
-        private readonly SolidColorBrush _focusBorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1565C0"));
+        // Récupération des couleurs depuis les ressources
+        private readonly SolidColorBrush _defaultTextBoxBorderBrush;
+        private readonly SolidColorBrush _hoverTextBoxBorderBrush;
+        private readonly SolidColorBrush _focusTextBoxBorderBrush;
 
-        private readonly SolidColorBrush _defaultButtonBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1565C0"));
-        private readonly SolidColorBrush _hoverButtonBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0D47A1"));
+        private readonly SolidColorBrush _defaultButtonBackground;
+        private readonly SolidColorBrush _hoverButtonBackground;
 
-        private readonly SolidColorBrush _defaultSecondaryBackground = Brushes.Transparent;
-        private readonly SolidColorBrush _hoverSecondaryBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E3F2FD"));
+        private readonly SolidColorBrush _defaultSecondaryBackground;
+        private readonly SolidColorBrush _hoverSecondaryBackground;
 
-        private readonly SolidColorBrush _defaultQuitBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f44336"));
-        private readonly SolidColorBrush _hoverQuitBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#d32f2f"));
+        private readonly SolidColorBrush _defaultQuitBackground;
+        private readonly SolidColorBrush _hoverQuitBackground;
 
         public Inscription()
         {
             InitializeComponent();
             _viewModel = this.DataContext as InscriptionViewModel;
-            
+
+            // Chargement des couleurs depuis les ressources de l'application
+            _defaultTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderDefaultBrush");
+            _hoverTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderHoverBrush");
+            _focusTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderFocusBrush");
+
+            _defaultButtonBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueBrush");
+            _hoverButtonBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueDarkBrush");
+
+            _defaultSecondaryBackground = (SolidColorBrush)Application.Current.FindResource("TransparentBrush");
+            _hoverSecondaryBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueLightBrush");
+
+            _defaultQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedBrush");
+            _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush");
+
             // Autorise l'info-bulle même quand le bouton est IsEnabled = false
             ToolTipService.SetShowOnDisabled(btnValider, true);
             InitializeEventHandlers();
@@ -77,11 +91,12 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             // Bouton Valider
             btnValider.MouseEnter += BtnValider_MouseEnter;
             btnValider.MouseLeave += BtnValider_MouseLeave;
+            btnValider.IsEnabledChanged += BtnValider_IsEnabledChanged;
 
             // Bouton Connexion
             btnConnexion.MouseEnter += BtnConnexion_MouseEnter;
-            btnConnexion.MouseLeave += BtnConnexion_MouseLeave; 
-            btnValider.IsEnabledChanged += BtnValider_IsEnabledChanged;
+            btnConnexion.MouseLeave += BtnConnexion_MouseLeave;
+            
 
             // Initialiser le premier message
             UpdateValiderToolTip();
@@ -89,7 +104,6 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             // Bouton Quitter
             btnQuitter.MouseEnter += BtnQuitter_MouseEnter;
             btnQuitter.MouseLeave += BtnQuitter_MouseLeave;
-
         }
 
         #region TextBox Events
@@ -98,7 +112,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is TextBox textBox && !textBox.IsFocused)
             {
-                textBox.BorderBrush = _hoverBorderBrush;
+                textBox.BorderBrush = _hoverTextBoxBorderBrush;
             }
         }
 
@@ -106,7 +120,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is TextBox textBox && !textBox.IsFocused)
             {
-                textBox.BorderBrush = _defaultBorderBrush;
+                textBox.BorderBrush = _defaultTextBoxBorderBrush;
             }
         }
 
@@ -114,7 +128,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is TextBox textBox)
             {
-                textBox.BorderBrush = _focusBorderBrush;
+                textBox.BorderBrush = _focusTextBoxBorderBrush;
             }
         }
 
@@ -122,7 +136,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is TextBox textBox)
             {
-                textBox.BorderBrush = _defaultBorderBrush;
+                textBox.BorderBrush = _defaultTextBoxBorderBrush;
             }
         }
 
@@ -134,7 +148,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is PasswordBox passwordBox && !passwordBox.IsFocused)
             {
-                passwordBox.BorderBrush = _hoverBorderBrush;
+                passwordBox.BorderBrush = _hoverTextBoxBorderBrush;
             }
         }
 
@@ -142,7 +156,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is PasswordBox passwordBox && !passwordBox.IsFocused)
             {
-                passwordBox.BorderBrush = _defaultBorderBrush;
+                passwordBox.BorderBrush = _defaultTextBoxBorderBrush;
             }
         }
 
@@ -150,7 +164,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is PasswordBox passwordBox)
             {
-                passwordBox.BorderBrush = _focusBorderBrush;
+                passwordBox.BorderBrush = _focusTextBoxBorderBrush;
             }
         }
 
@@ -158,13 +172,12 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is PasswordBox passwordBox)
             {
-                passwordBox.BorderBrush = _defaultBorderBrush;
+                passwordBox.BorderBrush = _defaultTextBoxBorderBrush;
             }
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
             PasswordBox pb = (PasswordBox)sender;
 
             // On va chercher le TextBlock "placeholder" dans le template
@@ -192,7 +205,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is ComboBox comboBox && !comboBox.IsFocused)
             {
-                comboBox.BorderBrush = _hoverBorderBrush;
+                comboBox.BorderBrush = _hoverTextBoxBorderBrush;
             }
         }
 
@@ -200,7 +213,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is ComboBox comboBox && !comboBox.IsFocused)
             {
-                comboBox.BorderBrush = _defaultBorderBrush;
+                comboBox.BorderBrush = _defaultTextBoxBorderBrush;
             }
         }
 
@@ -208,7 +221,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is ComboBox comboBox)
             {
-                comboBox.BorderBrush = _focusBorderBrush;
+                comboBox.BorderBrush = _focusTextBoxBorderBrush;
             }
         }
 
@@ -216,7 +229,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         {
             if (sender is ComboBox comboBox)
             {
-                comboBox.BorderBrush = _defaultBorderBrush;
+                comboBox.BorderBrush = _defaultTextBoxBorderBrush;
             }
         }
 
@@ -283,8 +296,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         private void Connexion_Click(object sender, RoutedEventArgs e)
         {
             var connexionWindow = new MainWindow();
-            connexionWindow.ShowDialog();
             this.Hide();
+            connexionWindow.ShowDialog();
         }
 
         #endregion

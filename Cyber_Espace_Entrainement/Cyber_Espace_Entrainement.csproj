@@ -1,53 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-	  <RootNamespace>Cyber_Espace_Entrainement</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>Cyber_Espace_Entrainement</RootNamespace>
+	</PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\morsecode.wav" />
-    <None Remove="Resources\morse_0.wav" />
-    <None Remove="Resources\morse_1.wav" />
-    <None Remove="Resources\morse_2.wav" />
-    <None Remove="Resources\morse_3.wav" />
-    <None Remove="Resources\morse_4.wav" />
-    <None Remove="Resources\morse_5.wav" />
-    <None Remove="Resources\morse_6.wav" />
-    <None Remove="Resources\morse_7.wav" />
-    <None Remove="Resources\morse_8.wav" />
-    <None Remove="Resources\morse_9.wav" />
-    <None Remove="Resources\morse_A.wav" />
-    <None Remove="Resources\morse_B.wav" />
-    <None Remove="Resources\morse_BRAVO.wav" />
-    <None Remove="Resources\morse_C.wav" />
-    <None Remove="Resources\morse_D.wav" />
-    <None Remove="Resources\morse_E.wav" />
-    <None Remove="Resources\morse_F.wav" />
-    <None Remove="Resources\morse_G.wav" />
-    <None Remove="Resources\morse_H.wav" />
-    <None Remove="Resources\morse_I.wav" />
-    <None Remove="Resources\morse_J.wav" />
-    <None Remove="Resources\morse_K.wav" />
-    <None Remove="Resources\morse_L.wav" />
-    <None Remove="Resources\morse_M.wav" />
-    <None Remove="Resources\morse_N.wav" />
-    <None Remove="Resources\morse_O.wav" />
-    <None Remove="Resources\morse_P.wav" />
-    <None Remove="Resources\morse_Q.wav" />
-    <None Remove="Resources\morse_R.wav" />
-    <None Remove="Resources\morse_S.wav" />
-    <None Remove="Resources\morse_T.wav" />
-    <None Remove="Resources\morse_U.wav" />
-    <None Remove="Resources\morse_V.wav" />
-    <None Remove="Resources\morse_W.wav" />
-    <None Remove="Resources\morse_X.wav" />
-    <None Remove="Resources\morse_Y.wav" />
-    <None Remove="Resources\morse_Z.wav" />
+    <None Remove="Resources\Morse\morsecode.wav" />
+    <None Remove="Resources\Morse\morse_0.wav" />
+    <None Remove="Resources\Morse\morse_1.wav" />
+    <None Remove="Resources\Morse\morse_2.wav" />
+    <None Remove="Resources\Morse\morse_3.wav" />
+    <None Remove="Resources\Morse\morse_4.wav" />
+    <None Remove="Resources\Morse\morse_5.wav" />
+    <None Remove="Resources\Morse\morse_6.wav" />
+    <None Remove="Resources\Morse\morse_7.wav" />
+    <None Remove="Resources\Morse\morse_8.wav" />
+    <None Remove="Resources\Morse\morse_9.wav" />
+    <None Remove="Resources\Morse\morse_A.wav" />
+    <None Remove="Resources\Morse\morse_B.wav" />
+    <None Remove="Resources\Morse\morse_BRAVO.wav" />
+    <None Remove="Resources\Morse\morse_C.wav" />
+    <None Remove="Resources\Morse\morse_D.wav" />
+    <None Remove="Resources\Morse\morse_E.wav" />
+    <None Remove="Resources\Morse\morse_F.wav" />
+    <None Remove="Resources\Morse\morse_G.wav" />
+    <None Remove="Resources\Morse\morse_H.wav" />
+    <None Remove="Resources\Morse\morse_I.wav" />
+    <None Remove="Resources\Morse\morse_J.wav" />
+    <None Remove="Resources\Morse\morse_K.wav" />
+    <None Remove="Resources\Morse\morse_L.wav" />
+    <None Remove="Resources\Morse\morse_M.wav" />
+    <None Remove="Resources\Morse\morse_N.wav" />
+    <None Remove="Resources\Morse\morse_O.wav" />
+    <None Remove="Resources\Morse\morse_P.wav" />
+    <None Remove="Resources\Morse\morse_Q.wav" />
+    <None Remove="Resources\Morse\morse_R.wav" />
+    <None Remove="Resources\Morse\morse_S.wav" />
+    <None Remove="Resources\Morse\morse_T.wav" />
+    <None Remove="Resources\Morse\morse_U.wav" />
+    <None Remove="Resources\Morse\morse_V.wav" />
+    <None Remove="Resources\Morse\morse_W.wav" />
+    <None Remove="Resources\Morse\morse_X.wav" />
+    <None Remove="Resources\Morse\morse_Y.wav" />
+    <None Remove="Resources\Morse\morse_Z.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,74 +60,76 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\BrokenAccessControl" />
+	</ItemGroup>
 
   <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\morsecode.wav" />
-    <Resource Include="Resources\morse_0.wav">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\morse_1.wav" />
-    <Resource Include="Resources\morse_2.wav" />
-    <Resource Include="Resources\morse_3.wav" />
-    <Resource Include="Resources\morse_4.wav" />
-    <Resource Include="Resources\morse_5.wav" />
-    <Resource Include="Resources\morse_6.wav" />
-    <Resource Include="Resources\morse_7.wav" />
-    <Resource Include="Resources\morse_8.wav" />
-    <Resource Include="Resources\morse_9.wav" />
-    <Resource Include="Resources\morse_A.wav" />
-    <Resource Include="Resources\morse_B.wav" />
-    <Resource Include="Resources\morse_BRAVO.wav" />
-    <Resource Include="Resources\morse_C.wav" />
-    <Resource Include="Resources\morse_D.wav" />
-    <Resource Include="Resources\morse_E.wav" />
-    <Resource Include="Resources\morse_F.wav" />
-    <Resource Include="Resources\morse_G.wav" />
-    <Resource Include="Resources\morse_H.wav" />
-    <Resource Include="Resources\morse_I.wav" />
-    <Resource Include="Resources\morse_J.wav" />
-    <Resource Include="Resources\morse_K.wav" />
-    <Resource Include="Resources\morse_L.wav" />
-    <Resource Include="Resources\morse_M.wav" />
-    <Resource Include="Resources\morse_N.wav" />
-    <Resource Include="Resources\morse_O.wav" />
-    <Resource Include="Resources\morse_P.wav" />
-    <Resource Include="Resources\morse_Q.wav" />
-    <Resource Include="Resources\morse_R.wav" />
-    <Resource Include="Resources\morse_S.wav" />
-    <Resource Include="Resources\morse_T.wav" />
-    <Resource Include="Resources\morse_U.wav" />
-    <Resource Include="Resources\morse_V.wav" />
-    <Resource Include="Resources\morse_W.wav" />
-    <Resource Include="Resources\morse_X.wav" />
-    <Resource Include="Resources\morse_Y.wav" />
-    <Resource Include="Resources\morse_Z.wav" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Resource Include="Resources\Morse\morsecode.wav" />
+    <Resource Include="Resources\Morse\morse_0.wav" />
+    <Resource Include="Resources\Morse\morse_1.wav" />
+    <Resource Include="Resources\Morse\morse_2.wav" />
+    <Resource Include="Resources\Morse\morse_3.wav" />
+    <Resource Include="Resources\Morse\morse_4.wav" />
+    <Resource Include="Resources\Morse\morse_5.wav" />
+    <Resource Include="Resources\Morse\morse_6.wav" />
+    <Resource Include="Resources\Morse\morse_7.wav" />
+    <Resource Include="Resources\Morse\morse_8.wav" />
+    <Resource Include="Resources\Morse\morse_9.wav" />
+    <Resource Include="Resources\Morse\morse_A.wav" />
+    <Resource Include="Resources\Morse\morse_B.wav" />
+    <Resource Include="Resources\Morse\morse_BRAVO.wav" />
+    <Resource Include="Resources\Morse\morse_C.wav" />
+    <Resource Include="Resources\Morse\morse_D.wav" />
+    <Resource Include="Resources\Morse\morse_E.wav" />
+    <Resource Include="Resources\Morse\morse_F.wav" />
+    <Resource Include="Resources\Morse\morse_G.wav" />
+    <Resource Include="Resources\Morse\morse_H.wav" />
+    <Resource Include="Resources\Morse\morse_I.wav" />
+    <Resource Include="Resources\Morse\morse_J.wav" />
+    <Resource Include="Resources\Morse\morse_K.wav" />
+    <Resource Include="Resources\Morse\morse_L.wav" />
+    <Resource Include="Resources\Morse\morse_M.wav" />
+    <Resource Include="Resources\Morse\morse_N.wav" />
+    <Resource Include="Resources\Morse\morse_O.wav" />
+    <Resource Include="Resources\Morse\morse_P.wav" />
+    <Resource Include="Resources\Morse\morse_Q.wav" />
+    <Resource Include="Resources\Morse\morse_R.wav" />
+    <Resource Include="Resources\Morse\morse_S.wav" />
+    <Resource Include="Resources\Morse\morse_T.wav" />
+    <Resource Include="Resources\Morse\morse_U.wav" />
+    <Resource Include="Resources\Morse\morse_V.wav" />
+    <Resource Include="Resources\Morse\morse_W.wav" />
+    <Resource Include="Resources\Morse\morse_X.wav" />
+    <Resource Include="Resources\Morse\morse_Y.wav" />
+    <Resource Include="Resources\Morse\morse_Z.wav" />
   </ItemGroup>
 
 </Project>
