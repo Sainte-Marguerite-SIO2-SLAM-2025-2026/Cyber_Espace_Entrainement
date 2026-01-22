@@ -74,6 +74,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             {
                 if (parameter is Window window)
                 {
+                    SessionService.Instance.Login(user);
                     var accueil = new AccueilWindow();
                     MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
 
