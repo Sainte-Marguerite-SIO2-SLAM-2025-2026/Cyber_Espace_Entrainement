@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cyber_Espace_Entrainement.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,7 +21,7 @@ namespace Cyber_Espace_Entrainement.Views.Profil
         public PersonalView()
         {
             InitializeComponent();
-            PasswordBox.Password = "monmotdepasse";
+            InitialiseData();
         }
 
         /// <summary>
@@ -30,5 +31,20 @@ namespace Cyber_Espace_Entrainement.Views.Profil
         {
             this.Close();
         }
+
+        private void InitialiseData()
+        {
+            textBoxPrenom.Text = SessionService.Instance.CurrentPrenom;
+            textBoxNom.Text = SessionService.Instance.CurrentNom;
+            textBoxPseudo.Text = SessionService.Instance.CurrentLogin;
+            passwordBoxPassword.Password = SessionService.Instance.CurrentPassword; //mdp hash -> a changer en modif mdp avec ancien et nv
+            textBoxEmail.Text = SessionService.Instance.CurrentEmail;
+            textBoxSection.Text = SessionService.Instance.CurrentSection;
+            textBoxDateCreation.Text = SessionService.Instance.CurrentDateCrea.ToString();
+            textBoxDerniereConnection.Text = SessionService.Instance.CurrentDerniereCo.ToString();
+            textBoxScoreTotal.Text = SessionService.Instance.CurrentScore.ToString();
+        }
+        // faire un vos infos avec btn modif qui va sur stackpannel modifiervosinfos (sinon de base affiche pas modifiable) voir gestion user 
+        // augmenter auteur et largeur de la view, meilleure disposition aussi a faire
     }
 }
