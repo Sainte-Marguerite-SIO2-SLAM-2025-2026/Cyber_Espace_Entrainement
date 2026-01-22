@@ -1,0 +1,28 @@
+﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Activite.Captcha.CaptchaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite.Captcha"
+        mc:Ignorable="d"
+        Title="CaptchaView" Height="700" Width="1000">
+    <Grid>
+        
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- EN-TÊTE -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <Border Grid.Row="0" 
+        Background="#1565C0" 
+        Padding="20" 
+        Margin="0,0,0,20">
+            <TextBlock Text="CAPTCHA"
+               FontFamily="Verdana"
+               FontSize="24"
+               FontWeight="SemiBold"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+        </Border>
+        
+    </Grid>
+</Window>
