@@ -30,5 +30,6 @@ namespace Cyber_Espace_Entrainement.Commands
 
         // Exécute l'action associée
         public void Execute(object? parameter) => _execute(parameter);
+
     }
 }
