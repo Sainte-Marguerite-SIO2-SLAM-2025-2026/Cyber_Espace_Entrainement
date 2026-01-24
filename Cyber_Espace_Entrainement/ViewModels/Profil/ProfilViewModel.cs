@@ -6,7 +6,13 @@ using System.Text;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Profil
 {
-    public partial class ProfilViewModel
+    public partial class ProfilViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private bool isEditMode = true;
+
+        public ProfilViewModel() { 
+            
+        }
     }
 }

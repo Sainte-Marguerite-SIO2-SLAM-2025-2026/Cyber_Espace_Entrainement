@@ -4,9 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Profil"
+        xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Profil"
         mc:Ignorable="d"
         Title="PersonalView" Height="800" Width="1000"
         WindowStartupLocation="CenterScreen">
+
+
+    <Window.DataContext>
+        <vm:ProfilViewModel/>
+    </Window.DataContext>
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -68,127 +76,89 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+                <!-- FORMULAIRE -->
+                <Border Background="White" CornerRadius="10" Padding="25" BorderBrush="#D0D7DE" BorderThickness="1" Effect="{DynamicResource ShadowEffect}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock FontSize="20" FontWeight="Bold" Margin="0,0,0,20">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="Vos Informations"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsEditMode}" Value="True">
+                                            <Setter Property="Text" Value="✏️ Modifier les infos"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>  
+                            </TextBlock>
 
-            <!-- COLONNE GAUCHE : Formulaire -->
-            <Border Grid.Column="0" 
-        Background="White" 
-        BorderBrush="#ddd" 
-        BorderThickness="1" 
-        CornerRadius="8"
-        Padding="20"
-        Margin="0,0,5,0">
 
-                <!-- Ajout du ScrollViewer (fix de ton bug) -->
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                    <StackPanel Margin="0" Background="White" Width="auto">
-                        <TextBlock Text="Vos infos" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                        <!-- Ligne 1 : Prénom + Nom -->
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <StackPanel Width="190">
-                                <TextBlock Text="Prénom" FontWeight="SemiBold"/>
-                                <TextBox x:Name="textBoxPrenom"/>
+                        <!-- Prénom + Nom -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                <StackPanel Width="160">
+                                    <TextBlock Text="Prénom" FontWeight="SemiBold"/>
+                                    <TextBox x:Name="textBoxPrenom" Style="{StaticResource InputStyle}"/>
+                                </StackPanel>
+                                <StackPanel Width="160" Margin="20,0,0,0">
+                                    <TextBlock Text="Nom" FontWeight="SemiBold"/>
+                                    <TextBox x:Name="textBoxNom" Style="{StaticResource InputStyle}"/>
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Width="190" Margin="20,0,0,0">
-                                <TextBlock Text="Nom" FontWeight="SemiBold"/>
-                                <TextBox x:Name="textBoxNom"/>
+                            <!-- Pseudo + Mot de passe -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                <StackPanel Width="160">
+                                    <TextBlock Text="Pseudo" FontWeight="SemiBold"/>
+                                    <TextBox x:Name="textBoxPseudo" Style="{StaticResource InputStyle}"/>
+                                </StackPanel>
+                                <StackPanel Width="160" Margin="20,0,0,0">
+                                    <TextBlock Text="Mot de passe" FontWeight="SemiBold"/>
+                                    <PasswordBox x:Name="passwordBoxPassword" Style="{StaticResource InputPasswordStyle}"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-
-                        <!-- Ligne 2 : Pseudo + Mot de passe -->
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <StackPanel Width="190">
-                                <TextBlock Text="Pseudo" FontWeight="SemiBold"/>
-                                <TextBox x:Name="textBoxPseudo"/>
+                            <!-- Email -->
+                            <StackPanel Margin="0,0,0,15">
+                                <TextBlock Text="Email" FontWeight="SemiBold"/>
+                                <TextBox x:Name="textBoxEmail" Style="{StaticResource InputStyle}"/>
                             </StackPanel>
-                            <StackPanel Width="190" Margin="20,0,0,0">
-                                <TextBlock Text="Mot de passe" FontWeight="SemiBold"/>
-                                <PasswordBox x:Name="passwordBoxPassword"/>
+                            <!-- Section -->
+                            <StackPanel Margin="0,0,0,15">
+                                <TextBlock Text="Section" FontWeight="SemiBold"/>
+                                <TextBox x:Name="textBoxSection" Style="{StaticResource InputStyle}"/>
                             </StackPanel>
-                        </StackPanel>
-
-                        <!-- Ligne 3 : Email -->
-                        <StackPanel Margin="0,0,0,10">
-                            <TextBlock Text="Email" FontWeight="SemiBold"/>
-                            <TextBox x:Name="textBoxEmail" />
-                        </StackPanel>
-
-                        <!-- Ligne 4 : Section -->
-                        <StackPanel Margin="0,0,0,10">
-                            <TextBlock Text="Section" FontWeight="SemiBold"/>
-                            <TextBox x:Name="textBoxSection"/>
-                        </StackPanel>
-
-                        <!-- Ligne 5 : Date création + Dernière co -->
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <StackPanel Width="190">
-                                <TextBlock Text="Date création" FontWeight="SemiBold"/>
-                                <TextBox x:Name="textBoxDateCreation"/>
+                            <!-- Dates -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                <StackPanel Width="160">
+                                    <TextBlock Text="Date de création" FontWeight="SemiBold"/>
+                                    <TextBox x:Name="textBoxDateCreation" Style="{StaticResource InputStyle}"/>
+                                </StackPanel>
+                                <StackPanel Width="160" Margin="20,0,0,0">
+                                    <TextBlock Text="Dernière connexion" FontWeight="SemiBold"/>
+                                    <TextBox x:Name="textBoxDerniereConnection" Style="{StaticResource InputStyle}"/>
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Width="190" Margin="20,0,0,0">
-                                <TextBlock Text="Dernière co" FontWeight="SemiBold"/>
-                                <TextBox x:Name="textBoxDerniereConnection"/>
+                            <!-- Score -->
+                            <StackPanel Margin="0,0,0,25">
+                                <TextBlock Text="Score total" FontWeight="SemiBold"/>
+                                <TextBox x:Name="textBoxScoreTotal" Style="{StaticResource InputStyle}"/>
                             </StackPanel>
-                        </StackPanel>
-
-                        <!-- Ligne 6 : Score total -->
-                        <StackPanel Margin="0,0,0,20">
-                            <TextBlock Text="Score total" FontWeight="SemiBold"/>
-                            <TextBox x:Name="textBoxScoreTotal"/>
-                        </StackPanel>
-
-                        <!-- Boutons -->
-                        <StackPanel Orientation="Horizontal">
-                            <Button Command="{Binding SaveUserCommand}"
-                        Background="#4CAF50"
-                        Foreground="White"
-                        Padding="20,10"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        BorderThickness="0"
-                        Cursor="Hand"
-                        Margin="0,0,10,0">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Content" Value="➕ Créer"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsEditMode}" Value="True">
-                                                <Setter Property="Content" Value="💾 Enregistrer"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
+                            <!-- Boutons -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Button Command="{Binding SaveUserCommand}" Style="{StaticResource PrimaryButton}" Margin="0,0,10,0">
                             </Button>
-
-                            <Button Command="{Binding CancelEditCommand}"
-                        Background="#9E9E9E"
-                        Foreground="White"
-                        Padding="20,10"
-                        FontSize="14"
-                        BorderThickness="0"
-                        Cursor="Hand">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Content" Value="🔄 Réinitialiser"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsEditMode}" Value="True">
-                                                <Setter Property="Content" Value="❌ Annuler"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
+                                <Button Command="{Binding CancelEditCommand}" Style="{StaticResource SecondaryButton}">
+                                    </Button>
+                            </StackPanel>
                         </StackPanel>
-
-                    </StackPanel>
-                </ScrollViewer>
-            </Border>
-        </Grid>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
 
 
 
-        <!--#region PIED DE PAGE -->
+            <!--#region PIED DE PAGE -->
         <Border Grid.Row="2" 
         Background="White" 
         BorderBrush="#e0e0e0" 
