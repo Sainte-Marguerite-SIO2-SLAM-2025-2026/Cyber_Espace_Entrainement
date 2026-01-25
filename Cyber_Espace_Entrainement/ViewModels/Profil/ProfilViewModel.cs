@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Cyber_Espace_Entrainement.Models;
 using Cyber_Espace_Entrainement.Services;
 using System;
+using System.Windows;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Profil
 {
@@ -11,6 +12,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         // MODE ÉDITION
         [ObservableProperty]
         private bool isEditMode;
+        [ObservableProperty]
+        private bool isVisibleMode;
+
+        public Visibility EditVisibilityModify => IsEditMode ? Visibility.Hidden : Visibility.Visible;
+        public Visibility EditVisibilityGeneral => IsEditMode ? Visibility.Visible : Visibility.Hidden;
+
 
         // CHAMPS DU FORMULAIRE
         [ObservableProperty] private string prenom;
@@ -26,6 +33,11 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         public ProfilViewModel()
         {
             ChargerDepuisSession();
+        }
+
+        partial void OnIsEditModeChanged(bool value) { 
+            OnPropertyChanged(nameof(EditVisibilityModify));
+            OnPropertyChanged(nameof(EditVisibilityGeneral));
         }
 
         // CHARGEMENT DES DONNÉES

@@ -20,7 +20,6 @@ namespace Cyber_Espace_Entrainement.Views.Profil
     public partial class PersonalView : Window
     {
         private ProfilViewModel viewModel => (ProfilViewModel)DataContext;
-        private ProfilViewModel profil = new ProfilViewModel();
         public PersonalView()
         {
             InitializeComponent();
@@ -53,8 +52,8 @@ namespace Cyber_Espace_Entrainement.Views.Profil
             this.Close();
         }
 
-        // faire un vos infos avec btn modif qui va sur stackpannel modifiervosinfos (sinon de base affiche pas modifiable) voir gestion user 
-        // augmenter auteur et largeur de la view, meilleure disposition aussi a faire
+        // modif doivent se faire dans la bdd,
+        // faire le fonctionnement des boutons
         // au lieu de la zone mdp faire un boutton modif mdp en bas
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Profil"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Profil"
         mc:Ignorable="d"
-        Title="PersonalView" Height="800" Width="1000"
+        Title="PersonalView" Height="900" Width="1100"
         WindowStartupLocation="CenterScreen">
 
 
@@ -78,7 +78,6 @@
 
                 <!-- FORMULAIRE -->
                 <Border Background="White" CornerRadius="10" Padding="25" BorderBrush="#D0D7DE" BorderThickness="1" Effect="{DynamicResource ShadowEffect}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <TextBlock FontSize="20" FontWeight="Bold" Margin="0,0,0,20">
                             <TextBlock.Style>
@@ -164,17 +163,48 @@
          IsEnabled="{Binding IsEditMode}"/>
                         </StackPanel>
                             <!-- Boutons -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Button Content="✏️ Modifier" 
-    Command="{Binding EditUserCommand}" Cursor="Hand">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Button Background="Blue"
+                            Foreground="White"
+Padding="15,10"
+FontSize="14"
+FontWeight="Bold"
+BorderThickness="0"
+Cursor="Hand"
+Margin="0,0,10,0"
+                            Content="✏️ Modifier" 
+                                    Visibility="{Binding EditVisibilityModify}"
+                                    Command="{Binding EditUserCommand}">
                                 </Button>
-                            <Button Command="{Binding SaveUserCommand}" Style="{StaticResource PrimaryButton}" Margin="0,0,10,0">
-                            </Button>
-                                <Button Command="{Binding CancelEditCommand}" Style="{StaticResource SecondaryButton}">
-                                    </Button>
-                            </StackPanel>
+                        <!-- Bouton Créer/Enregistrer -->
+                        <Button Command="{Binding SaveUserCommand}"
+    Background="#4CAF50"
+    Foreground="White"
+    Padding="15,10"
+    FontSize="14"
+    FontWeight="Bold"
+    BorderThickness="0"
+    Cursor="Hand"
+    Margin="0,0,10,0"
+                                Content="💾 Enregistrer"
+                                Visibility="{Binding EditVisibilityGeneral}">
+                            
+                        </Button>
+                        <Button  
+    Command="{Binding CancelEditCommand}"
+    Background="Red"
+    Foreground="White"
+    Padding="15,10"
+    FontSize="14"
+    BorderThickness="0"
+    Cursor="Hand"
+                            Content="❌ Annuler"
+                            Visibility="{Binding EditVisibilityGeneral}">
+                            
+                        </Button>
+                    </StackPanel>
                         </StackPanel>
-                    </ScrollViewer>
+                    
                 </Border>
             </Grid>
 
