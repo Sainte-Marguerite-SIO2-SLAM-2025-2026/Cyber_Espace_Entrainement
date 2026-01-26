@@ -58,10 +58,9 @@
                 <!--#region COLONNE GAUCHE -->
                 <StackPanel Grid.Column="0">
                     <!--#region Login -->
-                    <Label
-                                   Style="{StaticResource ModernLabel}">
-                        <Label Content="Label"/>
-                    </Label>
+                    <Label Content="Login *"
+                       Style="{StaticResource ModernLabel}"
+                       Margin="0,10,0,5"/>  
                     <TextBox x:Name="tbxLogin"
                                    Style="{StaticResource ModernTextBox}"
                                    Tag="Entrez votre identifiant..."
