@@ -64,10 +64,13 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [RelayCommand]
         private void EditUser()
         {
-            
+            IsEditMode = true;            
+        }
 
-            IsEditMode = true;
-            
+        [RelayCommand]
+        private void CancelEdit()
+        {
+            ChargerDepuisSession();
         }
     }
 }
