@@ -54,6 +54,6 @@ namespace Cyber_Espace_Entrainement.Views.Profil
 
         // modif doivent se faire dans la bdd,
         // faire le fonctionnement des boutons
-        // au lieu de la zone mdp faire un boutton modif mdp en bas
+        // au lieu de la zone mdp faire un boutton modif mdp en bas qui affiche une mini page pour changer son mdp
     }
 }
