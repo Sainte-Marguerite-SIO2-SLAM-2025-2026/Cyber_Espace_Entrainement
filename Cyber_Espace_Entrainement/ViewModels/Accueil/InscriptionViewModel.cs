@@ -14,7 +14,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
     {
         #region Properties
 
-        private readonly UserService _userService;
+        private UserService _userService;
         private string _login;
         public string Login
         {
@@ -161,7 +161,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         #region Commands
 
         public ICommand ValiderCommand { get; }
-        public ICommand ConnexionCommand { get; }
         public ICommand QuitterCommand { get; }
 
         #endregion
@@ -182,7 +181,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
             // Initialisation des commandes
             ValiderCommand = new RelayCommand(Valider, CanValider);
-            ConnexionCommand = new RelayCommand(NaviguerVersConnexion);
             QuitterCommand = new RelayCommand(Quitter);
         }
 
@@ -346,6 +344,9 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
                 // Ajout de l'utilisateur à la base de données
                 _userService = new UserService();
+                _userService.AddUser(nouvelUtilisateur);
+
+                NaviguerVersConnexion(parameter);
             }
             else
             {
@@ -365,7 +366,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             if (parameter is Window window)
             {
                 var connexionWindow = new MainWindow();
-                window.Hide();
+                window.Close();
                 connexionWindow.ShowDialog();
             }
         }
