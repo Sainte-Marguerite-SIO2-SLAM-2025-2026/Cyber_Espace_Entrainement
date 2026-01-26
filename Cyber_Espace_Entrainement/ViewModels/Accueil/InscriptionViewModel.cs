@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Models;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 {
@@ -12,6 +14,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
     {
         #region Properties
 
+        private readonly UserService _userService;
         private string _login;
         public string Login
         {
@@ -327,8 +330,22 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                     MessageBoxImage.Information
                 );
 
-                // Ici vous pouvez ajouter la logique pour enregistrer l'utilisateur
-                // par exemple : _userService.Register(new User { ... });
+
+                // Création de l'objet Utilisateurs
+                Utilisateurs nouvelUtilisateur = new Utilisateurs
+                {
+                    Login = this.Login,
+                    MotPasse = this.MotDePasse,
+                    Nom = this.Nom,
+                    Prenom = this.Prenom,
+                    Section = this.SectionSelectionnee,
+                    Email = this.Mail,
+                    Role = UserRole.Etudiant,
+                    DateCreation = DateTime.Now
+                };
+
+                // Ajout de l'utilisateur à la base de données
+                _userService = new UserService();
             }
             else
             {
