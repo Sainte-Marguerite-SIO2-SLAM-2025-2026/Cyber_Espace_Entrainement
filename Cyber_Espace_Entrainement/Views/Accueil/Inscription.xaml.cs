@@ -296,7 +296,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         private void Connexion_Click(object sender, RoutedEventArgs e)
         {
             var connexionWindow = new MainWindow();
-            this.Hide();
+            this.Close();
             connexionWindow.ShowDialog();
         }
 
