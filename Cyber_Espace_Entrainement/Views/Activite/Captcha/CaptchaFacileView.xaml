@@ -4,19 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite.Captcha"
+        xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite.Captcha"
         mc:Ignorable="d"
         Title="CaptchaFacileView" 
         SizeToContent="Height"
         Height="700" 
         Width="1000">
+    <Window.DataContext>
+        <vm:CaptchaFacileViewModel/>
+    </Window.DataContext>
+
     <Grid>
         <!--#region ViewModel -->
 
-        <!-- 
-        <Window.DataContext>
-            <local:CaptchaFacileViewModel/>
-        </Window.DataContext>
-        -->
+        
+        
+       
 
         <!--#endregion-->
 
@@ -44,9 +47,28 @@
         <!--#endregion-->
 
         <!-- Captcha Intro -->
-        
-        
-        
+        <StackPanel>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Intro}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Button Command="{Binding RefreshCommand}"
+                x:Name="RefreshButton" 
+                    Content="hop" 
+                    HorizontalAlignment="Left" 
+                    Margin="10" 
+                    VerticalAlignment="Top" 
+                    Width="75" 
+                    Height="30" />
+        </StackPanel>
+
+
         <!-- Captcha Jeu 1 -->
         <StackPanel>
             <StackPanel.Style>
@@ -59,6 +81,8 @@
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
+            
+            
             <CheckBox x:Name="CaptchaCheckBox" 
                 Content="I'm not a robot" 
                 HorizontalAlignment="Left" 
@@ -84,34 +108,62 @@
         
 
         <!-- Captcha Jeu 2 -->
+        <StackPanel>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding JeuCaptcha2}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
 
-        <Slider x:Name="CaptchaSlider" 
-        Margin="403,49,0,0" 
-        Grid.Row="1" 
-        Width="346" Height="109" Cursor="Hand" 
-        VerticalAlignment="Top" 
-        HorizontalAlignment="Left" 
-        RenderTransformOrigin="0.5,0.5">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.225"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-52.996"/>
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
+
+
+            <Slider x:Name="CaptchaSlider" 
+            Margin="403,49,0,0" 
+            Grid.Row="1" 
+            Width="346" Height="109" Cursor="Hand" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            RenderTransformOrigin="0.5,0.5">
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-0.225"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-52.996"/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
+            </Slider>
+
+        </StackPanel>
 
         <!-- Captcha Outro -->
+        <StackPanel>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Outro}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
 
-
-
-
-
+        </StackPanel>
         
 
 
-        
+
+
+
+
+
+
 
     </Grid>
 </Window>
