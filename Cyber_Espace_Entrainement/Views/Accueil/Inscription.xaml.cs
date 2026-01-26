@@ -1,18 +1,17 @@
-﻿using Cyber_Espace_Entrainement.ViewModels.Accueil;
-using Cyber_Espace_Entrainement.Views.Accueil;
+﻿using Cyber_Espace_Entrainement.ViewModels;
+using Cyber_Espace_Entrainement.ViewModels.Accueil;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Cyber_Espace_Entrainement
+namespace Cyber_Espace_Entrainement.Views.Accueil
 {
-    public partial class MainWindow : Window
+    public partial class Inscription : Window
     {
-        #region Properties
+        private InscriptionViewModel _viewModel;
 
-        private ConnexionViewModel _viewModel;
-        
         // Récupération des couleurs depuis les ressources
         private readonly SolidColorBrush _defaultTextBoxBorderBrush;
         private readonly SolidColorBrush _hoverTextBoxBorderBrush;
@@ -27,16 +26,10 @@ namespace Cyber_Espace_Entrainement
         private readonly SolidColorBrush _defaultQuitBackground;
         private readonly SolidColorBrush _hoverQuitBackground;
 
-
-        #endregion
-
-        #region Constructor
-
-        public MainWindow()
+        public Inscription()
         {
             InitializeComponent();
-            _viewModel = new ConnexionViewModel();
-            this.DataContext = _viewModel;
+            _viewModel = this.DataContext as InscriptionViewModel;
 
             // Chargement des couleurs depuis les ressources de l'application
             _defaultTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderDefaultBrush");
@@ -50,23 +43,11 @@ namespace Cyber_Espace_Entrainement
             _hoverSecondaryBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueLightBrush");
 
             _defaultQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedBrush");
-            _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush"); 
+            _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush");
 
-            InitializeSettings();
+            // Autorise l'info-bulle même quand le bouton est IsEnabled = false
+            ToolTipService.SetShowOnDisabled(btnValider, true);
             InitializeEventHandlers();
-        }
-
-        #endregion
-
-        #region Settings & Init
-
-        private void InitializeSettings()
-        {
-            // Configuration de l'info-bulle sur bouton désactivé
-            ToolTipService.SetShowOnDisabled(btnConnecter, true);
-            btnConnecter.IsEnabledChanged += BtnConnecter_IsEnabledChanged;
-
-            UpdateValiderToolTip();
         }
 
         private void InitializeEventHandlers()
@@ -83,10 +64,39 @@ namespace Cyber_Espace_Entrainement
             pbxMotDePasse.GotFocus += PasswordBox_GotFocus;
             pbxMotDePasse.LostFocus += PasswordBox_LostFocus;
 
+            // TextBox - Nom
+            tbxNom.MouseEnter += TextBox_MouseEnter;
+            tbxNom.MouseLeave += TextBox_MouseLeave;
+            tbxNom.GotFocus += TextBox_GotFocus;
+            tbxNom.LostFocus += TextBox_LostFocus;
+
+            // TextBox - Prénom
+            tbxPrenom.MouseEnter += TextBox_MouseEnter;
+            tbxPrenom.MouseLeave += TextBox_MouseLeave;
+            tbxPrenom.GotFocus += TextBox_GotFocus;
+            tbxPrenom.LostFocus += TextBox_LostFocus;
+
+            // ComboBox - Section
+            cbxSection.MouseEnter += ComboBox_MouseEnter;
+            cbxSection.MouseLeave += ComboBox_MouseLeave;
+            cbxSection.GotFocus += ComboBox_GotFocus;
+            cbxSection.LostFocus += ComboBox_LostFocus;
+
+            // TextBox - Mail
+            tbxMail.MouseEnter += TextBox_MouseEnter;
+            tbxMail.MouseLeave += TextBox_MouseLeave;
+            tbxMail.GotFocus += TextBox_GotFocus;
+            tbxMail.LostFocus += TextBox_LostFocus;
+
             // Bouton Valider
-            btnConnecter.MouseEnter += btnConnecter_MouseEnter;
-            btnConnecter.MouseLeave += btnConnecter_MouseLeave;
-            btnConnecter.IsEnabledChanged += btnConnecter_IsEnabledChanged;
+            btnValider.MouseEnter += BtnValider_MouseEnter;
+            btnValider.MouseLeave += BtnValider_MouseLeave;
+            btnValider.IsEnabledChanged += BtnValider_IsEnabledChanged;
+
+            // Bouton Connexion
+            btnConnexion.MouseEnter += BtnConnexion_MouseEnter;
+            btnConnexion.MouseLeave += BtnConnexion_MouseLeave;
+            
 
             // Initialiser le premier message
             UpdateValiderToolTip();
@@ -95,10 +105,6 @@ namespace Cyber_Espace_Entrainement
             btnQuitter.MouseEnter += BtnQuitter_MouseEnter;
             btnQuitter.MouseLeave += BtnQuitter_MouseLeave;
         }
-
-        #endregion
-
-        #region Event Handlers
 
         #region TextBox Events
 
@@ -193,18 +199,63 @@ namespace Cyber_Espace_Entrainement
 
         #endregion
 
+        #region ComboBox Events
+
+        private void ComboBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is ComboBox comboBox && !comboBox.IsFocused)
+            {
+                comboBox.BorderBrush = _hoverTextBoxBorderBrush;
+            }
+        }
+
+        private void ComboBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is ComboBox comboBox && !comboBox.IsFocused)
+            {
+                comboBox.BorderBrush = _defaultTextBoxBorderBrush;
+            }
+        }
+
+        private void ComboBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is ComboBox comboBox)
+            {
+                comboBox.BorderBrush = _focusTextBoxBorderBrush;
+            }
+        }
+
+        private void ComboBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is ComboBox comboBox)
+            {
+                comboBox.BorderBrush = _defaultTextBoxBorderBrush;
+            }
+        }
+
+        #endregion
+
         #region Button Events
 
-        private void btnConnecter_MouseEnter(object sender, MouseEventArgs e)
+        private void BtnValider_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnConnecter.Background = _hoverButtonBackground;
+            btnValider.Background = _hoverButtonBackground;
         }
 
-        private void btnConnecter_MouseLeave(object sender, MouseEventArgs e)
+        private void BtnValider_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnConnecter.Background = _defaultButtonBackground;
+            btnValider.Background = _defaultButtonBackground;
         }
 
+        private void BtnConnexion_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnConnexion.Background = _hoverSecondaryBackground;
+        }
+
+        private void BtnConnexion_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnConnexion.Background = _defaultSecondaryBackground;
+        }
 
         private void BtnQuitter_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -216,53 +267,37 @@ namespace Cyber_Espace_Entrainement
             btnQuitter.Background = _defaultQuitBackground;
         }
 
-        private void btnConnecter_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void BtnValider_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             UpdateValiderToolTip();
         }
-
-        #endregion
-
-       
-
-        private void BtnConnecter_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (btnConnecter.IsEnabled)
-            {
-                btnConnecter.Background = _defaultButtonBackground;
-                btnConnecter.Opacity = 1.0;
-                btnConnecter.Cursor = Cursors.Hand;
-            }
-            else
-            {
-                btnConnecter.Background = new SolidColorBrush(Color.FromRgb(210, 210, 210));
-                btnConnecter.Opacity = 0.6;
-                btnConnecter.Cursor = Cursors.No;
-            }
-            UpdateValiderToolTip();
-        }
-
-        private void BtnInscription_Click(object sender, RoutedEventArgs e)
-        {
-            var inscriptionWin = new Inscription();
-            inscriptionWin.Show();
-            this.Close();
-        }
-
-        #endregion
-
-        #region Helper Methods
 
         private void UpdateValiderToolTip()
         {
-            if (btnConnecter.IsEnabled)
+            if (btnValider.IsEnabled)
             {
-                btnConnecter.ToolTip = "Cliquer pour vous connecter.";
+                btnValider.ToolTip = "Tout est correct. Cliquez pour valider l'inscription.";
             }
             else
             {
-                btnConnecter.ToolTip = "Veuillez saisir votre login et votre mot de passe.";
+                btnValider.ToolTip = "Veuillez remplir correctement tous les champs :\n" +
+                                     "- Login (3 car. min)\n" +
+                                     "- Mot de passe (6 car. min)\n" +
+                                     "- Nom et Prénom\n" +
+                                     "- Section sélectionnée\n" +
+                                     "- Email valide";
             }
+        }
+
+        #endregion
+
+        #region Navigation
+
+        private void Connexion_Click(object sender, RoutedEventArgs e)
+        {
+            var connexionWindow = new MainWindow();
+            this.Hide();
+            connexionWindow.ShowDialog();
         }
 
         #endregion

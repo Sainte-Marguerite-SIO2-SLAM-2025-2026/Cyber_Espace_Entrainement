@@ -1,13 +1,54 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-	  <RootNamespace>Cyber_Espace_Entrainement</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>Cyber_Espace_Entrainement</RootNamespace>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Morse\morsecode.wav" />
+    <None Remove="Resources\Morse\morse_0.wav" />
+    <None Remove="Resources\Morse\morse_1.wav" />
+    <None Remove="Resources\Morse\morse_2.wav" />
+    <None Remove="Resources\Morse\morse_3.wav" />
+    <None Remove="Resources\Morse\morse_4.wav" />
+    <None Remove="Resources\Morse\morse_5.wav" />
+    <None Remove="Resources\Morse\morse_6.wav" />
+    <None Remove="Resources\Morse\morse_7.wav" />
+    <None Remove="Resources\Morse\morse_8.wav" />
+    <None Remove="Resources\Morse\morse_9.wav" />
+    <None Remove="Resources\Morse\morse_A.wav" />
+    <None Remove="Resources\Morse\morse_B.wav" />
+    <None Remove="Resources\Morse\morse_BRAVO.wav" />
+    <None Remove="Resources\Morse\morse_C.wav" />
+    <None Remove="Resources\Morse\morse_D.wav" />
+    <None Remove="Resources\Morse\morse_E.wav" />
+    <None Remove="Resources\Morse\morse_F.wav" />
+    <None Remove="Resources\Morse\morse_G.wav" />
+    <None Remove="Resources\Morse\morse_H.wav" />
+    <None Remove="Resources\Morse\morse_I.wav" />
+    <None Remove="Resources\Morse\morse_J.wav" />
+    <None Remove="Resources\Morse\morse_K.wav" />
+    <None Remove="Resources\Morse\morse_L.wav" />
+    <None Remove="Resources\Morse\morse_M.wav" />
+    <None Remove="Resources\Morse\morse_N.wav" />
+    <None Remove="Resources\Morse\morse_O.wav" />
+    <None Remove="Resources\Morse\morse_P.wav" />
+    <None Remove="Resources\Morse\morse_Q.wav" />
+    <None Remove="Resources\Morse\morse_R.wav" />
+    <None Remove="Resources\Morse\morse_S.wav" />
+    <None Remove="Resources\Morse\morse_T.wav" />
+    <None Remove="Resources\Morse\morse_U.wav" />
+    <None Remove="Resources\Morse\morse_V.wav" />
+    <None Remove="Resources\Morse\morse_W.wav" />
+    <None Remove="Resources\Morse\morse_X.wav" />
+    <None Remove="Resources\Morse\morse_Y.wav" />
+    <None Remove="Resources\Morse\morse_Z.wav" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
@@ -19,172 +60,76 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Models\BrokenAccessControl\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\BruteForce\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Captcha\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Chiffrement\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Clickjacking\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\ConventionNommage\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\InjectionPrompt\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\InjectionSQL\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Phishing\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Privilege\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Ransomware\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Steganographie\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\Token\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\UserEnumeration\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Models\XSS\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Update="ViewModels\Activite\AnalyseLog\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\BrokenAccessControl\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\BruteForce\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Captcha\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Chiffrement\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Clickjacking\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\ConventionNommage\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\InjectionPrompt\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\InjectionSQL\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Phishing\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Privilege\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Ransomware\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Steganographie\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\Token\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\UserEnumeration\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ViewModels\Activite\XSS\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\AnalyseLog\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\BrokenAccessControl\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\BruteForce\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Captcha\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Chiffrement\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Clickjacking\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\ConventionNommage\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\InjectionPrompt\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\InjectionSQL\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Phishing\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Privilege\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Ransomware\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Steganographie\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\Token\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\UserEnumeration\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Activite\XSS\Test_a_virer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\BrokenAccessControl" />
+	</ItemGroup>
 
   <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Resource Include="Resources\Morse\morsecode.wav" />
+    <Resource Include="Resources\Morse\morse_0.wav" />
+    <Resource Include="Resources\Morse\morse_1.wav" />
+    <Resource Include="Resources\Morse\morse_2.wav" />
+    <Resource Include="Resources\Morse\morse_3.wav" />
+    <Resource Include="Resources\Morse\morse_4.wav" />
+    <Resource Include="Resources\Morse\morse_5.wav" />
+    <Resource Include="Resources\Morse\morse_6.wav" />
+    <Resource Include="Resources\Morse\morse_7.wav" />
+    <Resource Include="Resources\Morse\morse_8.wav" />
+    <Resource Include="Resources\Morse\morse_9.wav" />
+    <Resource Include="Resources\Morse\morse_A.wav" />
+    <Resource Include="Resources\Morse\morse_B.wav" />
+    <Resource Include="Resources\Morse\morse_BRAVO.wav" />
+    <Resource Include="Resources\Morse\morse_C.wav" />
+    <Resource Include="Resources\Morse\morse_D.wav" />
+    <Resource Include="Resources\Morse\morse_E.wav" />
+    <Resource Include="Resources\Morse\morse_F.wav" />
+    <Resource Include="Resources\Morse\morse_G.wav" />
+    <Resource Include="Resources\Morse\morse_H.wav" />
+    <Resource Include="Resources\Morse\morse_I.wav" />
+    <Resource Include="Resources\Morse\morse_J.wav" />
+    <Resource Include="Resources\Morse\morse_K.wav" />
+    <Resource Include="Resources\Morse\morse_L.wav" />
+    <Resource Include="Resources\Morse\morse_M.wav" />
+    <Resource Include="Resources\Morse\morse_N.wav" />
+    <Resource Include="Resources\Morse\morse_O.wav" />
+    <Resource Include="Resources\Morse\morse_P.wav" />
+    <Resource Include="Resources\Morse\morse_Q.wav" />
+    <Resource Include="Resources\Morse\morse_R.wav" />
+    <Resource Include="Resources\Morse\morse_S.wav" />
+    <Resource Include="Resources\Morse\morse_T.wav" />
+    <Resource Include="Resources\Morse\morse_U.wav" />
+    <Resource Include="Resources\Morse\morse_V.wav" />
+    <Resource Include="Resources\Morse\morse_W.wav" />
+    <Resource Include="Resources\Morse\morse_X.wav" />
+    <Resource Include="Resources\Morse\morse_Y.wav" />
+    <Resource Include="Resources\Morse\morse_Z.wav" />
   </ItemGroup>
 
 </Project>

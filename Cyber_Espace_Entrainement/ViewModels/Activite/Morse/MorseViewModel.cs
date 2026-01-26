@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Media;
 
 
-namespace Cyber_Espace_Entrainement.ViewModels.Tests
+namespace Cyber_Espace_Entrainement.ViewModels.Activite
 {
     /// <summary>
     /// ViewModel pour l'apprentissage du code Morse
@@ -95,7 +95,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Tests
                 {
                     Lettre = code.Key,
                     Code = code.Value,
-                    CheminAudio = $"Resources/morse/morse_{code.Key}.wav" // À adapter selon les fichiers (à revoir) 
+                    CheminAudio = $"Resources/Morse/morse_{code.Key}.wav" // À adapter selon les fichiers (à revoir) 
                 });
             }
         }
@@ -163,7 +163,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Tests
                 MessageResultat = $"Son joué : {MorseActuel.CodeVisuel}";
                 CouleurResultat = "#2196F3";
 
-                // A tester sur machine : 
+                // A tester sur machine  : 
                 //_mediaPlayer.Open(new Uri(MorseActuel.CheminAudio, UriKind.Relative));
                 //_mediaPlayer.Play();
 
