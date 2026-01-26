@@ -164,6 +164,7 @@
                             Content="Valider l'inscription"
                             Style="{StaticResource ModernButton}"
                             Command="{Binding ValiderCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                             Width="200"
                             Height="45"
                             HorizontalAlignment="Center"

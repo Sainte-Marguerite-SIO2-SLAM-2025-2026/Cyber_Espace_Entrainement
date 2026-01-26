@@ -79,7 +79,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                     MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     // Cacher la fenêtre de connexion puis afficher la fenêtre d'accueil
-                    window.Hide();
+                    window.Close();
                     accueil.ShowDialog();
                 }
                 else
