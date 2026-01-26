@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="CaptchaFacileView" 
         SizeToContent="Height"
-        Height="450" 
-        Width="950">
+        Height="700" 
+        Width="1000">
     <Grid>
         <!--#region ViewModel -->
 
@@ -28,12 +28,10 @@
         </Grid.RowDefinitions>
 
 
-        <Border Grid.Row="0" 
+        <Border 
                 Height="100" 
                 Background="#FF2D2D30" 
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Top" 
-                Margin="0,0,0,0">
+                VerticalAlignment="Center">
             <TextBlock Text="Captcha Facile" 
                        Foreground="White" 
                        FontSize="36" 
@@ -45,41 +43,75 @@
 
         <!--#endregion-->
 
+        <!-- Captcha Intro -->
+        
+        
+        
+        <!-- Captcha Jeu 1 -->
+        <StackPanel>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding JeuCaptcha}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <CheckBox x:Name="CaptchaCheckBox" 
+                Content="I'm not a robot" 
+                HorizontalAlignment="Left" 
+                Margin="10" 
+                VerticalAlignment="Top" 
+                RenderTransformOrigin="0.5,0.5" 
+                Height="71" Width="272" 
+                IsChecked="False" 
+                Cursor="Hand" Grid.Row="1" 
+                VerticalContentAlignment="Center" 
+                BorderBrush="#FF707070" 
+                Checked="CaptchaCheckBox_Checked">
+                <CheckBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-360.351"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+        </StackPanel>
+        
 
+        <!-- Captcha Jeu 2 -->
 
-
-
-
-
-        <CheckBox x:Name="CaptchaCheckBox" 
-                  Content="I'm not a robot" 
-                  HorizontalAlignment="Left" 
-                  Margin="38,27,0,0" 
-                  VerticalAlignment="Top" 
-                  RenderTransformOrigin="0.5,0.5" 
-                  Height="71" Width="272" 
-                  IsChecked="False" 
-                  Cursor="Hand" Grid.Row="1" 
-                  VerticalContentAlignment="Center" 
-                  Background="White" 
-                  BorderBrush="#FF707070" OpacityMask="Black">
-            <CheckBox.RenderTransform>
+        <Slider x:Name="CaptchaSlider" 
+        Margin="403,49,0,0" 
+        Grid.Row="1" 
+        Width="346" Height="109" Cursor="Hand" 
+        VerticalAlignment="Top" 
+        HorizontalAlignment="Left" 
+        RenderTransformOrigin="0.5,0.5">
+            <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-360.351"/>
-                    <TranslateTransform/>
+                    <SkewTransform AngleX="-0.225"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-52.996"/>
                 </TransformGroup>
-            </CheckBox.RenderTransform>
-        </CheckBox>
+            </Slider.RenderTransform>
+        </Slider>
+
+        <!-- Captcha Outro -->
+
+
+
+
+
         
+
+
         
-        <Slider x:Name="CaptchaSlider" 
-                HorizontalAlignment="Center" 
-                Margin="0,153,0,0" 
-                Grid.Row="1" 
-                VerticalAlignment="Top" 
-                Width="346" Height="104"/>
 
     </Grid>
 </Window>
