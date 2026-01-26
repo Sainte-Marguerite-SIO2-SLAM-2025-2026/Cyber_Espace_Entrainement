@@ -1,4 +1,6 @@
-﻿using Cyber_Espace_Entrainement.Views.Tests;
+﻿using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Views.Profil;
+using Cyber_Espace_Entrainement.Views.Tests;
 using Cyber_Espace_Entrainement.Views.Users;
 using System;
 using System.Collections.Generic;
@@ -63,22 +65,22 @@ private void AdminCard_Click(object sender, MouseButtonEventArgs e)
         /// </summary>
         private void PersonalCard_Click(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(
-                "ESPACE PERSONNEL\n\n" +
-                "Cette section contiendra :\n" +
-                "• Profil utilisateur\n" +
-                "• Statistiques personnelles\n" +
-                "• Historique des tests\n" +
-                "• Badges et achievements\n\n" +
-                "À développer...",
-                "Espace Personnel",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information
-            );
+            //MessageBox.Show(
+            //    "ESPACE PERSONNEL\n\n" +
+            //    "Cette section contiendra :\n" +
+            //    "• Profil utilisateur\n" +
+            //    "• Statistiques personnelles\n" +
+            //    "• Historique des tests\n" +
+            //    "• Badges et achievements\n\n" +
+            //    "À développer...",
+            //    "Espace Personnel",
+            //    MessageBoxButton.OK,
+            //    MessageBoxImage.Information
+            //);
 
             // TODO : Créer PersonalView.xaml par exemple et décommenter la suite !
-            // var personalWindow = new PersonalView();
-            // personalWindow.ShowDialog();
+             var personalWindow = new PersonalView();
+            personalWindow.ShowDialog();
         }
 
         /// <summary>
