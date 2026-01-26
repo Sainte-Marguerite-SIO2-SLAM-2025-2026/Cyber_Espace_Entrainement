@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Cyber_Espace_Entrainement.Views.Activite.Captcha;
 
 namespace Cyber_Espace_Entrainement.Views.Accueil
 {
@@ -60,7 +61,7 @@ private void AdminCard_Click(object sender, MouseButtonEventArgs e)
             var morseWindow = new MorseTestView();
             morseWindow.ShowDialog();
 
-            //var captchaWindow = new Activite.Captcha.CaptchaFacileView();
+            //var captchaWindow = new CaptchaFacileView();
             //captchaWindow.ShowDialog();
         }
 

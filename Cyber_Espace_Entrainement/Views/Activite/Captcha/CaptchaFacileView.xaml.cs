@@ -22,9 +22,9 @@ namespace Cyber_Espace_Entrainement.Views.Activite.Captcha
             InitializeComponent();
         }
 
-        private void CaptchaCheckBox_Checked(object sender, RoutedEventArgs e)
+        public void CaptchaCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            CaptchaCheckBox.Background = Brushes.Green;
+            // Logique lorsque la case est cochée
         }
     }
 }
