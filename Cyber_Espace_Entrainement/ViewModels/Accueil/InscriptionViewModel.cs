@@ -367,7 +367,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             {
                 var connexionWindow = new MainWindow();
                 window.Close();
-                connexionWindow.ShowDialog();
+                connexionWindow.Show();
             }
         }
 

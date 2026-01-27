@@ -26,12 +26,44 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         // Couleur originale du bouton Profile pour les animations
         private readonly Color _profileOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");
 
+        // Récupération des couleurs depuis les ressources
+        private readonly SolidColorBrush _defaultTextBoxBorderBrush;
+        private readonly SolidColorBrush _hoverTextBoxBorderBrush;
+        private readonly SolidColorBrush _focusTextBoxBorderBrush;
+
+        private readonly SolidColorBrush _defaultButtonBackground;
+        private readonly SolidColorBrush _hoverButtonBackground;
+
+        private readonly SolidColorBrush _defaultSecondaryBackground;
+        private readonly SolidColorBrush _hoverSecondaryBackground;
+
+        private readonly SolidColorBrush _defaultQuitBackground;
+        private readonly SolidColorBrush _hoverQuitBackground;
+
         public AccueilWindow()
         {
             InitializeComponent();
 
+            // Chargement des couleurs depuis les ressources de l'application
+            _defaultTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderDefaultBrush");
+            _hoverTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderHoverBrush");
+            _focusTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderFocusBrush");
+
+            _defaultButtonBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueBrush");
+            _hoverButtonBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueDarkBrush");
+
+            _defaultSecondaryBackground = (SolidColorBrush)Application.Current.FindResource("TransparentBrush");
+            _hoverSecondaryBackground = (SolidColorBrush)Application.Current.FindResource("PrimaryBlueLightBrush");
+
+            _defaultQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedBrush");
+            _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush");
+
             // Configuration du bouton Profile après le chargement
             Loaded += AccueilWindow_Loaded;
+
+            // Bouton Quitter
+            BtnQuitter.MouseEnter += BtnQuitter_MouseEnter;
+            BtnQuitter.MouseLeave += BtnQuitter_MouseLeave;
         }
 
         /// <summary>
@@ -50,7 +82,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             Profile.Click += ProfileButton_Click;
         }
 
-        #region Gestion du bouton Profile rond
+        #region Gestion du bouton Profile
 
         /// <summary>
         /// Transforme le bouton Profile en bouton rond avec template Ellipse
@@ -231,6 +263,20 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// </summary>
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
+            //MessageBox.Show(
+            //    "ESPACE PERSONNEL\n\n" +
+            //    "Cette section contiendra :\n" +
+            //    "• Profil utilisateur\n" +
+            //    "• Statistiques personnelles\n" +
+            //    "• Historique des tests\n" +
+            //    "• Badges et achievements\n\n" +
+            //    "À développer...",
+            //    "Espace Personnel",
+            //    MessageBoxButton.OK,
+            //    MessageBoxImage.Information
+            //);
+
+            // TODO : Créer PersonalView.xaml par exemple et décommenter la suite !
             // Ouvrir la fenêtre de profil
             var profileWindow = new PersonalView();
             profileWindow.ShowDialog();
@@ -271,18 +317,6 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         #region Événements des cartes
 
         /// <summary>
-        /// Ouvrir l'espace Admin (gestion des utilisateurs)
-        /// </summary>
-        private void AdminCard_Click(object sender, MouseButtonEventArgs e)
-        {
-            var adminWindow = new UserGestion();
-            adminWindow.ShowDialog(); // Ouvre en modal
-
-            // OU pour ouvrir en nouvelle fenêtre indépendante :
-            // adminWindow.Show();
-        }
-
-        /// <summary>
         /// Ouvrir l'espace Tests (à créer)
         /// </summary>
         private void TestsCard_Click(object sender, MouseButtonEventArgs e)
@@ -301,29 +335,6 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             //);
             var morseWindow = new MorseTestView();
             morseWindow.ShowDialog();
-        }
-
-        /// <summary>
-        /// Ouvrir l'espace Personnel (à créer)
-        /// </summary>
-        private void PersonalCard_Click(object sender, MouseButtonEventArgs e)
-        {
-            //MessageBox.Show(
-            //    "ESPACE PERSONNEL\n\n" +
-            //    "Cette section contiendra :\n" +
-            //    "• Profil utilisateur\n" +
-            //    "• Statistiques personnelles\n" +
-            //    "• Historique des tests\n" +
-            //    "• Badges et achievements\n\n" +
-            //    "À développer...",
-            //    "Espace Personnel",
-            //    MessageBoxButton.OK,
-            //    MessageBoxImage.Information
-            //);
-
-            // TODO : Créer PersonalView.xaml par exemple et décommenter la suite !
-            var personalWindow = new PersonalView();
-            personalWindow.ShowDialog();
         }
 
         /// <summary>
@@ -424,6 +435,15 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             {
                 Application.Current.Shutdown();
             }
+        }
+        private void BtnQuitter_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BtnQuitter.Background = _hoverQuitBackground;
+        }
+
+        private void BtnQuitter_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BtnQuitter.Background = _defaultQuitBackground;
         }
 
         #endregion

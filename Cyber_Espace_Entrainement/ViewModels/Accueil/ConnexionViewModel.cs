@@ -4,7 +4,8 @@ using System.Windows;
 using System.Windows.Input;
 using Cyber_Espace_Entrainement.Views.Accueil;
 using Cyber_Espace_Entrainement.Services;
-
+using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Views.Users;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 {
@@ -74,13 +75,23 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             {
                 if (parameter is Window window)
                 {
-                    SessionService.Instance.Login(user);
-                    var accueil = new AccueilWindow();
-                    MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Cacher la fenêtre de connexion puis afficher la fenêtre d'accueil
-                    window.Close();
-                    accueil.ShowDialog();
+                    SessionService.Instance.Login(user); // Garde en memoire l'utilisateur connecté
+                    MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+
+                    // afficher la fenêtre d'accueil si utilisateur ou admin si admin
+                    if (user.Role == UserRole.Admin)
+                    {
+                        var admin = new UserGestion();
+                        window.Close(); // Ferme la fenêtre de connexion
+                        admin.Show();
+                    }
+                    else {
+                        var accueil = new AccueilWindow();
+                        window.Close(); // Ferme la fenêtre de connexion
+                        accueil.Show(); 
+                    }
                 }
                 else
                 {
