@@ -10,6 +10,9 @@
 	</PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\icon_user_32.png" />
+    <None Remove="Resources\icon_user_48.png" />
+    <None Remove="Resources\icon_user_64.png" />
     <None Remove="Resources\Morse\morsecode.wav" />
     <None Remove="Resources\Morse\morse_0.wav" />
     <None Remove="Resources\Morse\morse_1.wav" />
@@ -48,6 +51,7 @@
     <None Remove="Resources\Morse\morse_X.wav" />
     <None Remove="Resources\Morse\morse_Y.wav" />
     <None Remove="Resources\Morse\morse_Z.wav" />
+    <None Remove="Resources\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,6 +96,9 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\icon_user_32.png" />
+    <Resource Include="Resources\icon_user_48.png" />
+    <Resource Include="Resources\icon_user_64.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />
@@ -130,6 +137,7 @@
     <Resource Include="Resources\Morse\morse_X.wav" />
     <Resource Include="Resources\Morse\morse_Y.wav" />
     <Resource Include="Resources\Morse\morse_Z.wav" />
+    <Resource Include="Resources\user.svg" />
   </ItemGroup>
 
 </Project>

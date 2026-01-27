@@ -33,6 +33,18 @@
             </StackPanel>
         </Border>
 
+        <Button Grid.Row="0" x:Name="qsdftgyuhijok"
+                Height="64"
+                Width="64"
+                HorizontalAlignment="right"
+                VerticalAlignment="Top"
+                Margin="10"
+                Padding="0"
+                Background="Transparent"
+        >
+            <Image Source="/Resources/user.svg" Stretch="UniformToFill"/>
+        </Button>
+
 
         <!-- MENU PRINCIPAL - 4 "CARTES" pour le moment -->
         <Grid Grid.Row="1" Margin="40">
