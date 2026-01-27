@@ -33,17 +33,22 @@
             </StackPanel>
         </Border>
 
-        <Button Grid.Row="0" x:Name="qsdftgyuhijok"
-                Height="64"
-                Width="64"
-                HorizontalAlignment="right"
-                VerticalAlignment="Top"
-                Margin="10"
+        <Button x:Name="Profile"
+                Grid.Row="0"
+                Width="124" 
+                Height="124"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Margin="0,0,20,10"
                 Padding="0"
                 Background="Transparent"
-        >
-            <Image Source="/Resources/user.svg" Stretch="UniformToFill"/>
+                BorderBrush="#1565C0"
+                Cursor="Hand"
+                ToolTip="Mon Profil">
+            <Image Source="/Resources/icon_user_120.png" 
+                   Stretch="UniformToFill"/>
         </Button>
+
 
 
         <!-- MENU PRINCIPAL - 4 "CARTES" pour le moment -->
