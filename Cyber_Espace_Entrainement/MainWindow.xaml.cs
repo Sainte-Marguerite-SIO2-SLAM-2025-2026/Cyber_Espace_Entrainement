@@ -246,7 +246,7 @@ namespace Cyber_Espace_Entrainement
         {
             var inscriptionWin = new Inscription();
             this.Close();
-            inscriptionWin.ShowDialog();
+            inscriptionWin.Show();
         }
 
         #endregion

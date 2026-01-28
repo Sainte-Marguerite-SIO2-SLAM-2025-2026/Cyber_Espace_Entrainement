@@ -68,7 +68,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
         private void ExecuteConnexion(object parameter)
         {
-            // Utiliser le résultat réel de l'authentification
+            // Authentification
             var (success, user, message) = _userService.Authentifier(Login, MotDePasse);
 
             if (success)
@@ -76,9 +76,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                 if (parameter is Window window)
                 {
 
-                    SessionService.Instance.Login(user); // Garde en memoire l'utilisateur connecté
-                    MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
+                    SessionService.Instance.Login(user); // Garde en memoire l'utilisateur connecté                    
 
                     // afficher la fenêtre d'accueil si utilisateur ou admin si admin
                     if (user.Role == UserRole.Admin)
@@ -95,23 +93,21 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                 }
                 else
                 {
-                    MessageBox.Show("Erreur lors de l'ouverture de la fenêtre suivante.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxService.ShowError("Erreur lors de l'ouverture de la fenêtre suivante.", "Erreur");
                 }
             }
             else
             {
                 // Afficher le message renvoyé par le service (ou un message générique)
-                MessageBox.Show(string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBoxService.ShowWarning(string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message, "Attention");
             }
         }
 
         private void ExecuteQuitter(object parameter)
         {
-            var result = MessageBox.Show(
+            var result = MessageBoxService.ShowQuestion(
                 "Voulez-vous vraiment quitter l'application ?",
-                "Quitter",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+                "Quitter"
             );
 
             if (result == MessageBoxResult.Yes)
