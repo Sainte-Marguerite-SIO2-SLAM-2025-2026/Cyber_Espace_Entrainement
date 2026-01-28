@@ -21,5 +21,10 @@ namespace Cyber_Espace_Entrainement.Views.Activite.Phishing
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

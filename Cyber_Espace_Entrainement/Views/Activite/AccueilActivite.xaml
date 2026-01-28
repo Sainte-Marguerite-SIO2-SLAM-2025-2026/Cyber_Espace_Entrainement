@@ -1,0 +1,115 @@
+﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Activite.AccueilActivite"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite"
+        xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite"
+        mc:Ignorable="d"
+        Title="AccueilActivite" Height="1080" Width="1920">
+
+    <Window.DataContext>
+        <vm:AccueilTestViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- EN-TÊTE avec statistiques -->
+        <Border Grid.Row="0" Background="#2196F3" Padding="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                
+                <!-- BOUTON RETOUR (à gauche) -->
+                <Button Grid.Column="0"
+            Content="↩️   Retour"
+            Click="BackButton_Click"
+            Background="#1565C0"
+            Foreground="White"
+            Padding="15,10"
+            FontSize="14"
+            FontWeight="Bold"
+            BorderThickness="0"
+            Cursor="Hand"
+            VerticalAlignment="Center"
+            Margin="0,0,20,0"
+            ToolTip="Retour au menu principal">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1565C0"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#0D47A1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="ACCUEIL DES TESTS" 
+                FontSize="24" 
+                FontWeight="Bold" 
+                Foreground="White"/>
+                    <TextBlock Text="Teste tes connaissances !" 
+                FontSize="14" 
+                Foreground="#E3F2FD" 
+                Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <!-- Test -->
+        <TextBlock Grid.Row="1"
+           Text="{Binding Activites.Count}"
+           FontSize="20"
+           Foreground="Red"
+           Margin="20"/>
+        <!-- Génération des boutons pour chaque activité de la BDD -->
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Activites}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Libelle}"
+                    Width="150"
+                    Height="50"
+                    Margin="5"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+
+        <!-- PIED DE PAGE -->
+
+        <Border Grid.Row="2" Background="White" Padding="20" BorderBrush="#e0e0e0" BorderThickness="0,1,0,0">
+            <Grid>
+                <TextBlock Text="© 2025 - Plateforme de Cybersécurité" 
+                   FontSize="12" 
+                   Foreground="#9E9E9E"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Version 1.0" 
+                       FontSize="12" 
+                       Foreground="#9E9E9E"
+                       VerticalAlignment="Center"
+                       Margin="0,0,20,0"/>
+                    <Button Content="❌ Quitter" 
+                    Click="QuitButton_Click"
+                    Background="#f44336"
+                    Foreground="White"
+                    Padding="15,8"
+                    BorderThickness="0"
+                    Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

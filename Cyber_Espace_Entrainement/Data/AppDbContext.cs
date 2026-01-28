@@ -2,6 +2,7 @@
 // Data/AppDbContext.cs
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using System.Windows;
 
 
 namespace Cyber_Espace_Entrainement.Data
@@ -16,6 +17,9 @@ namespace Cyber_Espace_Entrainement.Data
         // DbSet représente la table Utilisateur
         // MODIFIÉ : Table renommée de 'users' à 'Utilisateur'
         public DbSet<Utilisateurs> Users { get; set; }
+
+        //Représente la table Activite
+        public DbSet<Activites> Activites { get; set; }
 
         // Configuration de la connexion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

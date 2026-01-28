@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Cyber_Espace_Entrainement.Data;
+using Cyber_Espace_Entrainement.Models;
+
+namespace Cyber_Espace_Entrainement.Services
+{
+    /// <summary>
+    /// Service pour gérer les opérations sur les activités
+    /// </summary>
+    public class ActiviteService
+    {
+        private readonly AppDbContext _context;
+
+        public ActiviteService() 
+        {
+            _context = new AppDbContext();
+            // S'assurer que la base existe
+            _context.Database.EnsureCreated();
+        }
+
+        //
+        // CRUD
+        //
+
+        /// <summary>
+        /// Récupérer toute les activités 
+        /// </summary>
+        /// <returns></returns>
+        public List<Activites> GetAllActivites()
+        {
+            return _context.Activites.Distinct().OrderBy(activite => activite.Libelle).ToList();
+        }
+
+        /// <summary>
+        /// Récupérer une activité par son id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Activites? GetActiviteById(int id)
+        {
+            return _context.Activites.Find(id);
+        }
+
+        /// <summary>
+        /// Récupérer une activité par un libellé
+        /// </summary>
+        /// <param name="libelle"></param>
+        /// <returns></returns>
+        public Activites? GetActiviteByLibelle(string libelle)
+        {
+            return _context.Activites.FirstOrDefault(a => a.Libelle == libelle);
+        }
+
+        /// <summary>
+        /// Fermer la connexion (important !)
+        /// </summary>
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
+    }
+}
