@@ -30,6 +30,8 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [ObservableProperty] private DateTime? derniereConnection;
         [ObservableProperty] private int? scoreTotal;
 
+        [ObservableProperty] private string message;
+
 
         // CONSTRUCTEUR
         public ProfilViewModel()
@@ -46,9 +48,42 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [RelayCommand(CanExecute = nameof(CanSaveUser))]
         private void SaveUser()
         {
-            // Ici tu feras la sauvegarde en BDD
+            var userService = new UserService();
+
+            // 1. Récupérer l'utilisateur depuis la BDD
+            var user = userService.GetUserById(SessionService.Instance.CurrentUser.UserId);
+
+            if (user == null)
+            {
+                Message = "Utilisateur introuvable.";
+                return;
+            }
+
+            // 2. Modifier les champs
+            user.Login = Pseudo;
+            user.Email = Email;
+            user.Nom = Nom;
+            user.Prenom = Prenom;
+            user.Section = Section;
+            user.ScoreTotal = ScoreTotal;
+
+            // 3. Sauvegarder
+            var (succes, message) = userService.UpdateUser(user);
+
+            if (!succes)
+            {
+                Message = message;
+                return;
+            }
+
+            // 4. Mettre à jour la session
+            SessionService.Instance.UpdateSessionUser(user);
+
+            Message = "Mise à jour réussie.";
             IsEditMode = false;
         }
+
+
 
         private bool CanSaveUser()
         {
@@ -85,6 +120,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             DateCreation = s.CurrentDateCrea;
             DerniereConnection = s.CurrentDerniereCo;
             ScoreTotal = s.CurrentScore;
+            Message = "";
 
             IsEditMode = false;
         }
@@ -98,6 +134,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         {
             IsEditMode = true;
             SaveUserCommand.NotifyCanExecuteChanged();
+            Message = "";
         }
 
         [RelayCommand]

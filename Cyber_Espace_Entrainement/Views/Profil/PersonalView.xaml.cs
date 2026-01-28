@@ -70,9 +70,10 @@ namespace Cyber_Espace_Entrainement.Views.Profil
 
         }
 
-        // modif doivent se faire dans la bdd,
+        // modif doivent se faire dans la bdd pwd,
         // faire le fonctionnement valider modif
         // mdp quand il est bon vider champs voir pour close le mdp
         // changer disposition (login email en haut)
+        
     }
 }

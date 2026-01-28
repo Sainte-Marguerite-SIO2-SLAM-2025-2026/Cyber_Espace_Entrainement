@@ -216,6 +216,11 @@ Margin="0,0,10,0"
                                 Click="ModifierMotPasseButton_Click"
          Content="✏️ Modifier le mot de passe"/>
                     </StackPanel>
+                    <TextBlock Text="{Binding Message}"
+           Foreground="Red"
+           FontWeight="Bold"
+           Margin="0,10,0,0"
+           FontSize="14"/>
                 </StackPanel>
                     
                 </Border>
