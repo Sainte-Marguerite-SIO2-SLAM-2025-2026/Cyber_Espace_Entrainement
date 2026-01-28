@@ -27,6 +27,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
         public AccueilTestViewModel()
         {
             _activiteService = new ActiviteService();
+            activites = new ObservableCollection<Activites>();
             _ = LoadActivitesAsync();
         }
 
