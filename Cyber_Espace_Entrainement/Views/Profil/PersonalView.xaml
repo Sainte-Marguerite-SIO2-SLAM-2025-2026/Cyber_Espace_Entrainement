@@ -204,7 +204,7 @@ Margin="0,0,10,0"
                         </Button>
                     </StackPanel>
                     <StackPanel Margin="0, 10">
-                        <Button Command="{Binding ChangerMotPasse}" 
+                        <Button  
          Background="Fuchsia" 
          Foreground="White" 
          Padding="15" 

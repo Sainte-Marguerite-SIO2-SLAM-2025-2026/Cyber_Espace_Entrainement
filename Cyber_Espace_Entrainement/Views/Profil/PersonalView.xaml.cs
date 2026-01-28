@@ -53,13 +53,9 @@ namespace Cyber_Espace_Entrainement.Views.Profil
         }
 
         private void ModifierMotPasseButton_Click(object sender, RoutedEventArgs e) {
-            var result = MessageBox.Show(
-                    "Vous vous appretez à changer de mot de passe.\n\n" +
-                    "Etes vous sûr ?",
-                    "Confirmation",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question
-                );
+            var result = MessageBoxService.ShowQuestion(
+                "Vous vous apprétez à changer votre mot de passe",
+                "Continuer ?");
 
             if (result == MessageBoxResult.No)
             {

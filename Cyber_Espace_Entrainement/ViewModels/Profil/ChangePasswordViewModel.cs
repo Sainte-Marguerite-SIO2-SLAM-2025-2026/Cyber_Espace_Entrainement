@@ -56,11 +56,9 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             }
             else
             {
-                var result = MessageBox.Show(
+                var result = MessageBoxService.ShowInformation(
                     "Votre mot de passe a bien été changé\n\n" ,
-                    "Information",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
+                    "Information"
                 );
             }
                 
