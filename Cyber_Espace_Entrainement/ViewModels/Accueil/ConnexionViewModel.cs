@@ -4,7 +4,8 @@ using System.Windows;
 using System.Windows.Input;
 using Cyber_Espace_Entrainement.Views.Accueil;
 using Cyber_Espace_Entrainement.Services;
-
+using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Views.Users;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 {
@@ -67,40 +68,46 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
         private void ExecuteConnexion(object parameter)
         {
-            // Utiliser le résultat réel de l'authentification
+            // Authentification
             var (success, user, message) = _userService.Authentifier(Login, MotDePasse);
 
             if (success)
             {
                 if (parameter is Window window)
                 {
-                    SessionService.Instance.Login(user);
-                    var accueil = new AccueilWindow();
-                    MessageBox.Show($"Bienvenue, {Login} !", "Connexion réussie", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Cacher la fenêtre de connexion puis afficher la fenêtre d'accueil
-                    window.Close();
-                    accueil.ShowDialog();
+                    SessionService.Instance.Login(user); // Garde en memoire l'utilisateur connecté                    
+
+                    // afficher la fenêtre d'accueil si utilisateur ou admin si admin
+                    if (user.Role == UserRole.Admin)
+                    {
+                        var admin = new UserGestion();
+                        window.Close(); // Ferme la fenêtre de connexion
+                        admin.Show();
+                    }
+                    else {
+                        var accueil = new AccueilWindow();
+                        window.Close(); // Ferme la fenêtre de connexion
+                        accueil.Show(); 
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Erreur lors de l'ouverture de la fenêtre suivante.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxService.ShowError("Erreur lors de l'ouverture de la fenêtre suivante.", "Erreur");
                 }
             }
             else
             {
                 // Afficher le message renvoyé par le service (ou un message générique)
-                MessageBox.Show(string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBoxService.ShowWarning(string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message, "Attention");
             }
         }
 
         private void ExecuteQuitter(object parameter)
         {
-            var result = MessageBox.Show(
+            var result = MessageBoxService.ShowQuestion(
                 "Voulez-vous vraiment quitter l'application ?",
-                "Quitter",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+                "Quitter"
             );
 
             if (result == MessageBoxResult.Yes)

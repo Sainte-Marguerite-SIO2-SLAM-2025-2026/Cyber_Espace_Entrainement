@@ -321,11 +321,9 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         {
             if (IsFormValid())
             {
-                MessageBox.Show(
-                    $"Inscription réussie !\n\nLogin : {Login}\nNom : {Nom}\nPrénom : {Prenom}\nSection : {SectionSelectionnee}\nMail : {Mail}",
-                    "Succès",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
+                MessageBoxService.ShowInformation(
+                    $"Inscription réussie : {Login}",
+                    "Succès"
                 );
 
 
@@ -350,11 +348,9 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             }
             else
             {
-                MessageBox.Show(
+                MessageBoxService.ShowWarning(
                     "Veuillez corriger les erreurs dans le formulaire",
-                    "Erreur de validation",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning
+                    "Erreur de validation"
                 );
             }
         }
@@ -367,17 +363,15 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             {
                 var connexionWindow = new MainWindow();
                 window.Close();
-                connexionWindow.ShowDialog();
+                connexionWindow.Show();
             }
         }
 
         private void Quitter(object parameter)
         {
-            var result = MessageBox.Show(
+            var result = MessageBoxService.ShowQuestion(
                 "Voulez-vous vraiment quitter l'application ?",
-                "Confirmation",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+                "Confirmation"
             );
 
             if (result == MessageBoxResult.Yes)
