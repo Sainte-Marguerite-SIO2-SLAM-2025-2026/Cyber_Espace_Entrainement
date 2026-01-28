@@ -58,10 +58,8 @@
                 <!--#region COLONNE GAUCHE -->
                 <StackPanel Grid.Column="0">
                     <!--#region Login -->
-                    <Label
-                                   Style="{StaticResource ModernLabel}">
-                        <Label Content="Label"/>
-                    </Label>
+                    <Label Content="Login *"
+                       Style="{StaticResource ModernLabel}"/>  
                     <TextBox x:Name="tbxLogin"
                                    Style="{StaticResource ModernTextBox}"
                                    Tag="Entrez votre identifiant..."
@@ -165,6 +163,7 @@
                             Content="Valider l'inscription"
                             Style="{StaticResource ModernButton}"
                             Command="{Binding ValiderCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                             Width="200"
                             Height="45"
                             HorizontalAlignment="Center"

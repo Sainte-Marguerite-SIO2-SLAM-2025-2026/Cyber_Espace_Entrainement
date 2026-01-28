@@ -31,7 +31,15 @@
     <Color x:Key="ErrorRed">#f44336</Color>
     <Color x:Key="ErrorRedDark">#d32f2f</Color>
     <!--#endregion -->
+    
+    <!--#region Couleurs de Popup-->
+    <Color x:Key="PopupBackground">#FFFFFF</Color>
+    <Color x:Key="PopupMainInfoQuest">#6dc5e0</Color>
+    <Color x:Key="PopupMainWarning">#FFA726</Color>
+    <Color x:Key="PopupMainError">#EF5350</Color>
 
+    <!--#endregion -->
+    
     <!--#endregion -->
 
     <!--#region BRUSHES (pour utilisation directe en XAML) -->
@@ -55,6 +63,11 @@
     <SolidColorBrush x:Key="ErrorRedDarkBrush" Color="{StaticResource ErrorRedDark}"/>
 
     <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{StaticResource PopupBackground}"/>
+    <SolidColorBrush x:Key="PopupMainInfoQuestBrush" Color="{StaticResource PopupMainInfoQuest}"/>
+    <SolidColorBrush x:Key="PopupMainWarningBrush" Color="{StaticResource PopupMainWarning}"/>
+    <SolidColorBrush x:Key="PopupMainErrorBrush" Color="{StaticResource PopupMainError}"/>
     <!--#endregion -->
 
 </ResourceDictionary>

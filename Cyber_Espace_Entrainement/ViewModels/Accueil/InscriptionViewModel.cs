@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Models;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 {
@@ -12,6 +14,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
     {
         #region Properties
 
+        private UserService _userService;
         private string _login;
         public string Login
         {
@@ -158,7 +161,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         #region Commands
 
         public ICommand ValiderCommand { get; }
-        public ICommand ConnexionCommand { get; }
         public ICommand QuitterCommand { get; }
 
         #endregion
@@ -179,7 +181,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
             // Initialisation des commandes
             ValiderCommand = new RelayCommand(Valider, CanValider);
-            ConnexionCommand = new RelayCommand(NaviguerVersConnexion);
             QuitterCommand = new RelayCommand(Quitter);
         }
 
@@ -320,23 +321,36 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         {
             if (IsFormValid())
             {
-                MessageBox.Show(
-                    $"Inscription réussie !\n\nLogin : {Login}\nNom : {Nom}\nPrénom : {Prenom}\nSection : {SectionSelectionnee}\nMail : {Mail}",
-                    "Succès",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
+                MessageBoxService.ShowInformation(
+                    $"Inscription réussie : {Login}",
+                    "Succès"
                 );
 
-                // Ici vous pouvez ajouter la logique pour enregistrer l'utilisateur
-                // par exemple : _userService.Register(new User { ... });
+
+                // Création de l'objet Utilisateurs
+                Utilisateurs nouvelUtilisateur = new Utilisateurs
+                {
+                    Login = this.Login,
+                    MotPasse = this.MotDePasse,
+                    Nom = this.Nom,
+                    Prenom = this.Prenom,
+                    Section = this.SectionSelectionnee,
+                    Email = this.Mail,
+                    Role = UserRole.Etudiant,
+                    DateCreation = DateTime.Now
+                };
+
+                // Ajout de l'utilisateur à la base de données
+                _userService = new UserService();
+                _userService.AddUser(nouvelUtilisateur);
+
+                NaviguerVersConnexion(parameter);
             }
             else
             {
-                MessageBox.Show(
+                MessageBoxService.ShowWarning(
                     "Veuillez corriger les erreurs dans le formulaire",
-                    "Erreur de validation",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning
+                    "Erreur de validation"
                 );
             }
         }
@@ -348,18 +362,16 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             if (parameter is Window window)
             {
                 var connexionWindow = new MainWindow();
-                window.Hide();
-                connexionWindow.ShowDialog();
+                window.Close();
+                connexionWindow.Show();
             }
         }
 
         private void Quitter(object parameter)
         {
-            var result = MessageBox.Show(
+            var result = MessageBoxService.ShowQuestion(
                 "Voulez-vous vraiment quitter l'application ?",
-                "Confirmation",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+                "Confirmation"
             );
 
             if (result == MessageBoxResult.Yes)

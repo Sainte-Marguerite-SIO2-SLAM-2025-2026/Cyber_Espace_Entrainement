@@ -28,6 +28,7 @@ namespace Cyber_Espace_Entrainement.Services
         public int? CurrentUserId => _currentUser?.UserId;
         public int? CurrentScore => _currentUser?.ScoreTotal;
         public string? CurrentSection => _currentUser?.Section;
+        public string? CurrentPassword => _currentUser?.MotPasse;
 
         // Constructeur privé pour le singleton
         private SessionService() { }

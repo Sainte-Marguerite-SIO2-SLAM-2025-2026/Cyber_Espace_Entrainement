@@ -245,8 +245,8 @@ namespace Cyber_Espace_Entrainement
         private void BtnInscription_Click(object sender, RoutedEventArgs e)
         {
             var inscriptionWin = new Inscription();
-            inscriptionWin.Show();
             this.Close();
+            inscriptionWin.Show();
         }
 
         #endregion
