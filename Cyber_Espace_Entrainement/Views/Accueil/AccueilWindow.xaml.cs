@@ -342,7 +342,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// </summary>
         private void CoursCard_Click(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(
+            MessageBoxService.ShowInformation(
                 "ESPACE COURS\n\n" +
                 "Cette section contiendra :\n" +
                 "• Cours de cybersécurité\n" +
@@ -350,9 +350,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
                 "• Documentation\n" +
                 "• Ressources pédagogiques\n\n" +
                 "À développer...",
-                "Espace Cours",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information
+                "Espace Cours"
             );
 
             // TODO : Créer CoursView.xaml et décommenter :
@@ -424,11 +422,9 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show(
+            var result = MessageBoxService.ShowQuestion(
                 "Voulez-vous vraiment quitter l'application ?",
-                "Confirmation",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+                "Confirmation"
             );
 
             if (result == MessageBoxResult.Yes)
