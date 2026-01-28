@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Views.Profil;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Profil
 {
@@ -13,6 +15,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [ObservableProperty] private string newPassword;
         [ObservableProperty] private string confirmPassword;
         [ObservableProperty] private string message;
+        [ObservableProperty] private Action closePageAction;
 
         private UserService _userService;
 
@@ -48,12 +51,17 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             var (success, user, message) = _userService.Authentifier(SessionService.Instance.CurrentLogin, OldPassword);
 
             if (!success)
-            { // TODO : Appeler ton service de changement de mot de passe // await _authService.ChangePasswordAsync(OldPassword, NewPassword);
+            { 
                 Message = "L'ancien mot de passe n'est pas bon";
             }
             else
             {
-                Message = "Mot de passe mis à jour avec succès.";
+                var result = MessageBox.Show(
+                    "Votre mot de passe a bien été changé\n\n" ,
+                    "Information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
             }
                 
             OnPropertyChanged(nameof(IsError)); }

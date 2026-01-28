@@ -4,6 +4,7 @@ using Cyber_Espace_Entrainement.Models;
 using Cyber_Espace_Entrainement.Services;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Profil
 {
@@ -29,16 +30,47 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [ObservableProperty] private DateTime? derniereConnection;
         [ObservableProperty] private int? scoreTotal;
 
+
         // CONSTRUCTEUR
         public ProfilViewModel()
         {
             ChargerDepuisSession();
         }
 
+       
         partial void OnIsEditModeChanged(bool value) { 
             OnPropertyChanged(nameof(EditVisibilityModify));
             OnPropertyChanged(nameof(EditVisibilityGeneral));
         }
+
+        [RelayCommand(CanExecute = nameof(CanSaveUser))]
+        private void SaveUser()
+        {
+            // Ici tu feras la sauvegarde en BDD
+            IsEditMode = false;
+        }
+
+        private bool CanSaveUser()
+        {
+            // Le bouton n'est actif que si on est en mode édition
+            // ET si Email ou Pseudo ont changé
+            return IsEditMode
+                && !string.IsNullOrWhiteSpace(Pseudo)
+                && !string.IsNullOrWhiteSpace(Email)
+                && (Pseudo != SessionService.Instance.CurrentLogin
+                    || Email != SessionService.Instance.CurrentEmail);
+        }
+
+        partial void OnPseudoChanged(string value)
+        {
+            SaveUserCommand.NotifyCanExecuteChanged();
+        }
+
+        partial void OnEmailChanged(string value)
+        {
+            SaveUserCommand.NotifyCanExecuteChanged();
+        }
+
 
         // CHARGEMENT DES DONNÉES
         private void ChargerDepuisSession()
@@ -64,7 +96,8 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [RelayCommand]
         private void EditUser()
         {
-            IsEditMode = true;            
+            IsEditMode = true;
+            SaveUserCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand]

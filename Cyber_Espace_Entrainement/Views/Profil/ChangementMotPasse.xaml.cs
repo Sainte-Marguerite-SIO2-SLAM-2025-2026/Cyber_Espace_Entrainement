@@ -30,5 +30,10 @@ namespace Cyber_Espace_Entrainement.Views.Profil
             => ((ChangePasswordViewModel)DataContext).NewPassword = ((PasswordBox)sender).Password; 
         private void ConfirmPasswordChanged(object sender, RoutedEventArgs e) 
             => ((ChangePasswordViewModel)DataContext).ConfirmPassword = ((PasswordBox)sender).Password;
+
+        private void RetourButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

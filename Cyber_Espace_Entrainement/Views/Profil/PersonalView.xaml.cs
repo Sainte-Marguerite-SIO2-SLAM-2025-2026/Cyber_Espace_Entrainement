@@ -72,8 +72,7 @@ namespace Cyber_Espace_Entrainement.Views.Profil
 
         // modif doivent se faire dans la bdd,
         // faire le fonctionnement valider modif
-        // faire la page de changement du mdp
-        // popup changer mdp (sur?)
+        // mdp quand il est bon vider champs voir pour close le mdp
         // changer disposition (login email en haut)
     }
 }
