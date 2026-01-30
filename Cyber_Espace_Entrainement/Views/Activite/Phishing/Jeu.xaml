@@ -1,0 +1,17 @@
+﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Activite.Phishing.Jeu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite.Phishing"
+        mc:Ignorable="d"
+        Title="Jeu" Height="1080" Width="1920">
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="286" Margin="1546,10,0,0" VerticalAlignment="Top" Width="336"/>
+        <TextBox HorizontalAlignment="Left" Height="214" Margin="466,28,0,0" TextWrapping="Wrap" Text="Ici, il y aura l'expéditeur" VerticalAlignment="Top" Width="932" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="130" Margin="1612,84,0,0" TextWrapping="Wrap" Text="Ici, il y aura une photo/un logo de marque" VerticalAlignment="Top" Width="198"/>
+        <TextBox HorizontalAlignment="Left" Height="167" Margin="466,247,0,0" TextWrapping="Wrap" Text="Ici, il y aura l'objet du mail" VerticalAlignment="Top" Width="790"/>
+        <TextBox HorizontalAlignment="Left" Height="552" Margin="88,460,0,0" TextWrapping="Wrap" Text="Ici, il y aura tout le contenu du mail" VerticalAlignment="Top" Width="1764"/>
+
+    </Grid>
+</Window>
