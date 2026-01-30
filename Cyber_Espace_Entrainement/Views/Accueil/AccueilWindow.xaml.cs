@@ -1,4 +1,5 @@
 ﻿using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Views.Activite;
 using Cyber_Espace_Entrainement.Views.Profil;
 using Cyber_Espace_Entrainement.Views.Tests;
 using Cyber_Espace_Entrainement.Views.Users;
@@ -333,8 +334,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             //    MessageBoxButton.OK,
             //    MessageBoxImage.Information
             //);
-            var morseWindow = new MorseTestView();
-            morseWindow.ShowDialog();
+            var accueilTestsWindow = new AccueilActivite();
+            accueilTestsWindow.ShowDialog();
         }
 
         /// <summary>

@@ -1,0 +1,95 @@
+﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Profil.ChangementMotPasse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Profil"
+        mc:Ignorable="d"
+        Title="ChangementMotPasse" Height="450" Width="800">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+    </Window.Resources>
+    
+    <Grid Background="#F5F6FA" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titre -->
+        <TextBlock Text="Changer votre mot de passe"
+               FontSize="26"
+               FontWeight="SemiBold"
+               Foreground="#2C3E50"
+               Margin="0 0 0 30"/>
+
+        <!-- Contenu -->
+        <Border Grid.Row="1"
+            Background="White"
+            CornerRadius="12"
+            Padding="30"
+            Effect="{DynamicResource ShadowEffect}">
+            <StackPanel>
+
+                <!-- Ancien mot de passe -->
+                <StackPanel>
+                    <TextBlock Text="Ancien mot de passe"
+                           FontWeight="SemiBold"
+                           Foreground="#34495E"/>
+                    <PasswordBox x:Name="OldPasswordBox"
+                             Margin="0 5 0 0"
+                             FontSize="16"
+                             PasswordChanged="OldPasswordChanged"/>
+                </StackPanel>
+
+                <!-- Nouveau mot de passe -->
+                <StackPanel>
+                    <TextBlock Text="Nouveau mot de passe"
+                           FontWeight="SemiBold"
+                           Foreground="#34495E"/>
+                    <PasswordBox x:Name="NewPasswordBox"
+                             Margin="0 5 0 0"
+                             FontSize="16"
+                             PasswordChanged="NewPasswordChanged"/>
+                </StackPanel>
+
+                <!-- Confirmation -->
+                <StackPanel>
+                    <TextBlock Text="Confirmer le nouveau mot de passe"
+                           FontWeight="SemiBold"
+                           Foreground="#34495E"/>
+                    <PasswordBox x:Name="ConfirmPasswordBox"
+                             Margin="0 5 0 0"
+                             FontSize="16"
+                             PasswordChanged="ConfirmPasswordChanged"/>
+                </StackPanel>
+
+                <!-- Message d'erreur -->
+                <TextBlock Text="{Binding Message}"
+                       Foreground="#E74C3C"
+                       FontWeight="Bold"
+                       Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"/>
+
+                <!-- Bouton -->
+                <Button Content="Mettre à jour"
+                    Command="{Binding ChangePasswordCommand}"
+                    Height="45"
+                    Background="#3498DB"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Margin="0 10 0 0"/>
+
+                <Button Content="Retour"
+    Click="RetourButton_Click"
+    Height="45"
+    Background="#3498DB"
+    Foreground="White"
+    FontSize="16"
+    FontWeight="SemiBold"
+    Margin="0 10 0 0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Window>
