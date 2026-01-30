@@ -47,6 +47,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
                 OnPropertyChanged(nameof(IsError));
                 return;
             }
+            if (NewPassword == OldPassword)
+            {
+                Message = "Le nouveau mot de passe doit être différent de l'ancien";
+                OnPropertyChanged(nameof(IsError));
+                return;
+            }
             _userService = new UserService();
             var (success, user, message) = _userService.Authentifier(SessionService.Instance.CurrentLogin, OldPassword);
 
