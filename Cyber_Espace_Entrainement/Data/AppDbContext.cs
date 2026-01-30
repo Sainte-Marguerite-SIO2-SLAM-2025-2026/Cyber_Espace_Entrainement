@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 
 namespace Cyber_Espace_Entrainement.Data
@@ -77,7 +78,7 @@ namespace Cyber_Espace_Entrainement.Data
 
             modelBuilder.Entity<Utilisateurs>().HasData(
                 new Utilisateurs
-               {
+                {
                     UserId = 1,
                     Login = "adminProf",
                     MotPasse = HashPassword("admin123"),
@@ -105,8 +106,28 @@ namespace Cyber_Espace_Entrainement.Data
                 }
             );
 
-        }
+            modelBuilder.Entity<Activites>(entity =>
+            {
+                // 1. Correction du nom de la table (doit correspondre à l'attribut [Table("Activite")] du modèle)
+                entity.ToTable("Activite");
 
+                // 2. IMPORTANT : Définir la clé primaire composée ici aussi pour éviter les conflits
+                entity.HasKey(a => new { a.Id, a.CoursId });
+
+                // 3. Configuration des colonnes (Assurez-vous que les noms correspondent à la BDD)
+                entity.Property(a => a.Id).HasColumnName("ID");
+                entity.Property(a => a.CoursId).HasColumnName("CoursID");
+
+                // Propriétés nullable (vos réglages actuels sont corrects)
+                entity.Property(a => a.Libelle).IsRequired(false);
+                entity.Property(a => a.Image).IsRequired(false);
+                entity.Property(a => a.Contenu).IsRequired(false);
+                entity.Property(a => a.Explication).IsRequired(false);
+                entity.Property(a => a.Type).IsRequired(false);
+                entity.Property(a => a.Niveau).IsRequired(false);
+            });
+
+        }
         // Méthode simple de hashage (à améliorer avec BCrypt) - INCHANGÉE
         private static string HashPassword(string password)
         {

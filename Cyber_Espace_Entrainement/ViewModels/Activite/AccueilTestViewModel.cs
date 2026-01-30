@@ -27,22 +27,28 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
         public AccueilTestViewModel()
         {
             _activiteService = new ActiviteService();
-            activites = new ObservableCollection<Activites>();
-            _ = LoadActivitesAsync();
+            // On initialise la collection
+            Activites = new ObservableCollection<Activites>();
+
+            // Chargement immédiat et bloquant
+            LoadActivites();
         }
 
-        
-        public async Task LoadActivitesAsync()
+        private void LoadActivites()
         {
-
-            var allActivites = _activiteService.GetAllActivites();
-
-            MessageBox.Show("Nb activités : " + allActivites.Count);
-
-            Activites.Clear();
-            foreach (var activite in allActivites)
+            try
             {
-                Activites.Add(activite);
+                var data = _activiteService.GetAllActivites();
+
+                Activites.Clear();
+                foreach (var item in data)
+                {
+                    Activites.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur de chargement : {ex.Message}");
             }
         }
 

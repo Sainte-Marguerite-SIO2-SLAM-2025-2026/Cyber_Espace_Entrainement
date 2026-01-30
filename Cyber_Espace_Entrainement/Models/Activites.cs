@@ -11,14 +11,13 @@ namespace Cyber_Espace_Entrainement.Models
     /// Modèle Activite correspondant à la table Activite de la BDD
     /// </summary>
     [Table("Activite")]
-    [PrimaryKey(nameof(Id), nameof(CoursId))]
+    [PrimaryKey(nameof(Id), nameof(CoursId))] // Correct pour EF Core 7+
     public class Activites
     {
         [Column("ID")]
         public int Id { get; set; }
 
-        [Required]
-        [Column("CoursID")]
+        [Column("CoursID")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
         public int CoursId { get; set; }
 
         [MaxLength(255)]
@@ -34,7 +33,7 @@ namespace Cyber_Espace_Entrainement.Models
         public string? Contenu { get; set; }
 
         [Column("NbPoints")]
-        public int NbPoints { get; set; }
+        public int? NbPoints { get; set; }
 
         [MaxLength(255)]
         [Column("Explication")]

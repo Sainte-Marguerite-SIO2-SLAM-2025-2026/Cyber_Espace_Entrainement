@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Cyber_Espace_Entrainement.Data;
+﻿using Cyber_Espace_Entrainement.Data;
 using Cyber_Espace_Entrainement.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Cyber_Espace_Entrainement.Services
 {
@@ -26,12 +28,22 @@ namespace Cyber_Espace_Entrainement.Services
         //
 
         /// <summary>
-        /// Récupérer toute les activités 
+        /// Récupérer toutes les activités (version async)
         /// </summary>
-        /// <returns></returns>
         public List<Activites> GetAllActivites()
         {
-            return _context.Activites.Distinct().OrderBy(activite => activite.Libelle).ToList();
+            try
+            {
+                // Utilisation de .ToList() synchrone
+                return _context.Activites
+                    .OrderBy(a => a.Libelle)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erreur : {ex.Message}");
+                return new List<Activites>();
+            }
         }
 
         /// <summary>
