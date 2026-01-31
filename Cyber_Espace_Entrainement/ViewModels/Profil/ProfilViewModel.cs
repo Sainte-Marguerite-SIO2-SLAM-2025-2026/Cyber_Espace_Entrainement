@@ -111,6 +111,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         private void ChargerDepuisSession()
         {
             var s = SessionService.Instance;
+            var u = new UserService();
 
             Prenom = s.CurrentPrenom;
             Nom = s.CurrentNom;
@@ -118,7 +119,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             Email = s.CurrentEmail;
             Section = s.CurrentSection;
             DateCreation = s.CurrentDateCrea;
-            DerniereConnection = s.CurrentDerniereCo;
+            DerniereConnection = u.GetDerniereConnexionPrecedente(s.CurrentUser.UserId);
             ScoreTotal = s.CurrentScore;
             Message = "";
 

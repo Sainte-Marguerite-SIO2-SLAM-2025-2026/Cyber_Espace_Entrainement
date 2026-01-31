@@ -181,21 +181,26 @@ namespace Cyber_Espace_Entrainement.Services
             var user = _context.Users.FirstOrDefault(u => u.Login == login);
 
             if (user == null)
-            {
                 return (false, null, "Login incorrect.");
-            }
 
             if (user.MotPasse != HashPassword(password))
-            {
                 return (false, null, "Mot de passe incorrect.");
-            }
 
-            // Mettre à jour la dernière connexion
+            // Ajouter une entrée dans le log
+            _context.logConnexion.Add(new LogConnexion
+            {
+                UserId = user.UserId,
+                derniereConnexion = DateTime.Now
+            });
+
+            // Mettre à jour la dernière connexion actuelle
             user.DerniereConnexion = DateTime.Now;
+
             _context.SaveChanges();
 
             return (true, user, "Connexion réussie.");
         }
+
 
         /// <summary>
         /// Rechercher des utilisateurs
@@ -282,6 +287,22 @@ namespace Cyber_Espace_Entrainement.Services
                 return (false, $"Erreur : {ex.Message}");
             }
         }
+
+        /// <summary>
+        /// Récupérer la dernière connexion précédente d’un utilisateur
+        /// (celle AVANT la connexion actuelle)
+        /// </summary>
+        public DateTime? GetDerniereConnexionPrecedente(int userId)
+        {
+            return _context.logConnexion
+                .Where(l => l.UserId == userId)
+                .OrderByDescending(l => l.derniereConnexion)
+                .Skip(1) // on saute la plus récente
+                .Select(l => l.derniereConnexion)
+                .FirstOrDefault();
+        }
+
+
 
         // 
         // UTILITAIRES
