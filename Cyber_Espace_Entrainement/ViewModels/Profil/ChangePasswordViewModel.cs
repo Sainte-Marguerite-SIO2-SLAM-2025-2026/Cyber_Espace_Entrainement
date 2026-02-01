@@ -23,7 +23,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
 
         public bool IsError => !string.IsNullOrEmpty(Message) && !Message.Contains("succès");
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanChangePassword))]
         private void ChangePassword()
         {
             Message = string.Empty; // Vérifications simples
@@ -57,18 +57,49 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             var (success, user, message) = _userService.Authentifier(SessionService.Instance.CurrentLogin, OldPassword);
 
             if (!success)
-            { 
-                Message = "L'ancien mot de passe n'est pas bon";
-            }
-            else
             {
-                var result = MessageBoxService.ShowInformation(
-                    "Votre mot de passe a bien été changé\n\n" ,
-                    "Information"
-                );
+                Message = "L'ancien mot de passe n'est pas bon";
+                return;
             }
+            SessionService.Instance.CurrentUser.MotPasse = NewPassword;
+                (success, message) = _userService.UpdateUserPassword(SessionService.Instance.CurrentUser);
+                if (!success)
+                {
+                    Message = message;
+                    return;
+                }
+            Message = message;
                 
-            OnPropertyChanged(nameof(IsError)); }
+         
+
+            OnPropertyChanged(nameof(IsError)); 
+        }
+
+        private bool CanChangePassword()
+        {
+            // Le bouton n'est actif que si on est en mode édition
+            // ET si Email ou Pseudo ont changé
+            return !string.IsNullOrWhiteSpace(OldPassword)
+                && !string.IsNullOrWhiteSpace(NewPassword)
+                && !string.IsNullOrWhiteSpace(ConfirmPassword);
+        }
+
+        partial void OnOldPasswordChanged(string value)
+        {
+            ChangePasswordCommand.NotifyCanExecuteChanged();
+        }
+
+        partial void OnNewPasswordChanged(string value)
+        {
+            ChangePasswordCommand.NotifyCanExecuteChanged();
+        }
+
+        partial void OnConfirmPasswordChanged(string value)
+        {
+            ChangePasswordCommand.NotifyCanExecuteChanged();
         }
     }
+
+}
+    
 

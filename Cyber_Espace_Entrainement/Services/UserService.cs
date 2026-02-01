@@ -139,6 +139,28 @@ namespace Cyber_Espace_Entrainement.Services
             }
         }
 
+        public (bool Success, string Message) UpdateUserPassword(Utilisateurs user)
+        {
+            try
+            {
+                var existingUser = _context.Users.Find(user.UserId);
+                if (existingUser == null)
+                {
+                    return (false, "Utilisateur introuvable.");
+                }
+
+                    existingUser.MotPasse = HashPassword(user.MotPasse);
+
+                _context.SaveChanges();
+
+                return (true, $"Mot de passe de l'utilisateur '{user.Login}' modifié avec succès.");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Erreur : {ex.Message}");
+            }
+        }
+
         /// <summary>
         /// Supprimer un utilisateur - INCHANGÉE
         /// </summary>
