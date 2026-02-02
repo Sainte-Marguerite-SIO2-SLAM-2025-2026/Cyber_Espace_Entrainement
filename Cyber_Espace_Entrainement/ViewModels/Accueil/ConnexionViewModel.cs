@@ -128,30 +128,27 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             // Authentification via le service métier : retourne (success, user, message)
             var (success, user, message) = _userService.Authentifier(Login, MotDePasse);
 
-            if (success || 1==1)
+            if (success)
             {
                 if (parameter is Window window)
                 {
-                    // TO DO : A enlever à terme
-                    var accueil = new AccueilWindow();
-                    window.Close(); // Ferme la fenêtre de connexion
-                    accueil.Show();
-                    //// Sauvegarde de l'utilisateur connecté dans la session (singleton)
-                    //SessionService.Instance.Login(user);
 
-                    //// Selon le rôle, ouvrir la fenêtre correspondante
-                    //if (user.Role == UserRole.Admin)
-                    //{
-                    //    var admin = new UserGestion();
-                    //    window.Close(); // Ferme la fenêtre de connexion
-                    //    admin.Show();
-                    //}
-                    //else
-                    //{
-                    //    var accueil = new AccueilWindow();
-                    //    window.Close(); // Ferme la fenêtre de connexion
-                    //    accueil.Show();
-                    //}
+                    // Sauvegarde de l'utilisateur connecté dans la session (singleton)
+                    SessionService.Instance.Login(user);
+
+                    // Selon le rôle, ouvrir la fenêtre correspondante
+                    if (user.Role == UserRole.Admin)
+                    {
+                        var admin = new UserGestion();
+                        window.Close(); // Ferme la fenêtre de connexion
+                        admin.Show();
+                    }
+                    else
+                    {
+                        var accueil = new AccueilWindow();
+                        window.Close(); // Ferme la fenêtre de connexion
+                        accueil.Show();
+                    }
                 }
                 else
                 {
@@ -161,11 +158,20 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             }
             else
             {
-                // Afficher le message renvoyé par le service (ou un message générique)
-                MessageBoxService.ShowWarning(
-                    string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message,
-                    "Attention"
-                );
+                if (parameter is Window window)
+                {
+                    // TO DO : A enlever à terme
+                    var accueil = new AccueilWindow();
+                    window.Close(); // Ferme la fenêtre de connexion
+                    accueil.Show();
+
+                }
+                //accueil.Show();
+                //// Afficher le message renvoyé par le service (ou un message générique)
+                //MessageBoxService.ShowWarning(
+                //    string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message,
+                //    "Attention"
+                //);
             }
         }
 
