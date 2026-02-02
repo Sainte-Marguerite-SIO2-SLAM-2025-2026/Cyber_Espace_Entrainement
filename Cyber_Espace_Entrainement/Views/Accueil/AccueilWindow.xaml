@@ -165,6 +165,11 @@
                                Foreground="#9E9E9E"
                                VerticalAlignment="Center"
                                Margin="0,0,20,0"/>
+                    <Button x:Name="BtnDeco"
+                            Content="🔓 Déconnexion"
+                            Click="BtnDeco_Click"
+                            Style="{StaticResource DeconnexionButton}"
+                            Margin="0,0,10,0"/> 
                     <Button x:Name="BtnQuitter"
                             Content="❌ Quitter" 
                             Click="QuitButton_Click"
