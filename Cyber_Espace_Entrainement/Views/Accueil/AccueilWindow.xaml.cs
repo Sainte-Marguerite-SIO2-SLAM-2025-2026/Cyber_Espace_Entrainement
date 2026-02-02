@@ -20,14 +20,17 @@ using System.Windows.Shapes;
 namespace Cyber_Espace_Entrainement.Views.Accueil
 {
     /// <summary>
-    /// Logique d'interaction pour Accueil.xaml
+    /// Code-behind pour la fenêtre d'accueil.
+    /// Contient la logique UI spécifique (animations, gestion des clics/survols,
+    /// navigation vers d'autres fenêtres). 
     /// </summary>
     public partial class AccueilWindow : Window
     {
-        // Couleur originale du bouton Profile pour les animations
+        // Couleur originale du bouton Profile (utilisée pour restaurer la couleur après animation)
         private readonly Color _profileOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");
 
-        // Récupération des couleurs depuis les ressources
+        // Brushes chargés depuis les ressources (theme) pour garder la cohérence visuelle.
+        // Ces champs permettent d'éviter des recherches répétées dans les ressources.
         private readonly SolidColorBrush _defaultTextBoxBorderBrush;
         private readonly SolidColorBrush _hoverTextBoxBorderBrush;
         private readonly SolidColorBrush _focusTextBoxBorderBrush;
@@ -41,11 +44,18 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         private readonly SolidColorBrush _defaultQuitBackground;
         private readonly SolidColorBrush _hoverQuitBackground;
 
+        private readonly SolidColorBrush _defaultDecoBackground;
+        private readonly SolidColorBrush _hoverDecoBackground;
+
+        /// <summary>
+        /// Constructeur : initialise les composants WPF et charge les brushes depuis les ressources.
+        /// Attache également des gestionnaires d'événements pour certains boutons.
+        /// </summary>
         public AccueilWindow()
         {
             InitializeComponent();
 
-            // Chargement des couleurs depuis les ressources de l'application
+            // Chargement des couleurs depuis les ressources de l'application (theme centralisé)
             _defaultTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderDefaultBrush");
             _hoverTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderHoverBrush");
             _focusTextBoxBorderBrush = (SolidColorBrush)Application.Current.FindResource("BorderFocusBrush");
@@ -59,23 +69,32 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             _defaultQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedBrush");
             _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush");
 
-            // Configuration du bouton Profile après le chargement
+            _defaultDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateBrush");
+            _hoverDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateDarkBrush");
+
+            // Après que la fenêtre soit chargée, configuration additionnelle (ex : mise en place du bouton Profile)
             Loaded += AccueilWindow_Loaded;
 
-            // Bouton Quitter
+            // Attacher les événements de survol au bouton Quitter (visuels)
             BtnQuitter.MouseEnter += BtnQuitter_MouseEnter;
             BtnQuitter.MouseLeave += BtnQuitter_MouseLeave;
+
+            // Attacher les événements de survol au bouton Déconnexion (visuels)
+            BtnDeco.MouseEnter += BtnDeco_MouseEnter;
+            BtnDeco.MouseLeave += BtnDeco_MouseLeave;
         }
 
         /// <summary>
-        /// Configuration initiale du bouton Profile
+        /// Handler appelé lorsque la fenêtre est entièrement chargée.
+        /// Utilisé pour des initialisations qui nécessitent que l'arbre visuel soit prêt.
         /// </summary>
         private void AccueilWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Rendre le bouton Profile rond avec template Ellipse
+            // Rendre le bouton Profile rond en lui appliquant un template personnalisé
             MakeProfileButtonRound();
 
-            // Attacher les événements de survol et clic au bouton Profile
+            // Attacher les événements de survol et de clic au bouton Profile
+            // Ces événements remplacent des triggers XAML et permettent des animations programmatiques.
             Profile.MouseEnter += ProfileButton_MouseEnter;
             Profile.MouseLeave += ProfileButton_MouseLeave;
             Profile.MouseDown += ProfileButton_MouseDown;
@@ -86,37 +105,42 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         #region Gestion du bouton Profile
 
         /// <summary>
-        /// Transforme le bouton Profile en bouton rond avec template Ellipse
+        /// Crée et applique dynamiquement un ControlTemplate qui affiche un bouton circulaire
+        /// (ellipse de fond + ContentPresenter centré). Utilise FrameworkElementFactory pour générer
+        /// l'arbre visuel en code.
+        /// Remarque : la création de templates en code est utile pour de la personnalisation dynamique,
+        /// mais pour des styles statiques préférer le XAML.
         /// </summary>
         private void MakeProfileButtonRound()
         {
-            // Créer le template personnalisé
+            // Créer le template personnalisé pour le bouton
             var template = new ControlTemplate(typeof(Button));
 
-            // Créer la structure avec FrameworkElementFactory
+            // Créer la structure visuelle : Grid contenant une Ellipse (fond) et un ContentPresenter.
             var grid = new FrameworkElementFactory(typeof(Grid));
 
-            // Créer l'ellipse de fond
+            // Ellipse de fond (sera liée au Background/BorderBrush du bouton)
             var ellipse = new FrameworkElementFactory(typeof(Ellipse));
             ellipse.Name = "BackgroundEllipse";
 
-            // CORRECTION : Utiliser Binding avec RelativeSource au lieu de TemplateBinding
-            // TemplateBinding n'existe pas en C#, c'est uniquement pour XAML
+            // Binding sur Background du TemplatedParent (bouton) pour remplir l'ellipse
             var backgroundBinding = new Binding("Background")
             {
                 RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent)
             };
             ellipse.SetBinding(System.Windows.Shapes.Shape.FillProperty, backgroundBinding);
 
+            // Binding sur BorderBrush du TemplatedParent pour la bordure de l'ellipse
             var borderBrushBinding = new Binding("BorderBrush")
             {
                 RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent)
             };
             ellipse.SetBinding(System.Windows.Shapes.Shape.StrokeProperty, borderBrushBinding);
 
+            // Épaisseur de la bordure de l'ellipse
             ellipse.SetValue(System.Windows.Shapes.Shape.StrokeThicknessProperty, 3.0);
 
-            // Ajouter une ombre portée
+            // Ombre portée pour donner de la profondeur
             var dropShadow = new DropShadowEffect
             {
                 BlurRadius = 15,
@@ -126,31 +150,29 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             };
             ellipse.SetValue(System.Windows.Shapes.Shape.EffectProperty, dropShadow);
 
-            // Créer le ContentPresenter pour afficher l'image
+            // ContentPresenter centré pour afficher l'image/icone du profil
             var contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty,
-                HorizontalAlignment.Center);
-            contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty,
-                VerticalAlignment.Center);
+            contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
 
-            // Assembler la structure
+            // Assemblage des éléments dans le template
             grid.AppendChild(ellipse);
             grid.AppendChild(contentPresenter);
             template.VisualTree = grid;
 
-            // Appliquer le template au bouton Profile
+            // Application du template au bouton Profile défini dans le XAML
             Profile.Template = template;
         }
 
         /// <summary>
-        /// Événement MouseEnter - Effet de zoom et éclaircissement au survol
-        /// Remplace le trigger IsMouseOver en XAML
+        /// MouseEnter : effet visuel combiné (zoom + éclaircissement de la bordure).
+        /// Cette logique remplace des triggers XAML et réalise des animations programmatiques.
         /// </summary>
         private void ProfileButton_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is Button button)
             {
-                // Animation de zoom (1.0 -> 1.1)
+                // Mise en place d'une ScaleTransform pour l'effet de zoom
                 var scaleTransform = new ScaleTransform(1, 1);
                 button.RenderTransform = scaleTransform;
                 button.RenderTransformOrigin = new Point(0.5, 0.5);
@@ -162,10 +184,11 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
                     EasingFunction = new QuadraticEase()
                 };
 
+                // Animation X et Y simultanées
                 scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
                 scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
 
-                // Animation de couleur de la bordure (plus claire)
+                // Animation de couleur de la bordure (si la bordure est un SolidColorBrush)
                 if (button.BorderBrush is SolidColorBrush borderBrush)
                 {
                     var lighterColor = LightenColor(_profileOriginalColor, 0.3f);
@@ -180,14 +203,13 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         }
 
         /// <summary>
-        /// Événement MouseLeave - Retour à la normale
-        /// Remplace le trigger IsMouseOver=False en XAML
+        /// MouseLeave : restaure l'apparence originale (taille + couleur de bordure).
         /// </summary>
         private void ProfileButton_MouseLeave(object sender, MouseEventArgs e)
         {
             if (sender is Button button)
             {
-                // Retour à la taille normale (1.1 -> 1.0)
+                // Retour à l'échelle normale
                 if (button.RenderTransform is ScaleTransform scaleTransform)
                 {
                     var scaleAnimation = new DoubleAnimation
@@ -201,7 +223,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
                     scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
                 }
 
-                // Retour à la couleur de bordure originale
+                // Restauration de la couleur de bordure d'origine
                 if (button.BorderBrush is SolidColorBrush borderBrush)
                 {
                     var colorAnimation = new ColorAnimation
@@ -215,14 +237,12 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         }
 
         /// <summary>
-        /// Événement MouseDown - Effet d'enfoncement au clic
-        /// Remplace le trigger IsPressed en XAML
+        /// MouseDown : petit effet d'enfoncement pour donner du feedback tactile.
         /// </summary>
         private void ProfileButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is Button button)
             {
-                // Effet d'enfoncement (1.1 -> 0.95)
                 if (button.RenderTransform is ScaleTransform scaleTransform)
                 {
                     var scaleAnimation = new DoubleAnimation
@@ -238,13 +258,12 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         }
 
         /// <summary>
-        /// Événement MouseUp - Retour à la taille de survol après le clic
+        /// MouseUp : ramène l'échelle au niveau de survol (si applicable).
         /// </summary>
         private void ProfileButton_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (sender is Button button)
             {
-                // Retour à la taille de survol (0.95 -> 1.1)
                 if (button.RenderTransform is ScaleTransform scaleTransform)
                 {
                     var scaleAnimation = new DoubleAnimation
@@ -260,7 +279,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         }
 
         /// <summary>
-        /// Événement Click - Ouvrir le profil utilisateur
+        /// Click : ouvre la fenêtre de profil (PersonalView).
+        /// Utilise ShowDialog pour modalité ; adapter selon besoin (Show si modeless).
         /// </summary>
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
@@ -288,7 +308,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         #region Utilitaires de couleurs
 
         /// <summary>
-        /// Éclaircir une couleur d'un certain pourcentage
+        /// Éclaircit une couleur en appliquant un pourcentage.
+        /// Utilisé par les animations pour obtenir une couleur "plus claire".
         /// </summary>
         private Color LightenColor(Color color, float amount)
         {
@@ -301,7 +322,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         }
 
         /// <summary>
-        /// Assombrir une couleur d'un certain pourcentage
+        /// Assombrit une couleur en appliquant un pourcentage.
         /// </summary>
         private Color DarkenColor(Color color, float amount)
         {
@@ -318,7 +339,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         #region Événements des cartes
 
         /// <summary>
-        /// Ouvrir l'espace Tests (à créer)
+        /// Ouverture de l'espace Tests / Activités.
+        /// Méthode reliée à l'événement MouseLeftButtonDown sur la "card" correspondante.
         /// </summary>
         private void TestsCard_Click(object sender, MouseButtonEventArgs e)
         {
@@ -339,7 +361,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         }
 
         /// <summary>
-        /// Ouvrir l'espace Cours (à créer)
+        /// Affiche un message d'information pour l'espace Cours (non implémenté).
+        /// Laisser en MessageBoxService pour consistance visuelle.
         /// </summary>
         private void CoursCard_Click(object sender, MouseButtonEventArgs e)
         {
@@ -364,28 +387,26 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         #region Effets visuels des cartes
 
         /// <summary>
-        /// Effet de zoom au survol de la carte
+        /// Survol d'une "card" : léger zoom, modification de la bordure et renforcement de l'ombre.
+        /// Les cards sont des Border dans le XAML et peuvent utiliser la propriété Tag pour stocker une couleur.
         /// </summary>
         private void Card_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is Border card)
             {
-                // Animation de zoom léger
+                // Application d'un ScaleTransform pour l'effet de zoom
                 card.RenderTransform = new ScaleTransform(1.05, 1.05);
                 card.RenderTransformOrigin = new Point(0.5, 0.5);
 
-                //
-                // couleur de la card à modifier
-                //
+                // Si la carte contient une couleur dans Tag, appliquer une bordure accentuée
                 if (card.Tag is string couleur)
                 {
-                    // Bordure plus visible
                     var color = (Color)ColorConverter.ConvertFromString(couleur);
                     card.BorderBrush = new SolidColorBrush(color);
                     card.BorderThickness = new Thickness(2);
                 }
 
-                // Ombre plus marquée
+                // Augmenter l'ombre portée si présente
                 if (card.Effect is DropShadowEffect shadow)
                 {
                     shadow.BlurRadius = 20;
@@ -395,20 +416,20 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         }
 
         /// <summary>
-        /// Retour à la normale quand la souris quitte
+        /// Lorsque la souris quitte la card : restauration de l'apparence par défaut.
         /// </summary>
         private void Card_MouseLeave(object sender, MouseEventArgs e)
         {
             if (sender is Border card)
             {
-                // Retour à la taille normale
+                // Restauration de l'échelle
                 card.RenderTransform = new ScaleTransform(1.0, 1.0);
 
-                // Bordure normale
+                // Restauration de la bordure par défaut (gris clair)
                 card.BorderBrush = new SolidColorBrush(Color.FromRgb(224, 224, 224));
                 card.BorderThickness = new Thickness(1);
 
-                // Ombre normale
+                // Restauration de l'ombre si présente
                 if (card.Effect is DropShadowEffect shadow)
                 {
                     shadow.BlurRadius = 10;
@@ -421,6 +442,9 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
 
         #region Bouton Quitter
 
+        /// <summary>
+        /// Clic sur le bouton "Quitter" : confirme puis ferme l'application si l'utilisateur confirme.
+        /// </summary>
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBoxService.ShowQuestion(
@@ -433,16 +457,67 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
                 Application.Current.Shutdown();
             }
         }
+
+        /// <summary>
+        /// MouseEnter du bouton Quitter : changer le background
+        /// </summary>
         private void BtnQuitter_MouseEnter(object sender, MouseEventArgs e)
         {
             BtnQuitter.Background = _hoverQuitBackground;
         }
 
+        /// <summary>
+        /// MouseLeave du bouton Quitter : restauration du background.
+        /// </summary>
         private void BtnQuitter_MouseLeave(object sender, MouseEventArgs e)
         {
             BtnQuitter.Background = _defaultQuitBackground;
         }
 
+        #endregion
+
+        #region Bouton Déconnexion
+
+        /// <summary>
+        /// Click du bouton Déconnexion : confirme, appelle le service de session pour logout,
+        /// ferme la fenêtre courante et ouvre la fenêtre de connexion.
+        /// </summary>
+        private void BtnDeco_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBoxService.ShowQuestion(
+                "Voulez-vous vraiment vous déconnecter ?",
+                "Confirmation de déconnexion"
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                // Appeler la méthode de déconnexion du service de session (singleton)
+                SessionService.Instance.Logout();
+
+                // Ouvrir la fenêtre de connexion (MainWindow)
+                var connexionWindow = new MainWindow();
+
+                // Fermer la fenêtre actuelle puis afficher la connexion
+                this.Close();
+                connexionWindow.Show();
+            }
+        }
+
+        /// <summary>
+        /// MouseEnter du bouton Déconnexion : appliquer la couleur hover définie.
+        /// </summary>
+        private void BtnDeco_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BtnDeco.Background = _hoverDecoBackground;
+        }
+
+        /// <summary>
+        /// MouseLeave du bouton Déconnexion : restauration du background.
+        /// </summary>
+        private void BtnDeco_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BtnDeco.Background = _defaultDecoBackground;
+        }
         #endregion
     }
 }
