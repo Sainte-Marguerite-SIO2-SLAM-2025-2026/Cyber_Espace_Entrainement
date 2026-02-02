@@ -8,23 +8,19 @@
         mc:Ignorable="d"
         Title="CaptchaFacileView" 
         SizeToContent="Height"
-        Height="700" 
-        Width="1000">
+        Height="1080" 
+        Width="1920">
     <Window.DataContext>
         <vm:CaptchaFacileViewModel/>
     </Window.DataContext>
 
     <Grid>
-        <!--#region ViewModel -->
-
-        
-        
-       
-
-        <!--#endregion-->
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <!-- Captcha En tete -->
-
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -34,7 +30,7 @@
         <Border 
                 Height="100" 
                 Background="#FF2D2D30" 
-                VerticalAlignment="Center">
+                VerticalAlignment="Center" Grid.ColumnSpan="2">
             <TextBlock Text="Captcha Facile" 
                        Foreground="White" 
                        FontSize="36" 
@@ -47,30 +43,31 @@
         <!--#endregion-->
 
         <!-- Captcha Intro -->
-        <StackPanel>
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Intro}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
-            <Button Command="{Binding RefreshCommand}"
-                x:Name="RefreshButton" 
-                    Content="hop" 
-                    HorizontalAlignment="Left" 
-                    Margin="10" 
-                    VerticalAlignment="Top" 
-                    Width="75" 
-                    Height="30" />
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <StackPanel Grid.ColumnSpan="2">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Intro}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <Button Command="{Binding RefreshCommand}"
+                    x:Name="RefreshButton" 
+                        Content="hop" 
+                        HorizontalAlignment="Left" 
+                        Margin="10" 
+                        Width="407" 
+                        Height="296" Background="#FFDDDDDD" />
+            </StackPanel>
+        </Grid>
 
 
         <!-- Captcha Jeu 1 -->
-        <StackPanel>
+        <StackPanel Grid.ColumnSpan="2">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -81,8 +78,8 @@
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
-            
-            
+
+
             <CheckBox x:Name="CaptchaCheckBox" 
                 Content="I'm not a robot" 
                 HorizontalAlignment="Left" 
@@ -105,10 +102,10 @@
                 </CheckBox.RenderTransform>
             </CheckBox>
         </StackPanel>
-        
+
 
         <!-- Captcha Jeu 2 -->
-        <StackPanel>
+        <StackPanel Grid.ColumnSpan="2">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -142,7 +139,7 @@
         </StackPanel>
 
         <!-- Captcha Outro -->
-        <StackPanel>
+        <StackPanel Grid.ColumnSpan="2">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -155,7 +152,7 @@
             </StackPanel.Style>
 
         </StackPanel>
-        
+
 
 
 

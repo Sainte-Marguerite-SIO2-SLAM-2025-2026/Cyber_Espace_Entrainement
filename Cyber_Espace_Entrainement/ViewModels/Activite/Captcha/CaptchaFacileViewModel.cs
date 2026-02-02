@@ -50,10 +50,9 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite.Captcha
         [RelayCommand]
         private void Refresh()
         {
-                       // Logique pour rafraîchir le Captcha
-            _isCaptchaValid = false;
-            // changer la couleur 
-            Couleur = "#f44336"; // rouge
+            Intro = false;
+            JeuCaptcha = true;
+            
         }
     }
 }
