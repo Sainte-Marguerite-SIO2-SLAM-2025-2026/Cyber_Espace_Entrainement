@@ -23,8 +23,16 @@ namespace Cyber_Espace_Entrainement.Views.Profil
         public PersonalView()
         {
             InitializeComponent();
-            
+            var vm = (ProfilViewModel)DataContext;
+            vm.PasswordChangedSuccessfully += OnPasswordChangedSuccessfully;
         }
+
+        private void OldPasswordChanged(object sender, RoutedEventArgs e)
+            => ((ProfilViewModel)DataContext).OldPassword = ((PasswordBox)sender).Password;
+        private void NewPasswordChanged(object sender, RoutedEventArgs e)
+            => ((ProfilViewModel)DataContext).NewPassword = ((PasswordBox)sender).Password;
+        private void ConfirmPasswordChanged(object sender, RoutedEventArgs e)
+            => ((ProfilViewModel)DataContext).ConfirmPassword = ((PasswordBox)sender).Password;
 
         /// <summary>
         /// Permet de retourner à la page d'accueil
@@ -52,20 +60,6 @@ namespace Cyber_Espace_Entrainement.Views.Profil
             this.Close();
         }
 
-        private void ModifierMotPasseButton_Click(object sender, RoutedEventArgs e) {
-            var result = MessageBoxService.ShowQuestion(
-                "Vous vous apprétez à changer votre mot de passe",
-                "Continuer ?");
-
-            if (result == MessageBoxResult.No)
-            {
-                return; // Ne pas fermer
-            }
-            var changementMotPass = new ChangementMotPasse();
-            changementMotPass.ShowDialog();
-
-        }
-
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBoxService.ShowQuestion(
@@ -78,10 +72,21 @@ namespace Cyber_Espace_Entrainement.Views.Profil
                 Application.Current.Shutdown();
             }
         }
-        // modif doivent se faire dans la bdd pwd,
-        // faire le fonctionnement valider modif
-        // mdp quand il est bon vider champs voir pour close le mdp
-        // changer disposition (login email en haut)
 
+            private void OnPasswordChangedSuccessfully()
+        {
+            OldPasswordBox.Password = "";
+            NewPasswordBox.Password = "";
+            ConfirmPasswordBox.Password = "";
+        }
+        
+        private void RetourMdp_Click(object sender, RoutedEventArgs e)
+        {
+            OldPasswordBox.Password = "";
+            NewPasswordBox.Password = "";
+            ConfirmPasswordBox.Password = "";
+        }
+        // adapter profil au 1920x1080
+        // faire l'icone pour voir mdp
     }
 }
