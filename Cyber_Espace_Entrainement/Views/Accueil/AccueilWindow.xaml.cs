@@ -1,6 +1,7 @@
 ﻿using Cyber_Espace_Entrainement.Services;
 using Cyber_Espace_Entrainement.Views.Activite;
 using Cyber_Espace_Entrainement.Views.Profil;
+using Cyber_Espace_Entrainement.Views.Activite;
 using Cyber_Espace_Entrainement.Views.Tests;
 using Cyber_Espace_Entrainement.Views.Users;
 using System;
