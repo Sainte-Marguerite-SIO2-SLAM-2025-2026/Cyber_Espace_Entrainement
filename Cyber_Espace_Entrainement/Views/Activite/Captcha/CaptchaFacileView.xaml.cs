@@ -26,5 +26,10 @@ namespace Cyber_Espace_Entrainement.Views.Activite.Captcha
         {
             // Logique lorsque la case est cochée
         }
+
+        private void ButtonRetour_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
