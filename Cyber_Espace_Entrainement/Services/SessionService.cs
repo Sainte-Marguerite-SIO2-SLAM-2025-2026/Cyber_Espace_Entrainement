@@ -28,7 +28,6 @@ namespace Cyber_Espace_Entrainement.Services
         public int? CurrentUserId => _currentUser?.UserId;
         public int? CurrentScore => _currentUser?.ScoreTotal;
         public string? CurrentSection => _currentUser?.Section;
-        public string? CurrentMotPasse => _currentUser?.MotPasse;
 
         // Constructeur privé pour le singleton
         private SessionService() { }
@@ -56,6 +55,12 @@ namespace Cyber_Espace_Entrainement.Services
         {
             return _currentUser?.Role == role;
         }
+
+        public void UpdateSessionUser(Utilisateurs user)
+        {
+            _currentUser = user;
+        }
+
 
         /// <summary>
         /// Obtenir le nom complet de l'utilisateur
