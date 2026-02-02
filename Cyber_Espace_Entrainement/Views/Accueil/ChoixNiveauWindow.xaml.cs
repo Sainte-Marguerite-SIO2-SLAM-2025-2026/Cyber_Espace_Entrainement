@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.ViewModels.Activite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -10,21 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Activite.Phishing
+namespace Cyber_Espace_Entrainement.Views.Accueil
 {
     /// <summary>
-    /// Logique d'interaction pour Jeu.xaml
+    /// Logique d'interaction pour ChoixNiveauWindow.xaml
     /// </summary>
-    public partial class Jeu : Window
+    public partial class ChoixNiveauWindow : Window
     {
-        public Jeu()
+        public ChoixNiveauWindow(List<Activites> activites)
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, EventArgs e)
-        {
-
+            DataContext = new ChoixNiveauViewModel(activites);
         }
     }
 }

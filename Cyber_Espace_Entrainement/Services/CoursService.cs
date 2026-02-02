@@ -50,7 +50,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Cours? GetActiviteById(int id)
+        public Cours? GetCoursById(int id)
         {
             return _context.Cours.Find(id);
         }
@@ -60,7 +60,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// </summary>
         /// <param name="libelle"></param>
         /// <returns></returns>
-        public Cours? GetActiviteByLibelle(string titre)
+        public Cours? GetCoursByLibelle(string titre)
         {
             return _context.Cours.FirstOrDefault(a => a.Titre == titre);
         }

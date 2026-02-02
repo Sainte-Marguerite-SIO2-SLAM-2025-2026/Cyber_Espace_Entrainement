@@ -8,19 +8,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Cours
+namespace Cyber_Espace_Entrainement.Views.Activite
 {
-    /// <summary>
-    /// Logique d'interaction pour CoursContenue.xaml
-    /// </summary>
-    public partial class CoursContenue : Window
+    public partial class PhishingFacileView : Window
     {
-        public CoursContenue()
+        public PhishingFacileView()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
