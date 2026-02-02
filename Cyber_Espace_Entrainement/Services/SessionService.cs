@@ -56,6 +56,12 @@ namespace Cyber_Espace_Entrainement.Services
             return _currentUser?.Role == role;
         }
 
+        public void UpdateSessionUser(Utilisateurs user)
+        {
+            _currentUser = user;
+        }
+
+
         /// <summary>
         /// Obtenir le nom complet de l'utilisateur
         /// </summary>

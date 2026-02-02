@@ -52,8 +52,36 @@ namespace Cyber_Espace_Entrainement.Views.Profil
             this.Close();
         }
 
-        // modif doivent se faire dans la bdd,
-        // faire le fonctionnement des boutons
-        // au lieu de la zone mdp faire un boutton modif mdp en bas qui affiche une mini page pour changer son mdp
+        private void ModifierMotPasseButton_Click(object sender, RoutedEventArgs e) {
+            var result = MessageBoxService.ShowQuestion(
+                "Vous vous apprétez à changer votre mot de passe",
+                "Continuer ?");
+
+            if (result == MessageBoxResult.No)
+            {
+                return; // Ne pas fermer
+            }
+            var changementMotPass = new ChangementMotPasse();
+            changementMotPass.ShowDialog();
+
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBoxService.ShowQuestion(
+                "Voulez-vous vraiment quitter l'application ?",
+                "Confirmation"
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+        }
+        // modif doivent se faire dans la bdd pwd,
+        // faire le fonctionnement valider modif
+        // mdp quand il est bon vider champs voir pour close le mdp
+        // changer disposition (login email en haut)
+
     }
 }

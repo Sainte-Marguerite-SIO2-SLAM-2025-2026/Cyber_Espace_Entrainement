@@ -11,16 +11,19 @@ namespace Cyber_Espace_Entrainement.Data
     /// <summary>
     /// Contexte de base de données Entity Framework
     /// Gère la connexion et les opérations sur la BDD
-    /// MODIFICATION : Adapté pour la nouvelle base de données bdd_cyberespace.db
     /// </summary>
     public class AppDbContext : DbContext
     {
         // DbSet représente la table Utilisateur
-        // MODIFIÉ : Table renommée de 'users' à 'Utilisateur'
         public DbSet<Utilisateurs> Users { get; set; }
 
         //Représente la table Activite
         public DbSet<Activites> Activites { get; set; }
+
+        //Représente la table Activite
+        public DbSet<Cours> Cours { get; set; }
+        public DbSet<LogConnexion> logConnexion { get; set; }
+
 
         // Configuration de la connexion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -128,7 +131,7 @@ namespace Cyber_Espace_Entrainement.Data
             });
 
         }
-        // Méthode simple de hashage (à améliorer avec BCrypt) - INCHANGÉE
+        // Méthode simple de hashage (à améliorer avec BCrypt)
         private static string HashPassword(string password)
         {
             // Pour l'exemple : utilisation simple (PAS SÉCURISÉ, donc il faudra la modifier )
