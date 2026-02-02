@@ -18,14 +18,16 @@ namespace Cyber_Espace_Entrainement.Services
         public Utilisateurs? CurrentUser => _currentUser;
         public bool IsAuthenticated => _currentUser != null;
         public string? CurrentLogin => _currentUser?.Login;
+        public string? CurrentPassword => _currentUser?.MotPasse;
         public UserRole? CurrentRole => _currentUser?.Role;
         public string? CurrentNom => _currentUser?.Nom;
+        public DateTime? CurrentDateCrea => _currentUser?.DateCreation;
+        public DateTime? CurrentDerniereCo => _currentUser?.DerniereConnexion;
         public string? CurrentPrenom => _currentUser?.Prenom;
         public string? CurrentEmail => _currentUser?.Email;
         public int? CurrentUserId => _currentUser?.UserId;
         public int? CurrentScore => _currentUser?.ScoreTotal;
         public string? CurrentSection => _currentUser?.Section;
-        public string? CurrentMotPasse => _currentUser?.MotPasse;
 
         // Constructeur privé pour le singleton
         private SessionService() { }
@@ -53,6 +55,12 @@ namespace Cyber_Espace_Entrainement.Services
         {
             return _currentUser?.Role == role;
         }
+
+        public void UpdateSessionUser(Utilisateurs user)
+        {
+            _currentUser = user;
+        }
+
 
         /// <summary>
         /// Obtenir le nom complet de l'utilisateur
