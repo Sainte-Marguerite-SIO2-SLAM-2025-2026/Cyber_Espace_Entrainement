@@ -95,24 +95,7 @@
 
 
 
-                        <!-- Prénom + Nom -->
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                                <StackPanel Width="160">
-                                    <TextBlock Text="Prénom" FontWeight="SemiBold"/>
-                                <TextBox Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
-         Style="{StaticResource InputStyle}"
-                                         IsEnabled="False"/>
-                            </StackPanel>
-                                
-                                
-                                <StackPanel Width="160" Margin="20,0,0,0">
-                                    <TextBlock Text="Nom" FontWeight="SemiBold"/>
-                                <TextBox Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
-         Style="{StaticResource InputStyle}"
-                                         IsEnabled="False"/>
-
-                            </StackPanel>
-                            </StackPanel>
+                       
                             <!-- Pseudo  -->
                             <StackPanel Margin="0,0,0,15">
                                
@@ -133,7 +116,27 @@
          Style="{StaticResource InputStyle}"
          IsEnabled="{Binding IsEditMode}"/>
                     </StackPanel>
-                            <!-- Section -->
+
+                    <!-- Prénom + Nom -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <StackPanel Width="160">
+                            <TextBlock Text="Prénom" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
+Style="{StaticResource InputStyle}"
+                                IsEnabled="False"/>
+                        </StackPanel>
+
+
+                        <StackPanel Width="160" Margin="20,0,0,0">
+                            <TextBlock Text="Nom" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
+Style="{StaticResource InputStyle}"
+                                IsEnabled="False"/>
+
+                        </StackPanel>
+                    </StackPanel>
+                            
+                    <!-- Section -->
                             <StackPanel Margin="0,0,0,15">
                                 <TextBlock Text="Section" FontWeight="SemiBold"/>
                             <TextBox Text="{Binding Section, UpdateSourceTrigger=PropertyChanged}"
@@ -144,13 +147,13 @@
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
                                 <StackPanel Width="160">
                                     <TextBlock Text="Date de création" FontWeight="SemiBold"/>
-                                <TextBox Text="{Binding DateCreation, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBox Text="{Binding DateCreation, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
          Style="{StaticResource InputStyle}"
                                     IsEnabled="False"/>
                             </StackPanel>
                                 <StackPanel Width="160" Margin="20,0,0,0">
                                     <TextBlock Text="Dernière connexion" FontWeight="SemiBold"/>
-                                <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
          Style="{StaticResource InputStyle}"
                                          IsEnabled="False"/>
                             </StackPanel>
@@ -253,8 +256,8 @@ Margin="0,0,10,0"
                     <Button x:Name="btnQuitter"
                     Content="❌ Quitter"
                     Style="{StaticResource QuitButton}"
-                    Command="{Binding QuitterCommand}"
-                    Height="35"/>
+                    Click="QuitButton_Click"
+                    Height="35" Cursor="Hand"/>
                 </StackPanel>
             </Grid>
         </Border>

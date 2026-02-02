@@ -22,6 +22,8 @@ namespace Cyber_Espace_Entrainement.Data
 
         //Représente la table Activite
         public DbSet<Cours> Cours { get; set; }
+        public DbSet<LogConnexion> logConnexion { get; set; }
+
 
         // Configuration de la connexion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

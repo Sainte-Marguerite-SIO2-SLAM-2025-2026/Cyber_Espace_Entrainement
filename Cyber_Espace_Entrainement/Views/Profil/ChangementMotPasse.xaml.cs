@@ -1,4 +1,5 @@
-﻿using Cyber_Espace_Entrainement.ViewModels.Profil;
+﻿using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.ViewModels.Profil;
 using System;
 using System.Collections.Generic;
 using System.Text;
