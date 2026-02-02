@@ -11,7 +11,7 @@ namespace Cyber_Espace_Entrainement.Models
     /// Modèle Activite correspondant à la table Activite de la BDD
     /// </summary>
     [Table("Activite")]
-    [PrimaryKey(nameof(Id), nameof(CoursId))] // Correct pour EF Core 7+
+    [PrimaryKey(nameof(Id), nameof(CoursId))]
     public class Activites
     {
         [Column("ID")]

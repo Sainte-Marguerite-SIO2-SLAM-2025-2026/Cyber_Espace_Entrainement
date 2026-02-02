@@ -10,14 +10,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Activite.Phishing
+namespace Cyber_Espace_Entrainement.Views.Activite
 {
-    /// <summary>
-    /// Logique d'interaction pour Jeu.xaml
-    /// </summary>
-    public partial class Jeu : Window
+    public partial class PhishingFacileView : Window
     {
-        public Jeu()
+        public PhishingFacileView()
         {
             InitializeComponent();
         }
