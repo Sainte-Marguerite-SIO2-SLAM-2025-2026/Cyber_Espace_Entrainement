@@ -24,5 +24,14 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             InitializeComponent();
             DataContext = new ChoixNiveauViewModel(activites);
         }
+
+        /// <summary>
+        /// Bouton Retour - Fermer cette fenêtre et retourner à l'accueil des tests
+        /// </summary>
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Fermer la fenêtre (retour au menu principal)
+            this.Close();
+        }
     }
 }

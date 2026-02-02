@@ -46,5 +46,13 @@ namespace Cyber_Espace_Entrainement.Models
         [MaxLength(10)]
         [Column("Niveau")]
         public string? Niveau { get; set; }
+
+        [MaxLength(255)]
+        [Column("ImageBouton")]
+        public string? ImageBouton { get; set; }
+
+        [MaxLength(255)]
+        [Column("Description")]
+        public string? Description { get; set; }
     }
 }
