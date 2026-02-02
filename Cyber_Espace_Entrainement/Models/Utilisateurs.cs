@@ -10,7 +10,7 @@ namespace Cyber_Espace_Entrainement.Models
     /// Modèle User correspondant à la table Utilisateur de la BDD
     /// MODIFICATION : Table renommée de 'users' à 'Utilisateur'
     /// </summary>
-    [Table("Utilisateur")] // MODIFIÉ : Nom de table changé
+    [Table("Utilisateur")]
     public class Utilisateurs
     {
         [Key]
