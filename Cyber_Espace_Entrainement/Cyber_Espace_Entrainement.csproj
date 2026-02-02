@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <None Remove="Resources\icon_user_120.png" />
+    <None Remove="Resources\Images\AccueilTest\test.png" />
     <None Remove="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <None Remove="Resources\Images\Cours\koala.jpg" />
     <None Remove="Resources\Images\Cours\pepe.jpg" />
@@ -101,6 +102,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\icon_user_120.png" />
+    <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />

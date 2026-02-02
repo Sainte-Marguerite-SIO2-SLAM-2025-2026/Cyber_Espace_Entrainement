@@ -13,7 +13,7 @@
     <Window.DataContext>
         <vm:AccueilTestViewModel/>
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="125"/>
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <!-- EN-TÊTE avec bouton retour -->
-        <Border Grid.Row="0" Background="#43A047" Padding="20">
+        <Border Grid.Row="0" Background="#055E02" Padding="20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -30,12 +30,12 @@
                     <ColumnDefinition Width="Auto"/>
 
                 </Grid.ColumnDefinitions>
-                
+
                 <!-- BOUTON RETOUR (à gauche) -->
                 <Button Grid.Column="0"
                         Content="↩️   Retour"
                         Click="BackButton_Click"
-                        Background="BlueViolet"
+                        Background="#7A61A6"
                         Foreground="White"
                         Padding="15,10"
                         FontSize="14"
@@ -57,7 +57,8 @@
                     </Button.Style>
                 </Button>
 
-                <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,762,0">
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,800,0">
+
                     <TextBlock Text="ACCUEIL DES TESTS" 
                                FontSize="28" 
                                FontWeight="Bold" 
@@ -69,9 +70,9 @@
                 </StackPanel>
             </Grid>
         </Border>
-        
+
         <!-- Génération des boutons pour chaque activité de la BDD -->
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Activites}">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Activites}" Margin="10,0,-10,74" Grid.RowSpan="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -99,7 +100,7 @@
                         <Button.RenderTransform>
                             <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1"/>
                         </Button.RenderTransform>
-                        
+
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border"
@@ -112,14 +113,14 @@
                                     <Border.Effect>
                                         <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
                                     </Border.Effect>
-                                    
+
                                     <StackPanel>
                                         <!-- Image -->
-                                        <Image Source="{Binding Image}"
-                                       Height="150"
-                                       Stretch="UniformToFill"
-                                       Margin="5"
-                                       ClipToBounds="True"/>
+                                        <Image Source="/Resources/Images/AccueilTest/test.png"
+                                        Height="200"
+                                        Stretch="Fill"
+                                        Margin="5"
+                                        ClipToBounds="True"/>
 
                                         <!-- Libelle -->
                                         <TextBlock Text="{Binding Libelle}"
@@ -129,8 +130,8 @@
                                            TextAlignment="Center"
                                            TextWrapping="Wrap"/>
 
-                                        <!-- Description -->
-                                        <TextBlock Text="{Binding Description}"
+                                        <!-- Thème -->
+                                        <TextBlock Text="{Binding Theme}"
                                            FontSize="14"
                                            Margin="10,0,10,10"
                                            TextWrapping="Wrap"
@@ -138,14 +139,14 @@
                                            TextAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
-                                
+
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter TargetName="border" Property="BorderBrush" Value="BlueViolet"/>
                                         <Setter TargetName="border" Property="BorderThickness" Value="3"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
-                                
+
                             </ControlTemplate>
                         </Button.Template>
 
