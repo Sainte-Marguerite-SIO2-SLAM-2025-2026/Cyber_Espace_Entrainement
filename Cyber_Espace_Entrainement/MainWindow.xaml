@@ -59,7 +59,9 @@
                         Style="{StaticResource ModernButton}" 
                         Command="{Binding ConnexionCommand}" 
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
-                        Height="40" Cursor="Arrow"/>
+                        Height="40" 
+                        Cursor="Arrow"
+                        IsDefault="True"/>
 
                 <Button Content="Pas encore de compte ? S'inscrire" 
                         Margin="0,15,0,0" 
