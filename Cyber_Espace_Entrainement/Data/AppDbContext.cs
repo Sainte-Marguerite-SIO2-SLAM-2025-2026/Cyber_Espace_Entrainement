@@ -130,6 +130,23 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(a => a.Niveau).IsRequired(false);
             });
 
+            modelBuilder.Entity<Cours>(entity =>
+            {
+                entity.ToTable("Cours");
+                entity.HasKey(c => c.ID);
+                entity.Property(c => c.ID).HasColumnName("ID");
+                entity.Property(c => c.Titre).IsRequired(false);
+                entity.Property(c => c.Definition).IsRequired(false);
+                entity.Property(c => c.Explication).IsRequired(false);
+                entity.Property(c => c.Exemple).IsRequired(false);
+                entity.Property(c => c.Image1).IsRequired(false);
+                entity.Property(c => c.Image2).IsRequired(false);
+                entity.Property(c => c.Image3).IsRequired(false);
+                entity.Property(c => c.Lien).IsRequired(false);
+                entity.Property(c => c.Theme).IsRequired(false);
+
+            });
+
         }
         // Méthode simple de hashage (à améliorer avec BCrypt)
         private static string HashPassword(string password)
