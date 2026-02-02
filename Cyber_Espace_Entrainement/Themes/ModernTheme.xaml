@@ -247,6 +247,12 @@
         <Setter Property="Background" Value="{StaticResource ErrorRedBrush}"/>
     </Style>
 
+
+    <!-- Style pour le bouton déconnexion (hover géré en code-behind) -->
+    <Style x:Key="DeconnexionButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+        <Setter Property="Background" Value="{StaticResource DeconnexionSlateBrush}"/>
+    </Style>
+
     <!-- Style pour les messages d'erreur -->
     <Style x:Key="ErrorText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Verdana"/>
@@ -255,63 +261,63 @@
         <Setter Property="Margin" Value="0,3,0,0"/>
     </Style>
 
-    
+
     <!--style view profile pas définitifs-->
-        <!-- Ombre légère -->
-        <DropShadowEffect x:Key="ShadowEffect"
+    <!-- Ombre légère -->
+    <DropShadowEffect x:Key="ShadowEffect"
                       BlurRadius="12"
                       ShadowDepth="2"
                       Opacity="0.25"/>
 
-        <!-- Style TextBox -->
-        <Style x:Key="InputStyle" TargetType="TextBox">
-            <Setter Property="Margin" Value="0,5,0,0"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="BorderBrush" Value="#C9D1D9"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="#FAFAFA"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
+    <!-- Style TextBox -->
+    <Style x:Key="InputStyle" TargetType="TextBox">
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="BorderBrush" Value="#C9D1D9"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="#FAFAFA"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
 
-        <!-- Style PasswordBox -->
-        <Style x:Key="InputPasswordStyle" TargetType="PasswordBox">
-            <Setter Property="Margin" Value="0,5,0,0"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="BorderBrush" Value="#C9D1D9"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="#FAFAFA"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
+    <!-- Style PasswordBox -->
+    <Style x:Key="InputPasswordStyle" TargetType="PasswordBox">
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="BorderBrush" Value="#C9D1D9"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="#FAFAFA"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
 
-        <!-- Bouton principal -->
-        <Style x:Key="PrimaryButton" TargetType="Button">
-            <Setter Property="Background" Value="#1E88E5"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="14,8"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-        </Style>
+    <!-- Bouton principal -->
+    <Style x:Key="PrimaryButton" TargetType="Button">
+        <Setter Property="Background" Value="#1E88E5"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="14,8"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
 
-        <!-- Bouton secondaire -->
-        <Style x:Key="SecondaryButton2" TargetType="Button">
-            <Setter Property="Background" Value="#B0BEC5"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="14,8"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-        </Style>
+    <!-- Bouton secondaire -->
+    <Style x:Key="SecondaryButton2" TargetType="Button">
+        <Setter Property="Background" Value="#B0BEC5"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="14,8"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
 
-        <!-- Bouton danger -->
-        <Style x:Key="DangerButton" TargetType="Button">
-            <Setter Property="Background" Value="#E53935"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="10,5"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-        </Style>
+    <!-- Bouton danger -->
+    <Style x:Key="DangerButton" TargetType="Button">
+        <Setter Property="Background" Value="#E53935"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
 
-    
+
 
 
 </ResourceDictionary>

@@ -14,55 +14,55 @@ namespace Cyber_Espace_Entrainement.Models
     public class Utilisateurs
     {
         [Key]
-        [Column("ID")] // MODIFIÉ : Colonne renommée de 'user_id' à 'ID'
+        [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
         [Required]
-        [MaxLength(50)] // MODIFIÉ : Taille augmentée de 30 à 50
-        [Column("Login")] // MODIFIÉ : Première lettre en majuscule
+        [MaxLength(50)] 
+        [Column("Login")]
         public string Login { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(100)] // MODIFIÉ : Taille réduite de 255 à 100
-        [Column("Password")] // MODIFIÉ : Colonne renommée de 'motPasse' à 'Password'
+        [MaxLength(100)]
+        [Column("Password")]
         public string MotPasse { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(255)] // Taille inchangée
-        [Column("Email")] // MODIFIÉ : Première lettre en majuscule
+        [MaxLength(255)]
+        [Column("Email")]
         public string Email { get; set; } = string.Empty;
 
-        // AJOUTÉ : Nouveau champ Nom
+        
         [MaxLength(50)]
         [Column("Nom")]
         public string? Nom { get; set; }
 
-        // AJOUTÉ : Nouveau champ Prenom
+        
         [MaxLength(50)]
         [Column("Prenom")]
         public string? Prenom { get; set; }
 
-        // AJOUTÉ : Nouveau champ Section
+        
         [MaxLength(5)]
         [Column("Section")]
         public string? Section { get; set; }
 
         [Required]
-        [Column("Role")] // MODIFIÉ : Première lettre en majuscule
+        [Column("Role")] 
         public UserRole Role { get; set; } = UserRole.Prof;
 
-        // AJOUTÉ : Nouveau champ ScoreTotal
+        
         [Column("ScoreTotal")]
         public int? ScoreTotal { get; set; }
 
-        [Column("DateCreation")] // MODIFIÉ : Première lettre en majuscule
+        [Column("DateCreation")]
         public DateTime DateCreation { get; set; } = DateTime.Now;
 
-        [Column("DerniereConnexion")] // MODIFIÉ : Première lettre en majuscule
+        [Column("DerniereConnexion")]
         public DateTime? DerniereConnexion { get; set; }
 
-        // Propriété calculée pour l'affichage - INCHANGÉE
+        // Propriété calculée pour l'affichage
         [NotMapped]
         public string RoleDisplay => Role switch
         {
@@ -75,7 +75,6 @@ namespace Cyber_Espace_Entrainement.Models
 
     /// <summary>
     /// Énumération des rôles (correspondant aux valeurs VARCHAR dans SQLite)
-    /// MODIFICATION : Les valeurs correspondent maintenant aux valeurs texte de la BDD
     /// </summary>
     public enum UserRole
     {
