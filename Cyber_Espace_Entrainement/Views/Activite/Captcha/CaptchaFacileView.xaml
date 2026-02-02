@@ -6,161 +6,238 @@
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite.Captcha"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite.Captcha"
         mc:Ignorable="d"
-        Title="CaptchaFacileView" 
-        SizeToContent="Height"
-        Height="1080" 
-        Width="1920">
+        Title="CaptchaFacileView"
+        Height="1080"
+        Width="1920"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        ResizeMode="NoResize">
     <Window.DataContext>
-        <vm:CaptchaFacileViewModel/>
+        <vm:CaptchaFacileViewModel />
     </Window.DataContext>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <!-- Captcha En tete -->
-        
+        <!-- Ajout des définitions de lignes : en-tête, contenu variable, pied de page -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <Border 
-                Height="100" 
-                Background="#FF2D2D30" 
-                VerticalAlignment="Center" Grid.ColumnSpan="2">
-            <TextBlock Text="Captcha Facile" 
-                       Foreground="White" 
-                       FontSize="36" 
-                       FontWeight="Bold" 
-                       VerticalAlignment="Center" 
-                    Margin="0,0,20,0"/>
+        <!-- Captcha En tete -->
+        <Border Grid.Row="0"
+                Background="#1565C0"
+                Padding="30,40"
+                Margin="0,0,0,10">
+            <StackPanel Grid.Column="1"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Captcha"
+                           FontSize="42"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center" />
+                <TextBlock Text="Niveau Facile"
+                           Margin="0,0,0,0"
+                           FontSize="18"
+                           Foreground="#BBDEFB"
+                           HorizontalAlignment="Center" />
+            </StackPanel>
+
+
         </Border>
 
-
-        <!--#endregion-->
-
         <!-- Captcha Intro -->
-        <Grid Grid.Row="1">
-            <StackPanel Grid.ColumnSpan="2">
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <StackPanel Grid.Row="1"
+                        Grid.ColumnSpan="2">
+
                 <StackPanel.Style>
                     <Style TargetType="StackPanel">
-                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Intro}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
+                            <DataTrigger Binding="{Binding Intro}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
-                <Button Command="{Binding RefreshCommand}"
-                    x:Name="RefreshButton" 
-                        Content="hop" 
-                        HorizontalAlignment="Left" 
-                        Margin="10" 
-                        Width="407" 
-                        Height="296" Background="#FFDDDDDD" />
+
+                <Button Height="100"
+                        Width="200"
+                        Content="Commencer le Captcha"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Command="{Binding Niveau1Command}" />
             </StackPanel>
+
         </Grid>
 
-
         <!-- Captcha Jeu 1 -->
-        <StackPanel Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="1"
+                    Grid.ColumnSpan="2">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding JeuCaptcha}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
+                        <DataTrigger Binding="{Binding JeuCaptcha}"
+                                     Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
 
+            <Button Height="100"
+                    Width="200"
+                    Content="Commencer le Captcha"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Command="{Binding Niveau2Command}" />
 
-            <CheckBox x:Name="CaptchaCheckBox" 
-                Content="I'm not a robot" 
-                HorizontalAlignment="Left" 
-                Margin="10" 
-                VerticalAlignment="Top" 
-                RenderTransformOrigin="0.5,0.5" 
-                Height="71" Width="272" 
-                IsChecked="False" 
-                Cursor="Hand" Grid.Row="1" 
-                VerticalContentAlignment="Center" 
-                BorderBrush="#FF707070" 
-                Checked="CaptchaCheckBox_Checked">
+            <CheckBox x:Name="CaptchaCheckBox"
+                      Content="I'm not a robot"
+                      HorizontalAlignment="Left"
+                      Margin="10"
+                      VerticalAlignment="Top"
+                      RenderTransformOrigin="0.5,0.5"
+                      Height="71"
+                      Width="272"
+                      IsChecked="False"
+                      Cursor="Hand"
+                      Grid.Row="1"
+                      VerticalContentAlignment="Center"
+                      BorderBrush="#FF707070"
+                      Checked="CaptchaCheckBox_Checked">
                 <CheckBox.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-360.351"/>
-                        <TranslateTransform/>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-360.351" />
+                        <TranslateTransform />
                     </TransformGroup>
                 </CheckBox.RenderTransform>
             </CheckBox>
         </StackPanel>
 
-
         <!-- Captcha Jeu 2 -->
-        <StackPanel Grid.ColumnSpan="2">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding JeuCaptcha2}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <StackPanel Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding JeuCaptcha2}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
 
+                <Button Height="100"
+                        Width="200"
+                        Content="Commencer le Captcha"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Command="{Binding Niveau3Command}" />
 
-
-            <Slider x:Name="CaptchaSlider" 
-            Margin="403,49,0,0" 
-            Grid.Row="1" 
-            Width="346" Height="109" Cursor="Hand" 
-            VerticalAlignment="Top" 
-            HorizontalAlignment="Left" 
-            RenderTransformOrigin="0.5,0.5">
-                <Slider.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-0.225"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-52.996"/>
-                    </TransformGroup>
-                </Slider.RenderTransform>
-            </Slider>
-
-        </StackPanel>
+                <Slider x:Name="CaptchaSlider"
+                        Margin="403,49,0,0"
+                        Grid.Row="1"
+                        Width="346"
+                        Height="109"
+                        Cursor="Hand"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        RenderTransformOrigin="0.5,0.5">
+                    <Slider.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform AngleX="-0.225" />
+                            <RotateTransform />
+                            <TranslateTransform X="-52.996" />
+                        </TransformGroup>
+                    </Slider.RenderTransform>
+                </Slider>
+            </StackPanel>
+        </Grid>
 
         <!-- Captcha Outro -->
-        <StackPanel Grid.ColumnSpan="2">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Outro}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <StackPanel Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Outro}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+        </Grid>
 
-        </StackPanel>
+        <!-- footer -->
+        <Border Grid.Row="2"
+                Background="White"
+                Padding="20"
+                BorderBrush="#e0e0e0"
+                BorderThickness="0,1,0,0">
+            <Grid>
+                <TextBlock Text="© 2025 - Plateforme de Cybersécurité"
+                           FontSize="12"
+                           Foreground="#9E9E9E"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
 
-
-
-
-
-
-
-
-
-
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <TextBlock Text="Version 1.0"
+                               FontSize="12"
+                               Foreground="#9E9E9E"
+                               VerticalAlignment="Center"
+                               Margin="0,0,20,0" />
+                    <Button x:Name="BtnDeco"
+                            Content="🔓 Déconnexion"
+                            Margin="0,0,10,0" />
+                    <Button x:Name="BtnQuitter"
+                            Content="❌ Quitter" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Button x:Name="ButtonRetour"
+                Grid.Column="0"
+                Content="↩️   Retour"
+                Background="#FFDC6F12"
+                Foreground="White"
+                Padding="15,10"
+                FontSize="20"
+                FontWeight="Bold"
+                BorderThickness="0"
+                Cursor="Hand"
+                VerticalAlignment="Center"
+                Margin="48,0,1709,0"
+                Height="56"
+                Click="ButtonRetour_Click" />
     </Grid>
 </Window>

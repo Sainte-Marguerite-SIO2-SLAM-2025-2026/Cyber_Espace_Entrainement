@@ -84,7 +84,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         /// - Crée les RelayCommand pour associer l'exécution et la validation des commandes.
         /// </summary>
         public ConnexionViewModel()
-        {
+        { 
             // Initialiser le service avant toute utilisation
             _userService = new UserService();
 
