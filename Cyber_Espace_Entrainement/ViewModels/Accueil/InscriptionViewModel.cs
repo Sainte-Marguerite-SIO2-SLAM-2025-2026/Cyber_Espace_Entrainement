@@ -321,11 +321,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         {
             if (IsFormValid())
             {
-                MessageBoxService.ShowInformation(
-                    $"Inscription réussie : {Login}",
-                    "Succès"
-                );
-
 
                 // Création de l'objet Utilisateurs
                 Utilisateurs nouvelUtilisateur = new Utilisateurs
@@ -342,9 +337,26 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
                 // Ajout de l'utilisateur à la base de données
                 _userService = new UserService();
-                _userService.AddUser(nouvelUtilisateur);
+                var (succes, message) = _userService.AddUser(nouvelUtilisateur);
 
-                NaviguerVersConnexion(parameter);
+                if (succes)
+                {
+                    MessageBoxService.ShowInformation(
+                    $"Inscription réussie : {Login}",
+                    "Succès"
+                    );
+                    NaviguerVersConnexion(parameter);
+                }
+                else
+                {
+                    MessageBoxService.ShowError(
+                    $"Échec de l'inscription : {message}",
+                    "Erreur"
+                    );
+                }
+
+
+
             }
             else
             {
