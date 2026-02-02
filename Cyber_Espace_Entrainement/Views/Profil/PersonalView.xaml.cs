@@ -66,10 +66,22 @@ namespace Cyber_Espace_Entrainement.Views.Profil
 
         }
 
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBoxService.ShowQuestion(
+                "Voulez-vous vraiment quitter l'application ?",
+                "Confirmation"
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+        }
         // modif doivent se faire dans la bdd pwd,
         // faire le fonctionnement valider modif
         // mdp quand il est bon vider champs voir pour close le mdp
         // changer disposition (login email en haut)
-        
+
     }
 }
