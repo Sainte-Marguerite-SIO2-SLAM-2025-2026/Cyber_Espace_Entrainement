@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Cyber_Espace_Entrainement.Views.Cours.CoursContenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Cours"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Cours"
+      Height="1080" 
+      Width="1920"
+      WindowStartupLocation="CenterScreen"
+      Background="#f5f5f5"
+      WindowState="Maximized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--#region EN-TÊTE -->
+        <Border Grid.Row="0" Background="#1565C0" Padding="30,40" Margin="0,0,0,10">
+            <Grid>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- Titre du cours -->
+                    <TextBlock x:Name="TxtTitreCours"
+                               Text="{Binding Titre}" 
+                               FontSize="48" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               MaxWidth="1200"/>
+
+                    <TextBlock Text="Cyber Espace Entrainement - Plateforme de Cybersécurité" 
+                               FontSize="16" 
+                               Foreground="#BBDEFB" 
+                               HorizontalAlignment="Center"
+                               Margin="0,15,0,0"/>
+                </StackPanel>
+
+                <!--#region BOUTON PROFIL -->
+                <Button x:Name="Profile"
+                        Width="100" 
+                        Height="100"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,0"
+                        Padding="0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Cursor="Hand"
+                        ToolTip="Mon Profil">
+                    <Border Background="White" 
+                            CornerRadius="50"
+                            Width="100"
+                            Height="100">
+                        <Image Source="/Resources/icon_user_120.png" 
+                               Stretch="UniformToFill"
+                               Margin="10"/>
+                    </Border>
+                </Button>
+                <!--#endregion -->
+            </Grid>
+        </Border>
+        <!--#endregion -->
+
+        <!--#region CONTENU PRINCIPAL -->
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="40,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <!-- Colonne gauche : Texte (60%) -->
+                    <ColumnDefinition Width="3*"/>
+                    <!-- Espacement -->
+                    <ColumnDefinition Width="30"/>
+                    <!-- Colonne droite : Images (40%) -->
+                    <ColumnDefinition Width="1.7*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--#region COLONNE GAUCHE - TEXTE -->
+                <StackPanel Grid.Column="0">
+
+                    <!-- Définition -->
+                    <Border Background="White" 
+                            CornerRadius="10" 
+                            Padding="30"
+                            Margin="0,0,0,25">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Opacity="0.15" BlurRadius="15" ShadowDepth="3" Direction="270"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <TextBlock Text="📖 Définition" 
+                                       FontSize="28" 
+                                       FontWeight="SemiBold"
+                                       Foreground="#1565C0"
+                                       Margin="0,0,0,15"/>
+
+                            <TextBlock x:Name="TxtDefinition"
+                                       FontSize="18"
+                                       Foreground="#424242"
+                                       TextWrapping="Wrap"
+                                       LineHeight="28"
+                                       TextAlignment="Justify"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Explication -->
+                    <Border Background="White" 
+                            CornerRadius="10" 
+                            Padding="30"
+                            Margin="0,0,0,25">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Opacity="0.15" BlurRadius="15" ShadowDepth="3" Direction="270"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <TextBlock Text="💡 Explication" 
+                                       FontSize="28" 
+                                       FontWeight="SemiBold"
+                                       Foreground="#0277BD"
+                                       Margin="0,0,0,15"/>
+
+                            <TextBlock x:Name="TxtExplication"
+                                       FontSize="18"
+                                       Foreground="#424242"
+                                       TextWrapping="Wrap"
+                                       LineHeight="28"
+                                       TextAlignment="Justify"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Exemple -->
+                    <Border Background="White" 
+                            CornerRadius="10" 
+                            Padding="30"
+                            Margin="0,0,0,25">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Opacity="0.15" BlurRadius="15" ShadowDepth="3" Direction="270"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <TextBlock Text="✏️ Exemple" 
+                                       FontSize="28" 
+                                       FontWeight="SemiBold"
+                                       Foreground="#00838F"
+                                       Margin="0,0,0,15"/>
+
+                            <TextBlock x:Name="TxtExemple"
+                                       FontSize="18"
+                                       Foreground="#424242"
+                                       TextWrapping="Wrap"
+                                       LineHeight="28"
+                                       TextAlignment="Justify"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+                <!--#endregion -->
+
+                <!--#region COLONNE DROITE - IMAGES -->
+                <StackPanel Grid.Column="2">
+
+                    <!-- Image 1 -->
+                    <Border x:Name="BorderImage1"
+                            Background="White" 
+                            CornerRadius="10" 
+                            Padding="15"
+                            Margin="0,0,0,25">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Opacity="0.15" BlurRadius="15" ShadowDepth="3" Direction="270"/>
+                        </Border.Effect>
+                        <Image x:Name="ImgCours1"
+                               Stretch="Uniform"
+                               MaxHeight="300"
+                               HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Image 2 -->
+                    <Border x:Name="BorderImage2"
+                            Background="White" 
+                            CornerRadius="10" 
+                            Padding="15"
+                            Margin="0,0,0,25">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Opacity="0.15" BlurRadius="15" ShadowDepth="3" Direction="270"/>
+                        </Border.Effect>
+                        <Image x:Name="ImgCours2"
+                               Stretch="Uniform"
+                               MaxHeight="300"
+                               HorizontalAlignment="Center"/>
+                    </Border>
+
+                </StackPanel>
+                <!--#endregion -->
+            </Grid>
+        </ScrollViewer>
+        <!--#endregion -->
+
+        <!--#region PIED DE PAGE -->
+        <Border Grid.Row="2" 
+                Background="#263238" 
+                Padding="20"
+                Margin="0,10,0,0">
+            <Grid>
+                <TextBlock Text="© 2025 Cyber Espace Entrainement - Formation en Cybersécurité" 
+                           FontSize="14"
+                           Foreground="#B0BEC5"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                <Button Content="← Retour"
+                        HorizontalAlignment="Left"
+                        Background="#1565C0"
+                        Foreground="White"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Padding="25,10"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BtnRetour_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1565C0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1976D2"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Border>
+        <!--#endregion -->
+    </Grid>
+
+    <Window.Resources>
+        <!-- Convertisseur pour inverser la visibilité -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <!-- Convertisseur personnalisé inverse (à ajouter dans App.xaml ou un fichier de ressources) -->
+        <!-- Si vous n'avez pas ce convertisseur, commentez la ligne avec InverseBooleanToVisibilityConverter -->
+    </Window.Resources>
+</Window>
