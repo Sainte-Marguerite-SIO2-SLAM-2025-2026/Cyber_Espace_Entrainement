@@ -10,14 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Tests
+namespace Cyber_Espace_Entrainement.Views.Activite
 {
     /// <summary>
     /// Logique d'interaction pour MorseTestView.xaml
     /// </summary>
-    public partial class MorseTestView : Window
+    public partial class MorseView : Window
     {
-        public MorseTestView()
+        public MorseView()
         {
             InitializeComponent();
         }

@@ -37,7 +37,12 @@ namespace Cyber_Espace_Entrainement.Services
                 // Utilisation de .ToList() synchrone
                 return _context.Activites
                     .OrderBy(a => a.Libelle)
+                    .ToList()
+                    .GroupBy(a => a.Libelle)
+                    .Select(g => g.First())
                     .ToList();
+                     
+                    
             }
             catch (Exception ex)
             {
@@ -61,9 +66,12 @@ namespace Cyber_Espace_Entrainement.Services
         /// </summary>
         /// <param name="libelle"></param>
         /// <returns></returns>
-        public Activites? GetActiviteByLibelle(string libelle)
+        public List<Activites> GetActiviteByLibelle(string libelle)
         {
-            return _context.Activites.FirstOrDefault(a => a.Libelle == libelle);
+            return _context.Activites
+                .Where(a => a.Libelle == libelle)
+                .OrderBy(a => a.Niveau)
+                .ToList();
         }
 
         /// <summary>
