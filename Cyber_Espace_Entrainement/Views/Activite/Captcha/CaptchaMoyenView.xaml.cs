@@ -10,21 +10,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Activite.Phishing
+namespace Cyber_Espace_Entrainement.Views.Activite.Captcha
 {
     /// <summary>
-    /// Logique d'interaction pour Jeu.xaml
+    /// Logique d'interaction pour CaptchaMoyenView.xaml
     /// </summary>
-    public partial class Jeu : Window
+    public partial class CaptchaMoyenView : Window
     {
-        public Jeu()
+        public CaptchaMoyenView()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

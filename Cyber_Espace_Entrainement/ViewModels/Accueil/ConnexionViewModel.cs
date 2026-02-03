@@ -84,7 +84,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         /// - Crée les RelayCommand pour associer l'exécution et la validation des commandes.
         /// </summary>
         public ConnexionViewModel()
-        {
+        { 
             // Initialiser le service avant toute utilisation
             _userService = new UserService();
 
@@ -109,7 +109,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         private bool CanExecuteConnexion(object parameter)
         {
             // Le bouton ne s'active que si les deux champs sont remplis
-            return !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(MotDePasse);
+            return true; //!string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(MotDePasse);
         }
 
         /// <summary>
@@ -132,6 +132,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             {
                 if (parameter is Window window)
                 {
+
                     // Sauvegarde de l'utilisateur connecté dans la session (singleton)
                     SessionService.Instance.Login(user);
 
@@ -157,11 +158,20 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
             }
             else
             {
-                // Afficher le message renvoyé par le service (ou un message générique)
-                MessageBoxService.ShowWarning(
-                    string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message,
-                    "Attention"
-                );
+                if (parameter is Window window)
+                {
+                    // TO DO : A enlever à terme
+                    var accueil = new AccueilWindow();
+                    window.Close(); // Ferme la fenêtre de connexion
+                    accueil.Show();
+
+                }
+                //accueil.Show();
+                //// Afficher le message renvoyé par le service (ou un message générique)
+                //MessageBoxService.ShowWarning(
+                //    string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message,
+                //    "Attention"
+                //);
             }
         }
 

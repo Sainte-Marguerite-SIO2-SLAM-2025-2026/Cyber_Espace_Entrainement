@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace Cyber_Espace_Entrainement.Services
 {
     /// <summary>
-    /// Service pour gérer les opérations sur les activités
+    /// Service pour gérer les opérations sur les Cours
     /// </summary>
-    public class ActiviteService
+    public class CoursService
     {
         private readonly AppDbContext _context;
 
-        public ActiviteService() 
+        public CoursService()
         {
             _context = new AppDbContext();
             // S'assurer que la base existe
@@ -28,26 +28,20 @@ namespace Cyber_Espace_Entrainement.Services
         //
 
         /// <summary>
-        /// Récupérer toutes les activités (version async)
+        /// Récupérer toutes les Cours
         /// </summary>
-        public List<Activites> GetAllActivites()
+        public List<Cours> GetAllCours()
         {
             try
             {
-                // Utilisation de .ToList() synchrone
-                return _context.Activites
-                    .OrderBy(a => a.Libelle)
-                    .ToList()
-                    .GroupBy(a => a.Libelle)
-                    .Select(g => g.First())
+                return _context.Cours
+                    .OrderBy(a => a.Titre)
                     .ToList();
-                     
-                    
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Erreur : {ex.Message}");
-                return new List<Activites>();
+                return new List<Cours>();
             }
         }
 
@@ -56,22 +50,19 @@ namespace Cyber_Espace_Entrainement.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Activites? GetActiviteById(int id)
+        public Cours? GetCoursById(int id)
         {
-            return _context.Activites.Find(id);
+            return _context.Cours.Find(id);
         }
 
         /// <summary>
-        /// Récupérer une activité par un libellé
+        /// Récupérer une cour par un titre
         /// </summary>
         /// <param name="libelle"></param>
         /// <returns></returns>
-        public List<Activites> GetActiviteByLibelle(string libelle)
+        public Cours? GetCoursByLibelle(string titre)
         {
-            return _context.Activites
-                .Where(a => a.Libelle == libelle)
-                .OrderBy(a => a.Niveau)
-                .ToList();
+            return _context.Cours.FirstOrDefault(a => a.Titre == titre);
         }
 
         /// <summary>
