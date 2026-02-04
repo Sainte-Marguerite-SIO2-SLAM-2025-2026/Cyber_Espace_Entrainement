@@ -316,12 +316,17 @@ namespace Cyber_Espace_Entrainement.Services
         /// </summary>
         public DateTime? GetDerniereConnexionPrecedente(int userId)
         {
-            return _context.logConnexion
+            var connexions = _context.logConnexion
                 .Where(l => l.UserId == userId)
                 .OrderByDescending(l => l.derniereConnexion)
-                .Skip(1) // on saute la plus récente
                 .Select(l => l.derniereConnexion)
-                .FirstOrDefault();
+                .ToList();
+
+            // S'il n'y a pas d'avant-dernière connexion
+            if (connexions.Count < 2)
+                return null;
+
+            return connexions[1];
         }
 
 
