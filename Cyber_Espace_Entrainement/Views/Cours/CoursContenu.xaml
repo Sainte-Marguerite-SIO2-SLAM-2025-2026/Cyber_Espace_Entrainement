@@ -62,11 +62,11 @@
                     Margin="0,0,20,10"
                     Padding="0"
                     Background="Transparent"
-                    BorderBrush="{StaticResource PrimaryBlueBrush}"
+                    BorderBrush="#1565C0"
                     Cursor="Hand"
                     ToolTip="Mon Profil">
                     <Image Source="/Resources/icon_user_120.png" 
-                    Stretch="UniformToFill"/>
+                   Stretch="UniformToFill"/>
                 </Button>
                 <!--#endregion -->
             </Grid>
