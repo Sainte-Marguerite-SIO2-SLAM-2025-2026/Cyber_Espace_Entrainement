@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Cyber_Espace_Entrainement.Views.Cours.CoursContenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Cours"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Cours"
+      Height="1080" 
+      Width="1920"
+      WindowStartupLocation="CenterScreen"
+      Background="#f5f5f5"
+      WindowState="Maximized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--#region EN-TÊTE -->
+        <Border Grid.Row="0" Background="{StaticResource PrimaryBlueBrush}" Padding="30,40" Margin="0,0,0,10">
+            <Grid>
+                <!-- Bouton Retour avec couleur complémentaire (Orange/Amber) -->
+                <Button x:Name="BackButton"
+                    Content="↩️   Retour"
+                    Style="{StaticResource RetourButton}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,20,0"
+                    ToolTip="Retour au menu principal"/>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- Titre du cours -->
+                    <TextBlock x:Name="TxtTitreCours"
+                               Text="{Binding Titre}" 
+                               FontSize="48" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               MaxWidth="1200"/>
+
+                    <TextBlock Text="Cyber Espace Entrainement - Plateforme de Cybersécurité" 
+                               FontSize="16" 
+                               Foreground="#BBDEFB" 
+                               HorizontalAlignment="Center"
+                               Margin="0,15,0,0"/>
+                </StackPanel>
+
+                <!--#region BOUTON PROFIL -->
+                <Button x:Name="Profile"
+                    Grid.Row="0"
+                    Width="124" 
+                    Height="124"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,20,10"
+                    Padding="0"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource PrimaryBlueBrush}"
+                    Cursor="Hand"
+                    ToolTip="Mon Profil">
+                    <Image Source="/Resources/icon_user_120.png" 
+                    Stretch="UniformToFill"/>
+                </Button>
+                <!--#endregion -->
+            </Grid>
+        </Border>
+        <!--#endregion -->
+
+        <!--#region CONTENU PRINCIPAL -->
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="40,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <!-- Colonne gauche : Texte (60%) -->
+                    <ColumnDefinition Width="3*"/>
+                    <!-- Espacement -->
+                    <ColumnDefinition Width="30"/>
+                    <!-- Colonne droite : Images (40%) -->
+                    <ColumnDefinition Width="1.8*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--#region COLONNE GAUCHE - TEXTE -->
+                <StackPanel Grid.Column="0">
+
+                    <!-- Définition -->
+                    <Border Style="{StaticResource CoursContentBorder}">
+                        <StackPanel>
+                            <TextBlock Text="📖 Définition" 
+                                       Style="{StaticResource CoursSectionTitle}"
+                                       Foreground="{StaticResource PrimaryBlueBrush}"/>
+
+                            <TextBlock x:Name="TxtDefinition"
+                                       Style="{StaticResource CoursContentText}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Explication -->
+                    <Border Style="{StaticResource CoursContentBorder}">
+                        <StackPanel>
+                            <TextBlock Text="💡 Explication" 
+                                       Style="{StaticResource CoursSectionTitle}"
+                                       Foreground="#0277BD"/>
+
+                            <TextBlock x:Name="TxtExplication"
+                                       Style="{StaticResource CoursContentText}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Exemple -->
+                    <Border Style="{StaticResource CoursContentBorder}">
+                        <StackPanel>
+                            <TextBlock Text="✏️ Exemple" 
+                                       Style="{StaticResource CoursSectionTitle}"
+                                       Foreground="#00838F"/>
+
+                            <TextBlock x:Name="TxtExemple"
+                                       Style="{StaticResource CoursContentText}"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+                <!--#endregion -->
+
+                <!--#region COLONNE DROITE - IMAGES -->
+                <StackPanel Grid.Column="2">
+
+                    <!-- Image 1 -->
+                    <Border x:Name="BorderImage1"
+                            Style="{StaticResource CoursImageBorder}">
+                        <Image x:Name="ImgCours1"
+                               Stretch="Uniform"
+                               MaxHeight="335"
+                               HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Image 2 -->
+                    <Border x:Name="BorderImage2"
+                            Style="{StaticResource CoursImageBorder}">
+                        <Image x:Name="ImgCours2"
+                               Stretch="Uniform"
+                               MaxHeight="335"
+                               HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Message si aucune image -->
+                    <Border x:Name="BorderAucuneImage"
+                            Background="#E3F2FD" 
+                            CornerRadius="10" 
+                            Padding="30"
+                            Margin="0,0,0,25"
+                            Visibility="Collapsed">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="📷" 
+                                       FontSize="48"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,10"/>
+                            <TextBlock Text="Aucune image disponible" 
+                                       FontSize="16"
+                                       Foreground="#757575"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+                <!--#endregion -->
+            </Grid>
+        </ScrollViewer>
+        <!--#endregion -->
+
+        <!--#region PIED DE PAGE -->
+        <Border Grid.Row="2" 
+        Background="White" 
+        BorderBrush="#e0e0e0" 
+        BorderThickness="0,1,0,0"
+        Padding="20">
+            <Grid>
+                <TextBlock Text="© 2025 - Plateforme de Cybersécurité"
+                   FontFamily="Verdana"
+                   FontSize="12"
+                   Foreground="#9E9E9E"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+                    <TextBlock Text="Version 1.0"
+                       FontFamily="Verdana"
+                       FontSize="12"
+                       Foreground="#9E9E9E"
+                       VerticalAlignment="Center"
+                       Margin="0,0,20,0"/>
+                    <Button x:Name="btnQuitter"
+                    Content="❌ Quitter"
+                    Style="{StaticResource QuitButton}"
+                    Height="35"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <!--#endregion -->
+    </Grid>
+</Window>

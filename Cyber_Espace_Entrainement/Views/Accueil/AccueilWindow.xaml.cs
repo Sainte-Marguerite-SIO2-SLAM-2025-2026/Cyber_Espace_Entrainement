@@ -1,5 +1,6 @@
 ﻿using Cyber_Espace_Entrainement.Services;
 using Cyber_Espace_Entrainement.Views.Activite;
+using Cyber_Espace_Entrainement.Views.Cours;
 using Cyber_Espace_Entrainement.Views.Profil;
 using Cyber_Espace_Entrainement.Views.Tests;
 using Cyber_Espace_Entrainement.Views.Users;
@@ -366,20 +367,20 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// </summary>
         private void CoursCard_Click(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxService.ShowInformation(
-                "ESPACE COURS\n\n" +
-                "Cette section contiendra :\n" +
-                "• Cours de cybersécurité\n" +
-                "• Tutoriels .... vidéo\n" +
-                "• Documentation\n" +
-                "• Ressources pédagogiques\n\n" +
-                "À développer...",
-                "Espace Cours"
-            );
+            //MessageBoxService.ShowInformation(
+            //    "ESPACE COURS\n\n" +
+            //    "Cette section contiendra :\n" +
+            //    "• Cours de cybersécurité\n" +
+            //    "• Tutoriels .... vidéo\n" +
+            //    "• Documentation\n" +
+            //    "• Ressources pédagogiques\n\n" +
+            //    "À développer...",
+            //    "Espace Cours"
+            //);
 
             // TODO : Créer CoursView.xaml et décommenter :
-            // var coursWindow = new CoursView();
-            // coursWindow.ShowDialog();
+            var coursWindow = new CoursContenu();
+            coursWindow.ShowDialog();
         }
 
         #endregion
