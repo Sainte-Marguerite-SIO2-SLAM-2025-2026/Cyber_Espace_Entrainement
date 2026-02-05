@@ -34,6 +34,11 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         private SolidColorBrush _defaultRetourBackground;
         private SolidColorBrush _hoverRetourBackground;
 
+        // Brushes pour le bouton Déconnexion
+        private SolidColorBrush _defaultDecoBackground;
+        private SolidColorBrush _hoverDecoBackground;
+
+
         public CoursContenu()
         {
             InitializeComponent();
@@ -88,6 +93,10 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             // Bouton Retour (couleur complémentaire orange/amber)
             _defaultRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourBackBlueBrush");
             _hoverRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourBackBlueLightBrush");
+
+            // Bouton Déconnexion
+            _defaultDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateBrush");
+            _hoverDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateDarkBrush");
         }
 
         /// <summary>
@@ -145,6 +154,10 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             Profile.MouseDown += ProfileButton_MouseDown;
             Profile.MouseUp += ProfileButton_MouseUp;
             Profile.Click += ProfileButton_Click;
+
+            // Attacher les événements de survol au bouton Déconnexion (visuels)
+            BtnDeco.MouseEnter += BtnDeco_MouseEnter;
+            BtnDeco.MouseLeave += BtnDeco_MouseLeave;
         }
 
         /// <summary>
@@ -287,6 +300,50 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             btnQuitter.Background = _defaultQuitBackground;
         }
 
+        #endregion
+
+        #region Bouton Déconnexion
+
+        /// <summary>
+        /// Click du bouton Déconnexion : confirme, appelle le service de session pour logout,
+        /// ferme la fenêtre courante et ouvre la fenêtre de connexion.
+        /// </summary>
+        private void BtnDeco_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBoxService.ShowQuestion(
+                "Voulez-vous vraiment vous déconnecter ?",
+                "Confirmation de déconnexion"
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                // Appeler la méthode de déconnexion du service de session (singleton)
+                SessionService.Instance.Logout();
+
+                // Ouvrir la fenêtre de connexion (MainWindow)
+                var connexionWindow = new MainWindow();
+
+                // Fermer la fenêtre actuelle puis afficher la connexion
+                this.Close();
+                connexionWindow.Show();
+            }
+        }
+
+        /// <summary>
+        /// MouseEnter du bouton Déconnexion : appliquer la couleur hover définie.
+        /// </summary>
+        private void BtnDeco_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BtnDeco.Background = _hoverDecoBackground;
+        }
+
+        /// <summary>
+        /// MouseLeave du bouton Déconnexion : restauration du background.
+        /// </summary>
+        private void BtnDeco_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BtnDeco.Background = _defaultDecoBackground;
+        }
         #endregion
 
         #region Bouton Profile
