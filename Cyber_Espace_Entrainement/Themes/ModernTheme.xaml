@@ -252,15 +252,15 @@
         <Setter Property="Background" Value="{StaticResource DeconnexionSlateBrush}"/>
     </Style>
 
-    <!-- Style pour le bouton Retour (couleur complémentaire orange) -->
-    <Style x:Key="RetourButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
-        <Setter Property="Background" Value="{StaticResource RetourOrangeBrush}"/>
+    <!-- Style pour le bouton Retour pour fond bleu (couleur complémentaire orange) -->
+    <Style x:Key="RetourButtonBackBlue" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+        <Setter Property="Background" Value="{StaticResource RetourBackBlueBrush}"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Padding" Value="15,10"/>
         <Setter Property="FontSize" Value="25"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="MinWidth" Value="150"/>
-        <Setter Property="MinHeight" Value="130"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="MinHeight" Value="70"/>
     </Style>
 
     <!-- Style pour les messages d'erreur -->
