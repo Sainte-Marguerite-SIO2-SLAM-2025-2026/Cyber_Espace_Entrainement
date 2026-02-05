@@ -86,8 +86,8 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush");
 
             // Bouton Retour (couleur complémentaire orange/amber)
-            _defaultRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourOrangeBrush");
-            _hoverRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourOrangeDarkBrush");
+            _defaultRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourBackBlueBrush");
+            _hoverRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourBackBlueLightBrush");
         }
 
         /// <summary>

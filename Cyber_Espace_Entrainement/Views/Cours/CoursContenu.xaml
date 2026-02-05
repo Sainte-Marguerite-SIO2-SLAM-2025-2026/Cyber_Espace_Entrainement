@@ -27,7 +27,7 @@
                 <!-- Bouton Retour avec couleur complémentaire (Orange/Amber) -->
                 <Button x:Name="BackButton"
                     Content="↩️   Retour"
-                    Style="{StaticResource RetourButton}"
+                    Style="{StaticResource RetourButtonBackBlue}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Margin="0,0,20,0"
