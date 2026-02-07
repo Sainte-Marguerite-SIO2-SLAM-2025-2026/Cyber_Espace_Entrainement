@@ -37,6 +37,11 @@
     <Color x:Key="DeconnexionSlateDark">#37474F</Color>
     <!--#endregion -->
 
+    <!--#region Couleurs pour le bouton Retour (Couleur complémentaire orange/amber du bleu) -->
+    <Color x:Key="RetourBackBlue">#273240</Color>
+    <Color x:Key="RetourBackBlueLight">#405169</Color>
+    <!--#endregion -->
+
     <!--#region Couleurs de Popup-->
     <Color x:Key="PopupBackground">#FFFFFF</Color>
     <Color x:Key="PopupMainInfoQuest">#6dc5e0</Color>
@@ -69,6 +74,9 @@
 
     <SolidColorBrush x:Key="DeconnexionSlateBrush" Color="{StaticResource DeconnexionSlate}"/>
     <SolidColorBrush x:Key="DeconnexionSlateDarkBrush" Color="{StaticResource DeconnexionSlateDark}"/>
+
+    <SolidColorBrush x:Key="RetourBackBlueBrush" Color="{StaticResource RetourBackBlue}"/>
+    <SolidColorBrush x:Key="RetourBackBlueLightBrush" Color="{StaticResource RetourBackBlueLight}"/>
 
     <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
 
