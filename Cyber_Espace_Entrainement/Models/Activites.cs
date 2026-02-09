@@ -54,5 +54,8 @@ namespace Cyber_Espace_Entrainement.Models
         [MaxLength(255)]
         [Column("Description")]
         public string? Description { get; set; }
+
+        [NotMapped]
+        public string? Theme { get; set; }
     }
 }

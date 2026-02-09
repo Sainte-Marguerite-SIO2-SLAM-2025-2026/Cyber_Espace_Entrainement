@@ -23,6 +23,7 @@ namespace Cyber_Espace_Entrainement.Views.Activite
             InitializeComponent();
         }
 
+        #region Bouton retour
         /// <summary>
         /// Bouton Retour - Fermer cette fenêtre et retourner au menu
         /// </summary>
@@ -32,7 +33,10 @@ namespace Cyber_Espace_Entrainement.Views.Activite
             this.Close();
         }
 
-        // BOUTON QUITTER
+        #endregion
+
+        #region Bouton quitter
+        
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show(
@@ -47,6 +51,7 @@ namespace Cyber_Espace_Entrainement.Views.Activite
                 Application.Current.Shutdown();
             }
         }
+        #endregion
 
         #region Effets visuels des boutons
 
