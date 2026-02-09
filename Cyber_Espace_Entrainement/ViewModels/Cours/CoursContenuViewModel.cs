@@ -21,6 +21,7 @@ namespace Cyber_Espace_Entrainement.ViewModels
     public class CoursContenuViewModel : INotifyPropertyChanged
     {
         private Models.Cours _coursActuel;
+        private const String COURS_IMAGE_PATH = "/Resources/Images/Cours/";
 
         public CoursContenuViewModel()
         {
@@ -148,14 +149,20 @@ namespace Cyber_Espace_Entrainement.ViewModels
                                 // Exemple
                                 if (!string.IsNullOrEmpty(CoursActuel.Exemple))
                                 {
-                                    col.Item().PaddingTop(8).Background("#F5F5F5").Padding(10).Column(c => {
-                                        c.Item().Text("Exemple pratique :").FontSize(11).Italic().SemiBold();
+                                    col.Item().PaddingTop(8).Background("#F5F5F5").Padding(10).Column(c =>
+                                    {
+                                        c.Item().Text("Exemples pratiques :").FontSize(11).Italic().SemiBold();
                                         c.Item().PaddingTop(4).Text(CoursActuel.Exemple).FontSize(10);
                                     });
                                 }
 
-                                // Gestion des images (Image 1, 2 et 3)
-                                string[] paths = { CoursActuel.Image1, CoursActuel.Image2, CoursActuel.Image3 };
+                                // Gestion des images (Image 1, 2 et 3) - CORRECTION ICI
+                                string[] paths = {
+                                    COURS_IMAGE_PATH + CoursActuel.Image1,
+                                    COURS_IMAGE_PATH + CoursActuel.Image2,
+                                    COURS_IMAGE_PATH + CoursActuel.Image3
+    };
+
                                 foreach (var path in paths)
                                 {
                                     if (!string.IsNullOrEmpty(path))
@@ -166,7 +173,13 @@ namespace Cyber_Espace_Entrainement.ViewModels
 
                                             if (imageData != null && imageData.Length > 0)
                                             {
-                                                col.Item().PaddingVertical(8).MaxHeight(200).Image(imageData);
+                                                // Conteneur avec taille fixe
+                                                col.Item()
+                                                    .PaddingVertical(8)
+                                                    .Container()
+                                                    .Width(500)          // Largeur fixe
+                                                    .Height(172)         // Hauteur calculée pour ratio 1459:503
+                                                    .Image(imageData);
                                             }
                                         }
                                         catch (Exception imgEx)
@@ -180,7 +193,8 @@ namespace Cyber_Espace_Entrainement.ViewModels
                                 }
                             });
 
-                            page.Footer().AlignCenter().Text(x => {
+                            page.Footer().AlignCenter().Text(x =>
+                            {
                                 x.Span("Page ");
                                 x.CurrentPageNumber();
                                 x.Span(" / ");

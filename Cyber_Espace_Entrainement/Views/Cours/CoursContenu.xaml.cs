@@ -4,6 +4,7 @@ using Cyber_Espace_Entrainement.ViewModels;
 using Cyber_Espace_Entrainement.Views.Profil;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,8 @@ namespace Cyber_Espace_Entrainement.Views.Cours
     {
         private CoursContenuViewModel _viewModel;
         private CoursService _coursService;
+
+        private const String COURS_IMAGE_PATH = "/Resources/Images/Cours/";
 
         // Brushes pour le bouton Quitter
         private SolidColorBrush _defaultQuitBackground;
@@ -189,15 +192,18 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         {
             // Liste des images disponibles
             var imagesDisponibles = new List<string>();
+            var Image1Path = string.IsNullOrEmpty(_viewModel.Image1Path) ? null : COURS_IMAGE_PATH + _viewModel.Image1Path; 
+            var Image2Path = string.IsNullOrEmpty(_viewModel.Image2Path) ? null : COURS_IMAGE_PATH + _viewModel.Image2Path; 
+            var Image3Path = string.IsNullOrEmpty(_viewModel.Image3Path) ? null : COURS_IMAGE_PATH + _viewModel.Image3Path;
 
-            if (!string.IsNullOrEmpty(_viewModel.Image1Path))
-                imagesDisponibles.Add(_viewModel.Image1Path);
+            if (!string.IsNullOrEmpty(Image1Path))
+                imagesDisponibles.Add(Image1Path);
 
-            if (!string.IsNullOrEmpty(_viewModel.Image2Path))
-                imagesDisponibles.Add(_viewModel.Image2Path);
+            if (!string.IsNullOrEmpty(Image2Path))
+                imagesDisponibles.Add(Image2Path);
 
-            if (!string.IsNullOrEmpty(_viewModel.Image3Path))
-                imagesDisponibles.Add(_viewModel.Image3Path);
+            if (!string.IsNullOrEmpty(Image3Path))
+                imagesDisponibles.Add(Image3Path);
 
             // Si aucune image disponible
             if (imagesDisponibles.Count == 0)
@@ -368,26 +374,6 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         }
         #endregion
 
-        #region Événements Bouton Téléchargement
-
-        private void BtnDownload_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (sender is Button btn)
-            {
-                btn.Background = _hoverDownloadBackground;
-            }
-        }
-
-        private void BtnDownload_MouseLeave(object sender, MouseEventArgs e)
-        {
-            if (sender is Button btn)
-            {
-                btn.Background = _defaultDownloadBackground;
-            }
-        }
-
-        #endregion
-
         #region Bouton Profil
 
         private void Profil_MouseEnter(object sender, MouseEventArgs e)
@@ -423,7 +409,7 @@ namespace Cyber_Espace_Entrainement.Views.Cours
 
         #endregion
 
-        #region BOUTON DOWNLOAD
+        #region Bouton Téléchargement
         private void Download_MouseEnter(object sender, MouseEventArgs e)
         {
             // On passe de transparent à un blanc semi-transparent au survol
