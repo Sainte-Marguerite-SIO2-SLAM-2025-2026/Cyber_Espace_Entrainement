@@ -13,23 +13,13 @@ using System.Windows.Shapes;
 namespace Cyber_Espace_Entrainement.Views.Activite
 {
     /// <summary>
-    /// Logique d'interaction pour CaptchaFacileView.xaml
+    /// Logique d'interaction pour ConventionNommageFacileView.xaml
     /// </summary>
-    public partial class CaptchaFacileView : Window
+    public partial class ConventionNommageFacileView : Window
     {
-        public CaptchaFacileView()
+        public ConventionNommageFacileView()
         {
             InitializeComponent();
-        }
-
-        public void CaptchaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            // Logique lorsque la case est cochée
-        }
-
-        private void ButtonRetour_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

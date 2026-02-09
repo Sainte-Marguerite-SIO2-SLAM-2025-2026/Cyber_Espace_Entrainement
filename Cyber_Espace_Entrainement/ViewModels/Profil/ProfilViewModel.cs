@@ -16,6 +16,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [ObservableProperty]
         private bool isCollapseMode;
 
+        [ObservableProperty]
+        private bool isNewPasswordVisible;
+        [ObservableProperty]
+        private bool isOldPasswordVisible;
+        [ObservableProperty]
+        private bool isConfirmPasswordVisible;
         public Visibility EditVisibilityModify => IsEditMode ? Visibility.Hidden : Visibility.Visible;
         public Visibility EditVisibilityGeneral => IsEditMode ? Visibility.Visible : Visibility.Hidden;
 
@@ -122,6 +128,24 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             ChargerDepuisSession();
         }
 
+        [RelayCommand]
+        private void ToggleNewPasswordVisibility()
+        {
+            IsNewPasswordVisible = !IsNewPasswordVisible;
+        }
+
+        [RelayCommand]
+        private void ToggleOldPasswordVisibility()
+        {
+            IsOldPasswordVisible = !IsOldPasswordVisible;
+        }
+
+        [RelayCommand]
+        private void ToggleConfirmPasswordVisibility()
+        {
+            IsConfirmPasswordVisible = !IsConfirmPasswordVisible;
+        }
+
         private bool CanChangePassword()
         {
             // Le bouton n'est actif que si on est en mode édition
@@ -215,7 +239,10 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             }
 
             // 4. Mettre à jour la session
+            user = userService.GetUserById(user.UserId); // Recharger pour avoir les données à jour
             SessionService.Instance.UpdateSessionUser(user);
+            ChargerDepuisSession();
+
 
             MessageInfos = "Mise à jour réussie.";
             OnPropertyChanged(nameof(IsSuccessInfos));
@@ -257,6 +284,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
 
             IsEditMode = false;
             IsCollapseMode = false;
+            MessageMdp = String.Empty;
+            IsNewPasswordVisible = false;
+            IsOldPasswordVisible = false;
+            IsConfirmPasswordVisible = false;
+
+
         }
 
         /// <summary>
