@@ -149,6 +149,7 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Image3).IsRequired(false);
                 entity.Property(c => c.Lien).IsRequired(false);
                 entity.Property(c => c.Theme).IsRequired(false);
+                entity.Property(c => c.ImageBouton).IsRequired(false);
 
             });
 
