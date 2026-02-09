@@ -38,6 +38,9 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         private SolidColorBrush _defaultDecoBackground;
         private SolidColorBrush _hoverDecoBackground;
 
+        // Brushes pour les boutons de téléchargement
+        private SolidColorBrush _defaultDownloadBackground;
+        private SolidColorBrush _hoverDownloadBackground;
 
         public CoursContenu()
         {
@@ -46,6 +49,8 @@ namespace Cyber_Espace_Entrainement.Views.Cours
 
             // Initialiser le ViewModel avec le cours
             _viewModel = new CoursContenuViewModel(_coursService.GetCoursById(1));
+
+            this.DataContext = _viewModel;
 
             // Charger les données depuis le ViewModel
             ChargerDepuisViewModel();
@@ -67,6 +72,8 @@ namespace Cyber_Espace_Entrainement.Views.Cours
 
             // Initialiser le ViewModel avec le cours
             _viewModel = new CoursContenuViewModel(cours);
+
+            this.DataContext = _viewModel;
 
             // Charger les données depuis le ViewModel
             ChargerDepuisViewModel();
@@ -97,6 +104,10 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             // Bouton Déconnexion
             _defaultDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateBrush");
             _hoverDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateDarkBrush");
+
+            // Boutons de téléchargement
+            _defaultDownloadBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2E7D32"));
+            _hoverDownloadBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1B5E20"));
         }
 
         /// <summary>
@@ -344,6 +355,26 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         {
             BtnDeco.Background = _defaultDecoBackground;
         }
+        #endregion
+
+        #region Événements Bouton Téléchargement
+
+        private void BtnDownload_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.Background = _hoverDownloadBackground;
+            }
+        }
+
+        private void BtnDownload_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.Background = _defaultDownloadBackground;
+            }
+        }
+
         #endregion
 
         #region Bouton Profile

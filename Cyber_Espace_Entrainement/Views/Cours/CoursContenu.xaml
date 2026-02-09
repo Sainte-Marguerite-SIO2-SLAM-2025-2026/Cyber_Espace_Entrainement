@@ -53,6 +53,13 @@
                 </StackPanel>
 
                 <!--#region BOUTON PROFIL -->
+                <Button x:Name="btnDownload"
+                    Content="📥 Télécharger PDF"
+                    Command="{Binding DownloadPdfCommand}"
+                    Style="{StaticResource DownloadButtonStyle}"
+                    MouseEnter="BtnDownload_MouseEnter" 
+                    MouseLeave="BtnDownload_MouseLeave"
+                    Margin="0,0,15,0"/>
                 <Button x:Name="Profile"
                     Grid.Row="0"
                     Width="124" 
