@@ -9,6 +9,11 @@
     <Color x:Key="PrimaryBlueLight">#E3F2FD</Color>
     <!--#endregion -->
 
+    <!--#region Couleurs de succès -->
+    <Color x:Key="SuccessGreen">#2E7D32</Color>
+    <Color x:Key="SuccessGreenDark">#1B5E20</Color>
+    <!--#endregion -->
+
     <!--#region Couleurs de bordure -->
     <Color x:Key="BorderDefault">#BDBDBD</Color>
     <Color x:Key="BorderHover">#1565C0</Color>
@@ -37,6 +42,11 @@
     <Color x:Key="DeconnexionSlateDark">#37474F</Color>
     <!--#endregion -->
 
+    <!--#region Couleurs pour le bouton Retour (Couleur complémentaire orange/amber du bleu) -->
+    <Color x:Key="RetourBackBlue">#273240</Color>
+    <Color x:Key="RetourBackBlueLight">#405169</Color>
+    <!--#endregion -->
+
     <!--#region Couleurs de Popup-->
     <Color x:Key="PopupBackground">#FFFFFF</Color>
     <Color x:Key="PopupMainInfoQuest">#6dc5e0</Color>
@@ -51,6 +61,8 @@
     <SolidColorBrush x:Key="PrimaryBlueBrush" Color="{StaticResource PrimaryBlue}"/>
     <SolidColorBrush x:Key="PrimaryBlueDarkBrush" Color="{StaticResource PrimaryBlueDark}"/>
     <SolidColorBrush x:Key="PrimaryBlueLightBrush" Color="{StaticResource PrimaryBlueLight}"/>
+
+    <SolidColorBrush x:Key="SuccessGreenBrush" Color="{StaticResource SuccessGreen}"/>
 
     <SolidColorBrush x:Key="BorderDefaultBrush" Color="{StaticResource BorderDefault}"/>
     <SolidColorBrush x:Key="BorderHoverBrush" Color="{StaticResource BorderHover}"/>
@@ -69,6 +81,9 @@
 
     <SolidColorBrush x:Key="DeconnexionSlateBrush" Color="{StaticResource DeconnexionSlate}"/>
     <SolidColorBrush x:Key="DeconnexionSlateDarkBrush" Color="{StaticResource DeconnexionSlateDark}"/>
+
+    <SolidColorBrush x:Key="RetourBackBlueBrush" Color="{StaticResource RetourBackBlue}"/>
+    <SolidColorBrush x:Key="RetourBackBlueLightBrush" Color="{StaticResource RetourBackBlueLight}"/>
 
     <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
 

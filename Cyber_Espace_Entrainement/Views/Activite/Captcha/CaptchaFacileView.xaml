@@ -96,7 +96,7 @@
                                    Foreground="#424242"
                                    Margin="0,0,0,15" />
 
-                        <TextBlock Text="{Binding DescriptionIntro}"
+                        <TextBlock Text="{Binding Description}"
                                    FontSize="16"
                                    Foreground="#616161"
                                    TextWrapping="Wrap"
@@ -487,13 +487,17 @@
                                VerticalAlignment="Center"
                                Margin="0,0,20,0" />
                     <Button x:Name="BtnQuitter"
-                            Content="❌ Quitter" />
+                            Content="❌ Quitter"
+                            Style="{StaticResource QuitButton}"
+                            Click="ButtonQuitter_Click"
+                            MouseEnter="ButtonQuitter_MouseEnter"
+                            MouseLeave="ButtonQuitter_MouseLeave" />
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- ═══════════════════════════════════════════════════════════
-             BOUTON RETOUR (toujours visible)
+             BOUTON RETOUR
              ═══════════════════════════════════════════════════════════ -->
         <Button x:Name="ButtonRetour"
                 Grid.Column="0"

@@ -153,9 +153,9 @@
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                           HorizontalAlignment="Left"
-                                          IsHitTestVisible="false"
-                                          Margin="12,0,30,0"
-                                          VerticalAlignment="Center"/>
+                                          VerticalAlignment="Center"
+                                          Margin="10,0,30,0"
+                                          IsHitTestVisible="False"/>
 
                         <TextBlock x:Name="placeholder"
                                    Text="{TemplateBinding Tag}"
@@ -242,15 +242,44 @@
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryBlueBrush}"/>
     </Style>
 
+    <!-- Style pour le bouton de téléchargement -->
+    <Style x:Key="DownloadButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource SuccessGreenBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="15,8"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Style pour le bouton quitter -->
     <Style x:Key="QuitButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
         <Setter Property="Background" Value="{StaticResource ErrorRedBrush}"/>
     </Style>
 
-
     <!-- Style pour le bouton déconnexion (hover géré en code-behind) -->
     <Style x:Key="DeconnexionButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
         <Setter Property="Background" Value="{StaticResource DeconnexionSlateBrush}"/>
+    </Style>
+
+    <!-- Style pour le bouton Retour pour fond bleu (couleur complémentaire orange) -->
+    <Style x:Key="RetourButtonBackBlue" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+        <Setter Property="Background" Value="{StaticResource RetourBackBlueBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="15,10"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="MinHeight" Value="70"/>
     </Style>
 
     <!-- Style pour les messages d'erreur -->
@@ -261,6 +290,51 @@
         <Setter Property="Margin" Value="0,3,0,0"/>
     </Style>
 
+    <!--#region Styles pour CoursContenu -->
+
+    <!-- Style pour les bordures de contenu de cours -->
+    <Style x:Key="CoursContentBorder" TargetType="Border">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="30"/>
+        <Setter Property="Margin" Value="0,0,0,25"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Opacity="0.15" BlurRadius="15" ShadowDepth="3" Direction="270"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Style pour les titres de section de cours -->
+    <Style x:Key="CoursSectionTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="0,0,0,15"/>
+    </Style>
+
+    <!-- Style pour le texte de contenu de cours -->
+    <Style x:Key="CoursContentText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="#424242"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="LineHeight" Value="28"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+    </Style>
+
+    <!-- Style pour les bordures d'images de cours -->
+    <Style x:Key="CoursImageBorder" TargetType="Border">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="15"/>
+        <Setter Property="Margin" Value="0,0,0,25"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Opacity="0.15" BlurRadius="15" ShadowDepth="3" Direction="270"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion -->
 
     <!--style view profile pas définitifs-->
     <!-- Ombre légère -->
