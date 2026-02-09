@@ -40,5 +40,8 @@ namespace Cyber_Espace_Entrainement.Models
 
         [Column("Theme")]
         public string Theme { get; set; } = string.Empty;
+
+        [Column("ImageBouton")]
+        public string ImageBouton { get; set; } = string.Empty;
     }
 }
