@@ -10,14 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Activite.InjectionSQL
+namespace Cyber_Espace_Entrainement.Views.Activite
 {
     /// <summary>
     /// Logique d'interaction pour InjectionSqlMoyenView.xaml
     /// </summary>
-    public partial class InjectionSqlMoyenView : Window
+    public partial class InjectionSQLMoyenView : Window
     {
-        public InjectionSqlMoyenView()
+        public InjectionSQLMoyenView()
         {
             InitializeComponent();
         }
