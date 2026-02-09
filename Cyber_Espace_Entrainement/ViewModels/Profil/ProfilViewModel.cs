@@ -284,6 +284,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
 
             IsEditMode = false;
             IsCollapseMode = false;
+            MessageMdp = String.Empty;
+            IsNewPasswordVisible = false;
+            IsOldPasswordVisible = false;
+            IsConfirmPasswordVisible = false;
+
+
         }
 
         /// <summary>

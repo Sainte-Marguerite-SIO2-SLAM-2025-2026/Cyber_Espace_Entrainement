@@ -342,14 +342,8 @@
                         <TextBlock Text="Ancien mot de passe"
                                    Style="{StaticResource LabelStyle}" />
 
-                        <Grid Margin="0,0,0,15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="60" />
-                            </Grid.ColumnDefinitions>
-
-                            <PasswordBox x:Name="OldPasswordBox"
-                                         Grid.Column="0"
+                        <Grid >
+                           <PasswordBox x:Name="OldPasswordBox"
                                          PasswordChanged="OldPasswordChanged"
                                          Margin="0,0,0,15">
                                 <PasswordBox.Style>
@@ -370,9 +364,8 @@
 
                             <!-- PASSWORD EN CLAIR -->
                             <TextBox x:Name="TxtOldPwdVisible"
-                                Grid.Column="0"
                                      Margin="0,0,0,15"
-                                     Text="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged}">
+                                Text="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.Style>
                                     <Style TargetType="TextBox"
                                            BasedOn="{StaticResource InputStyle}">
@@ -390,10 +383,14 @@
                             </TextBox>
 
                             <!-- BOUTON ŒIL -->
-                            <Button Grid.Column="1"
+                            <Button 
                                     Content="👁"
                                     FontSize="16"
                                     Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
                                     Command="{Binding ToggleOldPasswordVisibilityCommand}"
                                     Margin="0,0,0,15" />
                         </Grid>
@@ -401,11 +398,7 @@
                         <TextBlock Text="Nouveau mot de passe"
                                    Style="{StaticResource LabelStyle}" />
 
-                        <Grid Margin="0,0,0,15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="60" />
-                            </Grid.ColumnDefinitions>
+                        <Grid>
                             <PasswordBox x:Name="NewPasswordBox"
                                          PasswordChanged="NewPasswordChanged"
                                          Margin="0,0,0,15">
@@ -451,6 +444,10 @@
                                     Content="👁"
                                     FontSize="16"
                                     Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
                                     Command="{Binding ToggleNewPasswordVisibilityCommand}"
                                     Margin="0,0,0,15" />
                         </Grid>
@@ -458,11 +455,7 @@
                         <!-- Confirmation -->
                         <TextBlock Text="Confirmer le nouveau mot de passe"
                                    Style="{StaticResource LabelStyle}" />
-                        <Grid Margin="0,0,0,15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="60" />
-                            </Grid.ColumnDefinitions>
+                        <Grid>
                             <PasswordBox x:Name="ConfirmPasswordBox"
                                      PasswordChanged="ConfirmPasswordChanged"
                                      Margin="0,0,0,15" >
@@ -508,6 +501,10 @@
                                     Content="👁"
                                     FontSize="16"
                                     Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
                                     Command="{Binding ToggleConfirmPasswordVisibilityCommand}"
                                     Margin="0,0,0,15" />
                         </Grid>
