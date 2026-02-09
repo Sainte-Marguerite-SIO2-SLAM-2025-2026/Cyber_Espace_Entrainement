@@ -16,6 +16,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [ObservableProperty]
         private bool isCollapseMode;
 
+        [ObservableProperty]
+        private bool isNewPasswordVisible;
+        [ObservableProperty]
+        private bool isOldPasswordVisible;
+        [ObservableProperty]
+        private bool isConfirmPasswordVisible;
         public Visibility EditVisibilityModify => IsEditMode ? Visibility.Hidden : Visibility.Visible;
         public Visibility EditVisibilityGeneral => IsEditMode ? Visibility.Visible : Visibility.Hidden;
 
@@ -120,6 +126,24 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             OnPropertyChanged(nameof(IsSuccessInfos));
             PasswordChangedSuccessfully?.Invoke();
             ChargerDepuisSession();
+        }
+
+        [RelayCommand]
+        private void ToggleNewPasswordVisibility()
+        {
+            IsNewPasswordVisible = !IsNewPasswordVisible;
+        }
+
+        [RelayCommand]
+        private void ToggleOldPasswordVisibility()
+        {
+            IsOldPasswordVisible = !IsOldPasswordVisible;
+        }
+
+        [RelayCommand]
+        private void ToggleConfirmPasswordVisibility()
+        {
+            IsConfirmPasswordVisible = !IsConfirmPasswordVisible;
         }
 
         private bool CanChangePassword()

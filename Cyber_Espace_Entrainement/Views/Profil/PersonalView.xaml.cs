@@ -85,6 +85,7 @@ namespace Cyber_Espace_Entrainement.Views.Profil
             OldPasswordBox.Password = "";
             NewPasswordBox.Password = "";
             ConfirmPasswordBox.Password = "";
+            TxtMessageErreur.Text = String.Empty;
         }
         // adapter profil au 1920x1080
         // faire l'icone pour voir mdp
