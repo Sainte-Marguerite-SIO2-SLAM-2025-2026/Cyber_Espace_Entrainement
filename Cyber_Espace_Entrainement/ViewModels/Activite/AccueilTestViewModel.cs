@@ -33,7 +33,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
             // On initialise la collection
             Activites = new ObservableCollection<Activites>();
 
-            // Chargement immédiat et bloquant
             LoadActivites();
         }
 
