@@ -82,7 +82,7 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Command="{Binding DataContext.SelectActiviteCommand,
+                    <Button Command="{Binding DataContext.OuvertureCoursCommand,
                                RelativeSource={RelativeSource AncestorType=Window}}"
                      CommandParameter="{Binding}"
                      Width="250"
