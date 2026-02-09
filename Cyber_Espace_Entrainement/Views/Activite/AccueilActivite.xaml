@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite"
+        xmlns:converters="clr-namespace:Cyber_Espace_Entrainement.Converters"
         mc:Ignorable="d"
         Title="AccueilActivite" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
+
+    <Window.Resources>
+        <!-- Déclaration du converter -->
+        <converters:ImagePathConverter x:Key="ImagePathConverter"/>
+    </Window.Resources>
 
     <Window.DataContext>
         <vm:AccueilTestViewModel/>
@@ -135,7 +141,7 @@
 
                                     <StackPanel>
                                         <!-- Image -->
-                                        <Image Source="/Resources/Images/AccueilTest/test.png"
+                                        <Image Source="{Binding ImageBouton, Converter={StaticResource ImagePathConverter}}"
                                         Height="200"
                                         Stretch="Fill"
                                         Margin="5"
