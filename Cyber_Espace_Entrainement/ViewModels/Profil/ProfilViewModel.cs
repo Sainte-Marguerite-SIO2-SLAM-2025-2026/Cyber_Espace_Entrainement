@@ -215,7 +215,10 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             }
 
             // 4. Mettre à jour la session
+            user = userService.GetUserById(user.UserId); // Recharger pour avoir les données à jour
             SessionService.Instance.UpdateSessionUser(user);
+            ChargerDepuisSession();
+
 
             MessageInfos = "Mise à jour réussie.";
             OnPropertyChanged(nameof(IsSuccessInfos));
