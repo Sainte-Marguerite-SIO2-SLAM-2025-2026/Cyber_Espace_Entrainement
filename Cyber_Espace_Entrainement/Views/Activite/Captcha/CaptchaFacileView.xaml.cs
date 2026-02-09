@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Activite
+namespace Cyber_Espace_Entrainement.Views.Activite.Captcha
 {
     /// <summary>
     /// Logique d'interaction pour CaptchaFacileView.xaml

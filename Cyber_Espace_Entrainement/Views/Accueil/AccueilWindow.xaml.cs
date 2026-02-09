@@ -26,8 +26,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
     /// </summary>
     public partial class AccueilWindow : Window
     {
-        // Couleur originale du bouton Profil (utilisée pour restaurer la couleur après animation)
-        private readonly Color _ProfilOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");
+        // Couleur originale du bouton Profile (utilisée pour restaurer la couleur après animation)
+        private readonly Color _profileOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");
 
         // Brushes chargés depuis les ressources (theme) pour garder la cohérence visuelle.
         // Ces champs permettent d'éviter des recherches répétées dans les ressources.
@@ -72,7 +72,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             _defaultDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateBrush");
             _hoverDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateDarkBrush");
 
-            // Après que la fenêtre soit chargée, configuration additionnelle (ex : mise en place du bouton Profil)
+            // Après que la fenêtre soit chargée, configuration additionnelle (ex : mise en place du bouton Profile)
             Loaded += AccueilWindow_Loaded;
 
             // Attacher les événements de survol au bouton Quitter (visuels)
@@ -90,19 +90,19 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// </summary>
         private void AccueilWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Rendre le bouton Profil rond en lui appliquant un template personnalisé
-            MakeProfilButtonRound();
+            // Rendre le bouton Profile rond en lui appliquant un template personnalisé
+            MakeProfileButtonRound();
 
-            // Attacher les événements de survol et de clic au bouton Profil
+            // Attacher les événements de survol et de clic au bouton Profile
             // Ces événements remplacent des triggers XAML et permettent des animations programmatiques.
-            Profil.MouseEnter += ProfilButton_MouseEnter;
-            Profil.MouseLeave += ProfilButton_MouseLeave;
-            Profil.MouseDown += ProfilButton_MouseDown;
-            Profil.MouseUp += ProfilButton_MouseUp;
-            Profil.Click += ProfilButton_Click;
+            Profile.MouseEnter += ProfileButton_MouseEnter;
+            Profile.MouseLeave += ProfileButton_MouseLeave;
+            Profile.MouseDown += ProfileButton_MouseDown;
+            Profile.MouseUp += ProfileButton_MouseUp;
+            Profile.Click += ProfileButton_Click;
         }
 
-        #region Gestion du bouton Profil
+        #region Gestion du bouton Profile
 
         /// <summary>
         /// Crée et applique dynamiquement un ControlTemplate qui affiche un bouton circulaire
@@ -111,7 +111,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// Remarque : la création de templates en code est utile pour de la personnalisation dynamique,
         /// mais pour des styles statiques préférer le XAML.
         /// </summary>
-        private void MakeProfilButtonRound()
+        private void MakeProfileButtonRound()
         {
             // Créer le template personnalisé pour le bouton
             var template = new ControlTemplate(typeof(Button));
@@ -160,15 +160,15 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             grid.AppendChild(contentPresenter);
             template.VisualTree = grid;
 
-            // Application du template au bouton Profil défini dans le XAML
-            Profil.Template = template;
+            // Application du template au bouton Profile défini dans le XAML
+            Profile.Template = template;
         }
 
         /// <summary>
         /// MouseEnter : effet visuel combiné (zoom + éclaircissement de la bordure).
         /// Cette logique remplace des triggers XAML et réalise des animations programmatiques.
         /// </summary>
-        private void ProfilButton_MouseEnter(object sender, MouseEventArgs e)
+        private void ProfileButton_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is Button button)
             {
@@ -191,7 +191,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
                 // Animation de couleur de la bordure (si la bordure est un SolidColorBrush)
                 if (button.BorderBrush is SolidColorBrush borderBrush)
                 {
-                    var lighterColor = LightenColor(_ProfilOriginalColor, 0.3f);
+                    var lighterColor = LightenColor(_profileOriginalColor, 0.3f);
                     var colorAnimation = new ColorAnimation
                     {
                         To = lighterColor,
@@ -205,7 +205,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// <summary>
         /// MouseLeave : restaure l'apparence originale (taille + couleur de bordure).
         /// </summary>
-        private void ProfilButton_MouseLeave(object sender, MouseEventArgs e)
+        private void ProfileButton_MouseLeave(object sender, MouseEventArgs e)
         {
             if (sender is Button button)
             {
@@ -228,7 +228,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
                 {
                     var colorAnimation = new ColorAnimation
                     {
-                        To = _ProfilOriginalColor,
+                        To = _profileOriginalColor,
                         Duration = TimeSpan.FromMilliseconds(200)
                     };
                     borderBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
@@ -239,7 +239,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// <summary>
         /// MouseDown : petit effet d'enfoncement pour donner du feedback tactile.
         /// </summary>
-        private void ProfilButton_MouseDown(object sender, MouseButtonEventArgs e)
+        private void ProfileButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is Button button)
             {
@@ -260,7 +260,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// <summary>
         /// MouseUp : ramène l'échelle au niveau de survol (si applicable).
         /// </summary>
-        private void ProfilButton_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ProfileButton_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (sender is Button button)
             {
@@ -282,7 +282,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
         /// Click : ouvre la fenêtre de profil (PersonalView).
         /// Utilise ShowDialog pour modalité ; adapter selon besoin (Show si modeless).
         /// </summary>
-        private void ProfilButton_Click(object sender, RoutedEventArgs e)
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(
             //    "ESPACE PERSONNEL\n\n" +
@@ -299,8 +299,8 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
 
             // TODO : Créer PersonalView.xaml par exemple et décommenter la suite !
             // Ouvrir la fenêtre de profil
-            var ProfilWindow = new PersonalView();
-            ProfilWindow.ShowDialog();
+            var profileWindow = new PersonalView();
+            profileWindow.ShowDialog();
         }
 
         #endregion

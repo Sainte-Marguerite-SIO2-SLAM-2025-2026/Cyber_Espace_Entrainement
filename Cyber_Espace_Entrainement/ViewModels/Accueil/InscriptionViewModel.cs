@@ -23,10 +23,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         // Service métier pour la gestion des utilisateurs (ajout, recherche, ...).
         private UserService _userService;
 
-        // Propriété pour contrôler la visibilité du mot de passe dans la vue.
-        //[ObservableProperty]
-        //private bool isPasswordVisible;
-
         // Champs du formulaire d'inscription
         private string _login;
         /// <summary>
@@ -431,17 +427,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                    !string.IsNullOrWhiteSpace(SectionSelectionnee) &&
                    !string.IsNullOrWhiteSpace(Mail);
         }
-
-        ///// <summary>
-        ///// Toggles the visibility state of the password input field.
-        ///// </summary>
-        ///// <remarks>Use this method to switch between showing and hiding the password. Typically invoked
-        ///// by a user action, such as clicking a visibility icon in a password entry form.</remarks>
-        //[RelayCommand]
-        //private void TogglePasswordVisibility()
-        //{
-        //    IsPasswordVisible = !IsPasswordVisible;
-        //}
 
         /// <summary>
         /// Méthode exécutée lors de la validation du formulaire.
