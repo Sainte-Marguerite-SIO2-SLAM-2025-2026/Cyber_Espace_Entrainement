@@ -20,7 +20,7 @@ namespace Cyber_Espace_Entrainement.ViewModels
     /// </summary>
     public class CoursContenuViewModel : INotifyPropertyChanged
     {
-        private Cours _coursActuel;
+        private Models.Cours _coursActuel;
 
         public CoursContenuViewModel()
         {
@@ -29,7 +29,7 @@ namespace Cyber_Espace_Entrainement.ViewModels
             DownloadPdfCommand = new RelayCommand(DownloadPdf);
         }
 
-        public CoursContenuViewModel(Cours cours)
+        public CoursContenuViewModel(Models.Cours cours)
         {
             CoursActuel = cours;
             QuitterCommand = new RelayCommand(Quitter);
@@ -41,7 +41,7 @@ namespace Cyber_Espace_Entrainement.ViewModels
         /// <summary>
         /// Le cours actuellement affiché
         /// </summary>
-        public Cours CoursActuel
+        public Models.Cours CoursActuel
         {
             get => _coursActuel;
             set

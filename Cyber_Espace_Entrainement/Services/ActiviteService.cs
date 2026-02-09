@@ -31,7 +31,7 @@ namespace Cyber_Espace_Entrainement.Services
 
         /// <summary>
         /// Récupérer toutes les activités
-        /// Joint la table Cours dans le but de trier les activités par thème 
+        /// Joint la table Cours dans le but de trier les activités par thème
         /// puis par ordre alphabétique
         /// </summary>
         public List<Activites> GetAllActivites()

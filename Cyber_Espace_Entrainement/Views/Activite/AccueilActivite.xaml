@@ -168,7 +168,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Version 1.0" 
-                       FontSize="12" 
+                       FontSize="12"
                        Foreground="#9E9E9E"
                        VerticalAlignment="Center"
                        Margin="0,0,20,0"/>

@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Cyber_Espace_Entrainement.Models
 {
+    [Table("Cours")]
     public class Cours
     {
         [Key]

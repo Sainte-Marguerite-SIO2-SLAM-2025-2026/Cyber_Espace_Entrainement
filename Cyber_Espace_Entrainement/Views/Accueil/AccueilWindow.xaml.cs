@@ -379,7 +379,7 @@ namespace Cyber_Espace_Entrainement.Views.Accueil
             //);
 
             // TODO : Créer CoursView.xaml et décommenter :
-            var coursWindow = new CoursContenu();
+            var coursWindow = new CoursAccueil();
             coursWindow.ShowDialog();
         }
 
