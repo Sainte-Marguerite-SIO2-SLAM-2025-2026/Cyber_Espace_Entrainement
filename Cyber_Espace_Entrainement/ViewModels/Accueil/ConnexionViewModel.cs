@@ -1,12 +1,13 @@
-﻿using System.ComponentModel;
+﻿//using CommunityToolkit.Mvvm.Input;
+using Cyber_Espace_Entrainement.Commands;
+using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Views.Accueil;
+using Cyber_Espace_Entrainement.Views.Users;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using Cyber_Espace_Entrainement.Views.Accueil;
-using Cyber_Espace_Entrainement.Services;
-using Cyber_Espace_Entrainement.Models;
-using Cyber_Espace_Entrainement.Views.Users;
-using Cyber_Espace_Entrainement.Commands;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 {
@@ -26,6 +27,10 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
         // Service métier gérant l'authentification et l'accès aux utilisateurs.
         // readonly car initialisé une seule fois dans le constructeur.
         private readonly UserService _userService;
+
+        // Propriété pour contrôler la visibilité du mot de passe dans la vue.
+        //[ObservableProperty]
+        //private bool isPasswordVisible;
 
         /// <summary>
         /// Login saisi par l'utilisateur.
@@ -93,6 +98,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 
             // QuitterCommand : exécute ExecuteQuitter sans condition d'exécution.
             QuitterCommand = new RelayCommand(ExecuteQuitter);
+
         }
 
         #endregion
@@ -174,6 +180,17 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                 //);
             }
         }
+
+        ///// <summary>
+        ///// Toggles the visibility state of the password input field.
+        ///// </summary>
+        ///// <remarks>Use this method to switch between showing and hiding the password. Typically invoked
+        ///// by a user action, such as clicking a visibility icon in a password entry form.</remarks>
+        //[RelayCommand]
+        //private void TogglePasswordVisibility()
+        //{
+        //    IsPasswordVisible = !IsPasswordVisible;
+        //}
 
         /// <summary>
         /// Méthode exécutée pour quitter l'application.
