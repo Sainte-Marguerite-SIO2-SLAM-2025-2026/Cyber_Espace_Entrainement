@@ -72,6 +72,7 @@ namespace Cyber_Espace_Entrainement.Services
                 // Hasher le mot de passe (à complexifier avec Bcrypt plus tard)
                 user.MotPasse = HashPassword(user.MotPasse);
                 user.DateCreation = DateTime.Now;
+                user.ScoreTotal = 0; // Initialiser le score à 0
 
                 user.Nom = NormalizeNom(user.Nom);
                 user.Prenom = NormalizePrenom(user.Prenom);
