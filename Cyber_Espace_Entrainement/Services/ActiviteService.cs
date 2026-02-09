@@ -16,6 +16,8 @@ namespace Cyber_Espace_Entrainement.Services
     {
         private readonly AppDbContext _context;
 
+        public Cours Cours { get; set; } = null!;
+
         public ActiviteService() 
         {
             _context = new AppDbContext();
@@ -28,16 +30,32 @@ namespace Cyber_Espace_Entrainement.Services
         //
 
         /// <summary>
-        /// Récupérer toutes les activités (version async)
+        /// Récupérer toutes les activités
+        /// Joint la table Cours dans le but de trier les activités par thème
+        /// puis par ordre alphabétique
         /// </summary>
         public List<Activites> GetAllActivites()
         {
             try
             {
-                // Utilisation de .ToList() synchrone
                 return _context.Activites
-                    .OrderBy(a => a.Libelle)
-                    .ToList();
+                .Join(_context.Cours,
+                      a => a.CoursId,
+                      c => c.ID,
+                      (a, c) => new { Activite = a, Theme = c.Theme })
+                .AsEnumerable() 
+                .GroupBy(x => x.Activite.Libelle)   
+                .Select(g =>
+                {
+                    var act = g.First().Activite;
+                    act.Theme = g.First().Theme;
+                    return act;
+                })
+                .OrderBy(a => a.Theme)             
+                .ThenBy(a => a.Libelle)               
+                .ToList();
+
+
             }
             catch (Exception ex)
             {
@@ -61,9 +79,12 @@ namespace Cyber_Espace_Entrainement.Services
         /// </summary>
         /// <param name="libelle"></param>
         /// <returns></returns>
-        public Activites? GetActiviteByLibelle(string libelle)
+        public List<Activites> GetActiviteByLibelle(string libelle)
         {
-            return _context.Activites.FirstOrDefault(a => a.Libelle == libelle);
+            return _context.Activites
+                .Where(a => a.Libelle == libelle)
+                .OrderBy(a => a.Niveau)
+                .ToList();
         }
 
         /// <summary>

@@ -14,24 +14,138 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         [ObservableProperty]
         private bool isEditMode;
         [ObservableProperty]
-        private bool isVisibleMode;
+        private bool isCollapseMode;
 
         public Visibility EditVisibilityModify => IsEditMode ? Visibility.Hidden : Visibility.Visible;
         public Visibility EditVisibilityGeneral => IsEditMode ? Visibility.Visible : Visibility.Hidden;
 
+        public Visibility EditCollapse => IsCollapseMode ? Visibility.Visible : Visibility.Collapsed;
+
+        public Visibility EditVisibilityPasswordButton =>
+    (!IsEditMode && !IsCollapseMode) ? Visibility.Visible : Visibility.Hidden;
+
+        public event Action PasswordChangedSuccessfully;
+
+
 
         // CHAMPS DU FORMULAIRE
-        [ObservableProperty] private string prenom;
-        [ObservableProperty] private string nom;
-        [ObservableProperty] private string pseudo;
-        [ObservableProperty] private string email;
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SaveUserCommand))]
+        private string prenom;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SaveUserCommand))]
+        private string nom;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SaveUserCommand))] 
+        private string pseudo;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SaveUserCommand))] 
+        private string email;
+
         [ObservableProperty] private string section;
         [ObservableProperty] private DateTime? dateCreation;
         [ObservableProperty] private DateTime? derniereConnection;
         [ObservableProperty] private int? scoreTotal;
 
-        [ObservableProperty] private string message;
+        [ObservableProperty] private string messageInfos;
+        [ObservableProperty] private string messageMdp;
 
+
+        [ObservableProperty] private string oldPassword;
+        [ObservableProperty] private string newPassword;
+        [ObservableProperty] private string confirmPassword;
+
+        private UserService _userService;
+
+
+
+        public bool IsErrorInfos => !string.IsNullOrEmpty(MessageInfos) && (!MessageInfos.Contains("réussie"));
+        public bool IsSuccessInfos => !string.IsNullOrEmpty(MessageInfos) && (MessageInfos.Contains("réussie")|| messageInfos.Contains("succès"));
+
+        public bool IsErrorMdp => !string.IsNullOrEmpty(MessageMdp) && !MessageMdp.Contains("succès");
+        public bool IsSuccessMdp => !string.IsNullOrEmpty(MessageMdp) && MessageMdp.Contains("succès");
+
+
+
+        [RelayCommand(CanExecute = nameof(CanChangePassword))]
+        private void ChangePassword()
+        {
+            MessageMdp = string.Empty; // Vérifications simples
+            if (string.IsNullOrWhiteSpace(OldPassword) ||
+                string.IsNullOrWhiteSpace(NewPassword) ||
+                string.IsNullOrWhiteSpace(ConfirmPassword))
+            {
+                MessageMdp = "Tous les champs doivent être remplis.";
+                OnPropertyChanged(nameof(IsErrorMdp));
+                return;
+            }
+            if (NewPassword.Length < 6)
+            {
+                MessageMdp = "Le nouveau mot de passe doit contenir au moins 6 caractères.";
+                OnPropertyChanged(nameof(IsErrorMdp));
+                return;
+            }
+            if (NewPassword != ConfirmPassword)
+            {
+                MessageMdp = "Les mots de passe ne correspondent pas.";
+                OnPropertyChanged(nameof(IsErrorMdp));
+                return;
+            }
+            if (NewPassword == OldPassword)
+            {
+                MessageMdp = "Le nouveau mot de passe doit être différent de l'ancien";
+                OnPropertyChanged(nameof(IsErrorMdp));
+                return;
+            }
+            _userService = new UserService();
+            var (success, user, message) = _userService.Authentifier(SessionService.Instance.CurrentLogin, OldPassword);
+
+            if (!success)
+            {
+                MessageMdp = "L'ancien mot de passe n'est pas bon";
+                return;
+            }
+            SessionService.Instance.CurrentUser.MotPasse = NewPassword;
+            (success, message) = _userService.UpdateUserPassword(SessionService.Instance.CurrentUser);
+            if (!success)
+            {
+                MessageMdp = message;
+                OnPropertyChanged(nameof(IsErrorMdp));
+                return;
+            }
+            MessageInfos = "Mot de passe modifié avec succès!";
+            OnPropertyChanged(nameof(IsSuccessInfos));
+            PasswordChangedSuccessfully?.Invoke();
+            ChargerDepuisSession();
+        }
+
+        private bool CanChangePassword()
+        {
+            // Le bouton n'est actif que si on est en mode édition
+            // ET si Email ou Pseudo ont changé
+            return !string.IsNullOrWhiteSpace(OldPassword)
+                && !string.IsNullOrWhiteSpace(NewPassword)
+                && !string.IsNullOrWhiteSpace(ConfirmPassword);
+        }
+
+        partial void OnOldPasswordChanged(string value)
+        {
+            ChangePasswordCommand.NotifyCanExecuteChanged();
+        }
+
+        partial void OnNewPasswordChanged(string value)
+        {
+            ChangePasswordCommand.NotifyCanExecuteChanged();
+        }
+
+        partial void OnConfirmPasswordChanged(string value)
+        {
+            ChangePasswordCommand.NotifyCanExecuteChanged();
+        }
+    
 
         // CONSTRUCTEUR
         public ProfilViewModel()
@@ -39,11 +153,32 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             ChargerDepuisSession();
         }
 
-       
-        partial void OnIsEditModeChanged(bool value) { 
+
+        partial void OnIsEditModeChanged(bool value)
+        {
             OnPropertyChanged(nameof(EditVisibilityModify));
             OnPropertyChanged(nameof(EditVisibilityGeneral));
+            OnPropertyChanged(nameof(EditVisibilityPasswordButton));
         }
+
+        partial void OnIsCollapseModeChanged(bool value)
+        {
+            OnPropertyChanged(nameof(EditCollapse));
+            OnPropertyChanged(nameof(EditVisibilityPasswordButton));
+        }
+
+        partial void OnMessageInfosChanged(string value)
+        {
+            OnPropertyChanged(nameof(IsErrorInfos));
+            OnPropertyChanged(nameof(IsSuccessInfos));
+        }
+
+        partial void OnMessageMdpChanged(string value)
+        {
+            OnPropertyChanged(nameof(IsErrorMdp));
+            OnPropertyChanged(nameof(IsSuccessMdp));
+        }
+
 
         [RelayCommand(CanExecute = nameof(CanSaveUser))]
         private void SaveUser()
@@ -55,7 +190,8 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
 
             if (user == null)
             {
-                Message = "Utilisateur introuvable.";
+                MessageInfos = "Utilisateur introuvable.";
+                OnPropertyChanged(nameof(IsErrorInfos));
                 return;
             }
 
@@ -72,14 +208,21 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
 
             if (!succes)
             {
-                Message = message;
+                MessageInfos = message;
+                OnPropertyChanged(nameof(IsErrorInfos));
+
                 return;
             }
 
             // 4. Mettre à jour la session
+            user = userService.GetUserById(user.UserId); // Recharger pour avoir les données à jour
             SessionService.Instance.UpdateSessionUser(user);
+            ChargerDepuisSession();
 
-            Message = "Mise à jour réussie.";
+
+            MessageInfos = "Mise à jour réussie.";
+            OnPropertyChanged(nameof(IsSuccessInfos));
+
             IsEditMode = false;
         }
 
@@ -92,20 +235,13 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             return IsEditMode
                 && !string.IsNullOrWhiteSpace(Pseudo)
                 && !string.IsNullOrWhiteSpace(Email)
+                && !string.IsNullOrWhiteSpace(Prenom)
+                && !string.IsNullOrWhiteSpace(Nom)
                 && (Pseudo != SessionService.Instance.CurrentLogin
-                    || Email != SessionService.Instance.CurrentEmail);
+                    || Email != SessionService.Instance.CurrentEmail
+                    || Prenom != SessionService.Instance.CurrentPrenom
+                    || Nom != SessionService.Instance.CurrentNom);
         }
-
-        partial void OnPseudoChanged(string value)
-        {
-            SaveUserCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEmailChanged(string value)
-        {
-            SaveUserCommand.NotifyCanExecuteChanged();
-        }
-
 
         // CHARGEMENT DES DONNÉES
         private void ChargerDepuisSession()
@@ -121,9 +257,9 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
             DateCreation = s.CurrentDateCrea;
             DerniereConnection = u.GetDerniereConnexionPrecedente(s.CurrentUser.UserId);
             ScoreTotal = s.CurrentScore;
-            Message = "";
 
             IsEditMode = false;
+            IsCollapseMode = false;
         }
 
         /// <summary>
@@ -135,7 +271,14 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         {
             IsEditMode = true;
             SaveUserCommand.NotifyCanExecuteChanged();
-            Message = "";
+            MessageInfos = "";
+        }
+
+        [RelayCommand]
+        private void EditPassword()
+        {
+            IsCollapseMode = true;
+            MessageInfos = "";
         }
 
         [RelayCommand]
@@ -143,5 +286,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
         {
             ChargerDepuisSession();
         }
+
+
     }
 }

@@ -128,7 +128,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
             TotalQuestions = 0;
             GenererNouvelleQuestion();
             MessageResultat = "Mode test activé - Écoutez et trouvez la lettre !";
-            CouleurResultat = "#4CAF50";
+            CouleurResultat = "#4CAF50"; 
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
             if (MorseActuel == null || !ModeTest)
             {
                 MessageResultat = "Lancez d'abord le mode test !";
-                CouleurResultat = "#FF9800";
+                CouleurResultat = "#FF9800"; 
                 return;
             }
 
@@ -161,7 +161,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
             {
                 // Dans votre version, chargez le vrai fichier audio
                 MessageResultat = $"Son joué : {MorseActuel.CodeVisuel}";
-                CouleurResultat = "#2196F3";
+                CouleurResultat = "#2196F3"; 
 
                 // A tester sur machine  : 
                 //_mediaPlayer.Open(new Uri(MorseActuel.CheminAudio, UriKind.Relative));
@@ -178,7 +178,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
             catch (Exception ex)
             {
                 MessageResultat = $"Erreur audio : {ex.Message}";
-                CouleurResultat = "#f44336";
+                CouleurResultat = "#f44336"; 
             }
         }
 

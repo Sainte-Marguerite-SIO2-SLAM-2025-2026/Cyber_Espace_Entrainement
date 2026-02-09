@@ -6,261 +6,437 @@
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Profil"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Profil"
         mc:Ignorable="d"
-        Title="PersonalView" Height="900" Width="1100"
+        Title="PersonalView"
+        Height="1080"
+        Width="1100"
         WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <!-- Style global pour les labels -->
+        <Style TargetType="TextBlock"
+               x:Key="LabelStyle">
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="Foreground"
+                    Value="#34495E" />
+            <Setter Property="Margin"
+                    Value="0,15,0,5" />
+        </Style>
+
+        <!-- Style global pour les PasswordBox -->
+        <Style TargetType="PasswordBox"
+               x:Key="PasswordStyle">
+            <Setter Property="FontSize"
+                    Value="14" />
+            <Setter Property="Padding"
+                    Value="8" />
+            <Setter Property="Margin"
+                    Value="0,5,0,0" />
+            <Setter Property="BorderBrush"
+                    Value="#C9D1D9" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="Background"
+                    Value="#FAFAFA" />
+        </Style>
+
+        <!-- Style global pour les boutons -->
+        <Style TargetType="Button"
+               x:Key="PrimaryButton">
+            <Setter Property="Height"
+                    Value="45" />
+            <Setter Property="Background"
+                    Value="#3498DB" />
+            <Setter Property="Foreground"
+                    Value="White" />
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="Margin"
+                    Value="0,10,0,0" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+        </Style>
+    </Window.Resources>
 
     <Window.DataContext>
-        <vm:ProfilViewModel/>
+        <vm:ProfilViewModel />
     </Window.DataContext>
-
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <!-- EN-TÊTE avec statistiques -->
-        <Border Grid.Row="0" Background="#2196F3" Padding="20">
+
+        <!-- EN-TÊTE -->
+        <Border Grid.Row="0"
+                Background="#2196F3"
+                Padding="20">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <!-- BOUTON RETOUR (à gauche) -->
+
+                <!-- BOUTON RETOUR -->
                 <Button Grid.Column="0"
-   Content="↩️   Retour"
-   Click="BackButton_Click"
-   Background="#1565C0"
-   Foreground="White"
-   Padding="15,10"
-   FontSize="14"
-   FontWeight="Bold"
-   BorderThickness="0"
-   Cursor="Hand"
-   VerticalAlignment="Center"
-   Margin="0,0,20,0"
-   ToolTip="Retour au menu principal">
+                        Content="↩️   Retour"
+                        Click="BackButton_Click"
+                        Background="#1565C0"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        VerticalAlignment="Center"
+                        Margin="0,0,20,0"
+                        ToolTip="Retour au menu principal">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#1565C0"/>
+                            <Setter Property="Background"
+                                    Value="#1565C0" />
                             <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#0D47A1"/>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="#0D47A1" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
 
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="GESTION DE VOS INFORMATIONS" 
-                   FontSize="24" 
-                   FontWeight="Bold" 
-                   Foreground="White"/>
-                    <TextBlock Text="Affichage de votre profil" 
-                   FontSize="14" 
-                   Foreground="#E3F2FD" 
-                   Margin="0,5,0,0"/>
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="GESTION DE VOS INFORMATIONS"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="White" />
+                    <TextBlock Text="Affichage de votre profil"
+                               FontSize="14"
+                               Foreground="#E3F2FD"
+                               Margin="0,5,0,0" />
                 </StackPanel>
-
             </Grid>
         </Border>
 
         <!-- CONTENU PRINCIPAL -->
-        <Grid Grid.Row="1" Margin="20">
+        <Grid Grid.Row="1"
+              Margin="20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-                <!-- FORMULAIRE -->
-                <Border Background="White" CornerRadius="10" Padding="25" BorderBrush="#D0D7DE" BorderThickness="1" Effect="{DynamicResource ShadowEffect}">
-                        <StackPanel>
-                            <TextBlock FontSize="20" FontWeight="Bold" Margin="0,0,0,20">
+            <!-- ========== FORMULAIRE GAUCHE : INFORMATIONS PERSONNELLES ========== -->
+            <Border Grid.Column="0"
+                    Background="White"
+                    CornerRadius="10"
+                    Padding="25"
+                    BorderBrush="#D0D7DE"
+                    BorderThickness="1"
+                    VerticalAlignment="Top"
+                    Effect="{DynamicResource ShadowEffect}">
+                <StackPanel>
+                    <!-- Titre dynamique -->
+                    <TextBlock FontSize="20"
+                               FontWeight="Bold"
+                               Margin="0,0,0,20">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text"
+                                        Value="Vos Informations" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsEditMode}"
+                                                 Value="True">
+                                        <Setter Property="Text"
+                                                Value="✏️ Modifier les infos" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <!-- Pseudo -->
+                    <TextBlock Text="Pseudo"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBox Text="{Binding Pseudo, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource InputStyle}"
+                             IsEnabled="{Binding IsEditMode}"
+                             Margin="0,0,0,15" />
+
+                    <!-- Email -->
+                    <TextBlock Text="Email"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource InputStyle}"
+                             IsEnabled="{Binding IsEditMode}"
+                             Margin="0,0,0,15" />
+
+                    <!-- Prénom + Nom -->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,15">
+                        <StackPanel Width="170">
+                            <TextBlock Text="Prénom"
+                                       Style="{StaticResource LabelStyle}" />
+                            <TextBox Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource InputStyle}"
+                                     IsEnabled="{Binding IsEditMode}" />
+                        </StackPanel>
+
+                        <StackPanel Width="170"
+                                    Margin="20,0,0,0">
+                            <TextBlock Text="Nom"
+                                       Style="{StaticResource LabelStyle}" />
+                            <TextBox Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource InputStyle}"
+                                     IsEnabled="{Binding IsEditMode}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Section -->
+                    <TextBlock Text="Section"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBox Text="{Binding Section, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource InputStyle}"
+                             IsEnabled="False"
+                             Margin="0,0,0,15" />
+
+                    <!-- Dates -->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,15">
+                        <StackPanel Width="160">
+                            <TextBlock Text="Date de création"
+                                       Style="{StaticResource LabelStyle}" />
+                            <TextBox Text="{Binding DateCreation, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
+                                     Style="{StaticResource InputStyle}"
+                                     IsEnabled="False" />
+                        </StackPanel>
+
+                        <StackPanel Width="160"
+                                    Margin="20,0,0,0">
+                            <TextBlock Text="Dernière connexion"
+                                       Style="{StaticResource LabelStyle}" />
+                            <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}',
+                        TargetNullValue=''}"
+                                     Style="{StaticResource InputStyle}"
+                                     IsEnabled="False" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Score -->
+                    <TextBlock Text="Score total"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBox Text="{Binding ScoreTotal, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource InputStyle}"
+                             IsEnabled="False"
+                             Margin="0,0,0,25" />
+
+                    <!-- Boutons d'action -->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Stretch">
+                        <Button Background="Blue"
+                                Foreground="White"
+                                Padding="15,10"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Margin="0,0,10,0"
+                                Content="✏️ Modifier"
+                                Visibility="{Binding EditVisibilityModify}"
+                                Command="{Binding EditUserCommand}" />
+
+                        <Button Command="{Binding SaveUserCommand}"
+                                Background="#4CAF50"
+                                Foreground="White"
+                                Padding="15,10"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Margin="0,0,10,0"
+                                Content="💾 Enregistrer"
+                                Visibility="{Binding EditVisibilityGeneral}" />
+
+                        <Button Command="{Binding CancelEditCommand}"
+                                Background="Red"
+                                Foreground="White"
+                                Padding="15,10"
+                                FontSize="14"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Content="❌ Annuler"
+                                Visibility="{Binding EditVisibilityGeneral}" />
+                    </StackPanel>
+
+                    <!-- Bouton modifier mot de passe -->
+                    <Button Background="Fuchsia"
+                            Foreground="White"
+                            Padding="15"
+                            FontWeight="Bold"
+                            FontSize="14"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Margin="0,10,0,0"
+                            Command="{Binding EditPasswordCommand}"
+                            Visibility="{Binding EditVisibilityPasswordButton}"
+                            Content="✏️ Modifier le mot de passe" />
+
+                    <!-- Message de retour -->
+                    <TextBlock Text="{Binding MessageInfos}"
+                               FontWeight="Bold"
+                               Margin="0,10,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground"
+                                        Value="Transparent" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsErrorInfos}"
+                                                 Value="True">
+                                        <Setter Property="Foreground"
+                                                Value="Red" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsSuccessInfos}"
+                                                 Value="True">
+                                        <Setter Property="Foreground"
+                                                Value="Green" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!-- ========== FORMULAIRE DROITE : CHANGEMENT DE MOT DE PASSE ========== -->
+                <Border Grid.Column="2"
+                        Grid.Row="0"
+                        Background="White"
+                        CornerRadius="10"
+                        Padding="25"
+                        BorderBrush="#D0D7DE"
+                        BorderThickness="1"
+                        VerticalAlignment="Top"
+                        Visibility="{Binding EditCollapse}"
+                        Effect="{DynamicResource ShadowEffect}">
+                    <StackPanel>
+                        <!-- Titre -->
+                        <TextBlock Text="Changer votre mot de passe"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,20" />
+
+                        <!-- Ancien mot de passe -->
+                        <TextBlock Text="Ancien mot de passe"
+                                   Style="{StaticResource LabelStyle}" />
+                        <PasswordBox x:Name="OldPasswordBox"
+                                     Style="{StaticResource PasswordStyle}"
+                                     PasswordChanged="OldPasswordChanged"
+                                     Margin="0,0,0,15" />
+
+                        <!-- Nouveau mot de passe -->
+                        <TextBlock Text="Nouveau mot de passe"
+                                   Style="{StaticResource LabelStyle}" />
+                        <PasswordBox x:Name="NewPasswordBox"
+                                     Style="{StaticResource PasswordStyle}"
+                                     PasswordChanged="NewPasswordChanged"
+                                     Margin="0,0,0,15" />
+
+                        <!-- Confirmation -->
+                        <TextBlock Text="Confirmer le nouveau mot de passe"
+                                   Style="{StaticResource LabelStyle}" />
+                        <PasswordBox x:Name="ConfirmPasswordBox"
+                                     Style="{StaticResource PasswordStyle}"
+                                     PasswordChanged="ConfirmPasswordChanged"
+                                     Margin="0,0,0,15" />
+
+                        <!-- Message d'erreur -->
+                        <TextBlock Text="{Binding MessageMdp}"
+                                   FontWeight="Bold"
+                                   Margin="0,10,0,0">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
-                                    <Setter Property="Text" Value="Vos Informations"/>
+                                    <Setter Property="Foreground"
+                                            Value="Transparent" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsEditMode}" Value="True">
-                                            <Setter Property="Text" Value="✏️ Modifier les infos"/>
+                                        <DataTrigger Binding="{Binding IsErrorMdp}"
+                                                     Value="True">
+                                            <Setter Property="Foreground"
+                                                    Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsSuccessMdp}"
+                                                     Value="True">
+                                            <Setter Property="Foreground"
+                                                    Value="Green" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
-                            </TextBlock.Style>  
-                            </TextBlock>
+                            </TextBlock.Style>
+                        </TextBlock>
 
+                        <!-- Boutons -->
+                        <Button Content="Mettre à jour"
+                                Command="{Binding ChangePasswordCommand}"
+                                Style="{StaticResource PrimaryButton}" />
 
-
-
-                       
-                            <!-- Pseudo  -->
-                            <StackPanel Margin="0,0,0,15">
-                               
-                                    <TextBlock Text="Pseudo" FontWeight="SemiBold"/>
-                                <TextBox Text="{Binding Pseudo, UpdateSourceTrigger=PropertyChanged}"
-         Style="{StaticResource InputStyle}"
-         IsEnabled="{Binding IsEditMode}"/>
-                            
-                                <!--<StackPanel Width="160" Margin="20,0,0,0">
-                                    <TextBlock Text="Mot de passe" FontWeight="SemiBold"/>
-                                    <PasswordBox x:Name="passwordBoxPassword" Style="{StaticResource InputPasswordStyle}"/>
-                                </StackPanel>-->
-                            </StackPanel>
-                            <!-- Email -->
-                            <StackPanel Margin="0,0,0,15">
-                                <TextBlock Text="Email" FontWeight="SemiBold"/>
-                            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-         Style="{StaticResource InputStyle}"
-         IsEnabled="{Binding IsEditMode}"/>
+                        <Button Content="Retour"
+                                Click="RetourMdp_Click"
+                                Command="{Binding CancelEditCommand}"
+                                Style="{StaticResource PrimaryButton}"
+                                Background="#7F8C8D" />
                     </StackPanel>
-
-                    <!-- Prénom + Nom -->
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                        <StackPanel Width="160">
-                            <TextBlock Text="Prénom" FontWeight="SemiBold"/>
-                            <TextBox Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"
-Style="{StaticResource InputStyle}"
-                                IsEnabled="False"/>
-                        </StackPanel>
-
-
-                        <StackPanel Width="160" Margin="20,0,0,0">
-                            <TextBlock Text="Nom" FontWeight="SemiBold"/>
-                            <TextBox Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"
-Style="{StaticResource InputStyle}"
-                                IsEnabled="False"/>
-
-                        </StackPanel>
-                    </StackPanel>
-                            
-                    <!-- Section -->
-                            <StackPanel Margin="0,0,0,15">
-                                <TextBlock Text="Section" FontWeight="SemiBold"/>
-                            <TextBox Text="{Binding Section, UpdateSourceTrigger=PropertyChanged}"
-         Style="{StaticResource InputStyle}"
-                                     IsEnabled="False"/>
-                        </StackPanel>
-                            <!-- Dates -->
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                                <StackPanel Width="160">
-                                    <TextBlock Text="Date de création" FontWeight="SemiBold"/>
-                            <TextBox Text="{Binding DateCreation, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
-         Style="{StaticResource InputStyle}"
-                                    IsEnabled="False"/>
-                            </StackPanel>
-                                <StackPanel Width="160" Margin="20,0,0,0">
-                                    <TextBlock Text="Dernière connexion" FontWeight="SemiBold"/>
-                            <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
-         Style="{StaticResource InputStyle}"
-                                         IsEnabled="False"/>
-                            </StackPanel>
-                            </StackPanel>
-                            <!-- Score -->
-                            <StackPanel Margin="0,0,0,25">
-                                <TextBlock Text="Score total" FontWeight="SemiBold"/>
-                            <TextBox Text="{Binding ScoreTotal, UpdateSourceTrigger=PropertyChanged}"
-         Style="{StaticResource InputStyle}"
-                                     IsEnabled="False"/>
-                        </StackPanel>
-                            <!-- Boutons -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                        <Button Background="Blue"
-                            Foreground="White"
-Padding="15,10"
-FontSize="14"
-FontWeight="Bold"
-BorderThickness="0"
-Cursor="Hand"
-Margin="0,0,10,0"
-                            Content="✏️ Modifier" 
-                                    Visibility="{Binding EditVisibilityModify}"
-                                    Command="{Binding EditUserCommand}">
-                        </Button>
-                        <!-- Bouton Créer/Enregistrer -->
-                        <Button Command="{Binding SaveUserCommand}"
-    Background="#4CAF50"
-    Foreground="White"
-    Padding="15,10"
-    FontSize="14"
-    FontWeight="Bold"
-    BorderThickness="0"
-    Cursor="Hand"
-    Margin="0,0,10,0"
-                                Content="💾 Enregistrer"
-                                Visibility="{Binding EditVisibilityGeneral}">
-
-                        </Button>
-                        <Button  
-    Command="{Binding CancelEditCommand}"
-    Background="Red"
-    Foreground="White"
-    Padding="15,10"
-    FontSize="14"
-    BorderThickness="0"
-    Cursor="Hand"
-                            Content="❌ Annuler"
-                            Visibility="{Binding EditVisibilityGeneral}">
-
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Margin="0, 10">
-                        <Button  
-         Background="Fuchsia" 
-         Foreground="White" 
-         Padding="15" 
-         FontWeight="Bold"
-         FontSize="14" 
-         BorderThickness="0" 
-         Cursor="Hand"
-                                Visibility="{Binding EditVisibilityModify}"
-                                Click="ModifierMotPasseButton_Click"
-         Content="✏️ Modifier le mot de passe"/>
-                    </StackPanel>
-                    <TextBlock Text="{Binding Message}"
-           Foreground="Red"
-           FontWeight="Bold"
-           Margin="0,10,0,0"
-           FontSize="14"/>
-                </StackPanel>
-                    
                 </Border>
+
+                <Button Grid.Row="1"
+                        Content="C'est un test"
+                        Style="{StaticResource PrimaryButton}" />
             </Grid>
+            
+            
+        </Grid>
 
-
-
-            <!--#region PIED DE PAGE -->
-        <Border Grid.Row="2" 
-        Background="White" 
-        BorderBrush="#e0e0e0" 
-        BorderThickness="0,1,0,0"
-        Padding="20">
+        <!-- PIED DE PAGE -->
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#e0e0e0"
+                BorderThickness="0,1,0,0"
+                Padding="20">
             <Grid>
                 <TextBlock Text="© 2025 - Plateforme de Cybersécurité"
-                   FontFamily="Verdana"
-                   FontSize="12"
-                   Foreground="#9E9E9E"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"/>
+                           FontFamily="Verdana"
+                           FontSize="12"
+                           Foreground="#9E9E9E"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
 
-                <StackPanel Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
                     <TextBlock Text="Version 1.0"
-                       FontFamily="Verdana"
-                       FontSize="12"
-                       Foreground="#9E9E9E"
-                       VerticalAlignment="Center"
-                       Margin="0,0,20,0"/>
+                               FontFamily="Verdana"
+                               FontSize="12"
+                               Foreground="#9E9E9E"
+                               VerticalAlignment="Center"
+                               Margin="0,0,20,0" />
                     <Button x:Name="btnQuitter"
-                    Content="❌ Quitter"
-                    Style="{StaticResource QuitButton}"
-                    Click="QuitButton_Click"
-                    Height="35" Cursor="Hand"/>
+                            Content="❌ Quitter"
+                            Style="{StaticResource QuitButton}"
+                            Click="QuitButton_Click"
+                            Height="35"
+                            Cursor="Hand" />
                 </StackPanel>
             </Grid>
         </Border>
-        <!--#endregion-->
     </Grid>
 </Window>
