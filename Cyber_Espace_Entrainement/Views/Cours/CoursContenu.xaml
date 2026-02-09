@@ -129,10 +129,10 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- Exemple -->
+                    <!-- Exemples -->
                     <Border Style="{StaticResource CoursContentBorder}">
                         <StackPanel>
-                            <TextBlock Text="✏️ Exemple" 
+                            <TextBlock Text="✏️ Exemples" 
                                        Style="{StaticResource CoursSectionTitle}"
                                        Foreground="#00838F"/>
 
