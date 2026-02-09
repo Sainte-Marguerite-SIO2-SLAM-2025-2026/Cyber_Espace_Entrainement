@@ -120,13 +120,24 @@ namespace Cyber_Espace_Entrainement.ViewModels
                         container.Page(page =>
                         {
                             page.Margin(50);
-                            page.Header().Text(CoursActuel.Titre).FontSize(24).SemiBold().FontColor("#1565C0");
+
+                            // Header avec espacement après le titre
+                            page.Header().Column(header =>
+                            {
+                                header.Item().Text(CoursActuel.Titre)
+                                    .FontSize(24)
+                                    .SemiBold()
+                                    .FontColor("#1565C0");
+
+                                // Ajouter un espace après le titre
+                                header.Item().PaddingBottom(20);
+                            });
 
                             page.Content().Column(col =>
                             {
                                 col.Spacing(15);
 
-                                // Contenu textuel
+                                // Définition
                                 col.Item().Text("Définition").FontSize(16).SemiBold();
                                 col.Item().Text(CoursActuel.Definition);
 
@@ -136,18 +147,31 @@ namespace Cyber_Espace_Entrainement.ViewModels
                                 {
                                     if (!string.IsNullOrEmpty(path) && File.Exists(path))
                                     {
-                                        col.Item().PaddingVertical(5).Image(path).FitWidth();
+                                        try
+                                        {
+                                            col.Item().PaddingVertical(10).Image(path).FitWidth();
+                                        }
+                                        catch (Exception imgEx)
+                                        {
+                                            // En cas d'erreur sur une image, on continue avec les autres
+                                            col.Item().Text($"[Image non chargée: {Path.GetFileName(path)}]")
+                                                .FontSize(10)
+                                                .Italic()
+                                                .FontColor("#999999");
+                                        }
                                     }
                                 }
 
-                                col.Item().Text("Explication").FontSize(16).SemiBold();
+                                // Explication
+                                col.Item().PaddingTop(10).Text("Explication").FontSize(16).SemiBold();
                                 col.Item().Text(CoursActuel.Explication);
 
+                                // Exemple
                                 if (!string.IsNullOrEmpty(CoursActuel.Exemple))
                                 {
-                                    col.Item().Background("#F5F5F5").Padding(10).Column(c => {
+                                    col.Item().PaddingTop(10).Background("#F5F5F5").Padding(10).Column(c => {
                                         c.Item().Text("Exemple pratique :").Italic();
-                                        c.Item().Text(CoursActuel.Exemple);
+                                        c.Item().PaddingTop(5).Text(CoursActuel.Exemple);
                                     });
                                 }
                             });
@@ -159,11 +183,12 @@ namespace Cyber_Espace_Entrainement.ViewModels
                         });
                     }).GeneratePdf(saveFileDialog.FileName);
 
-                    MessageBox.Show("PDF généré avec succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBoxService.ShowInformation("PDF généré avec succès !", "Succès");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erreur : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxService.ShowError($"Erreur : {ex.Message}\n\nDétails: {ex.InnerException?.Message}",
+                        "Erreur");
                 }
             }
         }

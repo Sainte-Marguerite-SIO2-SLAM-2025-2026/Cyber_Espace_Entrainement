@@ -50,6 +50,8 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             // Initialiser le ViewModel avec le cours
             _viewModel = new CoursContenuViewModel(_coursService.GetCoursById(1));
 
+            this.DataContext = _viewModel;
+
             // Charger les données depuis le ViewModel
             ChargerDepuisViewModel();
 
@@ -70,6 +72,8 @@ namespace Cyber_Espace_Entrainement.Views.Cours
 
             // Initialiser le ViewModel avec le cours
             _viewModel = new CoursContenuViewModel(cours);
+
+            this.DataContext = _viewModel;
 
             // Charger les données depuis le ViewModel
             ChargerDepuisViewModel();
