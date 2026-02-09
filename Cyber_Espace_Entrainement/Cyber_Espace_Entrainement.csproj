@@ -12,11 +12,12 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\icon_user_120.png" />
+    <None Remove="Resources\Images\Iconss\icon_user_120.png" />
     <None Remove="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <None Remove="Resources\Images\Cours\koala.jpg" />
     <None Remove="Resources\Images\Cours\pepe.jpg" />
     <None Remove="Resources\Images\Cours\SchemaTest.png" />
+    <None Remove="Resources\Images\Icons\icon_download_240.png" />
     <None Remove="Resources\Morse\morsecode.wav" />
     <None Remove="Resources\Morse\morse_0.wav" />
     <None Remove="Resources\Morse\morse_1.wav" />
@@ -101,7 +102,8 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\icon_user_120.png" />
+    <Resource Include="Resources\Images\Icons\icon_download_240.png" />
+    <Resource Include="Resources\Images\Icons\icon_user_120.png" />
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />

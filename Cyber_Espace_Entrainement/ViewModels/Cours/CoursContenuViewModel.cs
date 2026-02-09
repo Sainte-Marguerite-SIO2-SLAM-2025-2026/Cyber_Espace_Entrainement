@@ -119,66 +119,72 @@ namespace Cyber_Espace_Entrainement.ViewModels
                     {
                         container.Page(page =>
                         {
-                            page.Margin(50);
+                            page.Size(PageSizes.A4);
+                            page.Margin(40);
 
                             // Header avec espacement après le titre
                             page.Header().Column(header =>
                             {
                                 header.Item().Text(CoursActuel.Titre)
-                                    .FontSize(24)
+                                    .FontSize(20)
                                     .SemiBold()
                                     .FontColor("#1565C0");
 
-                                // Ajouter un espace après le titre
-                                header.Item().PaddingBottom(20);
+                                header.Item().PaddingBottom(15);
                             });
 
                             page.Content().Column(col =>
                             {
-                                col.Spacing(15);
+                                col.Spacing(12);
 
                                 // Définition
-                                col.Item().Text("Définition").FontSize(16).SemiBold();
-                                col.Item().Text(CoursActuel.Definition);
+                                col.Item().Text("Définition").FontSize(14).SemiBold().FontColor("#1565C0");
+                                col.Item().Text(CoursActuel.Definition).FontSize(11);
+
+                                // Explication
+                                col.Item().PaddingTop(8).Text("Explication").FontSize(14).SemiBold().FontColor("#1565C0");
+                                col.Item().Text(CoursActuel.Explication).FontSize(11);
+
+                                // Exemple
+                                if (!string.IsNullOrEmpty(CoursActuel.Exemple))
+                                {
+                                    col.Item().PaddingTop(8).Background("#F5F5F5").Padding(10).Column(c => {
+                                        c.Item().Text("Exemple pratique :").FontSize(11).Italic().SemiBold();
+                                        c.Item().PaddingTop(4).Text(CoursActuel.Exemple).FontSize(10);
+                                    });
+                                }
 
                                 // Gestion des images (Image 1, 2 et 3)
                                 string[] paths = { CoursActuel.Image1, CoursActuel.Image2, CoursActuel.Image3 };
                                 foreach (var path in paths)
                                 {
-                                    if (!string.IsNullOrEmpty(path) && File.Exists(path))
+                                    if (!string.IsNullOrEmpty(path))
                                     {
                                         try
                                         {
-                                            col.Item().PaddingVertical(10).Image(path).FitWidth();
+                                            byte[] imageData = ChargerImageDepuisRessource(path);
+
+                                            if (imageData != null && imageData.Length > 0)
+                                            {
+                                                col.Item().PaddingVertical(8).MaxHeight(200).Image(imageData);
+                                            }
                                         }
                                         catch (Exception imgEx)
                                         {
-                                            // En cas d'erreur sur une image, on continue avec les autres
                                             col.Item().Text($"[Image non chargée: {Path.GetFileName(path)}]")
-                                                .FontSize(10)
+                                                .FontSize(9)
                                                 .Italic()
                                                 .FontColor("#999999");
                                         }
                                     }
-                                }
-
-                                // Explication
-                                col.Item().PaddingTop(10).Text("Explication").FontSize(16).SemiBold();
-                                col.Item().Text(CoursActuel.Explication);
-
-                                // Exemple
-                                if (!string.IsNullOrEmpty(CoursActuel.Exemple))
-                                {
-                                    col.Item().PaddingTop(10).Background("#F5F5F5").Padding(10).Column(c => {
-                                        c.Item().Text("Exemple pratique :").Italic();
-                                        c.Item().PaddingTop(5).Text(CoursActuel.Exemple);
-                                    });
                                 }
                             });
 
                             page.Footer().AlignCenter().Text(x => {
                                 x.Span("Page ");
                                 x.CurrentPageNumber();
+                                x.Span(" / ");
+                                x.TotalPages();
                             });
                         });
                     }).GeneratePdf(saveFileDialog.FileName);
@@ -191,6 +197,96 @@ namespace Cyber_Espace_Entrainement.ViewModels
                         "Erreur");
                 }
             }
+        }
+
+        /// <summary>
+        /// Charge une image depuis les ressources WPF (embarquées ou fichier)
+        /// </summary>
+        private byte[] ChargerImageDepuisRessource(string resourcePath)
+        {
+            try
+            {
+                // Méthode 1 : Essayer de charger comme ressource embarquée
+                var packUri = new Uri($"pack://application:,,,{resourcePath}", UriKind.Absolute);
+                var resourceInfo = Application.GetResourceStream(packUri);
+
+                if (resourceInfo != null)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        resourceInfo.Stream.CopyTo(memoryStream);
+                        return memoryStream.ToArray();
+                    }
+                }
+            }
+            catch
+            {
+                // Si ça échoue, essayer comme fichier physique
+            }
+
+            try
+            {
+                // Méthode 2 : Essayer comme chemin de fichier
+                string path = resourcePath.TrimStart('/');
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string fullPath = Path.Combine(baseDir, path);
+
+                if (File.Exists(fullPath))
+                {
+                    return File.ReadAllBytes(fullPath);
+                }
+
+                // Essayer dans le dossier projet
+                string projectDir = Directory.GetParent(baseDir).Parent.Parent.Parent.FullName;
+                fullPath = Path.Combine(projectDir, path);
+
+                if (File.Exists(fullPath))
+                {
+                    return File.ReadAllBytes(fullPath);
+                }
+            }
+            catch
+            {
+                // Ignorer
+            }
+
+            return null;
+        }
+
+
+
+        #endregion
+
+        #region Utilitaires PDF
+
+        /// <summary>
+        /// Convertit un chemin de ressource WPF en chemin absolu sur le disque
+        /// </summary>
+        private string ConvertirCheminRessource(string resourcePath)
+        {
+            // Supprimer le "/" initial si présent
+            if (resourcePath.StartsWith("/"))
+            {
+                resourcePath = resourcePath.Substring(1);
+                resourcePath = resourcePath.Replace("/", "\\");
+            }
+
+            // Obtenir le répertoire de base de l'application
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Construire le chemin absolu
+            string absolutePath = Path.Combine(baseDirectory, resourcePath);
+
+            // Si le fichier n'existe pas dans bin, chercher dans le dossier du projet
+            if (!File.Exists(absolutePath))
+            {
+                // Remonter de bin\Debug\net8.0-windows vers la racine du projet
+                string projectDirectory = Directory.GetParent(baseDirectory).Parent.Parent.Parent.FullName;
+                absolutePath = Path.Combine(projectDirectory, resourcePath);
+            }
+            if (File.Exists(absolutePath))
+            { string e = ""; }
+            return absolutePath;
         }
 
         #endregion

@@ -37,7 +37,7 @@
 
         <!-- BOUTON PROFIL -->
         
-        <Button x:Name="Profile"
+        <Button x:Name="Profil"
                 Grid.Row="0"
                 Width="124" 
                 Height="124"
@@ -49,7 +49,7 @@
                 BorderBrush="#1565C0"
                 Cursor="Hand"
                 ToolTip="Mon Profil">
-            <Image Source="/Resources/icon_user_120.png" 
+            <Image Source="/Resources/Images/Icons/icon_user_120.png" 
                    Stretch="UniformToFill"/>
         </Button>
 
