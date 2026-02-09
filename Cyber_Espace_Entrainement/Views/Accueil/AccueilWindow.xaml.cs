@@ -16,7 +16,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Cyber_Espace_Entrainement.Views.Activite.Captcha;
 
 namespace Cyber_Espace_Entrainement.Views.Accueil
 {

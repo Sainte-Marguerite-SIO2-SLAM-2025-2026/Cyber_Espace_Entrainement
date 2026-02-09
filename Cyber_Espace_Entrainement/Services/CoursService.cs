@@ -46,7 +46,7 @@ namespace Cyber_Espace_Entrainement.Services
         }
 
         /// <summary>
-        /// Récupérer une activité par son id
+        /// Récupérer un cours par son id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
