@@ -24,7 +24,7 @@
         <!--#region EN-TÊTE -->
         <Border Grid.Row="0" Background="{StaticResource PrimaryBlueBrush}" Padding="30,40" Margin="0,0,0,10">
             <Grid>
-                <!-- Bouton Retour avec couleur complémentaire (Orange/Amber) -->
+                <!-- Bouton Retour -->
                 <Button x:Name="BackButton"
                     Content="↩️   Retour"
                     Style="{StaticResource RetourButtonBackBlue}"
@@ -52,30 +52,36 @@
                                Margin="0,15,0,0"/>
                 </StackPanel>
 
-                <!--#region BOUTON PROFIL -->
-                <Button x:Name="btnDownload"
-                    Content="📥 Télécharger PDF"
-                    Command="{Binding DownloadPdfCommand}"
-                    Style="{StaticResource DownloadButtonStyle}"
-                    MouseEnter="BtnDownload_MouseEnter" 
-                    MouseLeave="BtnDownload_MouseLeave"
-                    Margin="0,0,15,0"/>
-                <Button x:Name="Profile"
-                    Grid.Row="0"
-                    Width="124" 
-                    Height="124"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
-                    Margin="0,0,20,10"
-                    Padding="0"
-                    Background="Transparent"
-                    BorderBrush="#1565C0"
-                    Cursor="Hand"
-                    ToolTip="Mon Profil">
-                    <Image Source="/Resources/icon_user_120.png" 
-                   Stretch="UniformToFill"/>
-                </Button>
-                <!--#endregion -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    
+                    <Button x:Name="btnDownload"
+                        Command="{Binding DownloadPdfCommand}"
+                        Style="{StaticResource DownloadButton}"
+                        Width="124" 
+                        Height="124"
+                        Margin="0,0,20,0" 
+                        
+                        Cursor="Hand"
+                        ToolTip="Télécharger le cours en PDF">
+                            <Image x:Name="imgDownload" 
+                                   Source="/Resources/Images/Icons/icon_download_240.png" 
+                                   Width="104"
+                                   Height="104"
+                           Stretch="Uniform"/>
+                    </Button>
+
+                    <Button x:Name="Profil"
+                        Width="124" 
+                        Height="124"
+                        Padding="0"
+                        Background="Transparent"
+                        BorderBrush="#1565C0"
+                        Cursor="Hand"
+                        ToolTip="Mon Profil">
+                        <Image Source="/Resources/Images/Icons/icon_user_120.png" 
+                                Stretch="UniformToFill"/>
+                    </Button>
+                </StackPanel>
             </Grid>
         </Border>
         <!--#endregion -->
@@ -93,6 +99,8 @@
                     <!-- Colonne droite : Images (40%) -->
                     <ColumnDefinition Width="1.8*"/>
                 </Grid.ColumnDefinitions>
+
+                
 
                 <!--#region COLONNE GAUCHE - TEXTE -->
                 <StackPanel Grid.Column="0">
@@ -162,7 +170,7 @@
                             Background="#E3F2FD" 
                             CornerRadius="10" 
                             Padding="30"
-                            Margin="0,0,0,25"
+                            Margin="0,100,0,25"
                             Visibility="Collapsed">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text="📷" 
