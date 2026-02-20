@@ -51,7 +51,7 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             _coursService = new CoursService();
 
             // Initialiser le ViewModel avec le cours
-            _viewModel = new CoursContenuViewModel(_coursService.GetCoursById(1));
+            _viewModel = new CoursContenuViewModel(_coursService.GetCoursById(101));
 
             this.DataContext = _viewModel;
 

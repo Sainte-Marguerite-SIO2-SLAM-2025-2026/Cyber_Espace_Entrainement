@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace Cyber_Espace_Entrainement.Views.Activite
 {
     /// <summary>
-    /// Logique d'interaction pour InjectionSqlFacileView.xaml
+    /// Logique d'interaction pour ConventionNommageFacileView.xaml
     /// </summary>
-    public partial class InjectionSQLFacileView : Window
+    public partial class ConventionNommageFacileView : Window
     {
-        public InjectionSQLFacileView()
+        public ConventionNommageFacileView()
         {
             InitializeComponent();
         }
