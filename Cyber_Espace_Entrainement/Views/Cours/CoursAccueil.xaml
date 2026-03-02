@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <!-- EN-TÊTE avec bouton retour -->
-        <Border Grid.Row="0" Background="#055E02" Padding="30,40">
+        <Border Grid.Row="0" Background="{StaticResource PrimaryBlueBrush}" Padding="30,40">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -34,29 +34,13 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- BOUTON RETOUR (à gauche) -->
-                <Button Grid.Column="0"
+                <Button x:Name="BackButton"
                         Content="↩️   Retour"
-                        Click="BackButton_Click"
-                        Background="#7A61A6"
-                        Foreground="White"
-                        Padding="15,10"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        BorderThickness="0"
-                        Cursor="Hand"
+                        Style="{StaticResource RetourButtonBackBlue}"
                         VerticalAlignment="Center"
-                        ToolTip="Retour au menu principal">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="Violet"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Violet"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                        HorizontalAlignment="Left"
+                        Margin="0,0,20,0"
+                        ToolTip="Retour au menu principal"/>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,800,0">
 
@@ -75,7 +59,7 @@
         </Border>
 
         <!-- BOUTON PROFIL -->
-        <Button x:Name="Profile"
+        <Button x:Name="Profil"
          Grid.Row="0"
          Width="124" 
          Height="124"
@@ -87,7 +71,7 @@
          BorderBrush="#1565C0"
          Cursor="Hand"
          ToolTip="Mon Profil">
-            <Image Source="/Resources/icon_user_120.png" 
+            <Image Source="/Resources/Images/Icons/icon_user_120.png" 
             Stretch="UniformToFill"/>
         </Button>
 
@@ -191,13 +175,16 @@
                                Foreground="#9E9E9E"
                                VerticalAlignment="Center"
                                Margin="0,0,20,0" />
-                    <Button Content="❌ Quitter" 
-                                Click="QuitButton_Click"
-                                Background="#f44336"
-                                Foreground="White"
-                                Padding="15,8"
-                                BorderThickness="0"
-                                Cursor="Hand" />
+                    <Button x:Name="BtnDeco"
+                            Content="🔓 Déconnexion"
+                            Click="BtnDeco_Click"
+                            Style="{StaticResource DeconnexionButton}"
+                            Margin="0,0,10,0"/>
+                    <Button x:Name="btnQuitter"
+                            Content="❌ Quitter"
+                            Style="{StaticResource QuitButton}"
+                            Click="BtnQuitter_Click"
+                            Height="35"/>
                 </StackPanel>
             </Grid>
         </Border>

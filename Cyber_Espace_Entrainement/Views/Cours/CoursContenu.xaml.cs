@@ -45,6 +45,7 @@ namespace Cyber_Espace_Entrainement.Views.Cours
 
         private Color _ProfilOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");            // TO DO : remplacer par le theme
         private Color _DownloadOriginalBorderColor = Colors.Transparent; // Par défaut transparent
+
         public CoursContenu()
         {
             InitializeComponent();
