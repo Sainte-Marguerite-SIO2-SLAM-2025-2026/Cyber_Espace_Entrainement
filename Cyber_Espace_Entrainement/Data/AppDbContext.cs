@@ -28,6 +28,7 @@ namespace Cyber_Espace_Entrainement.Data
 
         public DbSet<LogConnexion> logConnexion { get; set; }
 
+        public DbSet<Captchas> Captcha { get; set; }
         //Représente la table UserEnumeration
         public DbSet<UserEnumeration> userEnumeration { get; set; }
 
@@ -151,6 +152,7 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Image3).IsRequired(false);
                 entity.Property(c => c.Lien).IsRequired(false);
                 entity.Property(c => c.Theme).IsRequired(false);
+                entity.Property(c => c.ImageBouton).IsRequired(false);
 
             });
 
@@ -169,6 +171,34 @@ namespace Cyber_Espace_Entrainement.Data
 
             });
 
+            // MAPPING DE L'ENTITÉ Captcha : correspondance explicite entre propriétés et colonnes
+            modelBuilder.Entity<Captchas>(entity =>
+            {
+                entity.ToTable("Captcha");
+
+                // On définit la clé primaire sur la propriété du modèle (CaptchaId)
+                entity.HasKey(c => c.CaptchaId);
+
+                // Correspondances colonne <-> propriété (selon votre schéma demandé)
+                entity.Property(c => c.CaptchaId).HasColumnName("CaptchaID");
+                entity.Property(c => c.ActiviteId).HasColumnName("ActiviteID");
+                entity.Property(c => c.CourdId).HasColumnName("CoursID");
+
+                entity.Property(c => c.Explication)
+                      .HasColumnName("Explication")
+                      .IsRequired(false);
+
+                entity.Property(c => c.Zone)
+                      .HasColumnName("Zone")
+                      .IsRequired(false);
+
+                entity.Property(c => c.Image)
+                      .HasColumnName("Image")
+                      .IsRequired(false);
+
+                entity.Property(c => c.Valide)
+                      .HasColumnName("Valide")
+                      .IsRequired();
             modelBuilder.Entity<UserEnumeration>(entity =>
             {
                 entity.ToTable("UserEnumeration");

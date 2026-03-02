@@ -1,9 +1,9 @@
-﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Activite.Captcha.CaptchaFacileView"
+﻿<Window x:Class="Cyber_Espace_Entrainement.Views.Activite.CaptchaFacileView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite.Captcha"
+        xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite.Captcha"
         mc:Ignorable="d"
         Title="CaptchaFacileView"
@@ -46,41 +46,215 @@
                            Foreground="#BBDEFB"
                            HorizontalAlignment="Center" />
             </StackPanel>
-
-
         </Border>
 
-        <!-- Captcha Intro -->
+        <!-- ═══════════════════════════════════════════════════════════
+             PAGE INTRO avec contenu de BDD
+             ═══════════════════════════════════════════════════════════ -->
         <Grid Grid.Row="1"
               Grid.Column="0">
-            <StackPanel Grid.Row="1"
-                        Grid.ColumnSpan="2">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Intro}"
+                                     Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
-                <StackPanel.Style>
-                    <Style TargetType="StackPanel">
-                        <Setter Property="Visibility"
-                                Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Intro}"
-                                         Value="True">
-                                <Setter Property="Visibility"
-                                        Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </StackPanel.Style>
-
-                <Button Height="100"
-                        Width="200"
-                        Content="Commencer le Captcha"
+            <!-- Contenu centré avec informations -->
+            <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Command="{Binding Niveau1Command}" />
+                        MaxWidth="900"
+                        Margin="40">
+
+                <!-- Titre principal -->
+                <TextBlock Text="{Binding TitreIntro}"
+                           FontSize="36"
+                           FontWeight="SemiBold"
+                           Foreground="#1565C0"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30" />
+
+                <!-- Description / Instructions de la BDD -->
+                <Border Background="#F5F5F5"
+                        BorderBrush="#E0E0E0"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="30"
+                        Margin="0,0,0,25">
+                    <StackPanel>
+                        <TextBlock Text="📋 Instructions"
+                                   FontSize="22"
+                                   FontWeight="SemiBold"
+                                   Foreground="#424242"
+                                   Margin="0,0,0,15" />
+
+                        <TextBlock Text="{Binding Description}"
+                                   FontSize="16"
+                                   Foreground="#616161"
+                                   TextWrapping="Wrap"
+                                   LineHeight="28"
+                                   Margin="0,0,0,20" />
+
+                        <!-- Objectifs / Points clés -->
+                        <TextBlock Text="🎯 Objectifs :"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   Foreground="#424242"
+                                   Margin="0,10,0,10" />
+
+                        <TextBlock Text="{Binding ObjectifsIntro}"
+                                   FontSize="15"
+                                   Foreground="#616161"
+                                   TextWrapping="Wrap"
+                                   LineHeight="26" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Informations supplémentaires (durée, difficulté, etc.) -->
+                <Grid Margin="0,0,0,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Durée estimée -->
+                    <Border Grid.Column="0"
+                            Background="White"
+                            BorderBrush="#E0E0E0"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="20"
+                            Margin="0,0,10,0">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="⏱️"
+                                       FontSize="28"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8" />
+                            <TextBlock Text="Durée estimée"
+                                       FontSize="13"
+                                       Foreground="#9E9E9E"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,5" />
+                            <TextBlock Text="{Binding DureeEstimee}"
+                                       FontSize="18"
+                                       FontWeight="SemiBold"
+                                       Foreground="#424242"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Difficulté -->
+                    <Border Grid.Column="1"
+                            Background="White"
+                            BorderBrush="#E0E0E0"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="20"
+                            Margin="5,0,5,0">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="⭐"
+                                       FontSize="28"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8" />
+                            <TextBlock Text="Difficulté"
+                                       FontSize="13"
+                                       Foreground="#9E9E9E"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,5" />
+                            <TextBlock Text="{Binding NiveauDifficulte}"
+                                       FontSize="18"
+                                       FontWeight="SemiBold"
+                                       Foreground="#424242"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Nombre d'étapes -->
+                    <Border Grid.Column="2"
+                            Background="White"
+                            BorderBrush="#E0E0E0"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="20"
+                            Margin="10,0,0,0">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="📊"
+                                       FontSize="28"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,8" />
+                            <TextBlock Text="Étapes"
+                                       FontSize="13"
+                                       Foreground="#9E9E9E"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,5" />
+                            <TextBlock Text="{Binding NombreEtapes}"
+                                       FontSize="18"
+                                       FontWeight="SemiBold"
+                                       Foreground="#424242"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </StackPanel>
 
+            <!-- Bouton Commencer en bas à droite -->
+            <Button Height="80"
+                    Width="300"
+                    Content="Commencer le Captcha ➜"
+                    Command="{Binding Niveau1Command}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,50,50"
+                    Background="#4CAF50"
+                    Foreground="White"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Padding="20,10">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="8"
+                                            BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#45A049" />
+                            </Trigger>
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#3D8B40" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
 
-        <!-- Captcha Jeu 1 -->
+        <!-- ═══════════════════════════════════════════════════════════
+             PAGE JEU CAPTCHA 1
+             ═══════════════════════════════════════════════════════════ -->
         <StackPanel Grid.Row="1"
                     Grid.ColumnSpan="2">
             <StackPanel.Style>
@@ -129,7 +303,9 @@
             </CheckBox>
         </StackPanel>
 
-        <!-- Captcha Jeu 2 -->
+        <!-- ═══════════════════════════════════════════════════════════
+             PAGE JEU CAPTCHA 2
+             ═══════════════════════════════════════════════════════════ -->
         <Grid Grid.Row="1"
               Grid.Column="0">
             <StackPanel Grid.Row="1"
@@ -176,28 +352,121 @@
             </StackPanel>
         </Grid>
 
-        <!-- Captcha Outro -->
+        <!-- ═══════════════════════════════════════════════════════════
+             PAGE OUTRO avec résultats
+             ═══════════════════════════════════════════════════════════ -->
         <Grid Grid.Row="1"
               Grid.Column="0">
-            <StackPanel Grid.Row="1"
-                        Grid.ColumnSpan="2">
-                <StackPanel.Style>
-                    <Style TargetType="StackPanel">
-                        <Setter Property="Visibility"
-                                Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Outro}"
-                                         Value="True">
-                                <Setter Property="Visibility"
-                                        Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </StackPanel.Style>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Outro}"
+                                     Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="800">
+
+                <TextBlock Text="✅ Captcha complété !"
+                           FontSize="42"
+                           FontWeight="Bold"
+                           Foreground="#4CAF50"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30" />
+
+                <!-- Résultats de la BDD -->
+                <Border Background="#F5F5F5"
+                        BorderBrush="#E0E0E0"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="30"
+                        Margin="0,0,0,25">
+                    <StackPanel>
+                        <TextBlock Text="📊 Résultats"
+                                   FontSize="24"
+                                   FontWeight="SemiBold"
+                                   Foreground="#424242"
+                                   Margin="0,0,0,20" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Score -->
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Score :"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#616161"
+                                       Margin="0,0,20,15" />
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding ScoreFinal}"
+                                       FontSize="16"
+                                       Foreground="#424242"
+                                       Margin="0,0,0,15" />
+
+                            <!-- Temps -->
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Temps écoulé :"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#616161"
+                                       Margin="0,0,20,15" />
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding TempsEcoule}"
+                                       FontSize="16"
+                                       Foreground="#424242"
+                                       Margin="0,0,0,15" />
+
+                            <!-- Tentatives -->
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Tentatives :"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#616161"
+                                       Margin="0,0,20,0" />
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="1"
+                                       Text="{Binding NombreTentatives}"
+                                       FontSize="16"
+                                       Foreground="#424242" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Message de félicitations depuis BDD -->
+                <TextBlock Text="{Binding MessageFelicitations}"
+                           FontSize="16"
+                           Foreground="#616161"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           LineHeight="24" />
             </StackPanel>
         </Grid>
 
-        <!-- footer -->
+        <!-- ═══════════════════════════════════════════════════════════
+             FOOTER
+             ═══════════════════════════════════════════════════════════ -->
         <Border Grid.Row="2"
                 Background="White"
                 Padding="20"
@@ -217,14 +486,19 @@
                                Foreground="#9E9E9E"
                                VerticalAlignment="Center"
                                Margin="0,0,20,0" />
-                    <Button x:Name="BtnDeco"
-                            Content="🔓 Déconnexion"
-                            Margin="0,0,10,0" />
                     <Button x:Name="BtnQuitter"
-                            Content="❌ Quitter" />
+                            Content="❌ Quitter"
+                            Style="{StaticResource QuitButton}"
+                            Click="ButtonQuitter_Click"
+                            MouseEnter="ButtonQuitter_MouseEnter"
+                            MouseLeave="ButtonQuitter_MouseLeave" />
                 </StackPanel>
             </Grid>
         </Border>
+
+        <!-- ═══════════════════════════════════════════════════════════
+             BOUTON RETOUR
+             ═══════════════════════════════════════════════════════════ -->
         <Button x:Name="ButtonRetour"
                 Grid.Column="0"
                 Content="↩️   Retour"
@@ -236,8 +510,10 @@
                 BorderThickness="0"
                 Cursor="Hand"
                 VerticalAlignment="Center"
-                Margin="48,0,1709,0"
+                HorizontalAlignment="Left"
+                Margin="58,0,0,0"
                 Height="56"
+                Width="180"
                 Click="ButtonRetour_Click" />
     </Grid>
 </Window>
