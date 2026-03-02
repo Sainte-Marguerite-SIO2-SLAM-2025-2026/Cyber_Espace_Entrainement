@@ -74,9 +74,6 @@ namespace Cyber_Espace_Entrainement.Services
                 user.DateCreation = DateTime.Now;
                 user.ScoreTotal = 0; // Initialiser le score à 0
 
-                user.Nom = NormalizeNom(user.Nom);
-                user.Prenom = NormalizePrenom(user.Prenom);
-
                 // REMARQUE : Les champs Nom, Prenom, Section, ScoreTotal sont déjà 
                 // présents dans l'objet user et seront sauvegardés automatiquement
                 _context.Users.Add(user);
@@ -94,7 +91,7 @@ namespace Cyber_Espace_Entrainement.Services
         /// Modifier un utilisateur existant
         /// MODIFIÉ : Ajout de la mise à jour des nouveaux champs
         /// </summary>
-        public(bool Success, string Message) UpdateUser(Utilisateurs user)
+        public (bool Success, string Message) UpdateUser(Utilisateurs user)
         {
             try
             {
@@ -104,46 +101,44 @@ namespace Cyber_Espace_Entrainement.Services
                     return (false, "Utilisateur introuvable.");
                 }
 
-                // Vérifier unicité login (sauf pour lui-même)
+                // Vérifier unicité login (sauf pour lui-même !)
                 if (_context.Users.Any(u => u.Login == user.Login && u.UserId != user.UserId))
                 {
                     return (false, "Ce login est déjà utilisé.");
                 }
 
-                // Vérifier unicité email (sauf pour lui-même)
+                // Vérifier unicité email (sauf pour lui-même !)
                 if (_context.Users.Any(u => u.Email == user.Email && u.UserId != user.UserId))
                 {
                     return (false, "Cet email est déjà utilisé.");
                 }
 
-                // Champs simples
+                // Mise à jour des champs existants
                 existingUser.Login = user.Login;
                 existingUser.Email = user.Email;
                 existingUser.Role = user.Role;
+
+                // AJOUTÉ : Mise à jour des nouveaux champs
+                existingUser.Nom = user.Nom;
+                existingUser.Prenom = user.Prenom;
                 existingUser.Section = user.Section;
                 existingUser.ScoreTotal = user.ScoreTotal;
 
-                // NORMALISATION (à la place du trigger)
-                existingUser.Nom = NormalizeNom(user.Nom);
-                existingUser.Prenom = NormalizePrenom(user.Prenom);
-
-                // Mot de passe
-                if (!string.IsNullOrWhiteSpace(user.MotPasse) &&
-                    user.MotPasse != existingUser.MotPasse)
+                // Ne modifier le mot de passe que s'il a changé
+                if (!string.IsNullOrEmpty(user.MotPasse) && user.MotPasse != existingUser.MotPasse)
                 {
                     existingUser.MotPasse = HashPassword(user.MotPasse);
                 }
 
                 _context.SaveChanges();
 
-                return (true, $"Utilisateur '{existingUser.Login}' modifié avec succès.");
+                return (true, $"Utilisateur '{user.Login}' modifié avec succès.");
             }
             catch (Exception ex)
             {
                 return (false, $"Erreur : {ex.Message}");
             }
         }
-
 
         public (bool Success, string Message) UpdateUserPassword(Utilisateurs user)
         {
@@ -322,17 +317,12 @@ namespace Cyber_Espace_Entrainement.Services
         /// </summary>
         public DateTime? GetDerniereConnexionPrecedente(int userId)
         {
-            var connexions = _context.logConnexion
+            return _context.logConnexion
                 .Where(l => l.UserId == userId)
                 .OrderByDescending(l => l.derniereConnexion)
+                .Skip(1) // on saute la plus récente
                 .Select(l => l.derniereConnexion)
-                .ToList();
-
-            // S'il n'y a pas d'avant-dernière connexion
-            if (connexions.Count < 2)
-                return null;
-
-            return connexions[1];
+                .FirstOrDefault();
         }
 
 
@@ -356,22 +346,6 @@ namespace Cyber_Espace_Entrainement.Services
         public void Dispose()
         {
             _context.Dispose();
-        }
-        private static string? NormalizeNom(string? nom)
-        {
-            return string.IsNullOrWhiteSpace(nom)
-                ? null
-                : nom.Trim().ToUpper();
-        }
-
-        private static string? NormalizePrenom(string? prenom)
-        {
-            if (string.IsNullOrWhiteSpace(prenom))
-                return null;
-
-            prenom = prenom.Trim().ToLower();
-
-            return char.ToUpper(prenom[0]) + prenom.Substring(1);
         }
     }
 }

@@ -9,18 +9,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Cyber_Espace_Entrainement.ViewModels.Activite;
 
 namespace Cyber_Espace_Entrainement.Views.Activite
 {
-    public partial class PhishingFacileView : Window
+    /// <summary>
+    /// Logique d'interaction pour UserEnumeration.xaml
+    /// </summary>
+    public partial class UserEnumerationFacileView : Window
     {
-        public PhishingFacileView()
+        public UserEnumerationFacileView()
         {
             InitializeComponent();
-            
         }
 
+        /// <summary>
+        /// Retour au menu principal
+        /// </summary>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
