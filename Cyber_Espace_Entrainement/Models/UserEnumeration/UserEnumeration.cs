@@ -32,4 +32,5 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         public string Message { get; set; }
 
     }
+
 }
