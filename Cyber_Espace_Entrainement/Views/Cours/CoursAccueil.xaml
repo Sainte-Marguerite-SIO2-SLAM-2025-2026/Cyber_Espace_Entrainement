@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <!-- EN-TÊTE avec bouton retour -->
-        <Border Grid.Row="0" Background="#055E02" Padding="20">
+        <Border Grid.Row="0" Background="#055E02" Padding="30,40">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -61,16 +61,35 @@
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,800,0">
 
                     <TextBlock Text="ACCUEIL DES COURS" 
-                               FontSize="28" 
+                               FontSize="42" 
                                FontWeight="Bold" 
-                               Foreground="White"/>
+                               Foreground="White"
+                               HorizontalAlignment="Center"/>
 
                     <TextBlock Text="Booste tes connaissances !"
                                FontSize="18" 
-                               Foreground="#E3F2FD"/>
+                               Foreground="#E3F2FD"
+                               HorizontalAlignment="Center"/>
                 </StackPanel>
             </Grid>
         </Border>
+
+        <!-- BOUTON PROFIL -->
+        <Button x:Name="Profile"
+         Grid.Row="0"
+         Width="124" 
+         Height="124"
+         VerticalAlignment="Center"
+         HorizontalAlignment="Right"
+         Margin="0,0,20,10"
+         Padding="0"
+         Background="Transparent"
+         BorderBrush="#1565C0"
+         Cursor="Hand"
+         ToolTip="Mon Profil">
+            <Image Source="/Resources/icon_user_120.png" 
+            Stretch="UniformToFill"/>
+        </Button>
 
         <!-- Génération des boutons pour chaque activité de la BDD -->
         <ItemsControl Grid.Row="1" ItemsSource="{Binding Cours}" Margin="10,0,-10,74" Grid.RowSpan="2">
