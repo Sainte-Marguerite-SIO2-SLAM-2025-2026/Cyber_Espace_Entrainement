@@ -52,6 +52,7 @@
     <None Remove="Resources\Images\Icons\icon_download_240.png" />
     <None Remove="Resources\Images\Icons\icon_ISQL.png" />
     <None Remove="Resources\Images\Icons\icon_LOG.png" />
+    <None Remove="Resources\Images\Icons\icon_XSS.png" />
     <None Remove="Resources\Images\Icons\icon_moindre_privilege.png" />
     <None Remove="Resources\Images\Icons\icon_TOK.png" />
     <None Remove="Resources\Images\Icons\icon_user_120.png" />
@@ -182,7 +183,6 @@
     <Resource Include="Resources\Images\Icons\icon_convention_nommage.png" />
     <Resource Include="Resources\Images\Icons\icon_download_240.png" />
     <Resource Include="Resources\Images\Icons\icon_ISQL.png" />
-    <Resource Include="Resources\Images\Icons\icon_LOG.png" />
     <Resource Include="Resources\Images\Icons\icon_moindre_privilege.png" />
     <Resource Include="Resources\Images\Icons\icon_ransomware.png" />
     <Resource Include="Resources\Images\Icons\icon_user_120.png" />
