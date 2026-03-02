@@ -6,7 +6,7 @@ namespace Cyber_Espace_Entrainement.Converters
 {
     /// <summary>
     /// Convertisseur qui ajoute automatiquement le préfixe du répertoire d'images.
-    /// Permet de stocker uniquement le nom du fichier dans la base de données.
+    /// Permet de stocker uniquement le nom du fichier dans la base de données. 
     /// </summary>
     public class ImagePathConverter : IValueConverter
     {

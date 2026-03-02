@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite"
         Title="Code Morse - Apprentissage et Test" 
-        Height="700" 
-        Width="1000"
+        Height="1080" 
+        Width="1920"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
 
