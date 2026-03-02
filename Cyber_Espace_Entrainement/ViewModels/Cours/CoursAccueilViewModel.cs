@@ -65,5 +65,6 @@ namespace Cyber_Espace_Entrainement.ViewModels.Cours
         }
 
         #endregion
+
     }
 }
