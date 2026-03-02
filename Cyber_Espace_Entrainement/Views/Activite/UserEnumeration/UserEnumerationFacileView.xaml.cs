@@ -13,13 +13,21 @@ using System.Windows.Shapes;
 namespace Cyber_Espace_Entrainement.Views.Activite
 {
     /// <summary>
-    /// Logique d'interaction pour ConventionNommageFacileView.xaml
+    /// Logique d'interaction pour UserEnumeration.xaml
     /// </summary>
-    public partial class ConventionNommageFacileView : Window
+    public partial class UserEnumerationFacileView : Window
     {
-        public ConventionNommageFacileView()
+        public UserEnumerationFacileView()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Retour au menu principal
+        /// </summary>
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
