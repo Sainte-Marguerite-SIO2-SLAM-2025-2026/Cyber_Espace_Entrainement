@@ -48,58 +48,12 @@
 
                 <Label Content="Mot de passe" 
                        Style="{StaticResource ModernLabel}"/>
-                <Grid Margin="0,5,0,20">
-                    <!-- Password caché -->
-                    <PasswordBox x:Name="pbxMotDePasse"
-                                 PasswordChanged="PasswordBox_PasswordChanged"
-                                 Tag="••••••••">
-                        <PasswordBox.Style>
-                            <Style TargetType="PasswordBox"
-                                   BasedOn="{StaticResource ModernPasswordBox}">
-                                <Setter Property="Visibility"
-                                        Value="Visible" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsPasswordVisible}"
-                                                 Value="True">
-                                        <Setter Property="Visibility"
-                                                Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </PasswordBox.Style>
-                    </PasswordBox>
+                <PasswordBox x:Name="pbxMotDePasse" 
+                             Style="{StaticResource ModernPasswordBox}" 
+                             Tag="••••••••" 
+                             PasswordChanged="PasswordBox_PasswordChanged" 
+                             Margin="0,5,0,20"/>
 
-                    <!-- Password visible -->
-                    <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
-                             Padding="0,0,35,0">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox"
-                                   BasedOn="{StaticResource InputStyle}">
-                                <Setter Property="Visibility"
-                                        Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsPasswordVisible}"
-                                                 Value="True">
-                                        <Setter Property="Visibility"
-                                                Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-
-                    <!-- Icône œil -->
-                    <Button Content="👁"
-                            Width="48"
-                            Height="40"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Cursor="Hand" />
-                    <!--Command="{Binding TogglePasswordVisibilityCommand}" />-->
-                </Grid>
-                
                 <Button x:Name="btnConnecter" 
                         Content="SE CONNECTER" 
                         Style="{StaticResource ModernButton}" 
