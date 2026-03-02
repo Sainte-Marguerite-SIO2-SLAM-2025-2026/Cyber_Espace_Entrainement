@@ -22,14 +22,15 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         [Column("CoursID")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
         public int CoursId { get; set; }
 
-        [Column("image")]
+        [Column("image")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
         public string Image { get; set; }
 
-        [Column("reponse")]
+        [Column("reponse")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
         public bool Reponse { get; set; }
 
-        [Column("message")]
+        [Column("message")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
         public string Message { get; set; }
 
     }
+
 }
