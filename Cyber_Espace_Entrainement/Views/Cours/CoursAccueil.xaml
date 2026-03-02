@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Cours"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Cours"
+        xmlns:converters="clr-namespace:Cyber_Espace_Entrainement.Converters"
         mc:Ignorable="d" 
         Title="CoursAccueil"
         Height="1080" 
@@ -12,6 +13,11 @@
         Background="#f5f5f5"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
+
+    <Window.Resources>
+        <!-- Déclaration du converter -->
+        <converters:ImagePathConverter x:Key="ImagePathConverter"/>
+    </Window.Resources>
 
     <Window.DataContext>
         <vm:CoursAccueilViewModel/>
@@ -24,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <!-- EN-TÊTE avec bouton retour -->
-        <Border Grid.Row="0" Background="{StaticResource PrimaryBlueBrush}" Padding="30,40">
+        <Border Grid.Row="0" Background="#055E02" Padding="20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -34,46 +40,43 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- BOUTON RETOUR (à gauche) -->
-                <Button x:Name="BackButton"
+                <Button Grid.Column="0"
                         Content="↩️   Retour"
-                        Style="{StaticResource RetourButtonBackBlue}"
+                        Click="BackButton_Click"
+                        Background="#7A61A6"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Cursor="Hand"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Left"
-                        Margin="0,0,20,0"
-                        ToolTip="Retour au menu principal"/>
+                        ToolTip="Retour au menu principal">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Violet"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Violet"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,800,0">
 
                     <TextBlock Text="ACCUEIL DES COURS" 
-                               FontSize="42" 
+                               FontSize="28" 
                                FontWeight="Bold" 
-                               Foreground="White"
-                               HorizontalAlignment="Center"/>
+                               Foreground="White"/>
 
                     <TextBlock Text="Booste tes connaissances !"
                                FontSize="18" 
-                               Foreground="#E3F2FD"
-                               HorizontalAlignment="Center"/>
+                               Foreground="#E3F2FD"/>
                 </StackPanel>
             </Grid>
         </Border>
-
-        <!-- BOUTON PROFIL -->
-        <Button x:Name="Profil"
-         Grid.Row="0"
-         Width="124" 
-         Height="124"
-         VerticalAlignment="Center"
-         HorizontalAlignment="Right"
-         Margin="0,0,20,10"
-         Padding="0"
-         Background="Transparent"
-         BorderBrush="#1565C0"
-         Cursor="Hand"
-         ToolTip="Mon Profil">
-            <Image Source="/Resources/Images/Icons/icon_user_120.png" 
-            Stretch="UniformToFill"/>
-        </Button>
 
         <!-- Génération des boutons pour chaque activité de la BDD -->
         <ItemsControl Grid.Row="1" ItemsSource="{Binding Cours}" Margin="10,0,-10,74" Grid.RowSpan="2">
@@ -119,28 +122,28 @@
                                     </Border.Effect>
 
                                     <StackPanel>
-                                        <!-- Image -->
-                                        <Image Source="/Resources/Images/AccueilTest/test.png"
-                                 Height="200"
-                                 Stretch="Fill"
-                                 Margin="5"
-                                 ClipToBounds="True"/>
+                                        <!-- Image  -->
+                                        <Image Source="{Binding ImageBouton, Converter={StaticResource ImagePathConverter}}" 
+                                             Height="200"
+                                             Stretch="Fill"
+                                             Margin="5"
+                                             ClipToBounds="True"/>
 
                                         <!-- Libelle -->
                                         <TextBlock Text="{Binding Titre}"
-                                    FontSize="18"
-                                    FontWeight="Bold"
-                                    Margin="10,10,10,5"
-                                    TextAlignment="Center"
-                                    TextWrapping="Wrap"/>
+                                            FontSize="18"
+                                            FontWeight="Bold"
+                                            Margin="10,10,10,5"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
 
                                         <!-- Thème -->
                                         <TextBlock Text="{Binding Theme}"
-                                    FontSize="14"
-                                    Margin="10,0,10,10"
-                                    TextWrapping="Wrap"
-                                    Foreground="DarkGray"
-                                    TextAlignment="Center"/>
+                                            FontSize="14"
+                                            Margin="10,0,10,10"
+                                            TextWrapping="Wrap"
+                                            Foreground="DarkGray"
+                                            TextAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
 
@@ -175,16 +178,13 @@
                                Foreground="#9E9E9E"
                                VerticalAlignment="Center"
                                Margin="0,0,20,0" />
-                    <Button x:Name="BtnDeco"
-                            Content="🔓 Déconnexion"
-                            Click="BtnDeco_Click"
-                            Style="{StaticResource DeconnexionButton}"
-                            Margin="0,0,10,0"/>
-                    <Button x:Name="btnQuitter"
-                            Content="❌ Quitter"
-                            Style="{StaticResource QuitButton}"
-                            Click="BtnQuitter_Click"
-                            Height="35"/>
+                    <Button Content="❌ Quitter" 
+                                Click="QuitButton_Click"
+                                Background="#f44336"
+                                Foreground="White"
+                                Padding="15,8"
+                                BorderThickness="0"
+                                Cursor="Hand" />
                 </StackPanel>
             </Grid>
         </Border>
