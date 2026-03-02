@@ -47,10 +47,14 @@
     <None Remove="Resources\Images\Cours\XSSschema2.jpg" />
     <None Remove="Resources\Images\Cours\XSStypes.webp" />
     <None Remove="Resources\Images\Icons\icon_besoin_connaitre.png" />
+    <None Remove="Resources\Images\Icons\icon_BF.png" />
     <None Remove="Resources\Images\Icons\icon_convention_nommage.png" />
     <None Remove="Resources\Images\Icons\icon_download_240.png" />
     <None Remove="Resources\Images\Icons\icon_ISQL.png" />
+    <None Remove="Resources\Images\Icons\icon_LOG.png" />
+    <None Remove="Resources\Images\Icons\icon_XSS.png" />
     <None Remove="Resources\Images\Icons\icon_moindre_privilege.png" />
+    <None Remove="Resources\Images\Icons\icon_TOK.png" />
     <None Remove="Resources\Images\Icons\icon_user_120.png" />
     <None Remove="Resources\Images\Icons\icon_user_64.png" />
     <None Remove="Resources\Images\AccueilTest\test.png" />
