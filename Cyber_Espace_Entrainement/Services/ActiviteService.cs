@@ -83,7 +83,6 @@ namespace Cyber_Espace_Entrainement.Services
         {
             return _context.Activites
                 .Where(a => a.Libelle == libelle)
-                .OrderBy(a => a.Niveau)
                 .ToList();
         }
 
