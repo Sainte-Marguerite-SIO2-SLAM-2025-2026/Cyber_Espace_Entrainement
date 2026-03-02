@@ -52,8 +52,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Cours
         [RelayCommand]
         public void OuvertureCours(Models.Cours unCours)
         {
-            //Models.Cours unCours = _coursService.GetCoursByLibelle(libelleCours);
-
+            //Models.Cours unCours = _coursService.GetCoursByLibelle(libelleCours);   
             try {
                 CoursContenu CoursWindow = new CoursContenu(unCours);
                 CoursWindow.ShowDialog();
