@@ -44,5 +44,23 @@ namespace Cyber_Espace_Entrainement.ViewModels.Cours
                 MessageBox.Show($"Erreur de chargement : {ex.Message}");
             }
         }
+
+        #region Affichage Cours
+        
+        [RelayCommand]
+        public void OuvertureCours(Models.Cours unCours)
+        {
+            //Models.Cours unCours = _coursService.GetCoursByLibelle(libelleCours);   
+            try {
+                CoursContenu CoursWindow = new CoursContenu(unCours);
+                CoursWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxService.ShowError($"Erreur d'ouverture : {ex.Message}");
+            }
+        }
+
+        #endregion
     }
 }
