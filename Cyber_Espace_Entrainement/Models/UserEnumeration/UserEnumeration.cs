@@ -30,5 +30,6 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
 
         [Column("message")]
         public string Message { get; set; }
+
     }
 }
