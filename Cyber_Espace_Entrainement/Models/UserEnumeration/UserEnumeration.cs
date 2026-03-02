@@ -11,7 +11,7 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
     /// </summary>
     [Table("UserEnumeration")]
     [PrimaryKey(nameof(Id), nameof(ActiviteId), nameof(CoursId))]
-    class UserEnumeration
+    public class UserEnumeration
     {
         [Column("ID")]
         public int Id { get; set; }
@@ -22,5 +22,13 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         [Column("CoursID")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
         public int CoursId { get; set; }
 
+        [Column("image")]
+        public string Image { get; set; }
+
+        [Column("reponse")]
+        public bool Reponse { get; set; }
+
+        [Column("message")]
+        public string Message { get; set; }
     }
 }
