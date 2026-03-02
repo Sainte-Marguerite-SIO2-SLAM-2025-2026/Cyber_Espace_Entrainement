@@ -44,5 +44,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Cours
                 MessageBox.Show($"Erreur de chargement : {ex.Message}");
             }
         }
+
+
     }
 }

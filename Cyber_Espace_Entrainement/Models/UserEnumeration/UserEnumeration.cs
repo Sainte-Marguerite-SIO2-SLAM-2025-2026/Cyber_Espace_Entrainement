@@ -22,6 +22,5 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         [Column("CoursID")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
         public int CoursId { get; set; }
 
-        [Column()]
     }
 }
