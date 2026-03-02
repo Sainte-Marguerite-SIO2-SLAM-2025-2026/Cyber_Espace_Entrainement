@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Activite.Captcha
+namespace Cyber_Espace_Entrainement.Views.Activite
 {
     /// <summary>
     /// Logique d'interaction pour CaptchaFacileView.xaml
@@ -58,21 +58,21 @@ namespace Cyber_Espace_Entrainement.Views.Activite.Captcha
             }
         }
 
-        /// <summary>
-        /// MouseEnter du bouton Quitter : changer le background
-        /// </summary>
-        private void ButtonQuitter_MouseEnter(object sender, MouseEventArgs e)
-        {
-            BtnQuitter.Background = _hoverQuitBackground;
-        }
+        ///// <summary>
+        ///// MouseEnter du bouton Quitter : changer le background
+        ///// </summary>
+        //private void ButtonQuitter_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    BtnQuitter.Background = _hoverQuitBackground;
+        //}
 
-        /// <summary>
-        /// MouseLeave du bouton Quitter : restauration du background.
-        /// </summary>
-        private void ButtonQuitter_MouseLeave(object sender, MouseEventArgs e)
-        {
-            BtnQuitter.Background = _defaultQuitBackground;
-        }
+        ///// <summary>
+        ///// MouseLeave du bouton Quitter : restauration du background.
+        ///// </summary>
+        //private void ButtonQuitter_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    BtnQuitter.Background = _defaultQuitBackground;
+        //}
 
         #endregion
     }

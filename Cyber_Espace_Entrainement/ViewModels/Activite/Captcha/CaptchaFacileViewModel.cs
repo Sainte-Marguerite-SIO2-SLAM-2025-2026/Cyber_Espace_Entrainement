@@ -65,12 +65,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite.Captcha
             RecupCaptcha();
         }
 
-        [RelayCommand]
-        private void JeuCa()
-        {
-            // Logique pour jouer au Captcha
-            // Par exemple, afficher une image Captcha et vérifier la réponse de l'utilisateur
-        }
+        //[RelayCommand]
+        //private void JeuCa()
+        //{
+        //    // Logique pour jouer au Captcha
+        //    // Par exemple, afficher une image Captcha et vérifier la réponse de l'utilisateur
+        //}
 
         [RelayCommand]
         private void Niveau1()
