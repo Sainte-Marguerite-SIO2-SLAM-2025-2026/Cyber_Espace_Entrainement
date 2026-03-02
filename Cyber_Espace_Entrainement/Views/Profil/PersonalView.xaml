@@ -224,8 +224,7 @@
                                     Margin="20,0,0,0">
                             <TextBlock Text="Dernière connexion"
                                        Style="{StaticResource LabelStyle}" />
-                            <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}',
-                        TargetNullValue=''}"
+                            <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
                                      Style="{StaticResource InputStyle}"
                                      IsEnabled="False" />
                         </StackPanel>

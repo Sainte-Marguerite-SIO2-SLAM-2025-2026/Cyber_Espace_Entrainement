@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Cyber_Espace_Entrainement.ViewModels.Activite;
 
 namespace Cyber_Espace_Entrainement.Views.Activite
 {
@@ -17,11 +18,12 @@ namespace Cyber_Espace_Entrainement.Views.Activite
         public PhishingFacileView()
         {
             InitializeComponent();
+            
         }
 
-        private void TextBox_TextChanged(object sender, EventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

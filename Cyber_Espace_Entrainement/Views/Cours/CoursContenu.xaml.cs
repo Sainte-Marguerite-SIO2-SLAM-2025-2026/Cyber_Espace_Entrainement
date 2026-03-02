@@ -1,19 +1,17 @@
-﻿using Cyber_Espace_Entrainement.Models;
-using Cyber_Espace_Entrainement.Services;
-using Cyber_Espace_Entrainement.ViewModels;
-using Cyber_Espace_Entrainement.Views.Profil;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
+using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.ViewModels;
+using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Views.Profil;
 
 namespace Cyber_Espace_Entrainement.Views.Cours
 {
@@ -25,7 +23,8 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         private CoursContenuViewModel _viewModel;
         private CoursService _coursService;
 
-        private const String COURS_IMAGE_PATH = "/Resources/Images/Cours/";
+        // Couleur originale du bouton Profile (utilisée pour restaurer la couleur après animation)
+        private Color _profileOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");
 
         // Brushes pour le bouton Quitter
         private SolidColorBrush _defaultQuitBackground;
@@ -43,8 +42,6 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         private SolidColorBrush _defaultDownloadBackground;
         private SolidColorBrush _hoverDownloadBackground;
 
-        private Color _ProfilOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");            // TO DO : remplacer par le theme
-        private Color _DownloadOriginalBorderColor = Colors.Transparent; // Par défaut transparent
         public CoursContenu()
         {
             InitializeComponent();
@@ -87,7 +84,7 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             // Attacher les événements des boutons
             AttacherEvenements();
 
-            // Après que la fenêtre soit chargée, configuration additionnelle (ex : mise en place du bouton Profil)
+            // Après que la fenêtre soit chargée, configuration additionnelle (ex : mise en place du bouton Profile)
             Loaded += CoursContenu_Loaded;
         }
 
@@ -111,10 +108,6 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             // Boutons de téléchargement
             _defaultDownloadBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2E7D32"));
             _hoverDownloadBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1B5E20"));
-
-            Profil.Background = new SolidColorBrush(_ProfilOriginalColor);
-            btnDownload.Background = new SolidColorBrush(Colors.Transparent);
-            btnDownload.BorderBrush = new SolidColorBrush(Colors.Transparent);
         }
 
         /// <summary>
@@ -131,23 +124,6 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             btnQuitter.Click += BtnQuitter_Click;
             btnQuitter.MouseEnter += BtnQuitter_MouseEnter;
             btnQuitter.MouseLeave += BtnQuitter_MouseLeave;
-
-            /// --- Événements Bouton PROFIL ---
-            Profil.MouseEnter += Profil_MouseEnter;
-            Profil.MouseLeave += Profil_MouseLeave;
-            Profil.MouseDown += Profil_MouseDown;
-            Profil.MouseUp += Profil_MouseUp;
-            Profil.Click += ProfilButton_Click;
-
-            // --- Événements Bouton DOWNLOAD ---
-            btnDownload.MouseEnter += Download_MouseEnter;
-            btnDownload.MouseLeave += Download_MouseLeave;
-            btnDownload.MouseDown += Download_MouseDown;
-            btnDownload.MouseUp += Download_MouseUp;
-
-            // Attacher les événements de survol au bouton Déconnexion (visuels)
-            BtnDeco.MouseEnter += BtnDeco_MouseEnter;
-            BtnDeco.MouseLeave += BtnDeco_MouseLeave;
         }
 
         /// <summary>
@@ -169,7 +145,7 @@ namespace Cyber_Espace_Entrainement.Views.Cours
             // Charger les images
             ChargerImages();
 
-            // Après que la fenêtre soit chargée, configuration additionnelle (ex : mise en place du bouton Profil)
+            // Après que la fenêtre soit chargée, configuration additionnelle (ex : mise en place du bouton Profile)
             Loaded += CoursContenu_Loaded;
         }
 
@@ -179,10 +155,20 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         /// </summary>
         private void CoursContenu_Loaded(object sender, RoutedEventArgs e)
         {
-            // Rendre les boutons ronds
-            ApplyRoundStyle(Profil);
-            ApplyRoundStyle(btnDownload);
+            // Rendre le bouton Profile rond en lui appliquant un template personnalisé
+            MakeProfileButtonRound();
 
+            // Attacher les événements de survol et de clic au bouton Profile
+            // Ces événements remplacent des triggers XAML et permettent des animations programmatiques.
+            Profile.MouseEnter += ProfileButton_MouseEnter;
+            Profile.MouseLeave += ProfileButton_MouseLeave;
+            Profile.MouseDown += ProfileButton_MouseDown;
+            Profile.MouseUp += ProfileButton_MouseUp;
+            Profile.Click += ProfileButton_Click;
+
+            // Attacher les événements de survol au bouton Déconnexion (visuels)
+            BtnDeco.MouseEnter += BtnDeco_MouseEnter;
+            BtnDeco.MouseLeave += BtnDeco_MouseLeave;
         }
 
         /// <summary>
@@ -192,18 +178,15 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         {
             // Liste des images disponibles
             var imagesDisponibles = new List<string>();
-            var Image1Path = string.IsNullOrEmpty(_viewModel.Image1Path) ? null : COURS_IMAGE_PATH + _viewModel.Image1Path; 
-            var Image2Path = string.IsNullOrEmpty(_viewModel.Image2Path) ? null : COURS_IMAGE_PATH + _viewModel.Image2Path; 
-            var Image3Path = string.IsNullOrEmpty(_viewModel.Image3Path) ? null : COURS_IMAGE_PATH + _viewModel.Image3Path;
 
-            if (!string.IsNullOrEmpty(Image1Path))
-                imagesDisponibles.Add(Image1Path);
+            if (!string.IsNullOrEmpty(_viewModel.Image1Path))
+                imagesDisponibles.Add(_viewModel.Image1Path);
 
-            if (!string.IsNullOrEmpty(Image2Path))
-                imagesDisponibles.Add(Image2Path);
+            if (!string.IsNullOrEmpty(_viewModel.Image2Path))
+                imagesDisponibles.Add(_viewModel.Image2Path);
 
-            if (!string.IsNullOrEmpty(Image3Path))
-                imagesDisponibles.Add(Image3Path);
+            if (!string.IsNullOrEmpty(_viewModel.Image3Path))
+                imagesDisponibles.Add(_viewModel.Image3Path);
 
             // Si aucune image disponible
             if (imagesDisponibles.Count == 0)
@@ -374,122 +357,202 @@ namespace Cyber_Espace_Entrainement.Views.Cours
         }
         #endregion
 
-        #region Bouton Profil
+        #region Événements Bouton Téléchargement
 
-        private void Profil_MouseEnter(object sender, MouseEventArgs e)
+        private void BtnDownload_MouseEnter(object sender, MouseEventArgs e)
         {
-            AnimateButton(Profil, 1.1, LightenColor(_ProfilOriginalColor, 0.3f));
+            if (sender is Button btn)
+            {
+                btn.Background = _hoverDownloadBackground;
+            }
         }
 
-        private void Profil_MouseLeave(object sender, MouseEventArgs e)
+        private void BtnDownload_MouseLeave(object sender, MouseEventArgs e)
         {
-            AnimateButton(Profil, 1.0, _ProfilOriginalColor);
+            if (sender is Button btn)
+            {
+                btn.Background = _defaultDownloadBackground;
+            }
         }
 
-        private void Profil_MouseDown(object sender, MouseButtonEventArgs e)
+        #endregion
+
+        #region Bouton Profile
+
+        /// <summary>
+        /// Applique un template personnalisé au bouton Profile pour le rendre rond (ellipse).
+        /// Construit un ControlTemplate programmatiquement avec un Grid contenant une Ellipse stylisée.
+        /// </summary>
+        private void MakeProfileButtonRound()
         {
-            AnimateScale(Profil, 0.95);
+            var template = new ControlTemplate(typeof(Button));
+
+            // Grid contenant l'ellipse et le contenu
+            var grid = new FrameworkElementFactory(typeof(Grid));
+
+            // Ellipse pour donner une forme arrondie au bouton
+            var ellipse = new FrameworkElementFactory(typeof(System.Windows.Shapes.Ellipse));
+            ellipse.SetValue(System.Windows.Shapes.Shape.FillProperty, Brushes.Transparent);
+
+            // Bordure colorée de l'ellipse (utilise la BorderBrush du bouton)
+            ellipse.SetBinding(
+                System.Windows.Shapes.Shape.StrokeProperty,
+                new System.Windows.Data.Binding("BorderBrush")
+                {
+                    RelativeSource = new System.Windows.Data.RelativeSource(System.Windows.Data.RelativeSourceMode.TemplatedParent)
+                }
+            );
+
+            // Épaisseur de la bordure de l'ellipse
+            ellipse.SetValue(System.Windows.Shapes.Shape.StrokeThicknessProperty, 3.0);
+
+            // Ombre portée pour donner de la profondeur
+            var dropShadow = new DropShadowEffect
+            {
+                BlurRadius = 15,
+                ShadowDepth = 4,
+                Opacity = 0.3,
+                Color = Colors.Black
+            };
+            ellipse.SetValue(System.Windows.Shapes.Shape.EffectProperty, dropShadow);
+
+            // ContentPresenter centré pour afficher l'image/icone du profil
+            var contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
+            contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
+
+            // Assemblage des éléments dans le template
+            grid.AppendChild(ellipse);
+            grid.AppendChild(contentPresenter);
+            template.VisualTree = grid;
+
+            // Application du template au bouton Profile défini dans le XAML
+            Profile.Template = template;
         }
 
-        private void Profil_MouseUp(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// MouseEnter : effet visuel combiné (zoom + éclaircissement de la bordure).
+        /// Cette logique remplace des triggers XAML et réalise des animations programmatiques.
+        /// </summary>
+        private void ProfileButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            AnimateScale(Profil, 1.1);
+            if (sender is Button button)
+            {
+                // Mise en place d'une ScaleTransform pour l'effet de zoom
+                var scaleTransform = new ScaleTransform(1, 1);
+                button.RenderTransform = scaleTransform;
+                button.RenderTransformOrigin = new Point(0.5, 0.5);
+
+                var scaleAnimation = new DoubleAnimation
+                {
+                    To = 1.1,
+                    Duration = TimeSpan.FromMilliseconds(200),
+                    EasingFunction = new QuadraticEase()
+                };
+
+                // Animation X et Y simultanées
+                scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
+                scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
+
+                // Animation de couleur de la bordure (si la bordure est un SolidColorBrush)
+                if (button.BorderBrush is SolidColorBrush borderBrush)
+                {
+                    var lighterColor = LightenColor(_profileOriginalColor, 0.3f);
+                    var colorAnimation = new ColorAnimation
+                    {
+                        To = lighterColor,
+                        Duration = TimeSpan.FromMilliseconds(200)
+                    };
+                    borderBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+                }
+            }
+        }
+
+        /// <summary>
+        /// MouseLeave : restaure l'apparence originale (taille + couleur de bordure).
+        /// </summary>
+        private void ProfileButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                // Retour à l'échelle normale
+                if (button.RenderTransform is ScaleTransform scaleTransform)
+                {
+                    var scaleAnimation = new DoubleAnimation
+                    {
+                        To = 1.0,
+                        Duration = TimeSpan.FromMilliseconds(200),
+                        EasingFunction = new QuadraticEase()
+                    };
+
+                    scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
+                    scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
+                }
+
+                // Restauration de la couleur de bordure d'origine
+                if (button.BorderBrush is SolidColorBrush borderBrush)
+                {
+                    var colorAnimation = new ColorAnimation
+                    {
+                        To = _profileOriginalColor,
+                        Duration = TimeSpan.FromMilliseconds(200)
+                    };
+                    borderBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+                }
+            }
+        }
+
+        /// <summary>
+        /// MouseDown : petit effet d'enfoncement pour donner du feedback tactile.
+        /// </summary>
+        private void ProfileButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button.RenderTransform is ScaleTransform scaleTransform)
+                {
+                    var scaleAnimation = new DoubleAnimation
+                    {
+                        To = 0.95,
+                        Duration = TimeSpan.FromMilliseconds(100)
+                    };
+
+                    scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
+                    scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
+                }
+            }
+        }
+
+        /// <summary>
+        /// MouseUp : ramène l'échelle au niveau de survol (si applicable).
+        /// </summary>
+        private void ProfileButton_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button.RenderTransform is ScaleTransform scaleTransform)
+                {
+                    var scaleAnimation = new DoubleAnimation
+                    {
+                        To = 1.1,
+                        Duration = TimeSpan.FromMilliseconds(100)
+                    };
+
+                    scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
+                    scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
+                }
+            }
         }
 
         /// <summary>
         /// Click : ouvre la fenêtre de profil (PersonalView).
         /// Utilise ShowDialog pour modalité ; adapter selon besoin (Show si modeless).
         /// </summary>
-        private void ProfilButton_Click(object sender, RoutedEventArgs e)
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
             // Ouvrir la fenêtre de profil
-            var ProfilWindow = new PersonalView();
-            ProfilWindow.ShowDialog();
-        }
-
-        #endregion
-
-        #region Bouton Téléchargement
-        private void Download_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // On passe de transparent à un blanc semi-transparent au survol
-            AnimateButton(btnDownload, 1.1, Color.FromArgb(50, 255, 255, 255));
-        }
-
-        private void Download_MouseLeave(object sender, MouseEventArgs e)
-        {
-            // Retour à la transparence totale
-            AnimateButton(btnDownload, 1.0, Colors.Transparent);
-        }
-
-        private void Download_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            AnimateScale(btnDownload, 0.95);
-        }
-
-        private void Download_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            AnimateScale(btnDownload, 1.1);
-        }
-        #endregion
-
-        #region Utilitaires Bouton Rond
-        /// <summary>
-        /// Version généralisée de MakeProfilButtonRound
-        /// </summary>
-        private void ApplyRoundStyle(Button button)
-        {
-            var template = new ControlTemplate(typeof(Button));
-            var grid = new FrameworkElementFactory(typeof(Grid));
-
-            var ellipse = new FrameworkElementFactory(typeof(System.Windows.Shapes.Ellipse));
-
-            // On lie la couleur de fond de l'ellipse au Background du bouton
-            ellipse.SetBinding(System.Windows.Shapes.Shape.FillProperty, new Binding("Background") { RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent) });
-
-            // Bordure liée au BorderBrush
-            ellipse.SetBinding(System.Windows.Shapes.Shape.StrokeProperty, new Binding("BorderBrush") { RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent) });
-            ellipse.SetValue(System.Windows.Shapes.Shape.StrokeThicknessProperty, 3.0);
-
-            var dropShadow = new DropShadowEffect { BlurRadius = 15, ShadowDepth = 4, Opacity = 0.3, Color = Colors.Black };
-            ellipse.SetValue(System.Windows.Shapes.Shape.EffectProperty, dropShadow);
-
-            var contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
-
-            grid.AppendChild(ellipse);
-            grid.AppendChild(contentPresenter);
-            template.VisualTree = grid;
-            button.Template = template;
-        }
-
-        // Méthodes d'aide pour éviter la répétition de code d'animation
-        private void AnimateButton(Button btn, double scale, Color color)
-        {
-            AnimateScale(btn, scale);
-            if (btn.Background is SolidColorBrush brush)
-            {
-                brush.BeginAnimation(SolidColorBrush.ColorProperty,
-                    new ColorAnimation(color, TimeSpan.FromMilliseconds(200)));
-            }
-        }
-
-        private void AnimateScale(Button btn, double scale)
-        {
-            if (!(btn.RenderTransform is ScaleTransform))
-            {
-                btn.RenderTransform = new ScaleTransform(1, 1);
-                btn.RenderTransformOrigin = new Point(0.5, 0.5);
-            }
-
-            var st = (ScaleTransform)btn.RenderTransform;
-            var anim = new DoubleAnimation(scale, TimeSpan.FromMilliseconds(200))
-            {
-                EasingFunction = new QuadraticEase()
-            };
-            st.BeginAnimation(ScaleTransform.ScaleXProperty, anim);
-            st.BeginAnimation(ScaleTransform.ScaleYProperty, anim);
+            var profileWindow = new PersonalView();
+            profileWindow.ShowDialog();
         }
 
         #endregion
