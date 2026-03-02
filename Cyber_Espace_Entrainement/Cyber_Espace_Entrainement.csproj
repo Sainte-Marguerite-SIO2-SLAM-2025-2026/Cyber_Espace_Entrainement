@@ -12,12 +12,13 @@
 	</PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\AccueilTest\test.png" />
     <None Remove="Resources\Images\Cours\ISQLhowToProtect.png" />
     <None Remove="Resources\Images\Cours\ISQLschema.png" />
     <None Remove="Resources\Images\Cours\ISQLwhatIs.webp" />
-    <None Remove="Resources\Images\Icons\icon_user_120.png" />
-    <None Remove="Resources\Images\AccueilTest\test.png" />
     <None Remove="Resources\Images\Icons\icon_download_240.png" />
+    <None Remove="Resources\Images\Icons\icon_ISQL.png" />
+    <None Remove="Resources\Images\Icons\icon_user_120.png" />
     <None Remove="Resources\Morse\morsecode.wav" />
     <None Remove="Resources\Morse\morse_0.wav" />
     <None Remove="Resources\Morse\morse_1.wav" />
@@ -102,13 +103,13 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Images\Cours\ISQLhowToProtect.png" />
     <Resource Include="Resources\Images\Cours\ISQLschema.png" />
     <Resource Include="Resources\Images\Cours\ISQLwhatIs.webp" />
     <Resource Include="Resources\Images\Icons\icon_download_240.png" />
     <Resource Include="Resources\Images\Icons\icon_ISQL.png" />
     <Resource Include="Resources\Images\Icons\icon_user_120.png" />
-    <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />
