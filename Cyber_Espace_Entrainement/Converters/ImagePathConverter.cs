@@ -11,7 +11,7 @@ namespace Cyber_Espace_Entrainement.Converters
     public class ImagePathConverter : IValueConverter
     {
         // Chemin de base pour toutes les images d'icônes
-        private const string IMAGE_BASE_PATH = "/Resources/Images/Icons/";
+        private const string IMAGE_BASE_PATH = "/Resources/Images/";
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

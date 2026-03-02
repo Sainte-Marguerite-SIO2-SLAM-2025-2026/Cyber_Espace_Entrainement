@@ -290,7 +290,8 @@
                       Cursor="Hand"
                       Grid.Row="1"
                       VerticalContentAlignment="Center"
-                      BorderBrush="#FF707070">
+                      BorderBrush="#FF707070"
+                      Checked="CaptchaCheckBox_Checked">
                 <CheckBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform />
@@ -488,7 +489,9 @@
                     <Button x:Name="BtnQuitter"
                             Content="❌ Quitter"
                             Style="{StaticResource QuitButton}"
-                             />
+                            Click="ButtonQuitter_Click"
+                            MouseEnter="ButtonQuitter_MouseEnter"
+                            MouseLeave="ButtonQuitter_MouseLeave" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -511,6 +514,6 @@
                 Margin="58,0,0,0"
                 Height="56"
                 Width="180"
-                 />
+                Click="ButtonRetour_Click" />
     </Grid>
 </Window>
