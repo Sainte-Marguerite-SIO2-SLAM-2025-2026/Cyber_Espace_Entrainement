@@ -22,35 +22,26 @@ namespace Cyber_Espace_Entrainement.Views.Activite
     /// </summary>
     public partial class AccueilActivite : Window
     {
-        private readonly Color _profileOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");
 
-        private readonly SolidColorBrush _defaultQuitBackground;
-        private readonly SolidColorBrush _hoverQuitBackground;
+        private SolidColorBrush _defaultQuitBackground;
+        private SolidColorBrush _hoverQuitBackground;
 
-        private readonly SolidColorBrush _defaultDecoBackground;
-        private readonly SolidColorBrush _hoverDecoBackground;
+        private SolidColorBrush _defaultDecoBackground;
+        private SolidColorBrush _hoverDecoBackground;
+
+        // Brushes pour le bouton Retour (couleur complémentaire orange/amber)
+        private SolidColorBrush _defaultRetourBackground;
+        private SolidColorBrush _hoverRetourBackground;
+
+        private Color _ProfilOriginalColor = (Color)ColorConverter.ConvertFromString("#1565C0");
 
         public AccueilActivite()
         {
             InitializeComponent();
 
-            _defaultQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedBrush");
-            _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush");
-
-            _defaultDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateBrush");
-            _hoverDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateDarkBrush");
-
-            Loaded += AccueilActivite_Loaded;
-
-            InitializeEventHandlers();
-
-            // Attacher les événements de survol au bouton Quitter (visuels)
-            btnQuitter.MouseEnter += BtnQuitter_MouseEnter;
-            btnQuitter.MouseLeave += BtnQuitter_MouseLeave;
-
-            // Attacher les événements de survol au bouton Déconnexion (visuels)
-            BtnDeco.MouseEnter += BtnDeco_MouseEnter;
-            BtnDeco.MouseLeave += BtnDeco_MouseLeave;
+            InitialiserBrushes();
+            
+            AttacherEvenements();
         }
 
         /// <summary>
@@ -59,27 +50,68 @@ namespace Cyber_Espace_Entrainement.Views.Activite
         /// </summary>
         private void AccueilActivite_Loaded(object sender, RoutedEventArgs e)
         {
-            // Rendre le bouton Profile rond en lui appliquant un template personnalisé
-            MakeProfileButtonRound();
+            // Rendre le bouton Profil rond en lui appliquant un template personnalisé
+            MakeProfilButtonRound();
 
-            // Attacher les événements de survol et de clic au bouton Profile
+            // Attacher les événements de survol et de clic au bouton Profil
             // Ces événements remplacent des triggers XAML et permettent des animations programmatiques.
-            Profile.MouseEnter += ProfileButton_MouseEnter;
-            Profile.MouseLeave += ProfileButton_MouseLeave;
-            Profile.MouseDown += ProfileButton_MouseDown;
-            Profile.MouseUp += ProfileButton_MouseUp;
-            Profile.Click += ProfileButton_Click;
+            Profil.MouseEnter += Profil_MouseEnter;
+            Profil.MouseLeave += Profil_MouseLeave;
+            Profil.MouseDown += Profil_MouseDown;
+            Profil.MouseUp += Profil_MouseUp;
+            Profil.Click += ProfilButton_Click;
         }
 
-        private void InitializeEventHandlers()
+        /// <summary>
+        /// Attache tous les événements des boutons
+        /// </summary>
+        private void AttacherEvenements()
         {
+            // Bouton Retour
+            BackButton.Click += BackButton_Click;
+            BackButton.MouseEnter += BackButton_MouseEnter;
+            BackButton.MouseLeave += BackButton_MouseLeave;
+
+            // Bouton Quitter
+            btnQuitter.Click += BtnQuitter_Click;
             btnQuitter.MouseEnter += BtnQuitter_MouseEnter;
             btnQuitter.MouseLeave += BtnQuitter_MouseLeave;
+
+            /// --- Événements Bouton PROFIL ---
+            Profil.MouseEnter += Profil_MouseEnter;
+            Profil.MouseLeave += Profil_MouseLeave;
+            Profil.MouseDown += Profil_MouseDown;
+            Profil.MouseUp += Profil_MouseUp;
+            Profil.Click += ProfilButton_Click;
+
+            // Attacher les événements de survol au bouton Déconnexion (visuels)
+            BtnDeco.MouseEnter += BtnDeco_MouseEnter;
+            BtnDeco.MouseLeave += BtnDeco_MouseLeave;
+        }
+
+        /// <summary>
+        /// Initialise les brushes pour les boutons depuis les ressources
+        /// </summary>
+        private void InitialiserBrushes()
+        {
+            // Bouton Quitter
+            _defaultQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedBrush");
+            _hoverQuitBackground = (SolidColorBrush)Application.Current.FindResource("ErrorRedDarkBrush");
+
+            // Bouton Retour (couleur complémentaire orange/amber)
+            _defaultRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourBackBlueBrush");
+            _hoverRetourBackground = (SolidColorBrush)Application.Current.FindResource("RetourBackBlueLightBrush");
+
+            // Bouton Déconnexion
+            _defaultDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateBrush");
+            _hoverDecoBackground = (SolidColorBrush)Application.Current.FindResource("DeconnexionSlateDarkBrush");
+
+            Profil.Background = new SolidColorBrush(_ProfilOriginalColor);
         }
 
         #region Boutons
 
-        #region Gestion du bouton Profile
+        #region Gestion du bouton Profil
 
         /// <summary>
         /// Crée et applique dynamiquement un ControlTemplate qui affiche un bouton circulaire
@@ -88,7 +120,7 @@ namespace Cyber_Espace_Entrainement.Views.Activite
         /// Remarque : la création de templates en code est utile pour de la personnalisation dynamique,
         /// mais pour des styles statiques préférer le XAML.
         /// </summary>
-        private void MakeProfileButtonRound()
+        private void MakeProfilButtonRound()
         {
             // Créer le template personnalisé pour le bouton
             var template = new ControlTemplate(typeof(Button));
@@ -138,124 +170,34 @@ namespace Cyber_Espace_Entrainement.Views.Activite
             template.VisualTree = grid;
 
             // Application du template au bouton Profile défini dans le XAML
-            Profile.Template = template;
+            Profil.Template = template;
         }
 
-        private void ProfileButton_MouseEnter(object sender, MouseEventArgs e)
+        private void Profil_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (sender is Button button)
-            {
-                // Mise en place d'une ScaleTransform pour l'effet de zoom
-                var scaleTransform = new ScaleTransform(1, 1);
-                button.RenderTransform = scaleTransform;
-                button.RenderTransformOrigin = new Point(0.5, 0.5);
-
-                var scaleAnimation = new DoubleAnimation
-                {
-                    To = 1.1,
-                    Duration = TimeSpan.FromMilliseconds(200),
-                    EasingFunction = new QuadraticEase()
-                };
-
-                // Animation X et Y simultanées
-                scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
-                scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
-
-                // Animation de couleur de la bordure (si la bordure est un SolidColorBrush)
-                if (button.BorderBrush is SolidColorBrush borderBrush)
-                {
-                    var lighterColor = LightenColor(_profileOriginalColor, 0.3f);
-                    var colorAnimation = new ColorAnimation
-                    {
-                        To = lighterColor,
-                        Duration = TimeSpan.FromMilliseconds(200)
-                    };
-                    borderBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-                }
-            }
+            AnimateButton(Profil, 1.1, LightenColor(_ProfilOriginalColor, 0.3f));
         }
 
-        /// <summary>
-        /// MouseLeave : restaure l'apparence originale (taille + couleur de bordure).
-        /// </summary>
-        private void ProfileButton_MouseLeave(object sender, MouseEventArgs e)
+        private void Profil_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (sender is Button button)
-            {
-                // Retour à l'échelle normale
-                if (button.RenderTransform is ScaleTransform scaleTransform)
-                {
-                    var scaleAnimation = new DoubleAnimation
-                    {
-                        To = 1.0,
-                        Duration = TimeSpan.FromMilliseconds(200),
-                        EasingFunction = new QuadraticEase()
-                    };
-
-                    scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
-                    scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
-                }
-
-                // Restauration de la couleur de bordure d'origine
-                if (button.BorderBrush is SolidColorBrush borderBrush)
-                {
-                    var colorAnimation = new ColorAnimation
-                    {
-                        To = _profileOriginalColor,
-                        Duration = TimeSpan.FromMilliseconds(200)
-                    };
-                    borderBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-                }
-            }
+            AnimateButton(Profil, 1.0, _ProfilOriginalColor);
         }
 
-        /// <summary>
-        /// MouseDown : petit effet d'enfoncement pour donner du feedback tactile.
-        /// </summary>
-        private void ProfileButton_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Profil_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Button button)
-            {
-                if (button.RenderTransform is ScaleTransform scaleTransform)
-                {
-                    var scaleAnimation = new DoubleAnimation
-                    {
-                        To = 0.95,
-                        Duration = TimeSpan.FromMilliseconds(100)
-                    };
-
-                    scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
-                    scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
-                }
-            }
+            AnimateScale(Profil, 0.95);
         }
 
-        /// <summary>
-        /// MouseUp : ramène l'échelle au niveau de survol (si applicable).
-        /// </summary>
-        private void ProfileButton_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Profil_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Button button)
-            {
-                if (button.RenderTransform is ScaleTransform scaleTransform)
-                {
-                    var scaleAnimation = new DoubleAnimation
-                    {
-                        To = 1.1,
-                        Duration = TimeSpan.FromMilliseconds(100)
-                    };
-
-                    scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
-                    scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
-                }
-            }
+            AnimateScale(Profil, 1.1);
         }
 
         /// <summary>
         /// Click : ouvre la fenêtre de profil (PersonalView).
         /// Utilise ShowDialog pour modalité ; adapter selon besoin (Show si modeless).
         /// </summary>
-        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        private void ProfilButton_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(
             //    "ESPACE PERSONNEL\n\n" +
@@ -272,8 +214,8 @@ namespace Cyber_Espace_Entrainement.Views.Activite
 
             // TODO : Créer PersonalView.xaml par exemple et décommenter la suite !
             // Ouvrir la fenêtre de profil
-            var profileWindow = new PersonalView();
-            profileWindow.ShowDialog();
+            var profilWindow = new PersonalView();
+            profilWindow.ShowDialog();
         }
 
         #endregion
@@ -329,11 +271,27 @@ namespace Cyber_Espace_Entrainement.Views.Activite
             this.Close();
         }
 
+        /// <summary>
+        /// Événement MouseEnter pour le bouton Retour (effet hover)
+        /// </summary>
+        private void BackButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BackButton.Background = _hoverRetourBackground;
+        }
+
+        /// <summary>
+        /// Événement MouseLeave pour le bouton Retour (retour à l'état normal)
+        /// </summary>
+        private void BackButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BackButton.Background = _defaultRetourBackground;
+        }
+
         #endregion
 
         #region Bouton quitter
-        
-        private void QuitButton_Click(object sender, RoutedEventArgs e)
+
+        private void BtnQuitter_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBoxService.ShowQuestion(
                 "Voulez-vous vraiment quitter l'application ?",
@@ -429,6 +387,38 @@ namespace Cyber_Espace_Entrainement.Views.Activite
                 (byte)Math.Min(255, color.G + (255 - color.G) * amount),
                 (byte)Math.Min(255, color.B + (255 - color.B) * amount)
             );
+        }
+
+        #endregion
+
+        #region Utilitaires boutons ronds
+
+        // Méthodes d'aide pour éviter la répétition de code d'animation
+        private void AnimateButton(Button btn, double scale, Color color)
+        {
+            AnimateScale(btn, scale);
+            if (btn.Background is SolidColorBrush brush)
+            {
+                brush.BeginAnimation(SolidColorBrush.ColorProperty,
+                    new ColorAnimation(color, TimeSpan.FromMilliseconds(200)));
+            }
+        }
+
+        private void AnimateScale(Button btn, double scale)
+        {
+            if (!(btn.RenderTransform is ScaleTransform))
+            {
+                btn.RenderTransform = new ScaleTransform(1, 1);
+                btn.RenderTransformOrigin = new Point(0.5, 0.5);
+            }
+
+            var st = (ScaleTransform)btn.RenderTransform;
+            var anim = new DoubleAnimation(scale, TimeSpan.FromMilliseconds(200))
+            {
+                EasingFunction = new QuadraticEase()
+            };
+            st.BeginAnimation(ScaleTransform.ScaleXProperty, anim);
+            st.BeginAnimation(ScaleTransform.ScaleYProperty, anim);
         }
 
         #endregion
