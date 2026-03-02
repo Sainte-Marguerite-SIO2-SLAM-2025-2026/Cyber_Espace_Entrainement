@@ -224,8 +224,7 @@
                                     Margin="20,0,0,0">
                             <TextBlock Text="Dernière connexion"
                                        Style="{StaticResource LabelStyle}" />
-                            <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}',
-                        TargetNullValue=''}"
+                            <TextBox Text="{Binding DerniereConnection, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
                                      Style="{StaticResource InputStyle}"
                                      IsEnabled="False" />
                         </StackPanel>
@@ -341,177 +340,29 @@
                         <!-- Ancien mot de passe -->
                         <TextBlock Text="Ancien mot de passe"
                                    Style="{StaticResource LabelStyle}" />
+                        <PasswordBox x:Name="OldPasswordBox"
+                                     Style="{StaticResource PasswordStyle}"
+                                     PasswordChanged="OldPasswordChanged"
+                                     Margin="0,0,0,15" />
 
-                        <Grid >
-                           <PasswordBox x:Name="OldPasswordBox"
-                                         PasswordChanged="OldPasswordChanged"
-                                         Margin="0,0,0,15">
-                                <PasswordBox.Style>
-                                    <Style TargetType="PasswordBox"
-                                           BasedOn="{StaticResource PasswordStyle}">
-                                        <Setter Property="Visibility"
-                                                Value="Visible" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsOldPasswordVisible}"
-                                                         Value="True">
-                                                <Setter Property="Visibility"
-                                                        Value="Collapsed" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </PasswordBox.Style>
-                            </PasswordBox>
-
-                            <!-- PASSWORD EN CLAIR -->
-                            <TextBox x:Name="TxtOldPwdVisible"
-                                     Margin="0,0,0,15"
-                                Text="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged}">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox"
-                                           BasedOn="{StaticResource InputStyle}">
-                                        <Setter Property="Visibility"
-                                                Value="Collapsed" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsOldPasswordVisible}"
-                                                         Value="True">
-                                                <Setter Property="Visibility"
-                                                        Value="Visible" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-
-                            <!-- BOUTON ŒIL -->
-                            <Button 
-                                    Content="👁"
-                                    FontSize="16"
-                                    Cursor="Hand"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Command="{Binding ToggleOldPasswordVisibilityCommand}"
-                                    Margin="0,0,0,15" />
-                        </Grid>
                         <!-- Nouveau mot de passe -->
                         <TextBlock Text="Nouveau mot de passe"
                                    Style="{StaticResource LabelStyle}" />
-
-                        <Grid>
-                            <PasswordBox x:Name="NewPasswordBox"
-                                         PasswordChanged="NewPasswordChanged"
-                                         Margin="0,0,0,15">
-                                <PasswordBox.Style>
-                                    <Style TargetType="PasswordBox"
-                                           BasedOn="{StaticResource PasswordStyle}">
-                                        <Setter Property="Visibility"
-                                                Value="Visible" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsNewPasswordVisible}"
-                                                         Value="True">
-                                                <Setter Property="Visibility"
-                                                        Value="Collapsed" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </PasswordBox.Style>
-                            </PasswordBox>
-
-                            <!-- PASSWORD EN CLAIR -->
-                            <TextBox x:Name="TxtNewPwdVisible" 
-                                Grid.Column="0"
-                                     Margin="0,0,0,15"
-                                     Text="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged}">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox"
-                                           BasedOn="{StaticResource InputStyle}">
-                                        <Setter Property="Visibility"
-                                                Value="Collapsed" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsNewPasswordVisible}"
-                                                         Value="True">
-                                                <Setter Property="Visibility"
-                                                        Value="Visible" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-
-                            <!-- BOUTON ŒIL -->
-                            <Button Grid.Column="1"
-                                    Content="👁"
-                                    FontSize="16"
-                                    Cursor="Hand"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Command="{Binding ToggleNewPasswordVisibilityCommand}"
-                                    Margin="0,0,0,15" />
-                        </Grid>
+                        <PasswordBox x:Name="NewPasswordBox"
+                                     Style="{StaticResource PasswordStyle}"
+                                     PasswordChanged="NewPasswordChanged"
+                                     Margin="0,0,0,15" />
 
                         <!-- Confirmation -->
                         <TextBlock Text="Confirmer le nouveau mot de passe"
                                    Style="{StaticResource LabelStyle}" />
-                        <Grid>
-                            <PasswordBox x:Name="ConfirmPasswordBox"
+                        <PasswordBox x:Name="ConfirmPasswordBox"
+                                     Style="{StaticResource PasswordStyle}"
                                      PasswordChanged="ConfirmPasswordChanged"
-                                     Margin="0,0,0,15" >
-                                <PasswordBox.Style>
-                                    <Style TargetType="PasswordBox"
-                                           BasedOn="{StaticResource PasswordStyle}">
-                                        <Setter Property="Visibility"
-                                                Value="Visible" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsConfirmPasswordVisible}"
-                                                         Value="True">
-                                                <Setter Property="Visibility"
-                                                        Value="Collapsed" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </PasswordBox.Style>
-                            </PasswordBox>
-
-                            <!-- PASSWORD EN CLAIR -->
-                            <TextBox x:Name="TxtConfirmPwdVisible"
-                                Grid.Column="0"
-                                     Margin="0,0,0,15"
-                                     Text="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox"
-                                           BasedOn="{StaticResource InputStyle}">
-                                        <Setter Property="Visibility"
-                                                Value="Collapsed" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsConfirmPasswordVisible}"
-                                                         Value="True">
-                                                <Setter Property="Visibility"
-                                                        Value="Visible" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-
-                            <!-- BOUTON ŒIL -->
-                            <Button Grid.Column="1"
-                                    Content="👁"
-                                    FontSize="16"
-                                    Cursor="Hand"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Command="{Binding ToggleConfirmPasswordVisibilityCommand}"
-                                    Margin="0,0,0,15" />
-                        </Grid>
+                                     Margin="0,0,0,15" />
 
                         <!-- Message d'erreur -->
-                        <TextBlock x:Name="TxtMessageErreur"
-                                   Text="{Binding MessageMdp}"
+                        <TextBlock Text="{Binding MessageMdp}"
                                    FontWeight="Bold"
                                    Margin="0,10,0,0">
                             <TextBlock.Style>
@@ -551,8 +402,8 @@
                         Content="C'est un test"
                         Style="{StaticResource PrimaryButton}" />
             </Grid>
-
-
+            
+            
         </Grid>
 
         <!-- PIED DE PAGE -->

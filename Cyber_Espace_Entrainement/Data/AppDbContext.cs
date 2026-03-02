@@ -1,6 +1,4 @@
 ﻿using Cyber_Espace_Entrainement.Models;
-using Cyber_Espace_Entrainement.Models.UserEnumeration;
-
 // Data/AppDbContext.cs
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -22,8 +20,12 @@ namespace Cyber_Espace_Entrainement.Data
         //Représente la table Activite
         public DbSet<Activites> Activites { get; set; }
 
-        //Représente la table Activite
+        //Représente la table Cours
         public DbSet<Cours> Cours { get; set; }
+
+        // Représente la table Phishing
+        public DbSet<Phishing> Phishing { get; set; }
+
         public DbSet<LogConnexion> logConnexion { get; set; }
 
         //Représente la table UserEnumeration
@@ -149,7 +151,21 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Image3).IsRequired(false);
                 entity.Property(c => c.Lien).IsRequired(false);
                 entity.Property(c => c.Theme).IsRequired(false);
-                entity.Property(c => c.ImageBouton).IsRequired(false);
+
+            });
+
+            modelBuilder.Entity<Phishing>(entity =>
+            {
+                entity.ToTable("Phishing");
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.Id).HasColumnName("ID");
+                entity.Property(p => p.ActiviteId).IsRequired(true);
+                entity.Property(p => p.CoursId).IsRequired(true);
+                entity.Property(p => p.Type).IsRequired(false);
+                entity.Property(p => p.Image).IsRequired(false);
+                entity.Property(p => p.Expediteur).IsRequired(false);
+                entity.Property(p => p.Objet).IsRequired(false);
+                entity.Property(p => p.Contenu).IsRequired(false);
 
             });
 
