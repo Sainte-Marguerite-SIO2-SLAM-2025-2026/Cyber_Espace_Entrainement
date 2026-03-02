@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Cyber_Espace_Entrainement.Models;
 using Cyber_Espace_Entrainement.Services;
+using Cyber_Espace_Entrainement.Views.Cours;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,6 +47,24 @@ namespace Cyber_Espace_Entrainement.ViewModels.Cours
             }
         }
 
+        #region Affichage Cours
+
+        [RelayCommand]
+        public void OuvertureCours(Models.Cours unCours)
+        {
+            //Models.Cours unCours = _coursService.GetCoursByLibelle(libelleCours);   
+            try
+            {
+                CoursContenu CoursWindow = new CoursContenu(unCours);
+                CoursWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxService.ShowError($"Erreur d'ouverture : {ex.Message}");
+            }
+        }
+
+        #endregion
 
     }
 }
