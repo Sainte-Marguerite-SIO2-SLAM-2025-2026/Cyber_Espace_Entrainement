@@ -12,12 +12,22 @@
 	</PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Cours\bdc.png" />
+    <None Remove="Resources\Images\Cours\convention_c.png" />
+    <None Remove="Resources\Images\Cours\convention_generale.png" />
+    <None Remove="Resources\Images\Cours\convention_psr.png" />
     <None Remove="Resources\Images\Cours\ISQLhowToProtect.png" />
     <None Remove="Resources\Images\Cours\ISQLschema.png" />
     <None Remove="Resources\Images\Cours\ISQLwhatIs.webp" />
+    <None Remove="Resources\Images\Cours\moindre_privilege_explication.png" />
+    <None Remove="Resources\Images\Icons\icon_besoin_connaitre.png" />
+    <None Remove="Resources\Images\Icons\icon_convention_nommage.png" />
+    <None Remove="Resources\Images\Icons\icon_ISQL_64.png" />
+    <None Remove="Resources\Images\Icons\icon_moindre_privilege.png" />
     <None Remove="Resources\Images\Icons\icon_user_120.png" />
     <None Remove="Resources\Images\AccueilTest\test.png" />
     <None Remove="Resources\Images\Icons\icon_download_240.png" />
+    <None Remove="Resources\Images\Icons\icon_user_64.png" />
     <None Remove="Resources\Morse\morsecode.wav" />
     <None Remove="Resources\Morse\morse_0.wav" />
     <None Remove="Resources\Morse\morse_1.wav" />
@@ -102,13 +112,26 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\Cours\bdc.png" />
+    <Resource Include="Resources\Images\Cours\convention_c.png" />
+    <Resource Include="Resources\Images\Cours\convention_generale.png" />
+    <Resource Include="Resources\Images\Cours\convention_psr.png" />
     <Resource Include="Resources\Images\Cours\ISQLhowToProtect.png" />
     <Resource Include="Resources\Images\Cours\ISQLschema.png" />
     <Resource Include="Resources\Images\Cours\ISQLwhatIs.webp" />
+    <Resource Include="Resources\Images\Cours\moindre_privilege_explication.png" />
+    <Resource Include="Resources\Images\Cours\user_enumeration_login.png" />
+    <Resource Include="Resources\Images\Cours\user_enumeration_password.png" />
+    <Resource Include="Resources\Images\Cours\user_enumeration_registration.png" />
+    <Resource Include="Resources\Images\Icons\icon_besoin_connaitre.png" />
+    <Resource Include="Resources\Images\Icons\icon_convention_nommage.png" />
     <Resource Include="Resources\Images\Icons\icon_download_240.png" />
+    <Resource Include="Resources\Images\Icons\icon_ISQL_64.png" />
+    <Resource Include="Resources\Images\Icons\icon_moindre_privilege.png" />
     <Resource Include="Resources\Images\Icons\icon_ISQL.png" />
     <Resource Include="Resources\Images\Icons\icon_user_120.png" />
     <Resource Include="Resources\Images\AccueilTest\test.png" />
+    <Resource Include="Resources\Images\Icons\icon_user_64.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />
