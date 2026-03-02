@@ -1,5 +1,4 @@
-﻿using Cyber_Espace_Entrainement.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -44,7 +43,5 @@ namespace Cyber_Espace_Entrainement.Models
 
         [Column("ImageBouton")]
         public string ImageBouton { get; set; } = string.Empty;
-
-        //public string Source => $"/Resources/Images/Icons/{ImageBouton}";
     }
 }
