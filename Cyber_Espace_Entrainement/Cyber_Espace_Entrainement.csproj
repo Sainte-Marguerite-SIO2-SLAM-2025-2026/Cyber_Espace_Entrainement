@@ -12,6 +12,13 @@
 	</PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\AccueilTest\test.png" />
+    <None Remove="Resources\Images\Cours\ISQLhowToProtect.png" />
+    <None Remove="Resources\Images\Cours\ISQLschema.png" />
+    <None Remove="Resources\Images\Cours\ISQLwhatIs.webp" />
+    <None Remove="Resources\Images\Icons\icon_download_240.png" />
+    <None Remove="Resources\Images\Icons\icon_ISQL.png" />
+    <None Remove="Resources\Images\Icons\icon_user_120.png" />
     <None Remove="Resources\Images\Cours\bdc.png" />
     <None Remove="Resources\Images\Cours\convention_c.png" />
     <None Remove="Resources\Images\Cours\convention_generale.png" />
@@ -117,6 +124,7 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Images\Cours\bdc.png" />
     <Resource Include="Resources\Images\Cours\convention_c.png" />
     <Resource Include="Resources\Images\Cours\convention_generale.png" />
