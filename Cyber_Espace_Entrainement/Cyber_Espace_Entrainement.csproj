@@ -128,6 +128,7 @@
     <Resource Include="Resources\Images\Icons\icon_download_240.png" />
     <Resource Include="Resources\Images\Icons\icon_ISQL_64.png" />
     <Resource Include="Resources\Images\Icons\icon_moindre_privilege.png" />
+    <Resource Include="Resources\Images\Icons\icon_ISQL.png" />
     <Resource Include="Resources\Images\Icons\icon_user_120.png" />
     <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Images\Icons\icon_user_64.png" />
