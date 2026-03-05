@@ -13,7 +13,7 @@
         WindowState="Maximized">
 
     <Window.DataContext>
-        <vm:InjectionSQLViewModels/>
+        <vm:InjectionSQLFacileViewModel/>
     </Window.DataContext>
 
     <Grid>
