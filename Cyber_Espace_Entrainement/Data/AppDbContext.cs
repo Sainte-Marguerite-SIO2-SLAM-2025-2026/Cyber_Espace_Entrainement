@@ -1,4 +1,8 @@
 ﻿using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Models.InjectionSQL;
+
+using Cyber_Espace_Entrainement.Models.UserEnumeration;
+
 // Data/AppDbContext.cs
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -199,19 +203,40 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Valide)
                       .HasColumnName("Valide")
                       .IsRequired();
-            modelBuilder.Entity<UserEnumeration>(entity =>
-            {
-                entity.ToTable("UserEnumeration");
-                entity.HasKey(c => new { c.Id, c.CoursId, c.ActiviteId });
-                entity.Property(c => c.Id).HasColumnName("ID");
-                entity.Property(c => c.CoursId).HasColumnName("CoursID");
-                entity.Property(c => c.ActiviteId).HasColumnName("ActiviteID");
-                entity.Property(c => c.Image).IsRequired(false);
-                entity.Property(c => c.Reponse);
-                entity.Property(c => c.Message).IsRequired(false);
+                modelBuilder.Entity<UserEnumeration>(entity =>
+                {
+                    entity.ToTable("UserEnumeration");
+                    entity.HasKey(c => new { c.Id, c.CoursId, c.ActiviteId });
+                    entity.Property(c => c.Id).HasColumnName("ID");
+                    entity.Property(c => c.CoursId).HasColumnName("CoursID");
+                    entity.Property(c => c.ActiviteId).HasColumnName("ActiviteID");
+                    entity.Property(c => c.Image).IsRequired(false);
+                    entity.Property(c => c.Reponse);
+                    entity.Property(c => c.Message).IsRequired(false);
+                });
             });
 
+            // MAPPING DE L'ENTITÉ InjectionSQL : correspondance explicite entre propriétés et colonnes
+            modelBuilder.Entity<InjectionSQL>(entity =>
+            {
+                entity.ToTable("InjectionSQL");
+                // Clé primaire
+                entity.HasKey(i => i.Id);
+                // Correspondances colonne <-> propriété
+                entity.Property(i => i.Id).HasColumnName("ID");
+                entity.Property(i => i.CoursId).HasColumnName("CoursID");
+                entity.Property(i => i.Login).HasColumnName("Login").IsRequired(false);
+                entity.Property(i => i.Password).HasColumnName("Password").IsRequired(false);
+                entity.Property(i => i.SoldeCompte).HasColumnName("SoldeCompte");
+                entity.Property(i => i.Nom).HasColumnName("Nom").IsRequired(false);
+                entity.Property(i => i.Prenom).HasColumnName("Prenom").IsRequired(false);
+            });
+        
         }
+
+        }
+
+        
         // Méthode simple de hashage (à améliorer avec BCrypt)
         private static string HashPassword(string password)
         {

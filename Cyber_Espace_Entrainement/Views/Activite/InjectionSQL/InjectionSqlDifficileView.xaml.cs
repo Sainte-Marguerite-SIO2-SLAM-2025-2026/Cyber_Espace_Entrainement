@@ -21,5 +21,10 @@ namespace Cyber_Espace_Entrainement.Views.Activite
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
