@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite"
-        Title="UserEnumeration" Height="450" Width="800">
+        Title="UserEnumeration" Height="1080" Width="1920">
 
     <Window.DataContext>
         <vm:UserEnumerationFacileViewModel />
@@ -85,12 +85,128 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="1">
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1"
+              Margin="20">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <!-- Messages -->
+                <RowDefinition Height="*" />
+                <!-- Zones -->
+            </Grid.RowDefinitions>
+
+            <!-- ============================= -->
+            <!-- ZONE MESSAGES (PLEINE LARGEUR) -->
+            <!-- ============================= -->
+            <Border Grid.Row="0"
+                    Background="#F5F5F5"
+                    Padding="35"
+                    Margin="0,0,0,20"
+                    CornerRadius="10">
+
+                <StackPanel>
+                    <TextBlock Text="Messages"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Margin="0,0,0,10" />
+
+                    <ItemsControl ItemsSource="{Binding Messages}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White"
+                                        Padding="10"
+                                        Margin="5"
+                                        CornerRadius="5"
+                                        MouseMove="Message_MouseMove">
+                                    <TextBlock Text="{Binding Message}"
+                                               TextWrapping="Wrap" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- ============================= -->
+            <!-- ZONES EN BAS (2 COLONNES) -->
+            <!-- ============================= -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- USER ENUM -->
+                <Border Grid.Column="0"
+                        Background="#E8F5E9"
+                        AllowDrop="True"
+                        Drop="UserEnum_Drop"
+                        Padding="15"
+                        Margin="0,0,10,0"
+                        CornerRadius="10">
+
+                    <StackPanel>
+                        <TextBlock Text="User Enumeration"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10" />
+
+                        <ItemsControl ItemsSource="{Binding UserEnumeration}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White"
+                                            Padding="10"
+                                            Margin="5"
+                                            CornerRadius="5"
+                                            MouseMove="Message_MouseMove"
+                                            MouseLeftButtonDown="Message_DoubleClick">
+                                        <TextBlock Text="{Binding Message}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- PAS USER ENUM -->
+                <Border Grid.Column="1"
+                        Background="#FFEBEE"
+                        AllowDrop="True"
+                        Drop="PasUserEnum_Drop"
+                        Padding="15"
+                        Margin="10,0,0,0"
+                        CornerRadius="10">
+
+                    <StackPanel>
+                        <TextBlock Text="Pas User Enumeration"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10" />
+
+                        <ItemsControl ItemsSource="{Binding PasUserEnumeration}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White"
+                                            Padding="10"
+                                            Margin="5"
+                                            CornerRadius="5"
+                                            MouseMove="Message_MouseMove"
+                                            MouseLeftButtonDown="Message_DoubleClick">
+                                        <TextBlock Text="{Binding Message}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
         </Grid>
 
     </Grid>

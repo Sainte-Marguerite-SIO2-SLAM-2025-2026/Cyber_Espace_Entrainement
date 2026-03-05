@@ -1,5 +1,4 @@
 ﻿using Cyber_Espace_Entrainement.Models;
-
 // Data/AppDbContext.cs
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -30,6 +29,8 @@ namespace Cyber_Espace_Entrainement.Data
         public DbSet<LogConnexion> logConnexion { get; set; }
 
         public DbSet<Captchas> Captcha { get; set; }
+        //Représente la table UserEnumeration
+        public DbSet<UserEnumeration> userEnumeration { get; set; }
 
 
         // Configuration de la connexion
@@ -198,6 +199,16 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Valide)
                       .HasColumnName("Valide")
                       .IsRequired();
+            modelBuilder.Entity<UserEnumeration>(entity =>
+            {
+                entity.ToTable("UserEnumeration");
+                entity.HasKey(c => new { c.Id, c.CoursId, c.ActiviteId });
+                entity.Property(c => c.Id).HasColumnName("ID");
+                entity.Property(c => c.CoursId).HasColumnName("CoursID");
+                entity.Property(c => c.ActiviteId).HasColumnName("ActiviteID");
+                entity.Property(c => c.Image).IsRequired(false);
+                entity.Property(c => c.Reponse);
+                entity.Property(c => c.Message).IsRequired(false);
             });
 
         }
