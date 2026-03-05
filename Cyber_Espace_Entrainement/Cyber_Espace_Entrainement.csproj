@@ -66,6 +66,7 @@
     <None Remove="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <None Remove="Resources\Images\Cours\RansomwareSchema.png" />
     <None Remove="Resources\Images\Cours\SchemaTest.png" />
+    <None Remove="Resources\Images\regle_jeu.png" />
     <None Remove="Resources\Morse\morsecode.wav" />
     <None Remove="Resources\Morse\morse_0.wav" />
     <None Remove="Resources\Morse\morse_1.wav" />
@@ -201,6 +202,7 @@
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />
+    <Resource Include="Resources\Images\regle_jeu.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />
