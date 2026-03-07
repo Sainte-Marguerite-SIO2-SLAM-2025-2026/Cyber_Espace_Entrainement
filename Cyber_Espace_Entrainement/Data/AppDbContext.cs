@@ -234,7 +234,7 @@ namespace Cyber_Espace_Entrainement.Data
         
         }
 
-        }
+        
 
         
         // Méthode simple de hashage (à améliorer avec BCrypt)
