@@ -40,6 +40,8 @@
     <None Remove="Resources\Images\Cours\LogCentralisation.webp" />
     <None Remove="Resources\Images\Cours\LogEx.jpeg" />
     <None Remove="Resources\Images\Cours\moindre_privilege_explication.png" />
+    <None Remove="Resources\Images\Cours\pepe.jpg" />
+    <None Remove="Resources\Images\Cours\SchemaTest.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_login.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_password.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_registration.png" />
@@ -57,10 +59,6 @@
     <None Remove="Resources\Images\Icons\icon_TOK.png" />
     <None Remove="Resources\Images\Icons\icon_user_120.png" />
     <None Remove="Resources\Images\Icons\icon_user_64.png" />
-    <None Remove="Resources\Images\AccueilTest\test.png" />
-    <None Remove="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
-    <None Remove="Resources\Images\Cours\koala.jpg" />
-    <None Remove="Resources\Images\Cours\pepe.jpg" />
     <None Remove="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <None Remove="Resources\Images\Cours\RansomwareSchema.png" />
     <None Remove="Resources\Images\Cours\SchemaTest.png" />
@@ -106,6 +104,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\Cours\TOKSchema.png" />
+    <Resource Include="Resources\Images\Cours\TOKSchema2.png" />
+    <Resource Include="Resources\Images\Cours\TOKStructure.jpg" />
     <Resource Include="Resources\Images\Icons\icon_BF.png" />
     <Resource Include="Resources\Images\Icons\icon_LOG.png" />
     <Resource Include="Resources\Images\Icons\icon_TOK.png" />
@@ -156,6 +157,10 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\AccueilTest\test.png" />
+    <Resource Include="Resources\icon_captcha.png" />
+    <Resource Include="Resources\icon_chiffrement.png" />
+    <Resource Include="Resources\icon_ransomware.png" />
     <Resource Include="Resources\Images\Cours\bdc.png" />
     <Resource Include="Resources\Images\Cours\BFSchema.png" />
     <Resource Include="Resources\Images\Cours\BFTentatives.jpg" />
@@ -192,12 +197,13 @@
     <Resource Include="Resources\Images\Cours\ChiffrementSchema.png" />
     <Resource Include="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <Resource Include="Resources\Images\Cours\RansomwareSchema.png" />
-    <Resource Include="Resources\Images\Cours\user_enumeration_registration.png" />
+    <CodeAnalysisDictionary Include="Resources\Images\Cours\user_enumeration_registration.png" />
     <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />
     <Resource Include="Resources\Images\regle_jeu.png" />
+    <Resource Include="Resources\Images\Cours\SchemaTest.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />

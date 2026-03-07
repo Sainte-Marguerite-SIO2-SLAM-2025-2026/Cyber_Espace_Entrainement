@@ -1,4 +1,6 @@
 ﻿using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Models.InjectionSQL;
+
 using Cyber_Espace_Entrainement.Models.UserEnumeration;
 
 // Data/AppDbContext.cs
@@ -213,6 +215,25 @@ namespace Cyber_Espace_Entrainement.Data
                     entity.Property(c => c.Message).IsRequired(false);
                 });
             });
+
+            // MAPPING DE L'ENTITÉ InjectionSQL : correspondance explicite entre propriétés et colonnes
+            modelBuilder.Entity<InjectionSQL>(entity =>
+            {
+                entity.ToTable("InjectionSQL");
+                // Clé primaire
+                entity.HasKey(i => i.Id);
+                // Correspondances colonne <-> propriété
+                entity.Property(i => i.Id).HasColumnName("ID");
+                entity.Property(i => i.CoursId).HasColumnName("CoursID");
+                entity.Property(i => i.Login).HasColumnName("Login").IsRequired(false);
+                entity.Property(i => i.Password).HasColumnName("Password").IsRequired(false);
+                entity.Property(i => i.SoldeCompte).HasColumnName("SoldeCompte");
+                entity.Property(i => i.Nom).HasColumnName("Nom").IsRequired(false);
+                entity.Property(i => i.Prenom).HasColumnName("Prenom").IsRequired(false);
+            });
+        
+        }
+
         }
 
         
