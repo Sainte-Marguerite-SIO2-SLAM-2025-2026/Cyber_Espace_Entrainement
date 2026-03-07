@@ -41,7 +41,6 @@
     <None Remove="Resources\Images\Cours\LogEx.jpeg" />
     <None Remove="Resources\Images\Cours\moindre_privilege_explication.png" />
     <None Remove="Resources\Images\Cours\pepe.jpg" />
-    <None Remove="Resources\Images\Cours\SchemaTest.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_login.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_password.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_registration.png" />
