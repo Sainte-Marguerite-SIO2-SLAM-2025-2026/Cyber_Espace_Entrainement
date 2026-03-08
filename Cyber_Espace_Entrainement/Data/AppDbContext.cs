@@ -249,7 +249,7 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(a => a.Icon).IsRequired(false);
             });
 
-        }
+        
 
 
 
