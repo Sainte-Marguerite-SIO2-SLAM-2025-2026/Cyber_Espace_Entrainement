@@ -111,14 +111,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="QuestPDF" Version="2025.12.3" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="QuestPDF" Version="2026.2.3" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -192,12 +194,12 @@
     <Resource Include="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <Resource Include="Resources\Images\Cours\RansomwareSchema.png" />
     <CodeAnalysisDictionary Include="Resources\Images\Cours\user_enumeration_registration.png" />
-    <Resource Include="Resources\Images\AccueilTest\test.png" />
+    <Resource Include="Resources\Images\Icons\icon_activite.png" />
+    <Resource Include="Resources\Images\Icons\icon_cours.png" />
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />
     <Resource Include="Resources\Images\regle_jeu.png" />
-    <Resource Include="Resources\Images\Cours\SchemaTest.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />
