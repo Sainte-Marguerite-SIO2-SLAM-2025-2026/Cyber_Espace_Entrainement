@@ -53,5 +53,36 @@ namespace Cyber_Espace_Entrainement.Services
             return _context.userEnumeration
                 .Count();
         }
+
+        public List<UserEnumeration> GetRandomOnePerLibelle()
+        {
+            try
+            {
+                return _context.userEnumeration
+                    .Where(u => !string.IsNullOrWhiteSpace(u.Libelle))
+                    .AsEnumerable() // passage en mémoire pour Random()
+                    .GroupBy(u => u.Libelle)
+                    .Select(g => g.OrderBy(_ => Guid.NewGuid()).First())
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erreur : {ex.Message}");
+                return new List<UserEnumeration>();
+            }
+        }
+
+        public int GetCountRandomOnePerLibelle()
+        {
+            
+               return _context.userEnumeration
+                    .Where(u => !string.IsNullOrWhiteSpace(u.Libelle))
+                    .AsEnumerable() // passage en mémoire pour Random()
+                    .GroupBy(u => u.Libelle)
+                    .Select(g => g.OrderBy(_ => Guid.NewGuid()).First())
+                    .Count();
+            
+        }
+
     }
 }
