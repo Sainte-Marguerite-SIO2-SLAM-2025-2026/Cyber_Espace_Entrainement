@@ -19,9 +19,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <None Remove="Resources\icon_captcha.png" />
-    <None Remove="Resources\icon_chiffrement.png" />
-    <None Remove="Resources\icon_ransomware.png" />
     <None Remove="Resources\Images\Cours\bdc.png" />
     <None Remove="Resources\Images\Cours\BFSchema.png" />
     <None Remove="Resources\Images\Cours\BFTentatives.jpg" />
@@ -40,8 +37,7 @@
     <None Remove="Resources\Images\Cours\LogCentralisation.webp" />
     <None Remove="Resources\Images\Cours\LogEx.jpeg" />
     <None Remove="Resources\Images\Cours\moindre_privilege_explication.png" />
-    <None Remove="Resources\Images\Cours\TOKSchema.png" />
-    <None Remove="Resources\Images\Cours\TOKStructure.jpg" />
+    <None Remove="Resources\Images\Cours\pepe.jpg" />
     <None Remove="Resources\Images\Cours\user_enumeration_login.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_password.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_registration.png" />
@@ -59,10 +55,6 @@
     <None Remove="Resources\Images\Icons\icon_TOK.png" />
     <None Remove="Resources\Images\Icons\icon_user_120.png" />
     <None Remove="Resources\Images\Icons\icon_user_64.png" />
-    <None Remove="Resources\Images\AccueilTest\test.png" />
-    <None Remove="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
-    <None Remove="Resources\Images\Cours\koala.jpg" />
-    <None Remove="Resources\Images\Cours\pepe.jpg" />
     <None Remove="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <None Remove="Resources\Images\Cours\RansomwareSchema.png" />
     <None Remove="Resources\Images\Cours\SchemaTest.png" />
@@ -118,14 +110,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="QuestPDF" Version="2025.12.3" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="QuestPDF" Version="2026.2.3" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -161,6 +155,7 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Images\Cours\bdc.png" />
     <Resource Include="Resources\Images\Cours\BFSchema.png" />
     <Resource Include="Resources\Images\Cours\BFTentatives.jpg" />
@@ -197,8 +192,7 @@
     <Resource Include="Resources\Images\Cours\ChiffrementSchema.png" />
     <Resource Include="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <Resource Include="Resources\Images\Cours\RansomwareSchema.png" />
-    <Resource Include="Resources\Images\Cours\user_enumeration_registration.png" />
-    <Resource Include="Resources\Images\AccueilTest\test.png" />
+    <CodeAnalysisDictionary Include="Resources\Images\Cours\user_enumeration_registration.png" />
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />

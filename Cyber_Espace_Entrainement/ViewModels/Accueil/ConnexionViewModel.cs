@@ -7,6 +7,7 @@ using Cyber_Espace_Entrainement.Services;
 using Cyber_Espace_Entrainement.Models;
 using Cyber_Espace_Entrainement.Views.Users;
 using Cyber_Espace_Entrainement.Commands;
+using Cyber_Espace_Entrainement.Views.Admin;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Accueil
 {
@@ -139,7 +140,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                     // Selon le rôle, ouvrir la fenêtre correspondante
                     if (user.Role == UserRole.Admin)
                     {
-                        var admin = new UserGestion();
+                        var admin = new AdminAccueil();
                         window.Close(); // Ferme la fenêtre de connexion
                         admin.Show();
                     }
