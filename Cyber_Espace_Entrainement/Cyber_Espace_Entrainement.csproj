@@ -198,7 +198,6 @@
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />
     <Resource Include="Resources\Images\regle_jeu.png" />
-    <Resource Include="Resources\Images\Cours\SchemaTest.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />

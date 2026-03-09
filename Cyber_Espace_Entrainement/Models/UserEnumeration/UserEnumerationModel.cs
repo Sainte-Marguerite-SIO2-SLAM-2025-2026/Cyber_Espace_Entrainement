@@ -31,6 +31,9 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         [Column("message")] 
         public string Message { get; set; }
 
+        [Column("libelle")]
+        public string Libelle { get; set; }
+
         [NotMapped]
         public bool ReponseUtilisateur { get; set; }
 
