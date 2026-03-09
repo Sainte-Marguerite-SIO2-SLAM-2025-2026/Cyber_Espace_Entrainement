@@ -38,7 +38,6 @@
     <None Remove="Resources\Images\Cours\LogEx.jpeg" />
     <None Remove="Resources\Images\Cours\moindre_privilege_explication.png" />
     <None Remove="Resources\Images\Cours\pepe.jpg" />
-    <None Remove="Resources\Images\Cours\SchemaTest.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_login.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_password.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_registration.png" />
@@ -194,8 +193,6 @@
     <Resource Include="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <Resource Include="Resources\Images\Cours\RansomwareSchema.png" />
     <CodeAnalysisDictionary Include="Resources\Images\Cours\user_enumeration_registration.png" />
-    <Resource Include="Resources\Images\Icons\icon_activite.png" />
-    <Resource Include="Resources\Images\Icons\icon_cours.png" />
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />
