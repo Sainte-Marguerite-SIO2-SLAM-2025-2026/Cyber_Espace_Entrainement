@@ -34,6 +34,7 @@ namespace Cyber_Espace_Entrainement.Services
             try
             {
                 return _context.userEnumeration
+                    .Where(a => a.ActiviteId == 1)
                     .OrderBy(a => a.Id)
                     .ToList();
             }
@@ -51,6 +52,7 @@ namespace Cyber_Espace_Entrainement.Services
         public int GetCountUserEnumeration()
         {
             return _context.userEnumeration
+                .Where(a => a.ActiviteId == 1)
                 .Count();
         }
 
@@ -59,7 +61,7 @@ namespace Cyber_Espace_Entrainement.Services
             try
             {
                 return _context.userEnumeration
-                    .Where(u => !string.IsNullOrWhiteSpace(u.Libelle))
+                    .Where(a => a.ActiviteId == 2)
                     .AsEnumerable() // passage en mémoire pour Random()
                     .GroupBy(u => u.Libelle)
                     .Select(g => g.OrderBy(_ => Guid.NewGuid()).First())
@@ -76,7 +78,7 @@ namespace Cyber_Espace_Entrainement.Services
         {
             
                return _context.userEnumeration
-                    .Where(u => !string.IsNullOrWhiteSpace(u.Libelle))
+                    .Where(a => a.ActiviteId == 2)
                     .AsEnumerable() // passage en mémoire pour Random()
                     .GroupBy(u => u.Libelle)
                     .Select(g => g.OrderBy(_ => Guid.NewGuid()).First())
