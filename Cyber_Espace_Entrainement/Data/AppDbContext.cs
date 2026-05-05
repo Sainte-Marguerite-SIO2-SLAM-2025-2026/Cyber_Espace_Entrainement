@@ -1,4 +1,7 @@
 ﻿using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Models.InjectionSQL;
+
+using Cyber_Espace_Entrainement.Models.UserEnumeration;
 
 // Data/AppDbContext.cs
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +24,9 @@ namespace Cyber_Espace_Entrainement.Data
         //Représente la table Activite
         public DbSet<Activites> Activites { get; set; }
 
+        //Représente la table Admin
+        public DbSet<Admin> Admin { get; set; }
+
         //Représente la table Cours
         public DbSet<Cours> Cours { get; set; }
 
@@ -28,6 +34,10 @@ namespace Cyber_Espace_Entrainement.Data
         public DbSet<Phishing> Phishing { get; set; }
 
         public DbSet<LogConnexion> logConnexion { get; set; }
+
+        public DbSet<Captchas> Captcha { get; set; }
+        //Représente la table UserEnumeration
+        public DbSet<UserEnumeration> userEnumeration { get; set; }
 
 
         // Configuration de la connexion
@@ -84,35 +94,36 @@ namespace Cyber_Espace_Entrainement.Data
             // COMMENTÉ : Données de test désactivées pour ne pas modifier la base existante
             // Si vous souhaitez ajouter des utilisateurs de test, décommentez cette section
 
-            modelBuilder.Entity<Utilisateurs>().HasData(
-                new Utilisateurs
-                {
-                    UserId = 1,
-                    Login = "adminProf",
-                    MotPasse = HashPassword("admin123"),
-                    Email = "prof.admin@sfda37.fr",
-                    Role = UserRole.Admin,
-                    DateCreation = DateTime.Now
-                },
-                new Utilisateurs
-                {
-                    UserId = 2,
-                    Login = "Achille.Talon",
-                    MotPasse = HashPassword("prof123"),
-                    Email = "ach.Talon.prof@gmail.com",
-                    Role = UserRole.Prof,
-                    DateCreation = DateTime.Now
-                },
-                new Utilisateurs
-                {
-                    UserId = 3,
-                    Login = "gaston",
-                    MotPasse = HashPassword("gaston123"),
-                    Email = "gaston@gmail.com",
-                    Role = UserRole.Etudiant,
-                    DateCreation = DateTime.Now
-                }
-            );
+            //modelBuilder.Entity<Utilisateurs>().HasData(
+            //    new Utilisateurs
+            //    {
+            //        UserId = 1,
+            //        Login = "adminProf",
+            //        MotPasse = HashMDP("admin123"),
+            //        Email = "prof.admin@sfda37.fr",
+            //        Role = UserRole.Admin,
+            //        DateCreation = DateTime.Now
+            //    },
+            //    new Utilisateurs
+            //    {
+            //        UserId = 2,
+            //        Login = "Achille.Talon",
+            //        MotPasse = HashMDP("prof123"),
+            //        Email = "ach.Talon.prof@gmail.com",
+            //        Role = UserRole.Prof,
+            //        DateCreation = DateTime.Now
+            //    },
+            //    new Utilisateurs
+            //    {
+            //        UserId = 3,
+            //        Login = "gaston",
+            //        MotPasse = HashMDP("gaston123"),
+            //        Email = "gaston@gmail.com",
+            //        Role = UserRole.Etudiant,
+            //        DateCreation = DateTime.Now
+            //    }
+            //);
+
 
             modelBuilder.Entity<Activites>(entity =>
             {
@@ -149,6 +160,7 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Image3).IsRequired(false);
                 entity.Property(c => c.Lien).IsRequired(false);
                 entity.Property(c => c.Theme).IsRequired(false);
+                entity.Property(c => c.ImageBouton).IsRequired(false);
 
             });
 
@@ -167,15 +179,91 @@ namespace Cyber_Espace_Entrainement.Data
 
             });
 
+            // MAPPING DE L'ENTITÉ Captcha : correspondance explicite entre propriétés et colonnes
+            modelBuilder.Entity<Captchas>(entity =>
+            {
+                entity.ToTable("Captcha");
+
+                // On définit la clé primaire sur la propriété du modèle (CaptchaId)
+                entity.HasKey(c => c.CaptchaId);
+
+                // Correspondances colonne <-> propriété (selon votre schéma demandé)
+                entity.Property(c => c.CaptchaId).HasColumnName("CaptchaID");
+                entity.Property(c => c.ActiviteId).HasColumnName("ActiviteID");
+                entity.Property(c => c.CourdId).HasColumnName("CoursID");
+
+                entity.Property(c => c.Explication)
+                      .HasColumnName("Explication")
+                      .IsRequired(false);
+
+                entity.Property(c => c.Zone)
+                      .HasColumnName("Zone")
+                      .IsRequired(false);
+
+                entity.Property(c => c.Image)
+                      .HasColumnName("Image")
+                      .IsRequired(false);
+
+                entity.Property(c => c.Valide)
+                      .HasColumnName("Valide")
+                      .IsRequired();
+
+            });
+
+            modelBuilder.Entity<UserEnumeration>(entity =>
+            {
+                entity.ToTable("UserEnumeration");
+                entity.HasKey(c => new { c.Id, c.CoursId, c.ActiviteId });
+                entity.Property(c => c.Id).HasColumnName("ID");
+                entity.Property(c => c.CoursId).HasColumnName("CoursID");
+                entity.Property(c => c.ActiviteId).HasColumnName("ActiviteID");
+                entity.Property(c => c.Image).IsRequired(false);
+                entity.Property(c => c.Reponse);
+                entity.Property(c => c.Message).IsRequired(false);
+            });
+
+            // MAPPING DE L'ENTITÉ InjectionSQL : correspondance explicite entre propriétés et colonnes
+            modelBuilder.Entity<InjectionSQL>(entity =>
+            {
+                entity.ToTable("InjectionSQL");
+                // Clé primaire
+                entity.HasKey(i => i.Id);
+                // Correspondances colonne <-> propriété
+                entity.Property(i => i.Id).HasColumnName("ID");
+                entity.Property(i => i.CoursId).HasColumnName("CoursID");
+                entity.Property(i => i.Login).HasColumnName("Login").IsRequired(false);
+                entity.Property(i => i.Password).HasColumnName("Password").IsRequired(false);
+                entity.Property(i => i.SoldeCompte).HasColumnName("SoldeCompte");
+                entity.Property(i => i.Nom).HasColumnName("Nom").IsRequired(false);
+                entity.Property(i => i.Prenom).HasColumnName("Prenom").IsRequired(false);
+            });
+
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.ToTable("Admin");
+                entity.HasKey(a => a.AdminID);
+                // Le modèle Admin utilise la colonne "AdminID" (attribut [Column("AdminID")]).
+                // Aligner la configuration fluent avec le modèle / la base existante.
+                entity.Property(a => a.AdminID).HasColumnName("AdminID");
+                entity.Property(a => a.Table).IsRequired(false);
+                entity.Property(a => a.Icon).IsRequired(false);
+            });
         }
+        
+
+
+
+
         // Méthode simple de hashage (à améliorer avec BCrypt)
-        private static string HashPassword(string password)
+        private static string HashMDP(string password)
         {
             // Pour l'exemple : utilisation simple (PAS SÉCURISÉ, donc il faudra la modifier )
             // Utiliser BCrypt.Net
-            return Convert.ToBase64String(
-                System.Text.Encoding.UTF8.GetBytes(password)
-            );
+            //return Convert.ToBase64String(
+            //    System.Text.Encoding.UTF8.GetBytes(password)
+            //);
+
+            return BCrypt.Net.BCrypt.HashPassword(password, workFactor: 12);
         }
     }
 }

@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cyber_Espace_Entrainement.Views.Activite"
         mc:Ignorable="d"
-        Title="InjectionSqlDifficileView" Height="450" Width="800">
+        xmlns:vm="clr-namespace:Cyber_Espace_Entrainement.ViewModels.Activite"
+        Title="Injection - Apprentissage et Test" 
+        Height="1080" 
+        Width="1920"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+    <Window.DataContext>
+        <vm:InjectionSQLFacileViewModel/>
+    </Window.DataContext>
+
     <Grid>
-        <TextBlock Text="Injection SQL - Difficile" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#673AB7" Padding="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Bouton Retour -->
+                <Button Grid.Column="0"
+                        Content="↩️   Retour"
+                        Click="BackButton_Click"
+                        Background="#383440"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        VerticalAlignment="Center"
+                        Margin="0,0,20,0"/>
+
+                <!-- Titre -->
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="Injection SQL - Niveau Facile" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                    <TextBlock Text="Apprenez et testez vos connaissances en Injection SQL" 
+                               FontSize="14" 
+                               Foreground="#E1BEE7" 
+                               Margin="0,5,0,0"/>
+                </StackPanel>
+
+                <!-- Score -->
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Row="1">
+            <Grid/>
+        </Border>
     </Grid>
 </Window>
