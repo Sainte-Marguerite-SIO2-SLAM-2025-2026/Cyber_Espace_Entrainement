@@ -1,15 +1,26 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Cyber_Espace_Entrainement.Commands;
+using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
-using Cyber_Espace_Entrainement.Commands;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Cyber_Espace_Entrainement.ViewModels.Activite.Captcha
 {
     public partial class CaptchaFacileViewModel : ObservableObject
     {
+        private readonly CaptchaService _captchaService;
+
+        [ObservableProperty]
+        private ObservableCollection<Captchas> captchas = new();
+
+
+        #region Property tests
         [ObservableProperty]
         private Dictionary<string, string> dicoPrecedent = new()
         {
@@ -18,7 +29,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite.Captcha
             { "outro", "jeuCaptcha2" }
         };
 
-
+        
         [ObservableProperty]
         private bool intro = true;
 
@@ -40,19 +51,26 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite.Captcha
         [ObservableProperty]
         private string couleur;
 
+        [ObservableProperty]
+        private string description;
 
+        #endregion
 
         public CaptchaFacileViewModel()
         {
             Intro = true;
+            _captchaService = new CaptchaService();
+            Captchas = new ObservableCollection<Captchas>();
+
+            RecupCaptcha();
         }
 
-        [RelayCommand]
-        private void JeuCa()
-        {
-            // Logique pour jouer au Captcha
-            // Par exemple, afficher une image Captcha et vérifier la réponse de l'utilisateur
-        }
+        //[RelayCommand]
+        //private void JeuCa()
+        //{
+        //    // Logique pour jouer au Captcha
+        //    // Par exemple, afficher une image Captcha et vérifier la réponse de l'utilisateur
+        //}
 
         [RelayCommand]
         private void Niveau1()
@@ -78,7 +96,30 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite.Captcha
 
         }
 
+        private void RecupCaptcha()
+        {
+            try
+            {
+                // GetCaptchasTest() retourne un seul objet Captchas (ou null)
+                var data = _captchaService.GetCaptchasTest();
 
+                Captchas.Clear();
+
+                if (data is not null)
+                {
+                    Captchas.Add(data);
+                    Description = data.Explication;
+                }
+                else
+                {
+                    Description = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur de chargement : {ex.Message}");
+            }
+        }
 
         //[RelayCommand]
         //private void Retour(string pageActuelle, string pageAvant)

@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -10,20 +9,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cyber_Espace_Entrainement.Views.Cours
+namespace Cyber_Espace_Entrainement.Views.Admin
 {
     /// <summary>
-    /// Logique d'interaction pour CoursAccueil.xaml
+    /// Logique d'interaction pour AdminAccueil.xaml
     /// </summary>
-    public partial class CoursAccueil : Window
+    public partial class AdminAccueil : Window
     {
-        public CoursAccueil()
+        public AdminAccueil()
         {
             InitializeComponent();
         }
+
 
         #region Bouton retour
         /// <summary>

@@ -17,19 +17,26 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         public int Id { get; set; }
 
         [Column("ActiviteID")]
-        public string ActiviteId { get; set; }
+        public int ActiviteId { get; set; }
 
-        [Column("CoursID")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
+        [Column("CoursID")] 
         public int CoursId { get; set; }
 
-        [Column("image")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
-        public string Image { get; set; }
+        [Column("image")] 
+        public string? Image { get; set; }
 
-        [Column("reponse")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
+        [Column("reponse")] 
         public bool Reponse { get; set; }
 
-        [Column("message")] // Retirez [Required] ici, car faire partie de la PK implique l'obligation
+        [Column("message")] 
         public string Message { get; set; }
 
+        [Column("libelle")]
+        public string? Libelle { get; set; }
+
+        [NotMapped]
+        public bool ReponseUtilisateur { get; set; }
+
     }
+
 }

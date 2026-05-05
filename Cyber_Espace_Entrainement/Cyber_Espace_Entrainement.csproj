@@ -11,30 +11,54 @@
 
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="Resources\Images\Icons\**" />
+	  <EmbeddedResource Remove="Resources\Images\Icons\**" />
+	  <None Remove="Resources\Images\Icons\**" />
+	  <Page Remove="Resources\Images\Icons\**" />
+	</ItemGroup>
+
   <ItemGroup>
-    <None Remove="Resources\Images\AccueilTest\test.png" />
     <None Remove="Resources\Images\Cours\bdc.png" />
+    <None Remove="Resources\Images\Cours\BFSchema.png" />
+    <None Remove="Resources\Images\Cours\BFTentatives.jpg" />
+    <None Remove="Resources\Images\Cours\BFTime.jpg" />
+    <None Remove="Resources\Images\Cours\CAPTImnotARobot.png" />
+    <None Remove="Resources\Images\Cours\CAPTschema.png" />
+    <None Remove="Resources\Images\Cours\ChiffrementCesar.png" />
+    <None Remove="Resources\Images\Cours\ChiffrementSchema.png" />
     <None Remove="Resources\Images\Cours\convention_c.png" />
     <None Remove="Resources\Images\Cours\convention_generale.png" />
     <None Remove="Resources\Images\Cours\convention_psr.png" />
     <None Remove="Resources\Images\Cours\ISQLhowToProtect.png" />
     <None Remove="Resources\Images\Cours\ISQLschema.png" />
     <None Remove="Resources\Images\Cours\ISQLwhatIs.webp" />
-    <None Remove="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
-    <None Remove="Resources\Images\Cours\koala.jpg" />
+    <None Remove="Resources\Images\Cours\LogAlerte.webp" />
+    <None Remove="Resources\Images\Cours\LogCentralisation.webp" />
+    <None Remove="Resources\Images\Cours\LogEx.jpeg" />
     <None Remove="Resources\Images\Cours\moindre_privilege_explication.png" />
     <None Remove="Resources\Images\Cours\pepe.jpg" />
-    <None Remove="Resources\Images\Cours\SchemaTest.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_login.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_password.png" />
     <None Remove="Resources\Images\Cours\user_enumeration_registration.png" />
+    <None Remove="Resources\Images\Cours\XSSschema1.png" />
+    <None Remove="Resources\Images\Cours\XSSschema2.jpg" />
+    <None Remove="Resources\Images\Cours\XSStypes.webp" />
     <None Remove="Resources\Images\Icons\icon_besoin_connaitre.png" />
+    <None Remove="Resources\Images\Icons\icon_BF.png" />
     <None Remove="Resources\Images\Icons\icon_convention_nommage.png" />
     <None Remove="Resources\Images\Icons\icon_download_240.png" />
     <None Remove="Resources\Images\Icons\icon_ISQL.png" />
+    <None Remove="Resources\Images\Icons\icon_LOG.png" />
+    <None Remove="Resources\Images\Icons\icon_XSS.png" />
     <None Remove="Resources\Images\Icons\icon_moindre_privilege.png" />
+    <None Remove="Resources\Images\Icons\icon_TOK.png" />
     <None Remove="Resources\Images\Icons\icon_user_120.png" />
     <None Remove="Resources\Images\Icons\icon_user_64.png" />
+    <None Remove="Resources\Images\Cours\RansomwareCarteMentale.png" />
+    <None Remove="Resources\Images\Cours\RansomwareSchema.png" />
+    <None Remove="Resources\Images\Cours\SchemaTest.png" />
+    <None Remove="Resources\Images\regle_jeu.png" />
     <None Remove="Resources\Morse\morsecode.wav" />
     <None Remove="Resources\Morse\morse_0.wav" />
     <None Remove="Resources\Morse\morse_1.wav" />
@@ -76,14 +100,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\Cours\TOKSchema.png" />
+    <Resource Include="Resources\Images\Cours\TOKSchema2.png" />
+    <Resource Include="Resources\Images\Cours\TOKStructure.jpg" />
+    <Resource Include="Resources\Images\Icons\icon_BF.png" />
+    <Resource Include="Resources\Images\Icons\icon_LOG.png" />
+    <Resource Include="Resources\Images\Icons\icon_TOK.png" />
+    <Resource Include="Resources\Images\Icons\icon_XSS.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="QuestPDF" Version="2025.12.3" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="QuestPDF" Version="2026.2.3" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -121,27 +157,46 @@
   <ItemGroup>
     <Resource Include="Resources\Images\AccueilTest\test.png" />
     <Resource Include="Resources\Images\Cours\bdc.png" />
+    <Resource Include="Resources\Images\Cours\BFSchema.png" />
+    <Resource Include="Resources\Images\Cours\BFTentatives.jpg" />
+    <Resource Include="Resources\Images\Cours\BFTime.jpg" />
+    <Resource Include="Resources\Images\Cours\CAPTImnotARobot.png" />
+    <Resource Include="Resources\Images\Cours\CAPTschema.png" />
     <Resource Include="Resources\Images\Cours\convention_c.png" />
     <Resource Include="Resources\Images\Cours\convention_generale.png" />
     <Resource Include="Resources\Images\Cours\convention_psr.png" />
     <Resource Include="Resources\Images\Cours\ISQLhowToProtect.png" />
     <Resource Include="Resources\Images\Cours\ISQLschema.png" />
     <Resource Include="Resources\Images\Cours\ISQLwhatIs.webp" />
-    <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
-    <Resource Include="Resources\Images\Cours\koala.jpg" />
+    <Resource Include="Resources\Images\Cours\LogAlerte.webp" />
+    <Resource Include="Resources\Images\Cours\LogCentralisation.webp" />
+    <Resource Include="Resources\Images\Cours\LogEx.jpeg" />
     <Resource Include="Resources\Images\Cours\moindre_privilege_explication.png" />
-    <Resource Include="Resources\Images\Cours\pepe.jpg" />
     <Resource Include="Resources\Images\Cours\SchemaTest.png" />
     <Resource Include="Resources\Images\Cours\user_enumeration_login.png" />
     <Resource Include="Resources\Images\Cours\user_enumeration_password.png" />
-    <Resource Include="Resources\Images\Cours\user_enumeration_registration.png" />
+    <Resource Include="Resources\Images\Cours\XSSschema1.png" />
+    <Resource Include="Resources\Images\Cours\XSSschema2.jpg" />
+    <Resource Include="Resources\Images\Cours\XSStypes.webp" />
     <Resource Include="Resources\Images\Icons\icon_besoin_connaitre.png" />
+    <Resource Include="Resources\Images\Icons\icon_captcha.png" />
+    <Resource Include="Resources\Images\Icons\icon_chiffrement.png" />
     <Resource Include="Resources\Images\Icons\icon_convention_nommage.png" />
     <Resource Include="Resources\Images\Icons\icon_download_240.png" />
     <Resource Include="Resources\Images\Icons\icon_ISQL.png" />
     <Resource Include="Resources\Images\Icons\icon_moindre_privilege.png" />
+    <Resource Include="Resources\Images\Icons\icon_ransomware.png" />
     <Resource Include="Resources\Images\Icons\icon_user_120.png" />
     <Resource Include="Resources\Images\Icons\icon_user_64.png" />
+    <Resource Include="Resources\Images\Cours\ChiffrementCesar.png" />
+    <Resource Include="Resources\Images\Cours\ChiffrementSchema.png" />
+    <Resource Include="Resources\Images\Cours\RansomwareCarteMentale.png" />
+    <Resource Include="Resources\Images\Cours\RansomwareSchema.png" />
+    <CodeAnalysisDictionary Include="Resources\Images\Cours\user_enumeration_registration.png" />
+    <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
+    <Resource Include="Resources\Images\Cours\koala.jpg" />
+    <Resource Include="Resources\Images\Cours\pepe.jpg" />
+    <Resource Include="Resources\Images\regle_jeu.png" />
     <Resource Include="Resources\Morse\morsecode.wav" />
     <Resource Include="Resources\Morse\morse_0.wav" />
     <Resource Include="Resources\Morse\morse_1.wav" />

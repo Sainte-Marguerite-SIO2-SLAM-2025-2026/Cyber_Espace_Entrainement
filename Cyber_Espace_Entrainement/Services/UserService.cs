@@ -70,7 +70,7 @@ namespace Cyber_Espace_Entrainement.Services
                 }
 
                 // Hasher le mot de passe (à complexifier avec Bcrypt plus tard)
-                user.MotPasse = HashPassword(user.MotPasse);
+                user.MotPasse = HashMDP(user.MotPasse);
                 user.DateCreation = DateTime.Now;
                 user.ScoreTotal = 0; // Initialiser le score à 0
 
@@ -125,9 +125,9 @@ namespace Cyber_Espace_Entrainement.Services
                 existingUser.ScoreTotal = user.ScoreTotal;
 
                 // Ne modifier le mot de passe que s'il a changé
-                if (!string.IsNullOrEmpty(user.MotPasse) && user.MotPasse != existingUser.MotPasse)
+                if (!string.IsNullOrEmpty(user.MotPasse) && !BCrypt.Net.BCrypt.Verify(user.MotPasse, existingUser.MotPasse))
                 {
-                    existingUser.MotPasse = HashPassword(user.MotPasse);
+                    existingUser.MotPasse = HashMDP(user.MotPasse);
                 }
 
                 _context.SaveChanges();
@@ -150,7 +150,7 @@ namespace Cyber_Espace_Entrainement.Services
                     return (false, "Utilisateur introuvable.");
                 }
 
-                    existingUser.MotPasse = HashPassword(user.MotPasse);
+                existingUser.MotPasse = HashMDP(user.MotPasse);
 
                 _context.SaveChanges();
 
@@ -206,7 +206,7 @@ namespace Cyber_Espace_Entrainement.Services
             if (user == null)
                 return (false, null, "Login incorrect.");
 
-            if (user.MotPasse != HashPassword(password))
+            if (!BCrypt.Net.BCrypt.Verify(password, user.MotPasse))
                 return (false, null, "Mot de passe incorrect.");
 
             // Ajouter une entrée dans le log
@@ -331,13 +331,15 @@ namespace Cyber_Espace_Entrainement.Services
         // UTILITAIRES
         // 
 
-        private static string HashPassword(string password)
+        private static string HashMDP(string password)
         {
             // Simple hashage pour le moment 
             // à revoir :  utiliser BCrypt.Net-Next 
-            return Convert.ToBase64String(
-                System.Text.Encoding.UTF8.GetBytes(password)
-            );
+            //return Convert.ToBase64String(
+            //    System.Text.Encoding.UTF8.GetBytes(password)
+            //);
+
+            return BCrypt.Net.BCrypt.HashPassword(password, workFactor: 12);
         }
 
         /// <summary>
