@@ -6,17 +6,18 @@ using System.Text;
 
 namespace Cyber_Espace_Entrainement.Models
 {
-    [Table("Activite")]
+    [Table("Phishing")]
     public class Phishing
     {
         [Key]
         [Column("ID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [ForeignKey("ID")]
+        [Column("ActiviteID")]
         public int ActiviteId { get; set; }
 
-        [ForeignKey("ID")]
+        [Column("CoursID")]
         public int CoursId { get; set; }
 
         [Column("Type")]
