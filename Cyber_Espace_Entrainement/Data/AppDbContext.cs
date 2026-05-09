@@ -217,7 +217,6 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Id).HasColumnName("ID");
                 entity.Property(c => c.CoursId).HasColumnName("CoursID");
                 entity.Property(c => c.ActiviteId).HasColumnName("ActiviteID");
-                entity.Property(c => c.Image).IsRequired(false);
                 entity.Property(c => c.Reponse);
                 entity.Property(c => c.Message).IsRequired(false);
             });

@@ -22,9 +22,6 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         [Column("CoursID")] 
         public int CoursId { get; set; }
 
-        [Column("image")] 
-        public string? Image { get; set; }
-
         [Column("reponse")] 
         public bool Reponse { get; set; }
 

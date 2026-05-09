@@ -99,6 +99,11 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
             LoadUsers();
         }
 
+        partial void OnSelectedRoleChanged(UserRole value)
+        {
+            SaveUserCommand.NotifyCanExecuteChanged();
+        }
+
         // 
         // COMMANDES - CRUD
         // 
@@ -137,6 +142,22 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
                         user.MotPasse = existingUser.MotPasse; // Garder l'ancien
                     }
                 }
+                else 
+                {
+                    var existingUser = _userService.GetUserById(UserId);
+                    if (existingUser != null)
+                    {
+                        if (user.MotPasse.Length < 6)
+                        {
+                            ShowError("Le mot de passe doit contenir au moins 6 caractères.");
+                            return;
+                        }else
+                        {
+                            user.MotPasse = MotPasse;
+                        }
+                    }
+                        
+                }
                 result = _userService.UpdateUser(user);
             }
             else
@@ -155,7 +176,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
                 ShowError(result.message);
             }
         }
-
+   
         // Méthode de validation - INCHANGÉE
         private bool CanSaveUser()
         {
@@ -170,8 +191,8 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
             }
 
             // En mode édition : login et email suffisent (mot de passe optionnel)
-            bool canEdit = !string.IsNullOrWhiteSpace(Login) &&
-                           !string.IsNullOrWhiteSpace(Email);
+            bool canEdit = (!string.IsNullOrWhiteSpace(Login) &&
+                           !string.IsNullOrWhiteSpace(Email));
             System.Diagnostics.Debug.WriteLine($"Mode édition - CanEdit: {canEdit}");
             return canEdit;
         }

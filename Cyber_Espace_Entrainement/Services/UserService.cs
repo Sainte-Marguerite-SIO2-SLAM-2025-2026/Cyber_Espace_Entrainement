@@ -120,15 +120,18 @@ namespace Cyber_Espace_Entrainement.Services
 
                 // AJOUTÉ : Mise à jour des nouveaux champs
                 existingUser.Nom = user.Nom;
-                existingUser.Prenom = user.Prenom;
-                existingUser.Section = user.Section;
-                existingUser.ScoreTotal = user.ScoreTotal;
-
-                // Ne modifier le mot de passe que s'il a changé
-                if (!string.IsNullOrEmpty(user.MotPasse) && !BCrypt.Net.BCrypt.Verify(user.MotPasse, existingUser.MotPasse))
+                if (existingUser.MotPasse != user.MotPasse)
                 {
                     existingUser.MotPasse = HashMDP(user.MotPasse);
                 }
+                else
+                {
+                    // Si le mot de passe n'a pas changé, ne pas le re-hasher
+                    existingUser.MotPasse = user.MotPasse;
+                }
+                existingUser.Prenom = user.Prenom;
+                existingUser.Section = user.Section;
+                existingUser.ScoreTotal = user.ScoreTotal;
 
                 _context.SaveChanges();
 

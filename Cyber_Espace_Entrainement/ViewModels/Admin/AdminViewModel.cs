@@ -4,6 +4,7 @@ using Cyber_Espace_Entrainement.Models;
 using Cyber_Espace_Entrainement.Services;
 using Cyber_Espace_Entrainement.Views.Admin;
 using Cyber_Espace_Entrainement.Views.Cours;
+using Cyber_Espace_Entrainement.Views.Users;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,8 +50,16 @@ namespace Cyber_Espace_Entrainement.ViewModels.Admin
         {
             try
             {
-                AdminContenu AdminWindow = new AdminContenu(Admin);
-                AdminWindow.ShowDialog();
+                if (Admin.Table == "Utilisateur")
+                {
+                    UserGestion UserWindow = new UserGestion();
+                    UserWindow.ShowDialog();
+                }
+                else 
+                {
+                    AdminContenu AdminWindow = new AdminContenu(Admin);
+                    AdminWindow.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
