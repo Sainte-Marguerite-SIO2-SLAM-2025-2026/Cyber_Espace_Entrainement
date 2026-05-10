@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Cyber_Espace_Entrainement.Models;
+using Cyber_Espace_Entrainement.Models.UserEnumeration;
 using Cyber_Espace_Entrainement.Services;
 using Cyber_Espace_Entrainement.Views.Admin;
 using Cyber_Espace_Entrainement.Views.Cours;
@@ -54,6 +55,11 @@ namespace Cyber_Espace_Entrainement.ViewModels.Admin
                 {
                     UserGestion UserWindow = new UserGestion();
                     UserWindow.ShowDialog();
+                }
+                else if (Admin.Table == "UserEnumeration")
+                {
+                    UserEnum UserEnumWindow = new UserEnum();
+                    UserEnumWindow.ShowDialog();
                 }
                 else 
                 {
