@@ -145,18 +145,18 @@
 
                             <!-- Rôle -->
                             <TextBlock Text="Rôle *" FontWeight="Bold" Margin="0,0,0,5"/>
-                        <!--<ComboBox SelectedItem="{Binding SelectedRole, UpdateSourceTrigger=PropertyChanged}" 
-                                  Padding="8" 
+                        <ComboBox SelectedItem="{Binding SelectedRole, UpdateSourceTrigger=PropertyChanged}"
+                                  Padding="8"
                                   FontSize="14"
                                   Margin="0,0,0,20">
-                                <ComboBox.Items>
-                                    <models:UserRole>Etudiant</models:UserRole>
-                                    <models:UserRole>Prof</models:UserRole>
-                                    <models:UserRole>Admin</models:UserRole>
-                                </ComboBox.Items>
-                            </ComboBox>-->
+                            <ComboBox.Items>
+                                <models:UserRole>Etudiant</models:UserRole>
+                                <models:UserRole>Prof</models:UserRole>
+                                <models:UserRole>Admin</models:UserRole>
+                            </ComboBox.Items>
+                        </ComboBox>
 
-                            <!-- Boutons -->
+                        <!-- Boutons -->
                             <StackPanel Orientation="Horizontal">
                                 <!-- Bouton Créer/Enregistrer (conditionnel) -->
                                 <Button Command="{Binding SaveUserCommand}"
