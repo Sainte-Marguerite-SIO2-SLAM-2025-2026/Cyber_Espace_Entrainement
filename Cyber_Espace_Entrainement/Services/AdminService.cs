@@ -3,9 +3,10 @@ using Cyber_Espace_Entrainement.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace Cyber_Espace_Entrainement.Services
@@ -37,137 +38,252 @@ namespace Cyber_Espace_Entrainement.Services
             }
         }
 
-
-        public void AjouterLigne(string nomTable, System.Collections.Generic.Dictionary<string, object?> valeurs)
+        public void AjouterLigne(string? nomTable, Dictionary<string, object?> valeurs)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(nomTable)) return;
+            if (string.IsNullOrWhiteSpace(nomTable)) return;
 
-                var colonnes = string.Join(", ", valeurs.Keys.Select(k => $"[{k}]"));
-                var parametres = string.Join(", ", valeurs.Keys.Select(k => $"@{k}"));
-                var sql = $"INSERT INTO [{nomTable}] ({colonnes}) VALUES ({parametres})";
+            // Pas de champs vide
+            var valeursFiltrées = valeurs
+                .Where(kvp => !string.IsNullOrWhiteSpace(kvp.Value?.ToString()))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-                var conn = _context.Database.GetDbConnection();
-                conn.Open();
-                using var cmd = conn.CreateCommand();
-                cmd.CommandText = sql;
+            if (valeursFiltrées.Count == 0) return;
 
-                foreach (var kvp in valeurs)
-                {
-                    var param = cmd.CreateParameter();
-                    param.ParameterName = $"@{kvp.Key}";
-                    param.Value = kvp.Value ?? DBNull.Value;
-                    cmd.Parameters.Add(param);
-                }
+            // Construction SQL
+            var colonnes = string.Join(", ", valeursFiltrées.Keys.Select(k => $"[{k}]"));
+            var parametres = string.Join(", ", valeursFiltrées.Keys.Select(k => $"@{k}"));
+            var sql = $"INSERT INTO [{nomTable}] ({colonnes}) VALUES ({parametres})";
 
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Erreur AjouterLigne : {ex.Message}");
-                throw;
-            }
+            ExecuterCommande(sql, valeursFiltrées);
         }
 
-        public void ModifierLigne(string nomTable, string nomColonnePrimaire, object cléValeur, System.Collections.Generic.Dictionary<string, object?> valeurs)
+        //public void AjouterLigne(string nomTable, System.Collections.Generic.Dictionary<string, object?> valeurs)
+        //{
+        //    try
+        //    {
+        //        if (string.IsNullOrWhiteSpace(nomTable)) return;
+
+        //        var colonnes = string.Join(", ", valeurs.Keys.Select(k => $"[{k}]"));
+        //        var parametres = string.Join(", ", valeurs.Keys.Select(k => $"@{k}"));
+        //        var sql = $"INSERT INTO [{nomTable}] ({colonnes}) VALUES ({parametres})";
+
+        //        var conn = _context.Database.GetDbConnection();
+        //        conn.Open();
+        //        using var cmd = conn.CreateCommand();
+        //        cmd.CommandText = sql;
+
+        //        foreach (var kvp in valeurs)
+        //        {
+        //            var param = cmd.CreateParameter();
+        //            param.ParameterName = $"@{kvp.Key}";
+        //            param.Value = kvp.Value ?? DBNull.Value;
+        //            cmd.Parameters.Add(param);
+        //        }
+
+        //        cmd.ExecuteNonQuery();
+        //        conn.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine($"Erreur AjouterLigne : {ex.Message}");
+        //        throw;
+        //    }
+        //}
+
+
+        public void ModifierLigne(string? nomTable, string colonnePrimaire, object clé, Dictionary<string, object?> valeurs)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(nomTable)) return;
+            if (string.IsNullOrWhiteSpace(nomTable)) return;
 
-                var setClause = string.Join(", ", valeurs.Keys.Select(k => $"[{k}] = @{k}"));
-                var sql = $"UPDATE [{nomTable}] SET {setClause} WHERE [{nomColonnePrimaire}] = @clePrimaire";
+            // On ne modifie que les champs qui ont une valeur renseignée
+            var valeursFiltrées = valeurs
+                .Where(kvp => !string.IsNullOrWhiteSpace(kvp.Value?.ToString()))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-                var conn = _context.Database.GetDbConnection();
-                conn.Open();
-                using var cmd = conn.CreateCommand();
-                cmd.CommandText = sql;
+            if (valeursFiltrées.Count == 0) return;
 
-                var paramCle = cmd.CreateParameter();
-                paramCle.ParameterName = "@clePrimaire";
-                paramCle.Value = cléValeur;
-                cmd.Parameters.Add(paramCle);
+            // Construction du SQL : UPDATE [Phishing] SET [Type]=@Type, [Objet]=@Objet WHERE [ID]=@clePrimaire
+            var setClause = string.Join(", ", valeursFiltrées.Keys.Select(k => $"[{k}] = @{k}"));
+            var sql = $"UPDATE [{nomTable}] SET {setClause} WHERE [{colonnePrimaire}] = @clePrimaire";
 
-                foreach (var kvp in valeurs)
-                {
-                    var param = cmd.CreateParameter();
-                    param.ParameterName = $"@{kvp.Key}";
-                    param.Value = kvp.Value ?? DBNull.Value;
-                    cmd.Parameters.Add(param);
-                }
+            // On ajoute la clé primaire aux valeurs pour le paramètre WHERE
+            valeursFiltrées["clePrimaire"] = clé;
 
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Erreur ModifierLigne : {ex.Message}");
-                throw;
-            }
+            ExecuterCommande(sql, valeursFiltrées);
         }
 
-        public void SupprimerLigne(string nomTable, string nomColonnePrimaire, object cléValeur)
+        //public void ModifierLigne(string nomTable, string nomColonnePrimaire, object cléValeur, System.Collections.Generic.Dictionary<string, object?> valeurs)
+        //{
+        //    try
+        //    {
+        //        if (string.IsNullOrWhiteSpace(nomTable)) return;
+
+        //        var setClause = string.Join(", ", valeurs.Keys.Select(k => $"[{k}] = @{k}"));
+        //        var sql = $"UPDATE [{nomTable}] SET {setClause} WHERE [{nomColonnePrimaire}] = @clePrimaire";
+
+        //        var conn = _context.Database.GetDbConnection();
+        //        conn.Open();
+        //        using var cmd = conn.CreateCommand();
+        //        cmd.CommandText = sql;
+
+        //        var paramCle = cmd.CreateParameter();
+        //        paramCle.ParameterName = "@clePrimaire";
+        //        paramCle.Value = cléValeur;
+        //        cmd.Parameters.Add(paramCle);
+
+        //        foreach (var kvp in valeurs)
+        //        {
+        //            var param = cmd.CreateParameter();
+        //            param.ParameterName = $"@{kvp.Key}";
+        //            param.Value = kvp.Value ?? DBNull.Value;
+        //            cmd.Parameters.Add(param);
+        //        }
+
+        //        cmd.ExecuteNonQuery();
+        //        conn.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine($"Erreur ModifierLigne : {ex.Message}");
+        //        throw;
+        //    }
+        //}
+
+
+        public void SupprimerLigne(string? nomTable, string colonnePrimaire, object clé)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(nomTable)) return;
+            if (string.IsNullOrWhiteSpace(nomTable)) return;
 
-                var sql = $"DELETE FROM [{nomTable}] WHERE [{nomColonnePrimaire}] = @clePrimaire";
-                var conn = _context.Database.GetDbConnection();
+            var sql = $"DELETE FROM [{nomTable}] WHERE [{colonnePrimaire}] = @clePrimaire";
 
-                conn.Open();
-                using var cmd = conn.CreateCommand();
-                cmd.CommandText = sql;
-
-                var param = cmd.CreateParameter();
-                param.ParameterName = "@clePrimaire";
-                param.Value = cléValeur;
-                cmd.Parameters.Add(param);
-
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Erreur SupprimerLigne : {ex.Message}");
-                throw;
-            }
+            ExecuterCommande(sql, new Dictionary<string, object?> { { "clePrimaire", clé } });
         }
+
+        //public void SupprimerLigne(string nomTable, string nomColonnePrimaire, object cléValeur)
+        //{
+        //    try
+        //    {
+        //        if (string.IsNullOrWhiteSpace(nomTable)) return;
+
+        //        var sql = $"DELETE FROM [{nomTable}] WHERE [{nomColonnePrimaire}] = @clePrimaire";
+        //        var conn = _context.Database.GetDbConnection();
+
+        //        conn.Open();
+        //        using var cmd = conn.CreateCommand();
+        //        cmd.CommandText = sql;
+
+        //        var param = cmd.CreateParameter();
+        //        param.ParameterName = "@clePrimaire";
+        //        param.Value = cléValeur;
+        //        cmd.Parameters.Add(param);
+
+        //        cmd.ExecuteNonQuery();
+        //        conn.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine($"Erreur SupprimerLigne : {ex.Message}");
+        //        throw;
+        //    }
+        //}
 
         public void Dispose()
         {
             _context.Dispose();
         }
 
-        public DataTable? ChargerTable(string nomTable)
+
+        public DataTable? ChargerTable(string? nomTable)
         {
+            if (string.IsNullOrWhiteSpace(nomTable)) return null;
+
             try
             {
-                if (string.IsNullOrWhiteSpace(nomTable))
-                    throw new ArgumentException("Le nom de la table est invalide.", nameof(nomTable));
-
-                // Remplacement de l'appel manquant GetConfigurationOuException
-                // On sélectionne toutes les colonnes de la table demandée
-                var sql = $"SELECT * FROM [{nomTable}]";
-
                 var dt = new DataTable();
                 var conn = _context.Database.GetDbConnection();
 
-                conn.Open();
+                // On ouvre la connexion seulement si elle est fermée
+                if (conn.State != System.Data.ConnectionState.Open)
+                    conn.Open();
+
                 using var cmd = conn.CreateCommand();
-                cmd.CommandText = sql;
+                cmd.CommandText = $"SELECT * FROM [{nomTable}]";
+
                 using var reader = cmd.ExecuteReader();
                 dt.Load(reader);
-                conn.Close();
 
                 return dt;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Erreur ChargerTable : {ex.Message}");
+                Debug.WriteLine($"Erreur ChargerTable : {ex.Message}");
                 return null;
+            }
+        }
+
+        //public DataTable? ChargerTable(string nomTable)
+        //{
+        //    try
+        //    {
+        //        if (string.IsNullOrWhiteSpace(nomTable))
+        //            throw new ArgumentException("Le nom de la table est invalide.", nameof(nomTable));
+
+        //        // Remplacement de l'appel manquant GetConfigurationOuException
+        //        // On sélectionne toutes les colonnes de la table demandée
+        //        var sql = $"SELECT * FROM [{nomTable}]";
+
+        //        var dt = new DataTable();
+        //        var conn = _context.Database.GetDbConnection();
+
+        //        conn.Open();
+        //        using var cmd = conn.CreateCommand();
+        //        cmd.CommandText = sql;
+        //        using var reader = cmd.ExecuteReader();
+        //        dt.Load(reader);
+        //        conn.Close();
+
+        //        return dt;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine($"Erreur ChargerTable : {ex.Message}");
+        //        return null;
+        //    }
+        //}
+
+        private void ExecuterCommande(string sql, Dictionary<string, object?> parametres)
+        {
+            var conn = _context.Database.GetDbConnection();
+
+            try
+            {
+                if (conn.State != System.Data.ConnectionState.Open)
+                    conn.Open();
+
+                // Désactive les contraintes FK pour cette session
+                using (var pragma = conn.CreateCommand())
+                {
+                    pragma.CommandText = "PRAGMA foreign_keys = OFF;";
+                    pragma.ExecuteNonQuery();
+                }
+
+                using var cmd = conn.CreateCommand();
+                cmd.CommandText = sql;
+
+                foreach (var kvp in parametres)
+                {
+                    var param = cmd.CreateParameter();
+                    param.ParameterName = $"@{kvp.Key}";
+                    param.Value = kvp.Value ?? DBNull.Value;
+                    cmd.Parameters.Add(param);
+                }
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erreur SQL : {ex.Message}");
+                throw;
             }
         }
     }
