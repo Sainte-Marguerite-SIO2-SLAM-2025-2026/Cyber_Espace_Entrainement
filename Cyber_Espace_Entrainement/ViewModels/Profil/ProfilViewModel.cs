@@ -109,7 +109,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Profil
                 return;
             }
             SessionService.Instance.CurrentUser.MotPasse = NewPassword;
-            (success, message) = _userService.UpdateUserPassword(SessionService.Instance.CurrentUser);
+            //(success, message) = _userService.UpdateUserPassword(SessionService.Instance.CurrentUser);
             if (!success)
             {
                 MessageMdp = message;

@@ -130,6 +130,13 @@
 
             </TextBlock>
 
+            <!-- Enigme 1 -->
+            <TextBlock Grid.Row="0"
+                      Text="Attention un email valide et/ou un mot de passe assez long sont attendus !"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       FontSize="40" />
+
 
 
             <!-- ═══════════════════════════════════════════════════ -->
@@ -191,12 +198,12 @@
                                      Background="#EEE"
                                      BorderThickness="0"
                                      FontSize="14"
-                                     PasswordChanged="PasswordBox_PasswordChanged"/>
+                                     PasswordChanged="PasswordBox_PasswordChanged" />
                     </StackPanel>
 
-                    <!-- Message d'erreur -->
+                    <!-- Message -->
                     <TextBlock Text="{Binding MessageErreur}"
-                               Foreground="Red"
+                               Foreground="BlueViolet"
                                FontWeight="Bold"
                                FontSize="14"
                                Margin="0,0,0,15"
@@ -271,7 +278,8 @@
                         <TextBlock Text="Mot de passe"
                                    FontWeight="SemiBold"
                                    Foreground="#444" />
-                        <PasswordBox Height="40"
+                        <PasswordBox x:Name="PasswordBoxCreation"
+                                     Height="40"
                                      Padding="10"
                                      Background="#EEE"
                                      BorderThickness="0"
@@ -284,7 +292,8 @@
                         <TextBlock Text="Confirmer le mot de passe"
                                    FontWeight="SemiBold"
                                    Foreground="#444" />
-                        <PasswordBox Height="40"
+                        <PasswordBox x:Name="PasswordBoxCreationConfirm"
+                            Height="40"
                                      Padding="10"
                                      Background="#EEE"
                                      BorderThickness="0"
@@ -293,7 +302,7 @@
                     </StackPanel>
 
                     <TextBlock Text="{Binding MessageErreur}"
-                               Foreground="Red"
+                               Foreground="BlueViolet"
                                FontWeight="Bold"
                                FontSize="14"
                                Margin="0,0,0,15"
@@ -359,11 +368,11 @@
                                  Background="#EEE"
                                  BorderThickness="0"
                                  FontSize="14"
-                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
 
                     <TextBlock Text="{Binding MessageErreur}"
-                               Foreground="Red"
+                               Foreground="BlueViolet"
                                FontWeight="Bold"
                                FontSize="14"
                                Margin="0,0,0,15"
@@ -386,7 +395,7 @@
 
 
 
-            
+
 
             <!-- ********* QUESTION USER ENUMERATION ********* -->
             <StackPanel Grid.Row="2"
@@ -445,6 +454,50 @@
 
                 </StackPanel>
             </StackPanel>
+
+
+            <StackPanel Grid.Row="2"
+                        Margin="0,30,0,0"
+                        HorizontalAlignment="Center">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding JeuTermine}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+
+                <TextBlock FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="#4CAF50">
+                <Run Text="Vous avez obtenu" />
+                <Run Text="{Binding Score}" />
+                <Run Text="points sur" />
+                <Run Text="{Binding TotalPropositions}" />
+                </TextBlock>
+
+                <Button Content="Recommencer"
+                        Command="{Binding RecommencerCommand}"
+                        Click="Recommencer_Click"
+                        Width="140"
+                        Height="45"
+                        Background="#F44336"
+                        Foreground="Black"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        Cursor="Hand" />
+
+            </StackPanel>
+
+
+
 
         </Grid>
         <!-- ═══════════════════════════════════════════════════════════

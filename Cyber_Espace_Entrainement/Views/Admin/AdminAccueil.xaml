@@ -45,34 +45,6 @@
 
                 </Grid.ColumnDefinitions>
 
-                <!-- BOUTON RETOUR (à gauche) -->
-                <Button Grid.Column="0"
-                        Content="↩️   Retour"
-                        Click="BackButton_Click"
-                        Background="#1565C0"
-                        Foreground="White"
-                        Padding="15,10"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        BorderThickness="0"
-                        Cursor="Hand"
-                        VerticalAlignment="Center"
-                        ToolTip="Retour au menu principal">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background"
-                                    Value="Violet" />
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver"
-                                         Value="True">
-                                    <Setter Property="Background"
-                                            Value="Violet" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
                 <StackPanel Grid.Column="1"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"

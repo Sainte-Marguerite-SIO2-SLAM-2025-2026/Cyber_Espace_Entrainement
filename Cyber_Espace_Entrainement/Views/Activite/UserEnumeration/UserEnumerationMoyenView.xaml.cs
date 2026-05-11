@@ -69,14 +69,16 @@ namespace Cyber_Espace_Entrainement.Views.Activite
         private void Regles()
         {
             MessageBoxService.ShowInformation(
+    "1) Remplissez le formulaire affiché (connexion, inscription ou reset de mot de passe).\n" +
+    "2) Cliquez sur Valider pour confirmer votre saisie.\n" +
+    "3) Après validation, un message apparait, répondez par Oui ou Non à la question posée.\n" +
+    "4) Votre réponse influencera votre score.\n" +
+    "5) Passez automatiquement au niveau suivant après chaque réponse.\n" +
+    "6) À la fin des activités, votre score final sera affiché.\n\n" +
+    "Bonne chance !",
+    "RÈGLES DU JEU :"
+);
 
-                "1) Glissez chaque message dans la bonne catégorie.\n" +
-                "2) Double-cliquez pour remettre un message.\n" +
-                "3) Cliquez sur Valider quand tout est classé.\n" +
-                "4) Les bonnes réponses s'afficheront en vert et les mauvaises en rouge.\n\n" +
-                "Bonne chance !",
-                "RÈGLES DU JEU :"
-                );
         }
 
         /// <summary>
@@ -105,6 +107,13 @@ namespace Cyber_Espace_Entrainement.Views.Activite
         {
             if (DataContext is UserEnumerationMoyenViewModel vm)
                 vm.ConfirmationMotDePasse = ((PasswordBox)sender).Password;
+        }
+
+        private void Recommencer_Click(object sender, RoutedEventArgs e)
+        {
+            PasswordBox.Clear();
+            PasswordBoxCreation.Clear();
+            PasswordBoxCreationConfirm.Clear();
         }
     }
 }

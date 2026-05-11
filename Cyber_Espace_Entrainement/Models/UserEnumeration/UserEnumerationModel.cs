@@ -17,13 +17,13 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         public int Id { get; set; }
 
         [Column("ActiviteID")]
-        public string ActiviteId { get; set; }
+        public int ActiviteId { get; set; }
 
         [Column("CoursID")] 
         public int CoursId { get; set; }
 
         [Column("image")] 
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         [Column("reponse")] 
         public bool Reponse { get; set; }
@@ -32,7 +32,7 @@ namespace Cyber_Espace_Entrainement.Models.UserEnumeration
         public string Message { get; set; }
 
         [Column("libelle")]
-        public string Libelle { get; set; }
+        public string? Libelle { get; set; }
 
         [NotMapped]
         public bool ReponseUtilisateur { get; set; }

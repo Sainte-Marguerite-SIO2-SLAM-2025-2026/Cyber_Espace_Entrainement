@@ -162,6 +162,24 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
         [RelayCommand(CanExecute = nameof(ChampsRempli))]
         private void ValiderConnexion()
         {
+            if (!EmailValide(Email))
+            {
+                MessageErreur = "Adresse email invalide.";
+                return;
+            }
+
+            if (JeuInscription && !ConfirmationValide(MotDePasse, ConfirmationMotDePasse))
+            {
+                MessageErreur = "Les mots de passe ne correspondent pas.";
+                return;
+            }
+
+            if (!MotDePasseValide(MotDePasse) && (JeuConnexion || JeuInscription))
+            {
+                MessageErreur = "Le mot de passe doit contenir au moins 6 caractères.";
+                return;
+            }
+
             FormulaireValide = true;
 
             ReponseOuiCommand.NotifyCanExecuteChanged();
@@ -172,26 +190,29 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
 
         private bool ChampsRempli()
         {
+            // Email obligatoire + format valide
+            if (!EmailValide(Email))
+                return false;
+
             if (JeuConnexion)
             {
-                return !string.IsNullOrWhiteSpace(Email)
-                    && !string.IsNullOrWhiteSpace(MotDePasse);
+                return MotDePasseValide(MotDePasse);
             }
 
             if (JeuInscription)
             {
-                return !string.IsNullOrWhiteSpace(Email)
-                    && !string.IsNullOrWhiteSpace(MotDePasse)
-                    && !string.IsNullOrWhiteSpace(ConfirmationMotDePasse);
+                return MotDePasseValide(MotDePasse)
+                    && ConfirmationValide(MotDePasse, ConfirmationMotDePasse);
             }
 
             if (JeuChangementMdp)
             {
-                return !string.IsNullOrWhiteSpace(Email);
+                return true; // seul l'email est requis, déjà validé plus haut
             }
 
             return false;
         }
+
 
         partial void OnEmailChanged(string value)
         {
@@ -206,6 +227,63 @@ namespace Cyber_Espace_Entrainement.ViewModels.Activite
         partial void OnConfirmationMotDePasseChanged(string value)
         {
             ValiderConnexionCommand.NotifyCanExecuteChanged();
+        }
+
+        [RelayCommand]
+        private void Recommencer()
+        {
+            // Réinitialisation des variables de progression
+            Score = 0;
+            _indexActuel = 0;
+            JeuTermine = false;
+
+            // Réinitialisation des champs utilisateur
+            Email = string.Empty;
+            MotDePasse = string.Empty;
+            ConfirmationMotDePasse = string.Empty;
+            MessageErreur = string.Empty;
+
+            // Réinitialisation des flags d’affichage
+            JeuConnexion = false;
+            JeuInscription = false;
+            JeuChangementMdp = false;
+            FormulaireValide = false;
+
+            // Recharger une nouvelle série d’activités
+            _activites = _service.GetRandomOnePerLibelle();
+            TotalPropositions = _service.GetCountRandomOnePerLibelle();
+
+            // Recharger la première activité
+            ChargerActivite();
+
+            // Mise à jour des commandes
+            ReponseOuiCommand.NotifyCanExecuteChanged();
+            ReponseNonCommand.NotifyCanExecuteChanged();
+            ValiderConnexionCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool EmailValide(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            // Regex simple et efficace
+            return System.Text.RegularExpressions.Regex.IsMatch(
+                email,
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase
+            );
+        }
+
+        private bool MotDePasseValide(string mdp)
+        {
+            return !string.IsNullOrWhiteSpace(mdp) && mdp.Length >= 6;
+        }
+
+
+        private bool ConfirmationValide(string mdp, string confirm)
+        {
+            return mdp == confirm;
         }
 
 

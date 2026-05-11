@@ -207,7 +207,7 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(c => c.Valide)
                       .HasColumnName("Valide")
                       .IsRequired();
-                
+
             });
 
             modelBuilder.Entity<UserEnumeration>(entity =>
@@ -248,7 +248,7 @@ namespace Cyber_Espace_Entrainement.Data
                 entity.Property(a => a.Table).IsRequired(false);
                 entity.Property(a => a.Icon).IsRequired(false);
             });
-
+        }
         
 
 
