@@ -120,7 +120,7 @@ namespace Cyber_Espace_Entrainement.Services
         }
 
         // ====================================================================
-        // ÉCRITURE — Modification
+        // ÉCRITURE
         // ====================================================================
 
         /// <summary>
@@ -172,9 +172,16 @@ namespace Cyber_Espace_Entrainement.Services
                 // Si le champ est renseigné : on hache et on met à jour
                 if (!string.IsNullOrWhiteSpace(user.MotPasse))
                 {
+                    
+                    // On vérifie que l'ancien hash est bien un hash BCrypt valide
+                    // avant d'appeler Verify
+                    bool ancienHashValide = existingUser.MotPasse != null
+                                            && existingUser.MotPasse.StartsWith("$2");
+                    
                     // On évite de re-hacher un mot de passe déjà haché
                     // BCrypt.Verify retourne true si c'est le même mot de passe qu'avant
-                    bool estMemeMdp = BCrypt.Net.BCrypt.Verify(user.MotPasse, existingUser.MotPasse);
+                    bool estMemeMdp = ancienHashValide
+                                      && BCrypt.Net.BCrypt.Verify(user.MotPasse, existingUser.MotPasse);
 
                     if (!estMemeMdp)
                         existingUser.MotPasse = HashMDP(user.MotPasse);
