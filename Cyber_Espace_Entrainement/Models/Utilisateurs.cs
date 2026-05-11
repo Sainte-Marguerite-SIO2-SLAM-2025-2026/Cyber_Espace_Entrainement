@@ -28,11 +28,6 @@ namespace Cyber_Espace_Entrainement.Models
         [Column("Password")]
         public string MotPasse { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(255)]
-        [Column("Email")]
-        public string Email { get; set; } = string.Empty;
-
         
         [MaxLength(50)]
         [Column("Nom")]
@@ -43,8 +38,14 @@ namespace Cyber_Espace_Entrainement.Models
         [Column("Prenom")]
         public string? Prenom { get; set; }
 
-        
-        [MaxLength(5)]
+
+        [Required]
+        [MaxLength(255)]
+        [Column("Email")]
+        public string Email { get; set; } = string.Empty;
+
+
+        [MaxLength(15)]
         [Column("Section")]
         public string? Section { get; set; }
 

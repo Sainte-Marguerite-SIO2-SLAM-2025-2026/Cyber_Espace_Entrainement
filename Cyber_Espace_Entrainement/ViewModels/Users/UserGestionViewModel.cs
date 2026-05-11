@@ -90,7 +90,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
 
 
         // 
-        // CONSTRUCTEUR - INCHANGÉ
+        // CONSTRUCTEUR
         // 
 
         public UserGestionViewModel()
@@ -156,7 +156,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
             }
         }
 
-        // Méthode de validation - INCHANGÉE
+        // Méthode de validation
         private bool CanSaveUser()
         {
             // En mode création : tout doit être rempli
@@ -207,7 +207,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
         }
 
         /// <summary>
-        /// Supprimer un utilisateur - INCHANGÉE
+        /// Supprimer un utilisateur
         /// </summary>
         [RelayCommand]
         private void DeleteUser(Utilisateurs? user)
@@ -238,7 +238,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
         }
 
         /// <summary>
-        /// Annuler l'édition - INCHANGÉE
+        /// Annuler l'édition
         /// </summary>
         [RelayCommand]
         private void CancelEdit()
@@ -249,7 +249,7 @@ namespace Cyber_Espace_Entrainement.ViewModels.Users
         }
 
         // 
-        // COMMANDES - Recherche et filtres - INCHANGÉES
+        // COMMANDES - Recherche et filtres
         // 
 
         /// <summary>

@@ -193,6 +193,8 @@
     <Resource Include="Resources\Images\Cours\RansomwareCarteMentale.png" />
     <Resource Include="Resources\Images\Cours\RansomwareSchema.png" />
     <CodeAnalysisDictionary Include="Resources\Images\Cours\user_enumeration_registration.png" />
+    <Resource Include="Resources\Images\Icons\icon_cours_admin.png" />
+    <Resource Include="Resources\Images\Icons\icon_user_admin.png" />
     <Resource Include="Resources\Images\Cours\Jesus_Infobox_Manga.PNG" />
     <Resource Include="Resources\Images\Cours\koala.jpg" />
     <Resource Include="Resources\Images\Cours\pepe.jpg" />

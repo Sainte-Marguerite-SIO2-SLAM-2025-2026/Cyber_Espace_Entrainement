@@ -158,21 +158,12 @@ namespace Cyber_Espace_Entrainement.ViewModels.Accueil
                 }
             }
             else
-            {
-                if (parameter is Window window)
-                {
-                    // TO DO : A enlever à terme
-                    var accueil = new AccueilWindow();
-                    window.Close(); // Ferme la fenêtre de connexion
-                    accueil.Show();
-
-                }
-                //accueil.Show();
-                //// Afficher le message renvoyé par le service (ou un message générique)
-                //MessageBoxService.ShowWarning(
-                //    string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message,
-                //    "Attention"
-                //);
+            {                
+                // Afficher le message renvoyé par le service (ou un message générique)
+                MessageBoxService.ShowWarning(
+                    string.IsNullOrWhiteSpace(message) ? "Identifiants incorrects." : message,
+                    "Attention"
+                );
             }
         }
 
